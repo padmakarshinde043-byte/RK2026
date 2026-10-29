@@ -18,12 +18,11 @@
 
   <style>
     :root {
-      --golden-cream-grad: linear-gradient(135deg, #fffdf7 0%, #f7eed7 40%, #ebd39c 75%, #fbf5e6 100%);
-      --maroon: #851216;
-      --navy: #0f2b48;
+      --maroon: #700f13;
+      --navy: #1e3a8a;
       --gold-dark: #b8860b;
       --gold-border: #d4af37;
-      --bg: #f4f6fa;
+      --bg: #f8fafc;
       --card: #ffffff;
       --border: #e2e8f0;
       --accent: #b45309;
@@ -48,67 +47,172 @@
       flex-direction: column;
     }
 
-    /* चमकदार हलका गोल्डन-क्रीम हेडर */
+    /* छायाचित्र २ प्रमाणे हुबेहूब अधिकृत लेटरहेड हेडर */
     header {
-      background: var(--golden-cream-grad);
-      color: var(--maroon);
-      padding: 20px 15px;
-      box-shadow: 0 8px 25px rgba(184, 134, 11, 0.15);
-      border-bottom: 2px solid var(--gold-border);
+      background: linear-gradient(180deg, #fffcf5 0%, #faecd0 50%, #fbf3e0 100%);
+      padding: 12px 15px;
+      box-shadow: 0 4px 20px rgba(184, 134, 11, 0.15);
+      border-bottom: 2.5px solid var(--gold-border);
       user-select: none;
       position: relative;
     }
 
-    .header-box {
-      max-width: 1200px;
+    .official-letterhead {
+      max-width: 1100px;
       margin: 0 auto;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .lh-reg-top {
+      position: absolute;
+      top: 0;
+      right: 5px;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: 0.5px;
+    }
+
+    /* Left Round Emblem */
+    .emblem-round-left {
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      border: 2px solid #cbd5e1;
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
+      text-align: center;
+      padding: 4px;
+      flex-shrink: 0;
     }
 
-    .reg-tag {
-      font-size: 13px;
-      background: #ffffff;
-      padding: 4px 20px;
-      border-radius: 50px;
-      border: 1.5px solid var(--gold-border);
-      color: #851216;
+    .emblem-round-left .top-curve {
+      font-size: 8.5px;
       font-weight: 800;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      color: #0f172a;
+      line-height: 1.1;
     }
 
-    .main-heading {
-      font-size: 28px;
+    .emblem-round-left .inner-map-icon {
+      font-size: 38px;
+      background: linear-gradient(135deg, #f97316, #0284c7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 2px 0;
+    }
+
+    .emblem-round-left .bot-curve {
+      font-size: 9.5px;
       font-weight: 800;
+      color: #0f172a;
+    }
+
+    /* Center Main Title */
+    .lh-center-content {
+      flex: 1;
+      text-align: center;
+      padding: 10px 15px 0 15px;
+    }
+
+    .state-title-blue {
+      font-family: 'Rozha One', 'Mukta', serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: #1e3a8a;
+      text-shadow: -1.5px -1.5px 0 #ffffff, 1.5px -1.5px 0 #ffffff, -1.5px 1.5px 0 #ffffff, 1.5px 1.5px 0 #ffffff, 0 2px 4px rgba(0,0,0,0.25);
+      letter-spacing: 1px;
+      line-height: 1.1;
+    }
+
+    .org-title-maroon {
+      font-family: 'Rozha One', 'Mukta', serif;
+      font-size: 38px;
+      font-weight: 800;
+      color: #6b0c10;
+      line-height: 1.15;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+      margin-top: 2px;
+    }
+
+    .ribbon-slogan-wrap {
+      display: inline-block;
+      margin: 4px auto;
+      background: linear-gradient(90deg, #fef3c7 0%, #fffbeb 50%, #fef3c7 100%);
+      border: 1.5px solid #d4af37;
+      border-radius: 30px;
+      padding: 2px 24px;
+      box-shadow: 0 2px 6px rgba(184, 134, 11, 0.15);
+    }
+
+    .ribbon-slogan-wrap span {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #4a0404;
       letter-spacing: 0.5px;
-      color: #700f13;
-      text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
-      cursor: pointer;
     }
 
-    .sub-slogan {
-      font-size: 15px;
-      color: #5c3a00;
+    .president-details-bar {
+      margin-top: 3px;
+    }
+
+    .pres-name-big {
+      font-size: 19px;
+      font-weight: 800;
+      color: #0f2b48;
+    }
+
+    .pres-desig-tag {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .pres-sub-address {
+      font-size: 11.5px;
       font-weight: 700;
-      letter-spacing: 0.5px;
+      color: #334155;
+      margin-top: 1px;
+    }
+
+    /* Right Round Fist Emblem */
+    .emblem-round-right {
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      border: 2px solid #cbd5e1;
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .emblem-round-right i {
+      font-size: 48px;
+      color: #475569;
     }
 
     .container {
       max-width: 1200px;
-      margin: 20px auto;
+      margin: 18px auto;
       padding: 0 14px;
       width: 100%;
       flex: 1;
     }
 
-    /* सॉफ्ट शॅडो असलेले कॅप्सूल टॅब बार */
+    /* कॅप्सूल टॅब बार */
     .tabs-wrapper {
       display: flex;
       background: #ffffff;
-      padding: 8px;
+      padding: 7px;
       border-radius: 50px;
       gap: 8px;
       margin-bottom: 20px;
@@ -152,7 +256,7 @@
       border-radius: 50px;
     }
 
-    /* Action bar कॅप्सूल कार्ड */
+    /* Action bar */
     .action-panel {
       background: var(--card);
       padding: 14px 20px;
@@ -177,11 +281,6 @@
       min-width: 220px;
       cursor: pointer;
       background-color: #f8fafc;
-      transition: border-color 0.2s;
-    }
-
-    .select-district-field:focus {
-      border-color: var(--accent);
     }
 
     /* कॅप्सूल बटणे */
@@ -207,13 +306,12 @@
 
     .btn-gold { background: linear-gradient(135deg, #d4af37, #b8860b); color: white; }
     .btn-outline { background: #ffffff; border: 1.5px solid #334155; color: #334155; }
-    .btn-outline:hover { background: #334155; color: white; }
     .btn-wa { background: #25D366; color: white; }
     .btn-view { background: #0284c7; color: white; }
     .btn-edit { background: #f59e0b; color: white; border-radius: 8px; }
     .btn-del { background: #ef4444; color: white; border-radius: 8px; }
 
-    /* मॉडर्न सॉफ्ट शॅडो टेबल कार्ड */
+    /* टेबल कार्ड */
     .table-card {
       background: var(--card);
       border-radius: 20px;
@@ -249,7 +347,7 @@
        ========================================================== */
     .designer-layout {
       display: grid;
-      grid-template-columns: 370px 1fr;
+      grid-template-columns: 380px 1fr;
       gap: 20px;
       align-items: start;
     }
@@ -336,7 +434,7 @@
     .a4-container {
       width: 210mm;
       min-height: 297mm;
-      padding: 10mm 14mm;
+      padding: 8mm 12mm;
       background: #ffffff;
       margin: 0 auto;
       box-sizing: border-box;
@@ -352,14 +450,14 @@
       border: 2px solid #851216;
       outline: 1.5px solid #d4a017;
       outline-offset: -5px;
-      padding: 14px 18px;
-      min-height: 275mm;
+      padding: 12px 16px;
+      min-height: 278mm;
       position: relative;
       background: transparent;
       overflow: hidden;
     }
 
-    /* Free-form Absolute Node */
+    /* Free-form Absolute Draggable Node */
     .canvas-node {
       position: absolute;
       cursor: move;
@@ -415,115 +513,26 @@
       display: flex;
     }
 
-    .letterhead-card {
+    /* Letterhead Top Banner on Canvas */
+    .letterhead-card-canvas {
       position: relative;
-      background: linear-gradient(135deg, #18181b 0%, #27272a 20%, #ea580c 65%, #f97316 100%);
-      border-radius: 10px;
-      padding: 8px 14px;
-      color: white;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-      border-bottom: 3px solid #d4a017;
-    }
-
-    .lh-reg-num {
-      font-size: 10pt;
-      font-weight: 800;
-      color: #111;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 1px 8px;
-      border-radius: 4px;
-      border: 1px solid #333;
-      float: right;
-    }
-
-    .lh-content-flex {
+      background: linear-gradient(180deg, #fffcf5 0%, #faecd0 50%, #fbf3e0 100%);
+      border-radius: 8px;
+      padding: 8px 12px;
+      border: 1.5px solid #d4af37;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      clear: both;
-      margin-top: 4px;
-    }
-
-    .lh-logo-circle {
-      width: 65px;
-      height: 65px;
-      background: #ffffff;
-      border-radius: 50%;
-      border: 3px solid #ea580c;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.25);
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .lh-logo-circle img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .lh-center-headings {
-      flex: 1;
-      text-align: center;
-      padding: 0 8px;
-    }
-
-    .lh-mh-state {
-      font-size: 13.5pt;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: 0.5px;
-      text-shadow: 1px 1px 2px #000;
-    }
-
-    .lh-org-text {
-      font-family: 'Rozha One', 'Mukta', serif;
-      font-size: 21pt;
-      font-weight: 800;
-      color: #fde047;
-      line-height: 1.2;
-      text-shadow: 2px 2px 4px #000;
-      margin: 1px 0;
-    }
-
-    .lh-right-quote {
-      width: 120px;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.95);
-      color: #111;
-      padding: 4px;
-      border-radius: 5px;
-      border-left: 3px solid #ea580c;
-      font-size: 8.5pt;
-      font-weight: 800;
-      line-height: 1.3;
-      flex-shrink: 0;
-    }
-
-    .lh-foot-strip {
-      text-align: center;
-      margin-top: 5px;
-      padding-top: 3px;
-      border-top: 1px solid rgba(255,255,255,0.3);
-      font-size: 8.5pt;
-      line-height: 1.35;
-      color: #fff;
-    }
-
-    .lh-foot-name {
-      font-size: 12pt;
-      font-weight: 800;
-      color: #fef08a;
     }
 
     .date-outward-row {
       display: flex;
       justify-content: space-between;
-      font-size: 10.5pt;
-      font-weight: 700;
-      padding-bottom: 3px;
+      font-size: 11pt;
+      font-weight: 800;
+      padding-bottom: 2px;
       border-bottom: 1.5px dashed #851216;
       width: 100%;
     }
@@ -536,7 +545,7 @@
     .certificate-title-pill span {
       background: linear-gradient(135deg, #851216, #991b1b);
       color: #ffffff;
-      padding: 4px 34px;
+      padding: 3px 32px;
       font-size: 14pt;
       font-weight: 800;
       border-radius: 25px;
@@ -545,42 +554,42 @@
     }
 
     .to-person-box {
-      font-size: 11pt;
+      font-size: 11.5pt;
       line-height: 1.5;
       width: 100%;
     }
 
     .to-person-box .person-name {
-      font-size: 13pt;
+      font-size: 13.5pt;
       font-weight: 800;
       color: #0f2b48;
     }
 
     .subject-banner {
-      font-size: 11.5pt;
+      font-size: 12pt;
       font-weight: 800;
       background: #fff7ed;
-      padding: 4px 10px;
+      padding: 4px 12px;
       border-left: 4px solid #ea580c;
       border-radius: 0 5px 5px 0;
       width: 100%;
     }
 
     .body-text-block {
-      font-size: 11.5pt;
-      line-height: 1.6;
+      font-size: 12pt;
+      line-height: 1.65;
       text-align: justify;
       color: #111;
       width: 100%;
     }
 
     .body-text-block p {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       text-indent: 20px;
     }
 
     .appointment-callout {
-      padding: 8px 16px;
+      padding: 6px 14px;
       background: #fffbeb;
       border: 2px dashed #f97316;
       border-radius: 8px;
@@ -590,26 +599,21 @@
 
     .appointment-callout .post-badge {
       font-family: 'Rozha One', 'Yatra One', cursive;
-      font-size: 20pt;
+      font-size: 21pt;
       font-weight: 800;
       color: #851216;
       display: block;
-      margin: 2px 0;
+      margin: 1px 0;
     }
 
-    .signature-row {
-      display: flex;
-      justify-content: space-between;
+    /* दोन्ही स्वाक्षऱ्या स्वतंत्र स्टाईल */
+    .single-sign-card {
       width: 100%;
-      padding: 0 5px;
-    }
-
-    .sign-slot {
       text-align: center;
-      width: 250px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      background: transparent;
     }
 
     .uploaded-sign-img {
@@ -619,22 +623,22 @@
       display: none;
     }
 
-    .sign-slot .slot-name {
-      font-size: 12pt;
+    .single-sign-card .slot-name {
+      font-size: 12.5pt;
       font-weight: 800;
       border-top: 1.5px solid #222;
-      padding-top: 4px;
+      padding-top: 3px;
       color: #000;
       width: 100%;
     }
 
-    .sign-slot .slot-role {
-      font-size: 10pt;
+    .single-sign-card .slot-role {
+      font-size: 10.5pt;
       font-weight: 700;
-      color: #475569;
+      color: #334155;
     }
 
-    /* Modals */
+    /* Modal */
     .modal-wrap {
       position: fixed;
       inset: 0;
@@ -657,6 +661,11 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.3);
       display: flex;
       flex-direction: column;
+    }
+
+    .modal-content.preview-mode {
+      max-width: 880px;
+      background: #e2e8f0;
     }
 
     .modal-header-bar {
@@ -713,19 +722,49 @@
       .a4-container { width: 100%; min-height: auto; padding: 6px; }
       .a4-inner { min-height: auto; padding: 10px; }
       .action-panel { flex-direction: column; align-items: stretch; }
+      .emblem-round-left, .emblem-round-right { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- चमकदार हलका गोल्डन-क्रीम हेडर -->
-  <header>
-    <div class="header-box">
-      <div class="reg-tag">नोंदणी क्र. ना/0000555/2026</div>
-      <div class="main-heading" id="mainHeaderTitle" title="३ वेळा क्लिक करा (सिक्रेट ॲडमिन पॅनल)">
-        महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ
+  <!-- छायाचित्र २ प्रमाणे हुबेहूब अधिकृत लेटरहेड हेडर (३ वेळा क्लिक केल्यास सिक्रेट ॲडमिन पॅनल उघडेल) -->
+  <header id="mainHeaderTitle" title="३ वेळा क्लिक करा (सिक्रेट ॲडमिन पॅनल)">
+    <div class="official-letterhead">
+      <div class="lh-reg-top">Reg. No. MH/0000555/2026</div>
+
+      <!-- Left Round Emblem -->
+      <div class="emblem-round-left">
+        <div class="top-curve">केंद्रप्रमुख व अधिकारी महासंघ</div>
+        <div class="inner-map-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="bot-curve">महाराष्ट्र राज्य</div>
       </div>
-      <div class="sub-slogan">॥ शिक्षणासाठी समर्पित... कर्मचाऱ्यांच्या हितासाठी...! ॥</div>
+
+      <!-- Center Typography -->
+      <div class="lh-center-content">
+        <div class="state-title-blue">महाराष्ट्र राज्य</div>
+        <div class="org-title-maroon">केंद्रप्रमुख व अधिकारी महासंघ</div>
+        
+        <div class="ribbon-slogan-wrap">
+          <span>शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...!</span>
+        </div>
+
+        <div class="president-details-bar">
+          <div class="pres-name-big">श्री. राजेंद्र शिवाजी खैरनार</div>
+          <div class="pres-desig-tag">राज्याध्यक्ष</div>
+          <div class="pres-sub-address">
+            कार्यालय : स. नं. ५६/१, प्लॉट नं. १, मालेगाव ता. मालेगाव जि. नाशिक
+          </div>
+          <div class="pres-sub-address" style="font-weight: 800;">
+            मो. 9860704098 Email: rajadei2026@gmail.com
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Round Fist Emblem -->
+      <div class="emblem-round-right">
+        <i class="fa-solid fa-hand-fist"></i>
+      </div>
     </div>
   </header>
 
@@ -743,7 +782,7 @@
         <i class="fa-solid fa-certificate"></i> नियुक्ती पत्रे व WhatsApp <span class="tab-lock" id="letterLockBadge"><i class="fa-solid fa-lock"></i></span>
       </button>
       
-      <!-- हे फक्त ॲडमिन पॅनल उघडल्यावरच दिसणार -->
+      <!-- हे फक्त ॲडमिन पॅनल उघडल्यावरच दिसेल -->
       <button class="nav-tab" id="adminDesignerTabBtn" style="display:none;" onclick="switchTab('tab-designer')">
         <i class="fa-solid fa-wand-magic-sparkles"></i> नियुक्तीपत्र Designer Studio (Admin)
       </button>
@@ -843,18 +882,18 @@
       </div>
     </div>
 
-    <!-- TAB 4: ADVANCED DESIGNER STUDIO (Protected Inside Admin Panel: RK2026) -->
+    <!-- TAB 4: ADVANCED DESIGNER STUDIO (Admin Secret Mode) -->
     <div id="tab-designer" class="tab-view" style="display:none;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
         <div>
           <h3 style="font-size:18px; font-weight:800; color:var(--navy);">
-            <i class="fa-solid fa-palette" style="color:var(--accent);"></i> नियुक्तीपत्र डिझाइन स्टुडिओ (सर्व जिल्ह्यांसाठी समान मास्टर फॉरमॅट)
+            <i class="fa-solid fa-palette" style="color:var(--accent);"></i> नियुक्तीपत्र डिझाइन स्टुडिओ (Admin Master Customizer)
           </h3>
-          <small style="color:#64748b;">येथे केलेली डिझाइन व स्थान सर्व जिल्ह्यांतील सर्व पदाधिकाऱ्यांच्या प्रमाणपत्रांना आपोआप लागू होईल.</small>
+          <small style="color:#64748b;">सर्व घटक स्वतंत्रपणे ड्रॅग करून सेट करा, मजकूर व स्वाक्षऱ्या संपादित करा आणि Firebase वर सेव्ह करा.</small>
         </div>
         <div style="display:flex; gap:8px;">
           <button class="btn btn-gold" onclick="saveDesignToCloud()">
-            <i class="fa-solid fa-cloud-arrow-up"></i> डिझाईन सेव्ह करा (Save to Cloud)
+            <i class="fa-solid fa-cloud-arrow-up"></i> डिझाईन सेव्ह करा
           </button>
           <button class="btn btn-outline" onclick="resetDesignerDefaults()">
             <i class="fa-solid fa-arrow-rotate-left"></i> रिसेट
@@ -889,14 +928,45 @@
                 <input type="checkbox" id="chk-subject" checked onchange="toggleNodeVisibility('node-subject', this.checked)"> विषय पट्टी
               </label>
               <label class="element-check-label">
-                <input type="checkbox" id="chk-body" checked onchange="toggleNodeVisibility('node-body', this.checked)"> मुख्य मजकूर
+                <input type="checkbox" id="chk-body" checked onchange="toggleNodeVisibility('node-body', this.checked)"> मुख्य मजकूर (१ व २)
               </label>
               <label class="element-check-label">
                 <input type="checkbox" id="chk-callout" checked onchange="toggleNodeVisibility('node-callout', this.checked)"> पद सन्मान बॅनर
               </label>
               <label class="element-check-label">
-                <input type="checkbox" id="chk-signs" checked onchange="toggleNodeVisibility('node-signs', this.checked)"> स्वाक्षरी ब्लॉक
+                <input type="checkbox" id="chk-para3" checked onchange="toggleNodeVisibility('node-body-para3', this.checked)"> पॅराग्राफ ३ (शुभेच्छा)
               </label>
+              <label class="element-check-label">
+                <input type="checkbox" id="chk-sign1" checked onchange="toggleNodeVisibility('node-sign-left', this.checked)"> स्वाक्षरी १ (सरचिटणीस)
+              </label>
+              <label class="element-check-label">
+                <input type="checkbox" id="chk-sign2" checked onchange="toggleNodeVisibility('node-sign-right', this.checked)"> स्वाक्षरी २ (राज्याध्यक्ष)
+              </label>
+            </div>
+          </div>
+
+          <!-- दोन्ही स्वाक्षऱ्या संपादन पर्याय -->
+          <div class="control-sec">
+            <h4><i class="fa-solid fa-signature"></i> स्वाक्षरी ब्लॉक संपादन</h4>
+            <div class="control-row">
+              <label>स्वाक्षरी १ (डावी बाजू) नाव:</label>
+              <input type="text" id="dsSign1Name" value="( श्री. विजय सावंत )" oninput="updateSignTexts()">
+            </div>
+            <div class="control-row">
+              <label>स्वाक्षरी १ पद व संघटना:</label>
+              <input type="text" id="dsSign1Role" value="राज्य सरचिटणीस&#10;महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ" oninput="updateSignTexts()">
+            </div>
+            <div class="control-row" style="margin-top: 8px;">
+              <label>स्वाक्षरी २ (उजवी बाजू) नाव:</label>
+              <input type="text" id="dsSign2Name" value="( श्री. राजेंद्र खैरनार )" oninput="updateSignTexts()">
+            </div>
+            <div class="control-row">
+              <label>स्वाक्षरी २ पद व संघटना:</label>
+              <input type="text" id="dsSign2Role" value="संस्थापक राज्याध्यक्ष&#10;महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ" oninput="updateSignTexts()">
+            </div>
+            <div class="control-row">
+              <label>अध्यक्षांची स्वाक्षरी प्रतिमा (PNG):</label>
+              <input type="file" id="dsSignUpload" accept="image/*" onchange="handleSignUpload(event)">
             </div>
           </div>
 
@@ -917,18 +987,10 @@
           </div>
 
           <div class="control-sec">
-            <h4><i class="fa-solid fa-image"></i> बॅकग्राउंड व सही / लोगो अपलोड</h4>
+            <h4><i class="fa-solid fa-image"></i> बॅकग्राउंड व वॉटरमार्क अपलोड</h4>
             <div class="control-row">
               <label>पार्श्वभूमी प्रतिमा (Background / Watermark):</label>
               <input type="file" id="dsBgUpload" accept="image/*" onchange="handleBgUpload(event)">
-            </div>
-            <div class="control-row">
-              <label>संस्थेचा लोगो बदला (Custom Logo):</label>
-              <input type="file" id="dsLogoUpload" accept="image/*" onchange="handleLogoUpload(event)">
-            </div>
-            <div class="control-row">
-              <label>अध्यक्षांची स्वाक्षरी (PNG Signature):</label>
-              <input type="file" id="dsSignUpload" accept="image/*" onchange="handleSignUpload(event)">
             </div>
           </div>
 
@@ -939,15 +1001,15 @@
               <input type="text" id="dsSubject" value="महासंघाच्या जिल्हा कार्यकारिणीवर नियुक्तीबाबत..." oninput="updateLetterTexts()">
             </div>
             <div class="control-row">
-              <label>परिच्छेद १ (संघटना व गूगल फॉर्म संदर्भ):</label>
-              <textarea id="dsPara1" rows="4" oninput="updateLetterTexts()">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.</textarea>
+              <label>परिच्छेद १:</label>
+              <textarea id="dsPara1" rows="3" oninput="updateLetterTexts()">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.</textarea>
             </div>
             <div class="control-row">
-              <label>परिच्छेद २ (सेवाप्रवास व प्रशंसा):</label>
-              <textarea id="dsPara2" rows="4" oninput="updateLetterTexts()">आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—</textarea>
+              <label>परिच्छेद २:</label>
+              <textarea id="dsPara2" rows="3" oninput="updateLetterTexts()">आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—</textarea>
             </div>
             <div class="control-row">
-              <label>परिच्छेद ३ (जबाबदारीची जाणीव व शुभेच्छा):</label>
+              <label>परिच्छेद ३ (शुभेच्छा व कर्तव्य):</label>
               <textarea id="dsPara3" rows="4" oninput="updateLetterTexts()">हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा!</textarea>
             </div>
           </div>
@@ -958,37 +1020,42 @@
           <div id="printableCertificate" class="a4-container">
             <div class="a4-inner" id="a4CanvasArea">
               
-              <!-- Node 1: Header Banner -->
-              <div class="canvas-node" id="node-header" style="top: 15px; left: 18px; width: calc(100% - 36px);">
+              <!-- Node 1: Header Banner (छायाचित्र २ प्रमाणे हुबेहूब) -->
+              <div class="canvas-node" id="node-header" style="top: 10px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-header')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
-                <div class="letterhead-card">
-                  <div class="lh-reg-num">नोंदणी क्र. ना/0000555/2026</div>
-                  <div class="lh-content-flex">
-                    <div class="lh-logo-circle" id="logoHolder">
-                      <i class="fa-solid fa-users-gear" style="font-size:32px; color:#ea580c;"></i>
-                    </div>
-                    <div class="lh-center-headings">
-                      <div class="lh-mh-state">महाराष्ट्र राज्य</div>
-                      <div class="lh-org-text">केंद्रप्रमुख व अधिकारी महासंघ</div>
-                    </div>
-                    <div class="lh-right-quote">
-                      <i class="fa-solid fa-book-open-reader" style="font-size:14px; color:#ea580c; margin-bottom:2px;"></i><br>
-                      शिक्षणासाठी समर्पित...<br>कर्मचाऱ्यांच्या हितासाठी...!
-                    </div>
+                <div class="letterhead-card-canvas">
+                  <div style="position: absolute; top: 2px; right: 8px; font-size: 9pt; font-weight: 800; color:#111;">Reg. No. MH/0000555/2026</div>
+
+                  <!-- Round Logo Left -->
+                  <div style="width: 70px; height: 70px; border-radius: 50%; border: 1.5px solid #cbd5e1; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; flex-shrink: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <div style="font-size: 6pt; font-weight: 800; color:#0f172a;">केंद्रप्रमुख व अधिकारी महासंघ</div>
+                    <div style="font-size: 24px; color:#f97316; margin: 1px 0;"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div style="font-size: 6.5pt; font-weight: 800; color:#0f172a;">महाराष्ट्र राज्य</div>
                   </div>
-                  <div class="lh-foot-strip">
-                    <div class="lh-foot-name">श्री. राजेंद्र खैरनार</div>
-                    <div style="font-weight:800; font-size:10pt; color:#fef08a;">संस्थापक राज्याध्यक्ष</div>
-                    <div style="font-size:8pt;">B.Sc., D.Ed., B.Ed., M.Ed., NET, SET, PHD (Appear)</div>
-                    <div style="font-size:8pt;">कार्यालय : स.नं. 56/1, प्लॉट नं. 1, मालेगाव ता. मालेगाव जि. नाशिक</div>
-                    <div style="font-weight:700; font-size:8pt; margin-top:1px;">मो. 9860704098 &nbsp;|&nbsp; Email : rajadei2026@gmail.com</div>
+
+                  <!-- Center Titles -->
+                  <div style="flex: 1; text-align: center; padding: 4px 6px;">
+                    <div style="font-family:'Rozha One', serif; font-size: 20pt; font-weight: 800; color:#1e3a8a; line-height: 1.1;">महाराष्ट्र राज्य</div>
+                    <div style="font-family:'Rozha One', serif; font-size: 22pt; font-weight: 800; color:#6b0c10; line-height: 1.15;">केंद्रप्रमुख व अधिकारी महासंघ</div>
+                    <div style="display:inline-block; background: #fffbeb; border: 1px solid #d4af37; border-radius: 20px; padding: 1px 16px; margin: 2px 0;">
+                      <span style="font-size: 9.5pt; font-weight: 800; color:#4a0404;">शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...!</span>
+                    </div>
+                    <div style="font-size: 11.5pt; font-weight: 800; color:#0f2b48;">श्री. राजेंद्र शिवाजी खैरनार</div>
+                    <div style="font-size: 9.5pt; font-weight: 800; color:#111;">राज्याध्यक्ष</div>
+                    <div style="font-size: 7.5pt; color:#333; font-weight: 600;">कार्यालय : स. नं. ५६/१, प्लॉट नं. १, मालेगाव ता. मालेगाव जि. नाशिक</div>
+                    <div style="font-size: 8pt; font-weight: 800; color:#111;">मो. 9860704098 Email: rajadei2026@gmail.com</div>
+                  </div>
+
+                  <!-- Right Fist Emblem -->
+                  <div style="width: 70px; height: 70px; border-radius: 50%; border: 1.5px solid #cbd5e1; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <i class="fa-solid fa-hand-fist" style="font-size: 32px; color:#475569;"></i>
                   </div>
                 </div>
               </div>
 
-              <!-- Node 2: Outward & Date (सर्व प्रमाणपत्रांसाठी स्थिर जावक क्र. 2026/02) -->
-              <div class="canvas-node" id="node-outward" style="top: 175px; left: 18px; width: calc(100% - 36px);">
+              <!-- Node 2: Outward & Date (स्थिर जावक क्र. 2026/02) -->
+              <div class="canvas-node" id="node-outward" style="top: 175px; left: 16px; width: calc(100% - 32px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-outward')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
                 <div class="date-outward-row">
@@ -998,7 +1065,7 @@
               </div>
 
               <!-- Node 3: Title Badge -->
-              <div class="canvas-node" id="node-title" style="top: 210px; left: 18px; width: calc(100% - 36px);">
+              <div class="canvas-node" id="node-title" style="top: 205px; left: 16px; width: calc(100% - 32px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-title')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
                 <div class="certificate-title-pill">
@@ -1006,8 +1073,8 @@
                 </div>
               </div>
 
-              <!-- Node 4: Recipient Details (Dynamic Variables) -->
-              <div class="canvas-node" id="node-recipient" style="top: 255px; left: 18px; width: calc(100% - 36px);">
+              <!-- Node 4: Recipient Details (Dynamic) -->
+              <div class="canvas-node" id="node-recipient" style="top: 245px; left: 16px; width: calc(100% - 32px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-recipient')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
                 <div class="to-person-box">
@@ -1018,7 +1085,7 @@
               </div>
 
               <!-- Node 5: Subject Line -->
-              <div class="canvas-node" id="node-subject" style="top: 320px; left: 18px; width: calc(100% - 36px);">
+              <div class="canvas-node" id="node-subject" style="top: 310px; left: 16px; width: calc(100% - 32px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-subject')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
                 <div class="subject-banner" id="dispSubject">
@@ -1026,8 +1093,8 @@
                 </div>
               </div>
 
-              <!-- Node 6: Body Content -->
-              <div class="canvas-node" id="node-body" style="top: 365px; left: 18px; width: calc(100% - 36px);">
+              <!-- Node 6: Body Content (Para 1 & 2) -->
+              <div class="canvas-node" id="node-body" style="top: 350px; left: 16px; width: calc(100% - 32px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-body')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
                 <div class="body-text-block" id="dispBodyContent">
@@ -1042,7 +1109,7 @@
               </div>
 
               <!-- Node 7: Designation Announcement Banner (Dynamic) -->
-              <div class="canvas-node" id="node-callout" style="top: 550px; left: 18px; width: calc(100% - 36px);">
+              <div class="canvas-node" id="node-callout" style="top: 540px; left: 16px; width: calc(100% - 32px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-callout')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
                 <div class="appointment-callout">
@@ -1052,21 +1119,36 @@
                 </div>
               </div>
 
-              <!-- Node 8: Signatures -->
-              <div class="canvas-node" id="node-signs" style="top: 670px; left: 18px; width: calc(100% - 36px);">
-                <button class="node-delete-btn" onclick="deleteNode('node-signs')" title="हटवा">&times;</button>
+              <!-- Node 8: Independent Paragraph 3 (गायब न होता स्वतंत्र घटक) -->
+              <div class="canvas-node" id="node-body-para3" style="top: 655px; left: 16px; width: calc(100% - 32px);">
+                <button class="node-delete-btn" onclick="deleteNode('node-body-para3')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
-                <div class="signature-row">
-                  <div class="sign-slot">
-                    <div style="height:35px;"></div>
-                    <div class="slot-name">( श्री. विजय सावंत )</div>
-                    <div class="slot-role">राज्य सरचिटणीस<br>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</div>
-                  </div>
-                  <div class="sign-slot">
-                    <img id="presidentSignImg" class="uploaded-sign-img" alt="स्वाक्षरी">
-                    <div class="slot-name">( श्री. राजेंद्र खैरनार )</div>
-                    <div class="slot-role">संस्थापक राज्याध्यक्ष<br>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</div>
-                  </div>
+                <div class="body-text-block">
+                  <p id="dispPara3" style="margin: 0;">
+                    हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा!
+                  </p>
+                </div>
+              </div>
+
+              <!-- Node 9: Left Signature (सरचिटणीस - स्वतंत्रपणे हलवता येईल) -->
+              <div class="canvas-node" id="node-sign-left" style="top: 795px; left: 25px; width: 250px;">
+                <button class="node-delete-btn" onclick="deleteNode('node-sign-left')" title="हटवा">&times;</button>
+                <div class="node-resize-handle"></div>
+                <div class="single-sign-card">
+                  <div style="height:35px;"></div>
+                  <div class="slot-name" id="dispSign1Name">( श्री. विजय सावंत )</div>
+                  <div class="slot-role" id="dispSign1Role">राज्य सरचिटणीस<br>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</div>
+                </div>
+              </div>
+
+              <!-- Node 10: Right Signature (राज्याध्यक्ष - स्वतंत्रपणे हलवता येईल) -->
+              <div class="canvas-node" id="node-sign-right" style="top: 795px; right: 25px; width: 250px;">
+                <button class="node-delete-btn" onclick="deleteNode('node-sign-right')" title="हटवा">&times;</button>
+                <div class="node-resize-handle"></div>
+                <div class="single-sign-card">
+                  <img id="presidentSignImg" class="uploaded-sign-img" alt="स्वाक्षरी">
+                  <div class="slot-name" id="dispSign2Name">( श्री. राजेंद्र खैरनार )</div>
+                  <div class="slot-role" id="dispSign2Role">संस्थापक राज्याध्यक्ष<br>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</div>
                 </div>
               </div>
 
@@ -1174,12 +1256,33 @@
     </div>
   </div>
 
+  <!-- MODAL: Clean PDF Preview (प्रमाणपत्र पहा वर क्लिक केल्यावर थेट स्वच्छ व्ह्यू) -->
+  <div id="cleanViewModal" class="modal-wrap">
+    <div class="modal-content preview-mode">
+      <div class="modal-header-bar">
+        <h3 id="cleanViewTitle" style="font-size:17px; font-weight:700;">अधिकृत नियुक्ती पत्र (A4 पूर्वदृश्य)</h3>
+        <button class="close-x" onclick="closeModal('cleanViewModal')">&times;</button>
+      </div>
+      <div class="modal-body" style="display:flex; justify-content:center; overflow-x:auto;">
+        <div id="cleanPdfContainer">
+          <!-- Live Cloned Certificate will be inserted here -->
+        </div>
+      </div>
+      <div style="padding:15px 22px; background:#fff; display:flex; justify-content:flex-end; gap:10px; border-bottom-left-radius:20px; border-bottom-right-radius:20px;">
+        <button class="btn btn-outline" onclick="closeModal('cleanViewModal')">बंद करा</button>
+        <button class="btn btn-gold" onclick="downloadCurrentLetterPDF()">
+          <i class="fa-solid fa-file-pdf"></i> उच्च दर्जाची A4 PDF डाऊनलोड करा
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- PURE 1-PAGE A4 PRINT CONTAINER (Native Clean Engine) -->
   <div id="printAreaSection" style="display:none; font-family:'Mukta', sans-serif; color:black; background:white; padding:5mm;">
     <div style="text-align:center; border-bottom:2px solid black; padding-bottom:8px; margin-bottom:12px;">
-      <div style="font-size:11pt; font-weight:bold; letter-spacing:1px;">॥ शिक्षणासाठी समर्पित... कर्मचाऱ्यांच्या हितासाठी...! ॥</div>
+      <div style="font-size:11pt; font-weight:bold; letter-spacing:1px;">॥ शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...! ॥</div>
       <h2 style="font-size:20pt; font-weight:800; margin:2px 0;">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</h2>
-      <div style="font-size:10.5pt; font-weight:600;">मध्यवर्ती राज्य कार्यकारिणी • नोंदणी क्र. ना/0000555/2026</div>
+      <div style="font-size:10.5pt; font-weight:600;">मध्यवर्ती राज्य कार्यकारिणी • Reg. No. MH/0000555/2026</div>
       <div style="margin-top:8px; font-size:15pt; font-weight:bold; text-decoration:underline;" id="bwPrintDistrictTitle">
         जिल्हा कार्यकारिणी सूची
       </div>
@@ -1231,7 +1334,6 @@
     const FIREBASE_DB_URL = "https://rk2026-207ee-default-rtdb.firebaseio.com/officials";
     const FIREBASE_DESIGN_URL = "https://rk2026-207ee-default-rtdb.firebaseio.com/appointment_master_design.json";
 
-    // डमी डेटा पूर्णपणे बंद - केवळ आपण सेव्ह केलेला डेटा राहील
     window.membersData = JSON.parse(localStorage.getItem('mahasangh_members_live')) || [];
 
     let currentDistrict = "नाशिक";
@@ -1249,7 +1351,7 @@
       renderAll();
       initFreeDragAndResize();
 
-      // Secret Admin Panel: ३ वेळा क्लिक केल्यानंतर ॲडमिन पॅनल उघडेल
+      // Secret Admin Panel (३ वेळा क्लिक केल्यास)
       document.getElementById('mainHeaderTitle').addEventListener('click', () => {
         headerClickCount++;
         clearTimeout(headerClickTimer);
@@ -1365,7 +1467,7 @@
             <td style="font-weight: 700;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
             <td><strong style="color:var(--accent);">${m.appointedPost}</strong></td>
             <td style="text-align: center;">
-              <button class="btn btn-view" style="padding:6px 14px; font-size:13.5px;" onclick="viewLetterInDesigner('${m.id}')">
+              <button class="btn btn-view" style="padding:6px 14px; font-size:13.5px;" onclick="viewLetterCleanPDF('${m.id}')">
                 <i class="fa-solid fa-eye"></i> प्रमाणपत्र पहा
               </button>
             </td>
@@ -1535,10 +1637,10 @@
       }
     }
 
-    // प्रत्येक प्रमाणपत्रासाठी व्हेरिएबल्स भरून युनिक बनवणे
+    // व्हेरिएबल्स भरून प्रमाणपत्र युनिक बनवणे
     function populateLetter(m) {
       selectedMemberForLetter = m;
-      document.getElementById('prevOutward').textContent = `2026/02`; // स्थिर जावक क्र.
+      document.getElementById('prevOutward').textContent = `2026/02`;
       document.getElementById('prevDate').textContent = "29/10/2026";
       document.getElementById('prevFullName').textContent = `मा. ${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}`;
       document.getElementById('prevCurrentPost').textContent = `(${m.currentCadre}, ${m.workingPlace}, जिल्हा - ${m.district})`;
@@ -1546,12 +1648,28 @@
       document.getElementById('prevPostTitle').textContent = `⭐ « ${m.appointedPost} » ⭐`;
     }
 
-    function viewLetterInDesigner(id) {
+    // प्रमाणपत्र पहा: सरळ स्वच्छ PDF व्ह्यू (No Editor Controls)
+    function viewLetterCleanPDF(id) {
       const m = window.membersData.find(item => item.id === id);
       if(!m) return;
       populateLetter(m);
-      document.getElementById('adminDesignerTabBtn').style.display = 'flex';
-      switchTab('tab-designer');
+
+      const clone = document.getElementById('printableCertificate').cloneNode(true);
+      clone.id = "cleanClonePdf";
+      
+      // सर्व एडिट/डिलीट हँडल्स क्लोनमधून काढून टाका
+      clone.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
+      clone.querySelectorAll('.canvas-node').forEach(node => {
+        node.style.cursor = 'default';
+        node.onmousedown = null;
+      });
+
+      const container = document.getElementById('cleanPdfContainer');
+      container.innerHTML = '';
+      container.appendChild(clone);
+
+      document.getElementById('cleanViewTitle').textContent = `नियुक्ती पत्र - ${m.salutation} ${m.firstName} ${m.lastName} (${m.appointedPost})`;
+      document.getElementById('cleanViewModal').style.display = 'flex';
     }
 
     function deleteNode(nodeId) {
@@ -1576,10 +1694,11 @@
       const lineHeight = document.getElementById('dsLineHeight').value;
       const textColor = document.getElementById('dsTextColor').value;
 
-      const bodyBlock = document.getElementById('dispBodyContent');
-      bodyBlock.style.fontSize = fontSize;
-      bodyBlock.style.lineHeight = lineHeight;
-      bodyBlock.style.color = textColor;
+      document.querySelectorAll('.body-text-block').forEach(b => {
+        b.style.fontSize = fontSize;
+        b.style.lineHeight = lineHeight;
+        b.style.color = textColor;
+      });
     }
 
     function updateLetterTexts() {
@@ -1589,23 +1708,19 @@
       document.getElementById('dispPara3').textContent = document.getElementById('dsPara3').value;
     }
 
+    function updateSignTexts() {
+      document.getElementById('dispSign1Name').textContent = document.getElementById('dsSign1Name').value;
+      document.getElementById('dispSign1Role').innerHTML = document.getElementById('dsSign1Role').value.replace(/\n/g, '<br>');
+      document.getElementById('dispSign2Name').textContent = document.getElementById('dsSign2Name').value;
+      document.getElementById('dispSign2Role').innerHTML = document.getElementById('dsSign2Role').value.replace(/\n/g, '<br>');
+    }
+
     function handleBgUpload(e) {
       const file = e.target.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = function(evt) {
           document.getElementById('printableCertificate').style.backgroundImage = `url('${evt.target.result}')`;
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-
-    function handleLogoUpload(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          document.getElementById('logoHolder').innerHTML = `<img src="${evt.target.result}" alt="Logo">`;
         };
         reader.readAsDataURL(file);
       }
@@ -1625,7 +1740,7 @@
     }
 
     // ========================================================
-    // FREE DRAG & RESIZE ENGINE (मुक्तपणे ड्रॅग व रिसाईज)
+    // FREE DRAG & RESIZE ENGINE
     // ========================================================
     function initFreeDragAndResize() {
       const canvasArea = document.getElementById('a4CanvasArea');
@@ -1701,6 +1816,7 @@
         layoutData[node.id] = {
           top: node.style.top,
           left: node.style.left,
+          right: node.style.right,
           width: node.style.width,
           height: node.style.height,
           display: node.style.display || 'block'
@@ -1712,6 +1828,10 @@
         para1: document.getElementById('dsPara1').value,
         para2: document.getElementById('dsPara2').value,
         para3: document.getElementById('dsPara3').value,
+        sign1Name: document.getElementById('dsSign1Name').value,
+        sign1Role: document.getElementById('dsSign1Role').value,
+        sign2Name: document.getElementById('dsSign2Name').value,
+        sign2Role: document.getElementById('dsSign2Role').value,
         fontSize: document.getElementById('dsFontSize').value,
         lineHeight: document.getElementById('dsLineHeight').value,
         textColor: document.getElementById('dsTextColor').value,
@@ -1726,7 +1846,7 @@
           body: JSON.stringify(designPayload)
         });
         localStorage.setItem('mahasangh_master_design', JSON.stringify(designPayload));
-        alert("अभिनंदन! मास्टर डिझाईन Firebase वर कायमस्वरूपी सेव्ह झाली आहे.");
+        alert("अभिनंदन! संपूर्ण मास्टर डिझाईन आणि स्वाक्षरी ब्लॉक Firebase वर सेव्ह झाले आहेत.");
       } catch (err) {
         console.error("Design save error:", err);
         localStorage.setItem('mahasangh_master_design', JSON.stringify(designPayload));
@@ -1746,15 +1866,20 @@
         }
 
         if (design && design.layout) {
-          if (design.subject) { document.getElementById('dsSubject').value = design.subject; }
-          if (design.para1) { document.getElementById('dsPara1').value = design.para1; }
-          if (design.para2) { document.getElementById('dsPara2').value = design.para2; }
-          if (design.para3) { document.getElementById('dsPara3').value = design.para3; }
-          if (design.fontSize) { document.getElementById('dsFontSize').value = design.fontSize; }
-          if (design.lineHeight) { document.getElementById('dsLineHeight').value = design.lineHeight; }
-          if (design.textColor) { document.getElementById('dsTextColor').value = design.textColor; }
+          if (design.subject) document.getElementById('dsSubject').value = design.subject;
+          if (design.para1) document.getElementById('dsPara1').value = design.para1;
+          if (design.para2) document.getElementById('dsPara2').value = design.para2;
+          if (design.para3) document.getElementById('dsPara3').value = design.para3;
+          if (design.sign1Name) document.getElementById('dsSign1Name').value = design.sign1Name;
+          if (design.sign1Role) document.getElementById('dsSign1Role').value = design.sign1Role;
+          if (design.sign2Name) document.getElementById('dsSign2Name').value = design.sign2Name;
+          if (design.sign2Role) document.getElementById('dsSign2Role').value = design.sign2Role;
+          if (design.fontSize) document.getElementById('dsFontSize').value = design.fontSize;
+          if (design.lineHeight) document.getElementById('dsLineHeight').value = design.lineHeight;
+          if (design.textColor) document.getElementById('dsTextColor').value = design.textColor;
 
           updateLetterTexts();
+          updateSignTexts();
           updateLetterStyles();
 
           Object.keys(design.layout).forEach(nodeId => {
@@ -1763,6 +1888,7 @@
             if (el && conf) {
               if (conf.top) el.style.top = conf.top;
               if (conf.left) el.style.left = conf.left;
+              if (conf.right) el.style.right = conf.right;
               if (conf.width) el.style.width = conf.width;
               if (conf.height) el.style.height = conf.height;
               if (conf.display) {
@@ -1847,7 +1973,7 @@
         const message = `सस्नेह जय महाराष्ट्र 🙏
 
 *महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ*
-(नोंदणी क्र. ना/0000555/2026)[span_0](start_span)[span_0](end_span)
+(Reg. No. MH/0000555/2026)
 मध्यवर्ती राज्य कार्यकारिणीच्या वतीने आपले मनःपूर्वक हार्दिक अभिनंदन!
 
 मा. ${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName},
@@ -1861,10 +1987,11 @@
 
 आपल्या पुढील यशस्वी वाटचालीस व संघटनात्मक कार्यासाठी उदंड शुभेच्छा!
 
-*श्री. राजेंद्र खैरनार*[span_1](start_span)[span_1](end_span)
-संस्थापक राज्याध्यक्ष,
+*श्री. राजेंद्र शिवाजी खैरनार*
+राज्याध्यक्ष,
 महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ
-संपर्क: 9860704098[span_2](start_span)[span_2](end_span)`;
+कार्यालय : स. नं. ५६/१, प्लॉट नं. १, मालेगाव ता. मालेगाव जि. नाशिक
+संपर्क: 9860704098`;
 
         const encodedMsg = encodeURIComponent(message);
         const waUrl = `https://api.whatsapp.com/send?phone=91${m.mobile}&text=${encodedMsg}`;
