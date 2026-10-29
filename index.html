@@ -49,7 +49,7 @@
       width: 100%;
     }
 
-    /* उंची खूप कमी केलेला कॉम्पॅक्ट व स्लिम हेडर */
+    /* स्लिम व कॉम्पॅक्ट हेडर */
     header {
       background: linear-gradient(180deg, #fffcf5 0%, #faecd0 50%, #fbf3e0 100%);
       padding: 6px 12px;
@@ -117,28 +117,18 @@
       flex: 1;
     }
 
-    /* पातळ सुवर्ण बॉर्डर असलेल्या स्वतंत्र आणि सुबक टॅब्स */
+    /* टॅब्स रॅपर: डेस्कटॉपवर सलग तर मोबाईलवर दोन ओळींत सुबक मांडणी */
     .tabs-wrapper {
       display: flex;
-      background: transparent;
-      padding: 2px;
+      flex-wrap: wrap;
       gap: 8px;
       margin-bottom: 12px;
-      overflow-x: auto;
-      white-space: nowrap;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
       width: 100%;
     }
 
-    .tabs-wrapper::-webkit-scrollbar {
-      display: none;
-    }
-
     .nav-tab {
-      flex: 1;
-      min-width: 115px;
-      padding: 8px 12px;
+      flex: 1 1 calc(50% - 8px);
+      padding: 8px 10px;
       outline: none;
       background: #ffffff;
       border: 1.5px solid var(--gold-border);
@@ -157,6 +147,23 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     }
 
+    /* तिसरी टॅब मोबाईलवर स्वतंत्र खालच्या ओळीत संपूर्ण रुंदीत */
+    .tab-full-width-mobile {
+      flex: 1 1 100%;
+    }
+
+    @media (min-width: 768px) {
+      .tabs-wrapper {
+        flex-wrap: nowrap;
+      }
+      .nav-tab {
+        flex: 1;
+      }
+      .tab-full-width-mobile {
+        flex: 1;
+      }
+    }
+
     .nav-tab.active {
       background: linear-gradient(135deg, #d4af37, #b8860b);
       color: #ffffff;
@@ -173,7 +180,7 @@
       border-radius: 50px;
     }
 
-    /* जिल्हा निवड - Fit to Screen */
+    /* जिल्हा निवड पॅनल */
     .action-panel {
       background: var(--card);
       padding: 10px 14px;
@@ -239,7 +246,7 @@
     .btn-edit { background: #f59e0b; color: white; border-radius: 6px; padding: 4px 8px; font-size: 11.5px; }
     .btn-del { background: #ef4444; color: white; border-radius: 6px; padding: 4px 8px; font-size: 11.5px; }
 
-    /* मोबाईल टेबल - १००% फिट */
+    /* मोबाईल टेबल */
     .table-card {
       background: var(--card);
       border-radius: 14px;
@@ -487,7 +494,7 @@
       font-size: 13.5pt;
       font-weight: 700;
       border-radius: 25px;
-      border: 1.5px solid #d4a017;
+      border: 1.5px solid #d4af37;
       display: inline-block;
     }
 
@@ -685,7 +692,7 @@
 
   <div class="container">
     
-    <!-- स्वतंत्र व सुवर्ण बॉर्डर असणाऱ्या स्पष्ट टॅब्स -->
+    <!-- २ ओळींमध्ये सुबक व स्वतंत्र बॉर्डर असणाऱ्या टॅब्स -->
     <div class="tabs-wrapper">
       <button class="nav-tab active" onclick="switchTab('tab-directory')">
         <i class="fa-solid fa-users"></i> पदाधिकारी यादी
@@ -693,16 +700,16 @@
       <button class="nav-tab" onclick="unlockManageTab()">
         <i class="fa-solid fa-user-plus"></i> पदाधिकारी नोंदणी <span class="tab-lock" id="manageLockBadge"><i class="fa-solid fa-lock"></i></span>
       </button>
-      <button class="nav-tab" onclick="unlockLettersTab()">
+      <button class="nav-tab tab-full-width-mobile" onclick="unlockLettersTab()">
         <i class="fa-solid fa-certificate"></i> नियुक्ती पत्रे व WhatsApp <span class="tab-lock" id="letterLockBadge"><i class="fa-solid fa-lock"></i></span>
       </button>
       
-      <button class="nav-tab" id="adminDesignerTabBtn" style="display:none;" onclick="switchTab('tab-designer')">
+      <button class="nav-tab tab-full-width-mobile" id="adminDesignerTabBtn" style="display:none;" onclick="switchTab('tab-designer')">
         <i class="fa-solid fa-wand-magic-sparkles"></i> नियुक्तीपत्र डिझाइन (Admin)
       </button>
     </div>
 
-    <!-- जिल्हा निवड पॅनल - पूर्णपणे मोबाईल फिट -->
+    <!-- जिल्हा निवड पॅनल -->
     <div class="action-panel">
       <div style="display:flex; align-items:center; gap:8px; width:100%;">
         <label for="districtSelect" style="font-weight:800; font-size:14px; color:var(--navy); white-space:nowrap;">
@@ -945,8 +952,7 @@
                     </div>
                     <div style="font-size: 11.5pt; font-weight: 800; color:#0f2b48;">श्री. राजेंद्र शिवाजी खैरनार</div>
                     <div style="font-size: 9.5pt; font-weight: 700; color:#111;">राज्याध्यक्ष</div>
-                    <div style="font-size: 7.5pt; color:#333; font-weight: 600;">कार्यालय : स. नं. ५६/१, प्लॉट नं. १, मालेगाव ता. मालेगाव जि. नाशिक</div>
-                    <div style="font-size: 8pt; font-weight: 700; color:#111;">मो. 9860704098 Email: rajadei2026@gmail.com</div>
+                    <div style="font-size: 7.5pt; color:#333; font-weight: 600;">कार्यालय : स. नं. ५६/१, प्लॉट नं. १, मालेगाव ता. मालेगाव जि. नाशिक | मो. 9860704098</div>
                   </div>
                 </div>
               </div>
@@ -1219,11 +1225,10 @@
     </div>
   </div>
 
-  <!-- FIREBASE REALTIME DB & CLOUD STORAGE SDK (v10) -->
+  <!-- FIREBASE REALTIME DB SDK (v10) -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getDatabase, ref, set, remove, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-    import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyD8IcRu9n0XnaNpdDdoeSo277hug6HVM5c",
@@ -1238,17 +1243,11 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
-    const storage = getStorage(app);
 
     window.rtdb = db;
     window.dbRef = ref;
     window.dbSet = set;
     window.dbRemove = remove;
-
-    window.fbStorage = storage;
-    window.sRef = sRef;
-    window.uploadBytes = uploadBytes;
-    window.getDownloadURL = getDownloadURL;
 
     // 1. LIVE OFFICIALS SYNC
     const officialsRef = ref(db, 'officials');
@@ -1399,7 +1398,7 @@
               </button>
             </td>
             <td style="text-align: center;">
-              <button class="btn btn-wa" style="padding:4px 10px; font-size:12.5px;" onclick="sendWhatsAppDirectFallback('${m.id}')">
+              <button class="btn btn-wa" style="padding:4px 10px; font-size:12.5px;" onclick="sendWhatsAppInstantDirect('${m.id}')">
                 <i class="fa-brands fa-whatsapp"></i> WhatsApp वर पाठवा
               </button>
             </td>
@@ -1952,17 +1951,16 @@
       const tbody = document.getElementById('strictTableBody');
       tbody.innerHTML = list.map((m, idx) => `
         <tr>
-          <td style="border:1.5px solid black; text-align:center; font-weight:bold; padding:6px; font-size:11pt;">${idx + 1}</td>
-          <td style="border:1.5px solid black; font-weight:bold; padding:6px; font-size:11.5pt;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
-          <td style="border:1.5px solid black; padding:6px; font-size:10.5pt;">${m.currentCadre}<br><small style="color:#333;">${m.workingPlace}</small></td>
-          <td style="border:1.5px solid black; font-weight:bold; padding:6px; font-size:11pt;">${m.appointedPost}</td>
-          <td style="border:1.5px solid black; text-align:center; font-weight:bold; padding:6px; font-size:11pt;">${m.mobile}</td>
+          <td style="border: 1.5px solid black; text-align:center; font-weight:bold; padding:6px; font-size:11pt;">${idx + 1}</td>
+          <td style="border: 1.5px solid black; font-weight:bold; padding:6px; font-size:11.5pt;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
+          <td style="border: 1.5px solid black; padding:6px; font-size:10.5pt;">${m.currentCadre}<br><small style="color:#333;">${m.workingPlace}</small></td>
+          <td style="border: 1.5px solid black; font-weight:bold; padding:6px; font-size:11pt;">${m.appointedPost}</td>
+          <td style="border: 1.5px solid black; text-align:center; font-weight:bold; padding:6px; font-size:11pt;">${m.mobile}</td>
         </tr>
       `).join('');
 
       const renderElement = document.getElementById('printableDirectoryStrict');
 
-      // शून्य ऑफसेट रॅपरमध्ये तात्पुरते रेंडर
       const wrapper = document.createElement('div');
       wrapper.style.position = 'fixed';
       wrapper.style.top = '0';
@@ -2012,48 +2010,12 @@
       }
     }
 
-    // WHATSAPP DIRECT FALLBACK (स्पिनर कधीही अडकून राहणार नाही)
-    async function sendWhatsAppDirectFallback(id) {
+    // WHATSAPP INSTANT DIRECT (कोणतीही वाट न पाहता थेट तात्काळ मेसेज)
+    function sendWhatsAppInstantDirect(id) {
       const m = window.membersData.find(item => item.id === id);
       if(!m) return;
-      populateLetter(m);
 
-      const btn = event.currentTarget;
-      const originalText = btn.innerHTML;
-      btn.disabled = true;
-      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> उघडत आहे...`;
-
-      try {
-        // आधी PDF डाऊनलोड ट्रिगर करणे
-        const blob = await generatePdfBlob();
-        const filename = `नियुक्ती_पत्र_${m.firstName}_${m.lastName}.pdf`;
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = filename;
-        link.click();
-
-        // क्लाउड अपलोड प्रयत्न (जास्तीत जास्त ५ सेकंद)
-        let downloadLink = "";
-        try {
-          if (window.fbStorage && window.sRef && window.uploadBytes && window.getDownloadURL) {
-            const uploadPromise = async () => {
-              const fileRef = window.sRef(window.fbStorage, `appointment_letters/${m.district}_${m.firstName}_${m.lastName}_${Date.now()}.pdf`);
-              await window.uploadBytes(fileRef, blob);
-              return await window.getDownloadURL(fileRef);
-            };
-            // ५ सेकंदात न झाल्यास टाइमआऊट
-            const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject("Timeout"), 5000));
-            downloadLink = await Promise.race([uploadPromise(), timeoutPromise]);
-          }
-        } catch (cloudErr) {
-          console.warn("Cloud upload timeout/fallback:", cloudErr);
-        }
-
-        let linkText = downloadLink 
-          ? `\n\n📄 *आपले अधिकृत नियुक्ती पत्र (PDF) डाऊनलोड करण्यासाठी खालील लिंकवर क्लिक करा:*\n👉 ${downloadLink}`
-          : `\n\n📄 *(टीप: आपले अधिकृत A4 नियुक्ती पत्र डाऊनलोड झाले असून सोबत जोडले आहे.)*`;
-
-        const message = `सस्नेह जय महाराष्ट्र 🙏
+      const message = `सस्नेह जय महाराष्ट्र 🙏
 
 *महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ*
 (Reg. No. MH/0000555/2026)
@@ -2064,7 +2026,7 @@
 
 ⭐ *« ${m.appointedPost} »* ⭐
 
-या अत्यंत सन्मानाच्या व जबाबदारीच्या पदावर गौरवपूर्ण नियुक्ती करण्यात आली आहे.${linkText}
+या अत्यंत सन्मानाच्या व जबाबदारीच्या पदावर गौरवपूर्ण नियुक्ती करण्यात आली आहे.
 
 केंद्रप्रमुख व विस्तार अधिकारी संवर्गाच्या सन्मानासाठी व गुणवत्तेसाठी आपण खंबीरपणे कार्य कराल, हा ठाम विश्वास आहे. आपल्या पुढील यशस्वी वाटचालीस व संघटनात्मक कार्यासाठी उदंड शुभेच्छा!
 
@@ -2074,16 +2036,9 @@
 कार्यालय : स. नं. ५६/१, प्लॉट नं. १, मालेगाव ता. मालेगाव जि. नाशिक
 संपर्क: 9860704098`;
 
-        const encodedMsg = encodeURIComponent(message);
-        const waUrl = `https://api.whatsapp.com/send?phone=91${m.mobile}&text=${encodedMsg}`;
-        window.open(waUrl, '_blank');
-      } catch (err) {
-        console.error("WhatsApp error:", err);
-        alert("त्रुटी आली: " + err.message);
-      } finally {
-        btn.disabled = false;
-        btn.innerHTML = originalText;
-      }
+      const encodedMsg = encodeURIComponent(message);
+      const waUrl = `https://api.whatsapp.com/send?phone=91${m.mobile}&text=${encodedMsg}`;
+      window.open(waUrl, '_blank');
     }
   </script>
 </body>
