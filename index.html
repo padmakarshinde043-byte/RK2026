@@ -5,15 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ - अधिकृत पोर्टल</title>
   
-  <!-- Google Fonts: Mukta, Rozha One, Yatra One -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Rozha+One&family=Yatra+One&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- html2canvas and jsPDF (Direct Exact 1-Page Engine) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -48,7 +44,6 @@
       flex-direction: column;
     }
 
-    /* मुख्य हेडर - दोन्ही लोगो नसलेली स्वच्छ रचना */
     header {
       background: linear-gradient(180deg, #fffcf5 0%, #faecd0 50%, #fbf3e0 100%);
       padding: 16px 20px;
@@ -123,12 +118,13 @@
       gap: 6px;
       font-size: 11px;
       font-weight: 800;
-      padding: 2px 10px;
+      padding: 3px 12px;
       border-radius: 20px;
-      margin-top: 4px;
+      margin-top: 5px;
       background: #ecfdf5;
       color: #047857;
       border: 1px solid #a7f3d0;
+      transition: all 0.3s;
     }
 
     .container {
@@ -259,7 +255,6 @@
     }
     td { padding: 12px 18px; border-bottom: 1px solid #f1f5f9; font-size: 14.5px; }
 
-    /* DESIGNER STUDIO (A4 STRICT 794px x 1123px) */
     .designer-layout {
       display: grid;
       grid-template-columns: 380px 1fr;
@@ -345,7 +340,6 @@
       box-shadow: inset 0 2px 8px rgba(0,0,0,0.06);
     }
 
-    /* A4 Sheet - तंतोतंत 794px x 1123px (A4 Strict Ratio) */
     .a4-container {
       width: 794px;
       height: 1123px;
@@ -561,7 +555,6 @@
       pointer-events: none;
     }
 
-    /* Modals */
     .modal-wrap {
       position: fixed;
       inset: 0;
@@ -639,7 +632,6 @@
 </head>
 <body>
 
-  <!-- हेडर (३ वेळा क्लिक केल्यास सिक्रेट ॲडमिन पॅनल उघडेल) -->
   <header id="mainHeaderTitle" title="३ वेळा क्लिक करा (सिक्रेट ॲडमिन पॅनल)">
     <div class="official-letterhead">
       <div class="lh-reg-top">Reg. No. MH/0000555/2026</div>
@@ -671,7 +663,6 @@
 
   <div class="container">
     
-    <!-- Navigation Tabs -->
     <div class="tabs-wrapper">
       <button class="nav-tab active" onclick="switchTab('tab-directory')">
         <i class="fa-solid fa-users"></i> पदाधिकारी यादी
@@ -688,7 +679,6 @@
       </button>
     </div>
 
-    <!-- District Selection Bar -->
     <div class="action-panel">
       <div style="display:flex; align-items:center; gap:12px;">
         <label for="districtSelect" style="font-weight:800; font-size:15px; color:var(--navy);">
@@ -802,9 +792,7 @@
 
       <div class="designer-layout">
         
-        <!-- Controls Panel -->
         <div class="designer-controls">
-          
           <div class="control-sec">
             <h4><i class="fa-solid fa-trash-can"></i> घटक दाखवा / लपवा (Delete/Restore)</h4>
             <div class="element-visibility-grid">
@@ -841,7 +829,6 @@
             </div>
           </div>
 
-          <!-- नवीन इमेज इन्सर्ट करणे व बॅकग्राउंड -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-file-image"></i> नवीन इमेज इन्सर्ट / बॅकग्राउंड</h4>
             <div class="control-row">
@@ -855,7 +842,6 @@
             </div>
           </div>
 
-          <!-- स्वाक्षऱ्या संपादन -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-signature"></i> स्वाक्षरी संपादन (दोन्ही स्वतंत्र)</h4>
             <div class="control-row">
@@ -922,7 +908,6 @@
           <div id="printableCertificate" class="a4-container">
             <div class="a4-inner" id="a4CanvasArea">
               
-              <!-- Node 1: Header Banner (दोन्ही लोगो वगळून स्वच्छ रचना) -->
               <div class="canvas-node" id="node-header" style="top: 10px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-header')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -943,7 +928,6 @@
                 </div>
               </div>
 
-              <!-- Node 2: Outward & Date -->
               <div class="canvas-node" id="node-outward" style="top: 165px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-outward')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -953,7 +937,6 @@
                 </div>
               </div>
 
-              <!-- Node 3: Title Badge -->
               <div class="canvas-node" id="node-title" style="top: 195px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-title')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -962,7 +945,6 @@
                 </div>
               </div>
 
-              <!-- Node 4: Recipient Details -->
               <div class="canvas-node" id="node-recipient" style="top: 232px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-recipient')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -973,7 +955,6 @@
                 </div>
               </div>
 
-              <!-- Node 5: Subject Line (शेडिंग नसलेले पारदर्शक) -->
               <div class="canvas-node" id="node-subject" style="top: 295px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-subject')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -982,7 +963,6 @@
                 </div>
               </div>
 
-              <!-- Node 6: Body Content (Para 1 & 2) -->
               <div class="canvas-node" id="node-body" style="top: 330px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-body')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -997,7 +977,6 @@
                 </div>
               </div>
 
-              <!-- Node 7: Designation Announcement Banner (शेडिंग नसलेले पारदर्शक) -->
               <div class="canvas-node" id="node-callout" style="top: 510px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-callout')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1008,7 +987,6 @@
                 </div>
               </div>
 
-              <!-- Node 8: Independent Paragraph 3 -->
               <div class="canvas-node" id="node-body-para3" style="top: 615px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-body-para3')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1019,7 +997,6 @@
                 </div>
               </div>
 
-              <!-- Node 9: Left Signature (सरचिटणीस) -->
               <div class="canvas-node" id="node-sign-left" style="top: 760px; left: 20px; width: 240px;">
                 <button class="node-delete-btn" onclick="deleteNode('node-sign-left')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1030,7 +1007,6 @@
                 </div>
               </div>
 
-              <!-- Node 10: Right Signature (राज्याध्यक्ष) -->
               <div class="canvas-node" id="node-sign-right" style="top: 760px; right: 20px; width: 240px;">
                 <button class="node-delete-btn" onclick="deleteNode('node-sign-right')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1145,7 +1121,7 @@
     </div>
   </div>
 
-  <!-- MODAL: Clean PDF Preview (थेट स्वच्छ व्ह्यू) -->
+  <!-- MODAL: Clean PDF Preview -->
   <div id="cleanViewModal" class="modal-wrap">
     <div class="modal-content preview-mode">
       <div class="modal-header-bar">
@@ -1228,13 +1204,26 @@
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    // Global references for live operations
     window.rtdb = db;
     window.dbRef = ref;
     window.dbSet = set;
     window.dbRemove = remove;
 
-    // 1. LIVE OFFICIALS SYNC (कोणत्याही डिव्हाइसवरून ॲड होताच सर्वत्र लगेच दिसेल)
+    // Check Live Connection Status
+    const connectedRef = ref(db, '.info/connected');
+    onValue(connectedRef, (snap) => {
+      const badge = document.getElementById('liveSyncStatus');
+      if (snap.val() === true) {
+        if (badge) {
+          badge.innerHTML = `<i class="fa-solid fa-circle-check"></i> क्लाउड लाइव्ह सिंक`;
+          badge.style.color = '#047857';
+          badge.style.background = '#ecfdf5';
+          badge.style.borderColor = '#a7f3d0';
+        }
+      }
+    });
+
+    // 1. LIVE OFFICIALS SYNC
     const officialsRef = ref(db, 'officials');
     onValue(officialsRef, (snapshot) => {
       const data = snapshot.val();
@@ -1251,6 +1240,7 @@
         badge.innerHTML = `<i class="fa-solid fa-circle-check"></i> क्लाउड लाइव्ह सिंक (${window.membersData.length} पदाधिकारी)`;
         badge.style.color = '#047857';
         badge.style.background = '#ecfdf5';
+        badge.style.borderColor = '#a7f3d0';
       }
     }, (error) => {
       console.warn("Realtime DB fallback active:", error);
@@ -1259,10 +1249,11 @@
         badge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> स्थानिक स्टोरेज (ऑफलाइन)`;
         badge.style.color = '#b45309';
         badge.style.background = '#fffbeb';
+        badge.style.borderColor = '#fde68a';
       }
     });
 
-    // 2. LIVE MASTER DESIGN SYNC (डिझाईन सर्व डिव्हाइसवर लगेच अपडेट होईल)
+    // 2. LIVE MASTER DESIGN SYNC
     const designRef = ref(db, 'appointment_master_design');
     onValue(designRef, (snapshot) => {
       const design = snapshot.val();
@@ -1273,7 +1264,6 @@
     });
   </script>
 
-  <!-- JAVASCRIPT APPLICATION LOGIC -->
   <script>
     const districts = [
       "अहमदनगर", "अकोला", "अमरावती", "छत्रपती संभाजीनगर", "भंडारा", "बीड", "बुलढाणा",
@@ -1496,7 +1486,6 @@
       document.getElementById('customPostDiv').style.display = (val === 'इतर') ? 'block' : 'none';
     }
 
-    // LIVE REALTIME SAVE TO FIREBASE
     async function handleFormSubmit(e) {
       e.preventDefault();
       const saveBtn = document.getElementById('saveBtn');
@@ -1532,7 +1521,6 @@
         if (window.rtdb && window.dbSet && window.dbRef) {
           await window.dbSet(window.dbRef(window.rtdb, 'officials/' + docId), memberObj);
         } else {
-          // Fallback REST
           await fetch(`https://rk2026-207ee-default-rtdb.firebaseio.com/officials/${docId}.json`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -1550,7 +1538,6 @@
       }
     }
 
-    // LIVE REALTIME DELETE FROM FIREBASE
     async function deleteMember(id) {
       if(confirm("आपण खरोखर या पदाधिकाऱ्याचे नाव वगळू इच्छिता?")) {
         try {
@@ -1759,7 +1746,6 @@
       }
     }
 
-    // LIVE MASTER DESIGN SAVE
     async function saveDesignToCloud() {
       const canvasArea = document.getElementById('a4CanvasArea');
       const nodes = canvasArea.querySelectorAll('.canvas-node');
@@ -1853,7 +1839,6 @@
       location.reload();
     }
 
-    // EXACT 1-PAGE A4 PDF ENGINE
     async function downloadCurrentLetterPDF(callback) {
       const original = document.getElementById('printableCertificate');
       
