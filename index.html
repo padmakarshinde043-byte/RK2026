@@ -5,12 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ - अधिकृत पोर्टल</title>
   
+  <!-- Aparajita / Devanagari Serif Style Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;500;600;700;800&family=Yatra+One&display=swap" rel="stylesheet">
   
+  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- html2canvas and jsPDF for 1-Page Strict PDF Generation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -24,8 +27,8 @@
       --card: #ffffff;
       --border: #e2e8f0;
       --accent: #b45309;
-      --soft-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      --capsule-shadow: 0 4px 12px rgba(184, 134, 11, 0.25);
+      --soft-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+      --capsule-shadow: 0 3px 10px rgba(184, 134, 11, 0.2);
     }
 
     * {
@@ -46,11 +49,12 @@
       width: 100%;
     }
 
+    /* उंची खूप कमी केलेला कॉम्पॅक्ट व स्लिम हेडर */
     header {
       background: linear-gradient(180deg, #fffcf5 0%, #faecd0 50%, #fbf3e0 100%);
-      padding: 10px 12px;
-      box-shadow: 0 2px 10px rgba(184, 134, 11, 0.1);
-      border-bottom: 2px solid var(--gold-border);
+      padding: 6px 12px;
+      box-shadow: 0 2px 8px rgba(184, 134, 11, 0.1);
+      border-bottom: 1.5px solid var(--gold-border);
       user-select: none;
       width: 100%;
     }
@@ -63,22 +67,22 @@
     }
 
     .lh-reg-top {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       color: #334155;
       letter-spacing: 0.5px;
-      margin-bottom: 2px;
+      margin-bottom: 1px;
     }
 
     .state-title-blue {
-      font-size: 20px;
+      font-size: 17px;
       font-weight: 800;
       color: #1e3a8a;
       line-height: 1.1;
     }
 
     .org-title-maroon {
-      font-size: 24px;
+      font-size: 21px;
       font-weight: 800;
       color: #6b0c10;
       line-height: 1.15;
@@ -87,41 +91,39 @@
 
     .ribbon-slogan-wrap {
       display: inline-block;
-      margin: 3px auto;
+      margin: 2px auto;
       background: linear-gradient(90deg, #fef3c7 0%, #fffbeb 50%, #fef3c7 100%);
       border: 1px solid #d4af37;
-      border-radius: 20px;
-      padding: 1px 16px;
+      border-radius: 15px;
+      padding: 0 12px;
     }
 
     .ribbon-slogan-wrap span {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       color: #4a0404;
     }
 
-    .president-details-bar { margin-top: 2px; }
-    .pres-name-big { font-size: 15px; font-weight: 800; color: #0f2b48; }
-    .pres-desig-tag { font-size: 12px; font-weight: 700; color: #0f172a; }
-    .pres-sub-address { font-size: 10.5px; font-weight: 600; color: #475569; line-height: 1.3; }
+    .president-details-bar { margin-top: 1px; }
+    .pres-name-big { font-size: 13.5px; font-weight: 800; color: #0f2b48; }
+    .pres-desig-tag { font-size: 11px; font-weight: 700; color: #0f172a; }
+    .pres-sub-address { font-size: 10px; font-weight: 600; color: #475569; line-height: 1.2; }
 
     .container {
       max-width: 1200px;
-      margin: 12px auto;
+      margin: 10px auto;
       padding: 0 10px;
       width: 100%;
       flex: 1;
     }
 
+    /* पातळ सुवर्ण बॉर्डर असलेल्या स्वतंत्र आणि सुबक टॅब्स */
     .tabs-wrapper {
       display: flex;
-      background: #ffffff;
-      padding: 5px;
-      border-radius: 50px;
-      gap: 6px;
+      background: transparent;
+      padding: 2px;
+      gap: 8px;
       margin-bottom: 12px;
-      box-shadow: var(--soft-shadow);
-      border: 1px solid rgba(226, 232, 240, 0.9);
       overflow-x: auto;
       white-space: nowrap;
       scrollbar-width: none;
@@ -135,15 +137,15 @@
 
     .nav-tab {
       flex: 1;
-      min-width: 110px;
+      min-width: 115px;
       padding: 8px 12px;
-      border: none;
       outline: none;
-      background: transparent;
+      background: #ffffff;
+      border: 1.5px solid var(--gold-border);
       font-size: 13.5px;
       font-weight: 700;
-      color: #64748b;
-      border-radius: 50px;
+      color: #475569;
+      border-radius: 30px;
       cursor: pointer;
       transition: all 0.2s ease;
       display: inline-flex;
@@ -152,12 +154,15 @@
       gap: 5px;
       text-align: center;
       white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     }
 
     .nav-tab.active {
       background: linear-gradient(135deg, #d4af37, #b8860b);
       color: #ffffff;
+      border-color: #996515;
       box-shadow: var(--capsule-shadow);
+      transform: translateY(-1px);
     }
 
     .tab-lock {
@@ -168,12 +173,13 @@
       border-radius: 50px;
     }
 
+    /* जिल्हा निवड - Fit to Screen */
     .action-panel {
       background: var(--card);
       padding: 10px 14px;
       border-radius: 14px;
       box-shadow: var(--soft-shadow);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -190,10 +196,10 @@
     }
 
     .select-district-field {
-      padding: 8px 14px;
+      padding: 7px 14px;
       border-radius: 50px;
       border: 1.5px solid #cbd5e1;
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 700;
       outline: none;
       width: 100%;
@@ -208,11 +214,11 @@
     }
 
     .btn {
-      padding: 8px 16px;
+      padding: 7px 16px;
       border: none;
       border-radius: 50px;
       font-weight: 700;
-      font-size: 13.5px;
+      font-size: 13px;
       cursor: pointer;
       transition: all 0.2s ease;
       display: inline-flex;
@@ -233,6 +239,7 @@
     .btn-edit { background: #f59e0b; color: white; border-radius: 6px; padding: 4px 8px; font-size: 11.5px; }
     .btn-del { background: #ef4444; color: white; border-radius: 6px; padding: 4px 8px; font-size: 11.5px; }
 
+    /* मोबाईल टेबल - १००% फिट */
     .table-card {
       background: var(--card);
       border-radius: 14px;
@@ -265,6 +272,7 @@
       font-size: 13px; 
     }
 
+    /* DESIGNER STUDIO */
     .designer-layout {
       display: grid;
       grid-template-columns: 1fr;
@@ -357,6 +365,7 @@
       width: 100%;
     }
 
+    /* A4 Sheet - तंतोतंत 794px x 1123px */
     .a4-container {
       width: 794px;
       height: 1123px;
@@ -572,6 +581,7 @@
       pointer-events: none;
     }
 
+    /* मॉडेल्स */
     .modal-wrap {
       position: fixed;
       inset: 0;
@@ -647,23 +657,11 @@
     @media (max-width: 650px) {
       .row-3, .row-2 { grid-template-columns: 1fr; }
     }
-
-    @media print {
-      @page { size: A4 portrait; margin: 0; }
-      body * { visibility: hidden; }
-      #printAreaSection, #printAreaSection * { visibility: visible; }
-      #printAreaSection {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        display: block !important;
-      }
-    }
   </style>
 </head>
 <body>
 
+  <!-- कॉम्पॅक्ट हेडर (३ वेळा क्लिक केल्यास सिक्रेट ॲडमिन पॅनल) -->
   <header id="mainHeaderTitle" title="३ वेळा क्लिक करा (सिक्रेट ॲडमिन पॅनल)">
     <div class="official-letterhead">
       <div class="lh-reg-top">Reg. No. MH/0000555/2026</div>
@@ -679,10 +677,7 @@
         <div class="pres-name-big">श्री. राजेंद्र शिवाजी खैरनार</div>
         <div class="pres-desig-tag">राज्याध्यक्ष</div>
         <div class="pres-sub-address">
-          कार्यालय : स. नं. ५६/१, प्लॉट नं. १, मालेगाव ता. मालेगाव जि. नाशिक
-        </div>
-        <div class="pres-sub-address" style="font-weight: 700;">
-          मो. 9860704098 Email: rajadei2026@gmail.com
+          कार्यालय : स. नं. ५६/१, प्लॉट नं. १, मालेगाव ता. मालेगाव जि. नाशिक | मो. 9860704098
         </div>
       </div>
     </div>
@@ -690,6 +685,7 @@
 
   <div class="container">
     
+    <!-- स्वतंत्र व सुवर्ण बॉर्डर असणाऱ्या स्पष्ट टॅब्स -->
     <div class="tabs-wrapper">
       <button class="nav-tab active" onclick="switchTab('tab-directory')">
         <i class="fa-solid fa-users"></i> पदाधिकारी यादी
@@ -706,6 +702,7 @@
       </button>
     </div>
 
+    <!-- जिल्हा निवड पॅनल - पूर्णपणे मोबाईल फिट -->
     <div class="action-panel">
       <div style="display:flex; align-items:center; gap:8px; width:100%;">
         <label for="districtSelect" style="font-weight:800; font-size:14px; color:var(--navy); white-space:nowrap;">
@@ -723,7 +720,7 @@
     <div id="tab-directory" class="tab-view">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:8px; flex-wrap:wrap;">
         <h3 id="directoryHeading" style="font-size:15.5px; font-weight:800; color:var(--navy);"></h3>
-        <button class="btn btn-outline" onclick="printCleanDirectoryPDF()">
+        <button class="btn btn-outline" id="dirDownloadBtn" onclick="downloadDirectorySinglePagePDF()">
           <i class="fa-solid fa-print"></i> यादी डाऊनलोड करा
         </button>
       </div>
@@ -818,7 +815,6 @@
       </div>
 
       <div class="designer-layout">
-        
         <div class="designer-controls">
           <div class="control-sec">
             <h4><i class="fa-solid fa-trash-can"></i> घटक दाखवा / लपवा (Delete/Restore)</h4>
@@ -929,10 +925,12 @@
           </div>
         </div>
 
+        <!-- Live Free-form A4 Workspace -->
         <div class="designer-preview-wrap">
           <div id="printableCertificate" class="a4-container">
             <div class="a4-inner" id="a4CanvasArea">
               
+              <!-- Node 1: Header Banner -->
               <div class="canvas-node" id="node-header" style="top: 10px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-header')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -940,8 +938,8 @@
                   <div style="position: absolute; top: 2px; right: 8px; font-size: 8.5pt; font-weight: 800; color:#111;">Reg. No. MH/0000555/2026</div>
 
                   <div style="padding: 2px 6px;">
-                    <div style="font-size: 20pt; font-weight: 800; color:#1e3a8a; line-height: 1.05;">महाराष्ट्र राज्य</div>
-                    <div style="font-size: 22pt; font-weight: 800; color:#6b0c10; line-height: 1.1;">केंद्रप्रमुख व अधिकारी महासंघ</div>
+                    <div style="font-size: 19pt; font-weight: 800; color:#1e3a8a; line-height: 1.05;">महाराष्ट्र राज्य</div>
+                    <div style="font-size: 21pt; font-weight: 800; color:#6b0c10; line-height: 1.1;">केंद्रप्रमुख व अधिकारी महासंघ</div>
                     <div style="display:inline-block; background: #fffbeb; border: 1px solid #d4af37; border-radius: 20px; padding: 1px 16px; margin: 2px 0;">
                       <span style="font-size: 9.5pt; font-weight: 700; color:#4a0404;">शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...!</span>
                     </div>
@@ -953,6 +951,7 @@
                 </div>
               </div>
 
+              <!-- Node 2: Outward & Date -->
               <div class="canvas-node" id="node-outward" style="top: 165px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-outward')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -962,6 +961,7 @@
                 </div>
               </div>
 
+              <!-- Node 3: Title Badge -->
               <div class="canvas-node" id="node-title" style="top: 195px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-title')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -970,6 +970,7 @@
                 </div>
               </div>
 
+              <!-- Node 4: Recipient Details -->
               <div class="canvas-node" id="node-recipient" style="top: 232px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-recipient')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -980,6 +981,7 @@
                 </div>
               </div>
 
+              <!-- Node 5: Subject Line -->
               <div class="canvas-node" id="node-subject" style="top: 295px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-subject')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -988,6 +990,7 @@
                 </div>
               </div>
 
+              <!-- Node 6: Body Content (Para 1 & 2) -->
               <div class="canvas-node" id="node-body" style="top: 330px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-body')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1002,6 +1005,7 @@
                 </div>
               </div>
 
+              <!-- Node 7: Designation Announcement Banner -->
               <div class="canvas-node" id="node-callout" style="top: 510px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-callout')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1012,6 +1016,7 @@
                 </div>
               </div>
 
+              <!-- Node 8: Independent Paragraph 3 -->
               <div class="canvas-node" id="node-body-para3" style="top: 615px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-body-para3')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1022,6 +1027,7 @@
                 </div>
               </div>
 
+              <!-- Node 9: Left Signature (सरचिटणीस) -->
               <div class="canvas-node" id="node-sign-left" style="top: 760px; left: 20px; width: 240px;">
                 <button class="node-delete-btn" onclick="deleteNode('node-sign-left')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1032,6 +1038,7 @@
                 </div>
               </div>
 
+              <!-- Node 10: Right Signature (राज्याध्यक्ष) -->
               <div class="canvas-node" id="node-sign-right" style="top: 760px; right: 20px; width: 240px;">
                 <button class="node-delete-btn" onclick="deleteNode('node-sign-right')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1168,46 +1175,46 @@
     </div>
   </div>
 
-  <!-- PURE 1-PAGE A4 PRINT CONTAINER -->
-  <div id="printAreaSection" style="display:none; font-family:'Aparajita', 'Noto Serif Devanagari', serif; color:black; background:white; padding:5mm;">
-    <div style="text-align:center; border-bottom:2px solid black; padding-bottom:6px; margin-bottom:10px;">
-      <div style="font-size:10.5pt; font-weight:bold; letter-spacing:1px;">॥ शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...! ॥</div>
-      <h2 style="font-size:19pt; font-weight:800; margin:2px 0;">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</h2>
-      <div style="font-size:10pt; font-weight:600;">मध्यवर्ती राज्य कार्यकारिणी • Reg. No. MH/0000555/2026</div>
-      <div style="margin-top:6px; font-size:14pt; font-weight:bold; text-decoration:underline;" id="bwPrintDistrictTitle">
-        जिल्हा कार्यकारिणी सूची
+  <!-- STRICT SINGLE PAGE A4 PRINT RENDER CONTAINER (No 2nd Page) -->
+  <div style="display:none;">
+    <div id="printableDirectoryStrict" style="width: 794px; min-height: 1123px; max-height: 1123px; padding: 25px 35px; background: white; color: black; font-family: 'Aparajita', 'Noto Serif Devanagari', serif; box-sizing: border-box; overflow: hidden; position: relative;">
+      <div style="text-align: center; border-bottom: 2px solid black; padding-bottom: 6px; margin-bottom: 12px;">
+        <div style="font-size: 11pt; font-weight: bold; letter-spacing: 1px;">॥ शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...! ॥</div>
+        <h2 style="font-size: 21pt; font-weight: 800; margin: 2px 0;">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</h2>
+        <div style="font-size: 10.5pt; font-weight: 600;">मध्यवर्ती राज्य कार्यकारिणी • Reg. No. MH/0000555/2026</div>
+        <div style="margin-top: 6px; font-size: 14.5pt; font-weight: bold; text-decoration: underline;" id="strictDistrictTitle">
+          जिल्हा कार्यकारिणी सूची
+        </div>
       </div>
-    </div>
-    
-    <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:10.5pt; margin-bottom:8px;">
-      <div>एकूण नोंदणीकृत पदाधिकारी: <span id="bwPrintTotalCount">0</span></div>
-      <div>दिनांक: 29/10/2026</div>
-    </div>
-
-    <table style="width:100%; border-collapse:collapse; margin-bottom:30px;">
-      <thead>
-        <tr style="background:#f1f5f9;">
-          <th style="border:1.5px solid black; padding:7px 5px; width:45px; text-align:center; font-size:10.5pt;">अनु.</th>
-          <th style="border:1.5px solid black; padding:7px; text-align:left; font-size:11pt;">पदाधिकाऱ्याचे पूर्ण नाव</th>
-          <th style="border:1.5px solid black; padding:7px; text-align:left; font-size:10.5pt;">सध्याचे पद व कार्यक्षेत्र</th>
-          <th style="border:1.5px solid black; padding:7px; text-align:left; font-size:10.5pt;">महासंघातील बहाल केलेले पद</th>
-          <th style="border:1.5px solid black; padding:7px; width:125px; text-align:center; font-size:10.5pt;">व्हॉट्सअ‍ॅप नंबर</th>
-        </tr>
-      </thead>
-      <tbody id="bwPrintTableBody">
-      </tbody>
-    </table>
-
-    <div style="display:flex; justify-content:space-between; text-align:center; margin-top:35px; page-break-inside:avoid;">
-      <div style="width:220px;">
-        <div style="height:30px;"></div>
-        <div style="font-weight:bold; font-size:11.5pt; border-top:1.5px solid black; padding-top:4px;">( श्री. विजय सावंत )</div>
-        <div style="font-size:10pt;">राज्य सरचिटणीस</div>
+      
+      <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 11pt; margin-bottom: 8px;">
+        <div>एकूण नोंदणीकृत पदाधिकारी: <span id="strictTotalCount">0</span></div>
+        <div>दिनांक: 29/10/2026</div>
       </div>
-      <div style="width:220px;">
-        <div style="height:30px;"></div>
-        <div style="font-weight:bold; font-size:11.5pt; border-top:1.5px solid black; padding-top:4px;">( श्री. राजेंद्र खैरनार )</div>
-        <div style="font-size:10pt;">संस्थापक राज्याध्यक्ष<br>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</div>
+
+      <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+        <thead>
+          <tr style="background: #f1f5f9;">
+            <th style="border: 1.5px solid black; padding: 6px 5px; width: 45px; text-align: center; font-size: 11pt;">अनु.</th>
+            <th style="border: 1.5px solid black; padding: 6px; text-align: left; font-size: 11.5pt;">पदाधिकाऱ्याचे पूर्ण नाव</th>
+            <th style="border: 1.5px solid black; padding: 6px; text-align: left; font-size: 10.5pt;">सध्याचे पद व कार्यक्षेत्र</th>
+            <th style="border: 1.5px solid black; padding: 6px; text-align: left; font-size: 11pt;">महासंघातील बहाल केलेले पद</th>
+            <th style="border: 1.5px solid black; padding: 6px; width: 130px; text-align: center; font-size: 11pt;">व्हॉट्सअ‍ॅप नंबर</th>
+          </tr>
+        </thead>
+        <tbody id="strictTableBody">
+        </tbody>
+      </table>
+
+      <div style="display: flex; justify-content: space-between; text-align: center; margin-top: 45px; position: absolute; bottom: 40px; left: 35px; right: 35px;">
+        <div style="width: 220px;">
+          <div style="font-weight: bold; font-size: 12pt; border-top: 1.5px solid black; padding-top: 4px;">( श्री. विजय सावंत )</div>
+          <div style="font-size: 10.5pt;">राज्य सरचिटणीस</div>
+        </div>
+        <div style="width: 220px;">
+          <div style="font-weight: bold; font-size: 12pt; border-top: 1.5px solid black; padding-top: 4px;">( श्री. राजेंद्र खैरनार )</div>
+          <div style="font-size: 10.5pt;">संस्थापक राज्याध्यक्ष<br>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1392,7 +1399,7 @@
               </button>
             </td>
             <td style="text-align: center;">
-              <button class="btn btn-wa" style="padding:4px 10px; font-size:12.5px;" onclick="sendWhatsAppWithCloudLink('${m.id}')">
+              <button class="btn btn-wa" style="padding:4px 10px; font-size:12.5px;" onclick="sendWhatsAppDirectFallback('${m.id}')">
                 <i class="fa-brands fa-whatsapp"></i> WhatsApp वर पाठवा
               </button>
             </td>
@@ -1566,6 +1573,7 @@
       document.getElementById('prevPostTitle').textContent = `⭐ « ${m.appointedPost} » ⭐`;
     }
 
+    // मोबाईलवर अचूक फिट होणारे स्केल प्रिव्ह्यू इंजिन
     function viewLetterCleanPDF(id) {
       const m = window.membersData.find(item => item.id === id);
       if(!m) return;
@@ -1925,32 +1933,87 @@
       if (callback) callback();
     }
 
-    function printCleanDirectoryPDF() {
+    // STRICT SINGLE PAGE DIRECTORY PDF ENGINE (No 2nd Page)
+    async function downloadDirectorySinglePagePDF() {
       const list = getFilteredMembers();
       if(list.length === 0) {
         alert("या जिल्ह्यात डाऊनलोड करण्यासाठी पदाधिकारी उपलब्ध नाहीत.");
         return;
       }
 
-      document.getElementById('bwPrintDistrictTitle').textContent = `जिल्हा कार्यकारिणी सूची : ${currentDistrict}`;
-      document.getElementById('bwPrintTotalCount').textContent = list.length;
+      const btn = document.getElementById('dirDownloadBtn');
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> PDF तयार होत आहे...`;
+
+      document.getElementById('strictDistrictTitle').textContent = `जिल्हा कार्यकारिणी सूची : ${currentDistrict}`;
+      document.getElementById('strictTotalCount').textContent = list.length;
       
-      const tbody = document.getElementById('bwPrintTableBody');
+      const tbody = document.getElementById('strictTableBody');
       tbody.innerHTML = list.map((m, idx) => `
         <tr>
-          <td style="border:1.5px solid black; text-align:center; font-weight:bold; padding:6px; font-size:10.5pt;">${idx + 1}</td>
-          <td style="border:1.5px solid black; font-weight:bold; padding:6px; font-size:11pt;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
-          <td style="border:1.5px solid black; padding:6px; font-size:10pt;">${m.currentCadre}<br><small style="color:#333;">${m.workingPlace}</small></td>
-          <td style="border:1.5px solid black; font-weight:bold; padding:6px; font-size:10.5pt;">${m.appointedPost}</td>
-          <td style="border:1.5px solid black; text-align:center; font-weight:bold; padding:6px; font-size:10.5pt;">${m.mobile}</td>
+          <td style="border:1.5px solid black; text-align:center; font-weight:bold; padding:6px; font-size:11pt;">${idx + 1}</td>
+          <td style="border:1.5px solid black; font-weight:bold; padding:6px; font-size:11.5pt;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
+          <td style="border:1.5px solid black; padding:6px; font-size:10.5pt;">${m.currentCadre}<br><small style="color:#333;">${m.workingPlace}</small></td>
+          <td style="border:1.5px solid black; font-weight:bold; padding:6px; font-size:11pt;">${m.appointedPost}</td>
+          <td style="border:1.5px solid black; text-align:center; font-weight:bold; padding:6px; font-size:11pt;">${m.mobile}</td>
         </tr>
       `).join('');
 
-      window.print();
+      const renderElement = document.getElementById('printableDirectoryStrict');
+
+      // शून्य ऑफसेट रॅपरमध्ये तात्पुरते रेंडर
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'fixed';
+      wrapper.style.top = '0';
+      wrapper.style.left = '0';
+      wrapper.style.width = '794px';
+      wrapper.style.height = '1123px';
+      wrapper.style.zIndex = '999999';
+      wrapper.style.background = '#ffffff';
+      wrapper.style.margin = '0';
+      wrapper.style.padding = '0';
+      wrapper.style.overflow = 'hidden';
+
+      const clone = renderElement.cloneNode(true);
+      wrapper.appendChild(clone);
+      document.body.appendChild(wrapper);
+
+      try {
+        const canvas = await html2canvas(wrapper, {
+          scale: 2.2,
+          useCORS: true,
+          allowTaint: true,
+          scrollX: 0,
+          scrollY: 0,
+          width: 794,
+          height: 1123,
+          windowWidth: 794,
+          windowHeight: 1123
+        });
+
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: 'a4'
+        });
+
+        const imgData = canvas.toDataURL('image/jpeg', 0.98);
+        pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
+        pdf.save(`कार्यकारिणी_यादी_${currentDistrict}.pdf`);
+      } catch (err) {
+        console.error("Directory PDF failed:", err);
+        alert("यादी PDF तयार करताना अडचण आली: " + err.message);
+      } finally {
+        document.body.removeChild(wrapper);
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }
     }
 
-    // पद्धत २: क्लाउडवर PDF अपलोड करून थेट डाऊनलोड लिंक WhatsApp मेसेजमध्ये पाठवणे
-    async function sendWhatsAppWithCloudLink(id) {
+    // WHATSAPP DIRECT FALLBACK (स्पिनर कधीही अडकून राहणार नाही)
+    async function sendWhatsAppDirectFallback(id) {
       const m = window.membersData.find(item => item.id === id);
       if(!m) return;
       populateLetter(m);
@@ -1958,22 +2021,37 @@
       const btn = event.currentTarget;
       const originalText = btn.innerHTML;
       btn.disabled = true;
-      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> लिंक तयार होत आहे...`;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> उघडत आहे...`;
 
       try {
-        const pdfBlob = await generatePdfBlob();
-        let downloadLink = "";
+        // आधी PDF डाऊनलोड ट्रिगर करणे
+        const blob = await generatePdfBlob();
+        const filename = `नियुक्ती_पत्र_${m.firstName}_${m.lastName}.pdf`;
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        link.click();
 
-        // Firebase Storage वर थेट अपलोड
-        if (window.fbStorage && window.sRef && window.uploadBytes && window.getDownloadURL) {
-          const fileRef = window.sRef(window.fbStorage, `appointment_letters/${m.district}_${m.firstName}_${m.lastName}_${Date.now()}.pdf`);
-          await window.uploadBytes(fileRef, pdfBlob);
-          downloadLink = await window.getDownloadURL(fileRef);
+        // क्लाउड अपलोड प्रयत्न (जास्तीत जास्त ५ सेकंद)
+        let downloadLink = "";
+        try {
+          if (window.fbStorage && window.sRef && window.uploadBytes && window.getDownloadURL) {
+            const uploadPromise = async () => {
+              const fileRef = window.sRef(window.fbStorage, `appointment_letters/${m.district}_${m.firstName}_${m.lastName}_${Date.now()}.pdf`);
+              await window.uploadBytes(fileRef, blob);
+              return await window.getDownloadURL(fileRef);
+            };
+            // ५ सेकंदात न झाल्यास टाइमआऊट
+            const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject("Timeout"), 5000));
+            downloadLink = await Promise.race([uploadPromise(), timeoutPromise]);
+          }
+        } catch (cloudErr) {
+          console.warn("Cloud upload timeout/fallback:", cloudErr);
         }
 
         let linkText = downloadLink 
           ? `\n\n📄 *आपले अधिकृत नियुक्ती पत्र (PDF) डाऊनलोड करण्यासाठी खालील लिंकवर क्लिक करा:*\n👉 ${downloadLink}`
-          : "";
+          : `\n\n📄 *(टीप: आपले अधिकृत A4 नियुक्ती पत्र डाऊनलोड झाले असून सोबत जोडले आहे.)*`;
 
         const message = `सस्नेह जय महाराष्ट्र 🙏
 
@@ -2000,8 +2078,8 @@
         const waUrl = `https://api.whatsapp.com/send?phone=91${m.mobile}&text=${encodedMsg}`;
         window.open(waUrl, '_blank');
       } catch (err) {
-        console.error("Cloud link generation error:", err);
-        alert("क्लाउड लिंक तयार करताना अडचण आली: " + err.message);
+        console.error("WhatsApp error:", err);
+        alert("त्रुटी आली: " + err.message);
       } finally {
         btn.disabled = false;
         btn.innerHTML = originalText;
