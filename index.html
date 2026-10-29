@@ -5,15 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ - अधिकृत पोर्टल</title>
   
-  <!-- Aparajita / Devanagari Serif Style Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;500;600;700;800&family=Yatra+One&display=swap" rel="stylesheet">
   
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- html2canvas and jsPDF for 1-Page Appointment Letter -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -49,7 +46,6 @@
       width: 100%;
     }
 
-    /* कॉम्पॅक्ट हेडर */
     header {
       background: linear-gradient(180deg, #fffcf5 0%, #faecd0 50%, #fbf3e0 100%);
       padding: 10px 12px;
@@ -117,7 +113,6 @@
       flex: 1;
     }
 
-    /* मोबाईलवर एका बाजूला एक (Side-by-side) दिसणारा टॅब बार */
     .tabs-wrapper {
       display: flex;
       background: #ffffff;
@@ -173,7 +168,6 @@
       border-radius: 50px;
     }
 
-    /* जिल्हा निवड - Fit to Screen */
     .action-panel {
       background: var(--card);
       padding: 10px 14px;
@@ -239,7 +233,6 @@
     .btn-edit { background: #f59e0b; color: white; border-radius: 6px; padding: 4px 8px; font-size: 11.5px; }
     .btn-del { background: #ef4444; color: white; border-radius: 6px; padding: 4px 8px; font-size: 11.5px; }
 
-    /* मोबाईल टेबल - १००% फिट विथ स्मूथ स्क्रोल */
     .table-card {
       background: var(--card);
       border-radius: 14px;
@@ -272,7 +265,6 @@
       font-size: 13px; 
     }
 
-    /* DESIGNER STUDIO (Strict 794x1123px A4 Ratio) */
     .designer-layout {
       display: grid;
       grid-template-columns: 1fr;
@@ -365,7 +357,6 @@
       width: 100%;
     }
 
-    /* A4 Sheet - तंतोतंत 794px x 1123px */
     .a4-container {
       width: 794px;
       height: 1123px;
@@ -581,7 +572,6 @@
       pointer-events: none;
     }
 
-    /* मॉडेल्स */
     .modal-wrap {
       position: fixed;
       inset: 0;
@@ -606,7 +596,6 @@
       flex-direction: column;
     }
 
-    /* मोबाईलसाठी अचूक फुल-व्ह्यू प्रिव्ह्यू कंटेनर */
     .modal-content.preview-mode {
       max-width: 820px;
       background: #475569;
@@ -635,7 +624,6 @@
       padding: 14px; 
     }
 
-    /* मोबाईलवर A4 पत्र तंतोतंत बसवणारे ऑटो-स्केल रॅपर */
     #mobilePreviewWrapper {
       width: 100%;
       height: 100%;
@@ -676,7 +664,6 @@
 </head>
 <body>
 
-  <!-- हेडर (३ वेळा क्लिक केल्यास सिक्रेट ॲडमिन पॅनल उघडेल) -->
   <header id="mainHeaderTitle" title="३ वेळा क्लिक करा (सिक्रेट ॲडमिन पॅनल)">
     <div class="official-letterhead">
       <div class="lh-reg-top">Reg. No. MH/0000555/2026</div>
@@ -703,7 +690,6 @@
 
   <div class="container">
     
-    <!-- मोबाईलवर एका बाजूला एक असणारा सुबक टॅब बार -->
     <div class="tabs-wrapper">
       <button class="nav-tab active" onclick="switchTab('tab-directory')">
         <i class="fa-solid fa-users"></i> पदाधिकारी यादी
@@ -720,7 +706,6 @@
       </button>
     </div>
 
-    <!-- जिल्हा निवड पॅनल - पूर्णपणे मोबाईल फिट -->
     <div class="action-panel">
       <div style="display:flex; align-items:center; gap:8px; width:100%;">
         <label for="districtSelect" style="font-weight:800; font-size:14px; color:var(--navy); white-space:nowrap;">
@@ -944,12 +929,10 @@
           </div>
         </div>
 
-        <!-- Live Free-form A4 Workspace -->
         <div class="designer-preview-wrap">
           <div id="printableCertificate" class="a4-container">
             <div class="a4-inner" id="a4CanvasArea">
               
-              <!-- Node 1: Header Banner -->
               <div class="canvas-node" id="node-header" style="top: 10px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-header')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -970,7 +953,6 @@
                 </div>
               </div>
 
-              <!-- Node 2: Outward & Date -->
               <div class="canvas-node" id="node-outward" style="top: 165px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-outward')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -980,7 +962,6 @@
                 </div>
               </div>
 
-              <!-- Node 3: Title Badge -->
               <div class="canvas-node" id="node-title" style="top: 195px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-title')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -989,7 +970,6 @@
                 </div>
               </div>
 
-              <!-- Node 4: Recipient Details -->
               <div class="canvas-node" id="node-recipient" style="top: 232px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-recipient')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1000,7 +980,6 @@
                 </div>
               </div>
 
-              <!-- Node 5: Subject Line -->
               <div class="canvas-node" id="node-subject" style="top: 295px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-subject')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1009,7 +988,6 @@
                 </div>
               </div>
 
-              <!-- Node 6: Body Content (Para 1 & 2) -->
               <div class="canvas-node" id="node-body" style="top: 330px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-body')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1024,7 +1002,6 @@
                 </div>
               </div>
 
-              <!-- Node 7: Designation Announcement Banner -->
               <div class="canvas-node" id="node-callout" style="top: 510px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-callout')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1035,7 +1012,6 @@
                 </div>
               </div>
 
-              <!-- Node 8: Independent Paragraph 3 -->
               <div class="canvas-node" id="node-body-para3" style="top: 615px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-body-para3')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1046,7 +1022,6 @@
                 </div>
               </div>
 
-              <!-- Node 9: Left Signature (सरचिटणीस) -->
               <div class="canvas-node" id="node-sign-left" style="top: 760px; left: 20px; width: 240px;">
                 <button class="node-delete-btn" onclick="deleteNode('node-sign-left')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1057,7 +1032,6 @@
                 </div>
               </div>
 
-              <!-- Node 10: Right Signature (राज्याध्यक्ष) -->
               <div class="canvas-node" id="node-sign-right" style="top: 760px; right: 20px; width: 240px;">
                 <button class="node-delete-btn" onclick="deleteNode('node-sign-right')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1238,10 +1212,11 @@
     </div>
   </div>
 
-  <!-- FIREBASE REALTIME WEBSOCKET LIVE SYNC SCRIPT -->
+  <!-- FIREBASE REALTIME DB & CLOUD STORAGE SDK (v10) -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getDatabase, ref, set, remove, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyD8IcRu9n0XnaNpdDdoeSo277hug6HVM5c",
@@ -1256,11 +1231,17 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
+    const storage = getStorage(app);
 
     window.rtdb = db;
     window.dbRef = ref;
     window.dbSet = set;
     window.dbRemove = remove;
+
+    window.fbStorage = storage;
+    window.sRef = sRef;
+    window.uploadBytes = uploadBytes;
+    window.getDownloadURL = getDownloadURL;
 
     // 1. LIVE OFFICIALS SYNC
     const officialsRef = ref(db, 'officials');
@@ -1364,14 +1345,14 @@
 
       const dirBody = document.getElementById('directoryTableBody');
       if (list.length === 0) {
-        dirBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:#888;">या जिल्ह्यात अजून एकही पदाधिकारी नोंदवलेला नाही.</td></tr>`;
+        dirBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:18px; color:#888;">या जिल्ह्यात अजून एकही पदाधिकारी नोंदवलेला नाही.</td></tr>`;
       } else {
         dirBody.innerHTML = list.map((m, idx) => `
           <tr>
             <td style="text-align: center; font-weight:bold;">${idx + 1}</td>
             <td style="font-weight: 700; color:#0f2b48;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
             <td>${m.currentCadre} <br><small style="color:#666;">${m.workingPlace}</small></td>
-            <td><strong style="color:var(--accent); font-size:14px;">${m.appointedPost}</strong></td>
+            <td><strong style="color:var(--accent); font-size:13.5px;">${m.appointedPost}</strong></td>
             <td style="text-align: center; font-weight:700;">${m.mobile}</td>
           </tr>
         `).join('');
@@ -1379,7 +1360,7 @@
 
       const manageBody = document.getElementById('manageTableBody');
       if (list.length === 0) {
-        manageBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:20px; color:#888;">माहिती उपलब्ध नाही. नवीन पदाधिकारी ॲड करा.</td></tr>`;
+        manageBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:18px; color:#888;">माहिती उपलब्ध नाही. नवीन पदाधिकारी ॲड करा.</td></tr>`;
       } else {
         manageBody.innerHTML = list.map((m, idx) => `
           <tr>
@@ -1398,7 +1379,7 @@
 
       const lettersBody = document.getElementById('lettersTableBody');
       if (list.length === 0) {
-        lettersBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:#888;">माहिती उपलब्ध नाही.</td></tr>`;
+        lettersBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:18px; color:#888;">माहिती उपलब्ध नाही.</td></tr>`;
       } else {
         lettersBody.innerHTML = list.map((m, idx) => `
           <tr>
@@ -1411,7 +1392,7 @@
               </button>
             </td>
             <td style="text-align: center;">
-              <button class="btn btn-wa" style="padding:4px 10px; font-size:12.5px;" onclick="sendWhatsAppAndDownload('${m.id}')">
+              <button class="btn btn-wa" style="padding:4px 10px; font-size:12.5px;" onclick="sendWhatsAppWithCloudLink('${m.id}')">
                 <i class="fa-brands fa-whatsapp"></i> WhatsApp वर पाठवा
               </button>
             </td>
@@ -1585,7 +1566,6 @@
       document.getElementById('prevPostTitle').textContent = `⭐ « ${m.appointedPost} » ⭐`;
     }
 
-    // मोबाईलवर अचूक फिट होणारे स्केल प्रिव्ह्यू इंजिन
     function viewLetterCleanPDF(id) {
       const m = window.membersData.find(item => item.id === id);
       if(!m) return;
@@ -1604,7 +1584,6 @@
       container.innerHTML = '';
       container.appendChild(clone);
 
-      // स्क्रीनच्या रुंदीनुसार A4 पत्र ऑटो-स्केल करा (Fit to Screen)
       const screenWidth = window.innerWidth;
       const targetWidth = 794;
       let scaleRatio = 1;
@@ -1876,9 +1855,9 @@
       location.reload();
     }
 
-    async function downloadCurrentLetterPDF(callback) {
+    // Helper: Generate exact 1-page PDF Blob
+    async function generatePdfBlob() {
       const original = document.getElementById('printableCertificate');
-      
       const clone = original.cloneNode(true);
       clone.id = 'tempPdfRenderClone';
 
@@ -1907,7 +1886,7 @@
 
       try {
         const canvas = await html2canvas(wrapper, {
-          scale: 2.5,
+          scale: 2.2,
           useCORS: true,
           allowTaint: true,
           scrollX: 0,
@@ -1927,19 +1906,23 @@
 
         const imgData = canvas.toDataURL('image/jpeg', 0.98);
         pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
-
-        const filename = selectedMemberForLetter 
-          ? `नियुक्ती_पत्र_${selectedMemberForLetter.firstName}_${selectedMemberForLetter.lastName}.pdf`
-          : `मास्टर_नियुक्ती_पत्र_महासंघ.pdf`;
-
-        pdf.save(filename);
-        if (callback) callback();
-      } catch (err) {
-        console.error("PDF generation failed:", err);
-        alert("PDF तयार करताना त्रुटी आली: " + err.message);
+        return pdf.output('blob');
       } finally {
         document.body.removeChild(wrapper);
       }
+    }
+
+    async function downloadCurrentLetterPDF(callback) {
+      const blob = await generatePdfBlob();
+      const filename = selectedMemberForLetter 
+        ? `नियुक्ती_पत्र_${selectedMemberForLetter.firstName}_${selectedMemberForLetter.lastName}.pdf`
+        : `मास्टर_नियुक्ती_पत्र_महासंघ.pdf`;
+
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+      if (callback) callback();
     }
 
     function printCleanDirectoryPDF() {
@@ -1966,12 +1949,32 @@
       window.print();
     }
 
-    function sendWhatsAppAndDownload(id) {
+    // पद्धत २: क्लाउडवर PDF अपलोड करून थेट डाऊनलोड लिंक WhatsApp मेसेजमध्ये पाठवणे
+    async function sendWhatsAppWithCloudLink(id) {
       const m = window.membersData.find(item => item.id === id);
       if(!m) return;
       populateLetter(m);
 
-      downloadCurrentLetterPDF(() => {
+      const btn = event.currentTarget;
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> लिंक तयार होत आहे...`;
+
+      try {
+        const pdfBlob = await generatePdfBlob();
+        let downloadLink = "";
+
+        // Firebase Storage वर थेट अपलोड
+        if (window.fbStorage && window.sRef && window.uploadBytes && window.getDownloadURL) {
+          const fileRef = window.sRef(window.fbStorage, `appointment_letters/${m.district}_${m.firstName}_${m.lastName}_${Date.now()}.pdf`);
+          await window.uploadBytes(fileRef, pdfBlob);
+          downloadLink = await window.getDownloadURL(fileRef);
+        }
+
+        let linkText = downloadLink 
+          ? `\n\n📄 *आपले अधिकृत नियुक्ती पत्र (PDF) डाऊनलोड करण्यासाठी खालील लिंकवर क्लिक करा:*\n👉 ${downloadLink}`
+          : "";
+
         const message = `सस्नेह जय महाराष्ट्र 🙏
 
 *महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ*
@@ -1983,11 +1986,9 @@
 
 ⭐ *« ${m.appointedPost} »* ⭐
 
-या अत्यंत सन्मानाच्या व जबाबदारीच्या पदावर गौरवपूर्ण नियुक्ती करण्यात आली आहे.
+या अत्यंत सन्मानाच्या व जबाबदारीच्या पदावर गौरवपूर्ण नियुक्ती करण्यात आली आहे.${linkText}
 
-आपले अधिकृत नियुक्ती पत्र (High-Quality PDF) डाऊनलोड झाले असून सोबत जोडले आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाच्या सन्मानासाठी व गुणवत्तेसाठी आपण खंबीरपणे कार्य कराल, हा ठाम विश्वास आहे.
-
-आपल्या पुढील यशस्वी वाटचालीस व संघटनात्मक कार्यासाठी उदंड शुभेच्छा!
+केंद्रप्रमुख व विस्तार अधिकारी संवर्गाच्या सन्मानासाठी व गुणवत्तेसाठी आपण खंबीरपणे कार्य कराल, हा ठाम विश्वास आहे. आपल्या पुढील यशस्वी वाटचालीस व संघटनात्मक कार्यासाठी उदंड शुभेच्छा!
 
 *श्री. राजेंद्र शिवाजी खैरनार*
 राज्याध्यक्ष,
@@ -1998,7 +1999,13 @@
         const encodedMsg = encodeURIComponent(message);
         const waUrl = `https://api.whatsapp.com/send?phone=91${m.mobile}&text=${encodedMsg}`;
         window.open(waUrl, '_blank');
-      });
+      } catch (err) {
+        console.error("Cloud link generation error:", err);
+        alert("क्लाउड लिंक तयार करताना अडचण आली: " + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }
     }
   </script>
 </body>
