@@ -117,6 +117,20 @@
     .pres-desig-tag { font-size: 14.5px; font-weight: 800; color: #0f172a; }
     .pres-sub-address { font-size: 12px; font-weight: 700; color: #334155; margin-top: 1px; }
 
+    .sync-badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-top: 4px;
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+    }
+
     .container {
       max-width: 1200px;
       margin: 18px auto;
@@ -245,9 +259,7 @@
     }
     td { padding: 12px 18px; border-bottom: 1px solid #f1f5f9; font-size: 14.5px; }
 
-    /* ==========================================================
-       DESIGNER STUDIO & WORKSPACE (A4 EXACT 794px x 1123px)
-       ========================================================== */
+    /* DESIGNER STUDIO (A4 STRICT 794px x 1123px) */
     .designer-layout {
       display: grid;
       grid-template-columns: 380px 1fr;
@@ -648,6 +660,9 @@
           </div>
           <div class="pres-sub-address" style="font-weight: 800;">
             मो. 9860704098 Email: rajadei2026@gmail.com
+          </div>
+          <div id="liveSyncStatus" class="sync-badge-status">
+            <i class="fa-solid fa-circle-notch fa-spin"></i> क्लाउड जोडत आहे...
           </div>
         </div>
       </div>
@@ -1194,6 +1209,71 @@
     </div>
   </div>
 
+  <!-- FIREBASE REALTIME WEBSOCKET LIVE SYNC SCRIPT -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase, ref, set, remove, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD8IcRu9n0XnaNpdDdoeSo277hug6HVM5c",
+      authDomain: "rk2026-207ee.firebaseapp.com",
+      databaseURL: "https://rk2026-207ee-default-rtdb.firebaseio.com",
+      projectId: "rk2026-207ee",
+      storageBucket: "rk2026-207ee.firebasestorage.app",
+      messagingSenderId: "745057745062",
+      appId: "1:745057745062:web:4417262c9468cc955bdc67",
+      measurementId: "G-80JGVSTT29"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // Global references for live operations
+    window.rtdb = db;
+    window.dbRef = ref;
+    window.dbSet = set;
+    window.dbRemove = remove;
+
+    // 1. LIVE OFFICIALS SYNC (कोणत्याही डिव्हाइसवरून ॲड होताच सर्वत्र लगेच दिसेल)
+    const officialsRef = ref(db, 'officials');
+    onValue(officialsRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        window.membersData = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+      } else {
+        window.membersData = [];
+      }
+      localStorage.setItem('mahasangh_members_live', JSON.stringify(window.membersData));
+      window.renderAll();
+
+      const badge = document.getElementById('liveSyncStatus');
+      if (badge) {
+        badge.innerHTML = `<i class="fa-solid fa-circle-check"></i> क्लाउड लाइव्ह सिंक (${window.membersData.length} पदाधिकारी)`;
+        badge.style.color = '#047857';
+        badge.style.background = '#ecfdf5';
+      }
+    }, (error) => {
+      console.warn("Realtime DB fallback active:", error);
+      const badge = document.getElementById('liveSyncStatus');
+      if (badge) {
+        badge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> स्थानिक स्टोरेज (ऑफलाइन)`;
+        badge.style.color = '#b45309';
+        badge.style.background = '#fffbeb';
+      }
+    });
+
+    // 2. LIVE MASTER DESIGN SYNC (डिझाईन सर्व डिव्हाइसवर लगेच अपडेट होईल)
+    const designRef = ref(db, 'appointment_master_design');
+    onValue(designRef, (snapshot) => {
+      const design = snapshot.val();
+      if (design && design.layout) {
+        localStorage.setItem('mahasangh_master_design', JSON.stringify(design));
+        window.applyDesignPayload(design);
+      }
+    });
+  </script>
+
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
   <script>
     const districts = [
       "अहमदनगर", "अकोला", "अमरावती", "छत्रपती संभाजीनगर", "भंडारा", "बीड", "बुलढाणा",
@@ -1202,9 +1282,6 @@
       "धाराशिव", "पालघर", "परभणी", "पुणे", "रायगड", "रत्नागिरी", "सांगली", "सातारा",
       "सिंधुदुर्ग", "सोलापूर", "ठाणे", "वर्धा", "वाशिम", "यवतमाळ"
     ];
-
-    const FIREBASE_DB_URL = "https://rk2026-207ee-default-rtdb.firebaseio.com/officials";
-    const FIREBASE_DESIGN_URL = "https://rk2026-207ee-default-rtdb.firebaseio.com/appointment_master_design.json";
 
     window.membersData = JSON.parse(localStorage.getItem('mahasangh_members_live')) || [];
 
@@ -1219,8 +1296,6 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       populateDistricts();
-      syncFromCloud();
-      loadDesignFromCloud();
       renderAll();
       initFreeDragAndResize();
 
@@ -1246,23 +1321,6 @@
         }
       });
     });
-
-    async function syncFromCloud() {
-      try {
-        const res = await fetch(`${FIREBASE_DB_URL}.json`);
-        if (res.ok) {
-          const data = await res.json();
-          if (data) {
-            const list = Object.keys(data).map(key => ({ id: key, ...data[key] }));
-            window.membersData = list;
-            localStorage.setItem('mahasangh_members_live', JSON.stringify(list));
-            renderAll();
-          }
-        }
-      } catch (e) {
-        console.warn("Cloud sync offline active:", e);
-      }
-    }
 
     function populateDistricts() {
       const select = document.getElementById('districtSelect');
@@ -1347,6 +1405,8 @@
         `).join('');
       }
     }
+
+    window.renderAll = renderAll;
 
     function switchTab(tabId) {
       document.querySelectorAll('.tab-view').forEach(el => el.style.display = 'none');
@@ -1436,6 +1496,7 @@
       document.getElementById('customPostDiv').style.display = (val === 'इतर') ? 'block' : 'none';
     }
 
+    // LIVE REALTIME SAVE TO FIREBASE
     async function handleFormSubmit(e) {
       e.preventDefault();
       const saveBtn = document.getElementById('saveBtn');
@@ -1468,39 +1529,39 @@
       };
 
       try {
-        await fetch(`${FIREBASE_DB_URL}/${docId}.json`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(memberObj)
-        });
-
-        const existingIdx = window.membersData.findIndex(item => item.id === docId);
-        if (existingIdx !== -1) {
-          window.membersData[existingIdx] = { id: docId, ...memberObj };
+        if (window.rtdb && window.dbSet && window.dbRef) {
+          await window.dbSet(window.dbRef(window.rtdb, 'officials/' + docId), memberObj);
         } else {
-          window.membersData.push({ id: docId, ...memberObj });
+          // Fallback REST
+          await fetch(`https://rk2026-207ee-default-rtdb.firebaseio.com/officials/${docId}.json`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(memberObj)
+          });
         }
-        localStorage.setItem('mahasangh_members_live', JSON.stringify(window.membersData));
-        renderAll();
+
         closeModal('memberModal');
       } catch (err) {
         console.error("Save Error:", err);
+        alert("डेटा सेव्ह करताना अडचण आली: " + err.message);
       } finally {
         saveBtn.disabled = false;
         saveBtn.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> सेव्ह करा`;
       }
     }
 
+    // LIVE REALTIME DELETE FROM FIREBASE
     async function deleteMember(id) {
       if(confirm("आपण खरोखर या पदाधिकाऱ्याचे नाव वगळू इच्छिता?")) {
         try {
-          await fetch(`${FIREBASE_DB_URL}/${id}.json`, { method: 'DELETE' });
+          if (window.rtdb && window.dbRemove && window.dbRef) {
+            await window.dbRemove(window.dbRef(window.rtdb, 'officials/' + id));
+          } else {
+            await fetch(`https://rk2026-207ee-default-rtdb.firebaseio.com/officials/${id}.json`, { method: 'DELETE' });
+          }
         } catch (e) {
           console.warn("Delete fallback:", e);
         }
-        window.membersData = window.membersData.filter(item => item.id !== id);
-        localStorage.setItem('mahasangh_members_live', JSON.stringify(window.membersData));
-        renderAll();
       }
     }
 
@@ -1698,6 +1759,7 @@
       }
     }
 
+    // LIVE MASTER DESIGN SAVE
     async function saveDesignToCloud() {
       const canvasArea = document.getElementById('a4CanvasArea');
       const nodes = canvasArea.querySelectorAll('.canvas-node');
@@ -1732,91 +1794,74 @@
       };
 
       try {
-        await fetch(FIREBASE_DESIGN_URL, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(designPayload)
-        });
-        localStorage.setItem('mahasangh_master_design', JSON.stringify(designPayload));
-        alert("अभिनंदन! संपूर्ण मास्टर डिझाईन आणि लेआउट Firebase वर सेव्ह झाले आहे.");
-      } catch (err) {
-        console.error("Design save error:", err);
-        localStorage.setItem('mahasangh_master_design', JSON.stringify(designPayload));
-        alert("स्थानिक मेमरीमध्ये डिझाईन सेव्ह झाली आहे.");
-      }
-    }
-
-    async function loadDesignFromCloud() {
-      try {
-        let design = null;
-        const res = await fetch(FIREBASE_DESIGN_URL);
-        if (res.ok) {
-          design = await res.json();
-        }
-        if (!design) {
-          design = JSON.parse(localStorage.getItem('mahasangh_master_design'));
-        }
-
-        if (design && design.layout) {
-          if (design.subject) document.getElementById('dsSubject').value = design.subject;
-          if (design.para1) document.getElementById('dsPara1').value = design.para1;
-          if (design.para2) document.getElementById('dsPara2').value = design.para2;
-          if (design.para3) document.getElementById('dsPara3').value = design.para3;
-          if (design.sign1Name) document.getElementById('dsSign1Name').value = design.sign1Name;
-          if (design.sign1Role) document.getElementById('dsSign1Role').value = design.sign1Role;
-          if (design.sign2Name) document.getElementById('dsSign2Name').value = design.sign2Name;
-          if (design.sign2Role) document.getElementById('dsSign2Role').value = design.sign2Role;
-          if (design.fontSize) document.getElementById('dsFontSize').value = design.fontSize;
-          if (design.lineHeight) document.getElementById('dsLineHeight').value = design.lineHeight;
-          if (design.textColor) document.getElementById('dsTextColor').value = design.textColor;
-          if (design.bgImage) document.getElementById('printableCertificate').style.backgroundImage = design.bgImage;
-
-          updateLetterTexts();
-          updateSignTexts();
-          updateLetterStyles();
-
-          Object.keys(design.layout).forEach(nodeId => {
-            const el = document.getElementById(nodeId);
-            const conf = design.layout[nodeId];
-            if (el && conf) {
-              if (conf.top) el.style.top = conf.top;
-              if (conf.left) el.style.left = conf.left;
-              if (conf.right) el.style.right = conf.right;
-              if (conf.width) el.style.width = conf.width;
-              if (conf.height) el.style.height = conf.height;
-              if (conf.display) {
-                el.style.display = conf.display;
-                const chk = document.getElementById(nodeId.replace('node-', 'chk-'));
-                if (chk) chk.checked = (conf.display !== 'none');
-              }
-            }
+        if (window.rtdb && window.dbSet && window.dbRef) {
+          await window.dbSet(window.dbRef(window.rtdb, 'appointment_master_design'), designPayload);
+        } else {
+          await fetch(`https://rk2026-207ee-default-rtdb.firebaseio.com/appointment_master_design.json`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(designPayload)
           });
         }
-      } catch (e) {
-        console.warn("Design restore fallback active:", e);
+        localStorage.setItem('mahasangh_master_design', JSON.stringify(designPayload));
+        alert("अभिनंदन! संपूर्ण मास्टर डिझाईन क्लाउडवर सेव्ह झाली आहे आणि सर्व डिव्हाइसवर लगेच दिसेल.");
+      } catch (err) {
+        console.error("Design save error:", err);
+        alert("डिझाईन सेव्ह करताना त्रुटी आली: " + err.message);
       }
     }
+
+    window.applyDesignPayload = function(design) {
+      if (!design || !design.layout) return;
+      if (design.subject) document.getElementById('dsSubject').value = design.subject;
+      if (design.para1) document.getElementById('dsPara1').value = design.para1;
+      if (design.para2) document.getElementById('dsPara2').value = design.para2;
+      if (design.para3) document.getElementById('dsPara3').value = design.para3;
+      if (design.sign1Name) document.getElementById('dsSign1Name').value = design.sign1Name;
+      if (design.sign1Role) document.getElementById('dsSign1Role').value = design.sign1Role;
+      if (design.sign2Name) document.getElementById('dsSign2Name').value = design.sign2Name;
+      if (design.sign2Role) document.getElementById('dsSign2Role').value = design.sign2Role;
+      if (design.fontSize) document.getElementById('dsFontSize').value = design.fontSize;
+      if (design.lineHeight) document.getElementById('dsLineHeight').value = design.lineHeight;
+      if (design.textColor) document.getElementById('dsTextColor').value = design.textColor;
+      if (design.bgImage) document.getElementById('printableCertificate').style.backgroundImage = design.bgImage;
+
+      updateLetterTexts();
+      updateSignTexts();
+      updateLetterStyles();
+
+      Object.keys(design.layout).forEach(nodeId => {
+        const el = document.getElementById(nodeId);
+        const conf = design.layout[nodeId];
+        if (el && conf) {
+          if (conf.top) el.style.top = conf.top;
+          if (conf.left) el.style.left = conf.left;
+          if (conf.right) el.style.right = conf.right;
+          if (conf.width) el.style.width = conf.width;
+          if (conf.height) el.style.height = conf.height;
+          if (conf.display) {
+            el.style.display = conf.display;
+            const chk = document.getElementById(nodeId.replace('node-', 'chk-'));
+            if (chk) chk.checked = (conf.display !== 'none');
+          }
+        }
+      });
+    };
 
     function resetDesignerDefaults() {
       localStorage.removeItem('mahasangh_master_design');
       location.reload();
     }
 
-    // ========================================================
-    // 100% PERFECT 1-PAGE PDF GENERATION ENGINE
-    // ZERO OFFSET, ZERO CUT-OFF, ZERO 2ND PAGE!
-    // ========================================================
+    // EXACT 1-PAGE A4 PDF ENGINE
     async function downloadCurrentLetterPDF(callback) {
       const original = document.getElementById('printableCertificate');
       
-      // 1. स्वच्छ क्लोन तयार करणे
       const clone = original.cloneNode(true);
       clone.id = 'tempPdfRenderClone';
 
-      // 2. सर्व हँडल्स आणि बटणे काढून टाकणे
       clone.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
 
-      // 3. शून्य ऑफसेटसाठी तात्पुरता कंटेनर (0,0 वर फिक्स)
       const wrapper = document.createElement('div');
       wrapper.style.position = 'fixed';
       wrapper.style.top = '0';
@@ -1859,7 +1904,6 @@
         });
 
         const imgData = canvas.toDataURL('image/jpeg', 0.98);
-        // तंतोतंत १ च पान (० ते २१० मिमी आणि ० ते २९७ मिमी)
         pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
 
         const filename = selectedMemberForLetter 
