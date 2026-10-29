@@ -13,8 +13,9 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- html2pdf.js for Appointments -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <!-- html2canvas and jsPDF (Direct Exact 1-Page Engine) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <style>
     :root {
@@ -47,7 +48,7 @@
       flex-direction: column;
     }
 
-    /* मुख्य हेडर - दोन्ही लोगो वगळून स्वच्छ व भव्य मध्यवर्ती रचना */
+    /* मुख्य हेडर - दोन्ही लोगो नसलेली स्वच्छ रचना */
     header {
       background: linear-gradient(180deg, #fffcf5 0%, #faecd0 50%, #fbf3e0 100%);
       padding: 16px 20px;
@@ -245,7 +246,7 @@
     td { padding: 12px 18px; border-bottom: 1px solid #f1f5f9; font-size: 14.5px; }
 
     /* ==========================================================
-       DESIGNER STUDIO & WORKSPACE (A4 EXACT 1-PAGE LOCK)
+       DESIGNER STUDIO & WORKSPACE (A4 EXACT 794px x 1123px)
        ========================================================== */
     .designer-layout {
       display: grid;
@@ -332,12 +333,15 @@
       box-shadow: inset 0 2px 8px rgba(0,0,0,0.06);
     }
 
-    /* A4 Sheet - तंतोतंत 210mm x 297mm (१ पान फिक्स लॉक) */
+    /* A4 Sheet - तंतोतंत 794px x 1123px (A4 Strict Ratio) */
     .a4-container {
-      width: 210mm;
-      height: 297mm;
-      max-height: 297mm;
-      padding: 8mm 12mm;
+      width: 794px;
+      height: 1123px;
+      min-width: 794px;
+      max-width: 794px;
+      min-height: 1123px;
+      max-height: 1123px;
+      padding: 24px 32px;
       background: #ffffff;
       margin: 0 auto;
       box-sizing: border-box;
@@ -347,8 +351,6 @@
       background-position: center !important;
       background-repeat: no-repeat !important;
       box-shadow: 0 8px 30px rgba(0,0,0,0.18);
-      page-break-after: avoid !important;
-      page-break-inside: avoid !important;
       overflow: hidden;
     }
 
@@ -358,9 +360,11 @@
       outline-offset: -5px;
       padding: 10px 14px;
       height: 100%;
+      width: 100%;
       position: relative;
       background: transparent;
       overflow: hidden;
+      box-sizing: border-box;
     }
 
     .canvas-node {
@@ -418,7 +422,6 @@
       display: flex;
     }
 
-    /* पत्रावरील हेडर - दोन्ही लोगो नसलेले परिपूर्ण लेटरहेड */
     .letterhead-card-canvas {
       position: relative;
       background: linear-gradient(180deg, #fffcf5 0%, #faecd0 50%, #fbf3e0 100%);
@@ -468,7 +471,6 @@
       color: #0f2b48;
     }
 
-    /* विषय - शेडिंग नसलेला स्वच्छ पारदर्शक भाग */
     .subject-banner {
       font-size: 12pt;
       font-weight: 800;
@@ -492,7 +494,6 @@
       text-indent: 20px;
     }
 
-    /* नियुक्ती बॉक्स - शेडिंग नसलेला पूर्ण पारदर्शक भाग */
     .appointment-callout {
       padding: 4px 0;
       background: transparent !important;
@@ -603,7 +604,7 @@
     .form-item input, .form-item select { padding: 9px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; }
 
     @media print {
-      @page { size: A4 portrait; margin: 12mm 15mm; }
+      @page { size: A4 portrait; margin: 0; }
       body * { visibility: hidden; }
       #printAreaSection, #printAreaSection * { visibility: visible; }
       #printAreaSection {
@@ -618,7 +619,7 @@
     @media (max-width: 900px) {
       .designer-layout { grid-template-columns: 1fr; }
       .row-3, .row-2 { grid-template-columns: 1fr; }
-      .a4-container { width: 100%; height: auto; min-height: auto; max-height: none; padding: 6px; }
+      .a4-container { width: 100%; height: auto; min-height: auto; max-height: none; min-width: auto; max-width: none; padding: 6px; }
       .a4-inner { min-height: 260mm; padding: 10px; }
       .action-panel { flex-direction: column; align-items: stretch; }
     }
@@ -901,7 +902,7 @@
           </div>
         </div>
 
-        <!-- Live Free-form A4 Workspace (Strict 1-Page Layout) -->
+        <!-- Live Free-form A4 Workspace (Strict Exact 794x1123px) -->
         <div class="designer-preview-wrap">
           <div id="printableCertificate" class="a4-container">
             <div class="a4-inner" id="a4CanvasArea">
@@ -957,7 +958,7 @@
                 </div>
               </div>
 
-              <!-- Node 5: Subject Line (शेडिंग काढलेले पारदर्शक) -->
+              <!-- Node 5: Subject Line (शेडिंग नसलेले पारदर्शक) -->
               <div class="canvas-node" id="node-subject" style="top: 295px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-subject')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -981,7 +982,7 @@
                 </div>
               </div>
 
-              <!-- Node 7: Designation Announcement Banner (शेडिंग काढलेले पारदर्शक) -->
+              <!-- Node 7: Designation Announcement Banner (शेडिंग नसलेले पारदर्शक) -->
               <div class="canvas-node" id="node-callout" style="top: 510px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-callout')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1614,7 +1615,7 @@
 
           document.getElementById('a4CanvasArea').appendChild(div);
           initNodeInteractions(div);
-          alert("नवीन प्रतिमा पत्रावर जोडली गेली आहे! आपण ती कुठेही हलवू शकता व कोपऱ्यातील हँडलने लहान-मोठी करू शकता.");
+          alert("नवीन प्रतिमा पत्रावर जोडली गेली आहे!");
         };
         reader.readAsDataURL(file);
       }
@@ -1801,36 +1802,78 @@
       location.reload();
     }
 
-    // High Quality Strict 1-Page PDF Download
-    function downloadCurrentLetterPDF(callback) {
-      const delBtns = document.querySelectorAll('.node-delete-btn, .node-resize-handle');
-      delBtns.forEach(btn => btn.style.setProperty('display', 'none', 'important'));
+    // ========================================================
+    // 100% PERFECT 1-PAGE PDF GENERATION ENGINE
+    // ZERO OFFSET, ZERO CUT-OFF, ZERO 2ND PAGE!
+    // ========================================================
+    async function downloadCurrentLetterPDF(callback) {
+      const original = document.getElementById('printableCertificate');
+      
+      // 1. स्वच्छ क्लोन तयार करणे
+      const clone = original.cloneNode(true);
+      clone.id = 'tempPdfRenderClone';
 
-      const element = document.getElementById('printableCertificate');
-      const filename = selectedMemberForLetter 
-        ? `नियुक्ती_पत्र_${selectedMemberForLetter.firstName}_${selectedMemberForLetter.lastName}.pdf`
-        : `मास्टर_नियुक्ती_पत्र_महासंघ.pdf`;
+      // 2. सर्व हँडल्स आणि बटणे काढून टाकणे
+      clone.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
 
-      const opt = {
-        margin: [0, 0, 0, 0],
-        filename: filename,
-        image: { type: 'jpeg', quality: 1.0 },
-        html2canvas: { 
-          scale: 3, 
-          useCORS: true, 
-          letterRendering: true,
-          scrollY: 0,
+      // 3. शून्य ऑफसेटसाठी तात्पुरता कंटेनर (0,0 वर फिक्स)
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'fixed';
+      wrapper.style.top = '0';
+      wrapper.style.left = '0';
+      wrapper.style.width = '794px';
+      wrapper.style.height = '1123px';
+      wrapper.style.zIndex = '999999';
+      wrapper.style.background = '#ffffff';
+      wrapper.style.margin = '0';
+      wrapper.style.padding = '0';
+      wrapper.style.overflow = 'hidden';
+
+      clone.style.width = '794px';
+      clone.style.height = '1123px';
+      clone.style.maxHeight = '1123px';
+      clone.style.boxShadow = 'none';
+      clone.style.margin = '0';
+
+      wrapper.appendChild(clone);
+      document.body.appendChild(wrapper);
+
+      try {
+        const canvas = await html2canvas(wrapper, {
+          scale: 2.5,
+          useCORS: true,
+          allowTaint: true,
           scrollX: 0,
-          windowWidth: element.offsetWidth,
-          windowHeight: element.offsetHeight
-        },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      };
+          scrollY: 0,
+          width: 794,
+          height: 1123,
+          windowWidth: 794,
+          windowHeight: 1123
+        });
 
-      html2pdf().set(opt).from(element).save().then(() => {
-        delBtns.forEach(btn => btn.style.removeProperty('display'));
-        if(callback) callback();
-      });
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: 'a4'
+        });
+
+        const imgData = canvas.toDataURL('image/jpeg', 0.98);
+        // तंतोतंत १ च पान (० ते २१० मिमी आणि ० ते २९७ मिमी)
+        pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
+
+        const filename = selectedMemberForLetter 
+          ? `नियुक्ती_पत्र_${selectedMemberForLetter.firstName}_${selectedMemberForLetter.lastName}.pdf`
+          : `मास्टर_नियुक्ती_पत्र_महासंघ.pdf`;
+
+        pdf.save(filename);
+        if (callback) callback();
+      } catch (err) {
+        console.error("PDF generation failed:", err);
+        alert("PDF तयार करताना त्रुटी आली: " + err.message);
+      } finally {
+        document.body.removeChild(wrapper);
+      }
     }
 
     function printCleanDirectoryPDF() {
