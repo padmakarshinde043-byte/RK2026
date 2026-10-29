@@ -5,11 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ - अधिकृत पोर्टल</title>
   
+  <!-- Google Fonts: Aparajita / Devanagari Serif Style -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Rozha+One&family=Yatra+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;500;600;700;800&family=Yatra+One&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- html2canvas and jsPDF for 1-Page Appointment Letter -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -23,16 +27,15 @@
       --card: #ffffff;
       --border: #e2e8f0;
       --accent: #b45309;
-      --soft-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
-      --capsule-shadow: 0 4px 14px 0 rgba(184, 134, 11, 0.2);
+      --soft-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --capsule-shadow: 0 4px 14px 0 rgba(184, 134, 11, 0.25);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Mukta', sans-serif;
-      font-synthesis: none;
+      font-family: 'Aparajita', 'Noto Serif Devanagari', 'Gargi', serif;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -42,13 +45,15 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow-x: hidden;
     }
 
+    /* कॉम्पॅक्ट, हलका व सुबक हेडर */
     header {
       background: linear-gradient(180deg, #fffcf5 0%, #faecd0 50%, #fbf3e0 100%);
-      padding: 16px 20px;
-      box-shadow: 0 4px 20px rgba(184, 134, 11, 0.15);
-      border-bottom: 2.5px solid var(--gold-border);
+      padding: 10px 15px;
+      box-shadow: 0 3px 15px rgba(184, 134, 11, 0.12);
+      border-bottom: 2px solid var(--gold-border);
       user-select: none;
       position: relative;
     }
@@ -62,99 +67,98 @@
 
     .lh-reg-top {
       position: absolute;
-      top: -4px;
+      top: 0;
       right: 0;
-      font-size: 13px;
-      font-weight: 800;
-      color: #0f172a;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #334155;
       letter-spacing: 0.5px;
     }
 
     .state-title-blue {
-      font-family: 'Rozha One', 'Mukta', serif;
-      font-size: 32px;
+      font-size: 22px;
       font-weight: 800;
       color: #1e3a8a;
-      text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff, 0 2px 4px rgba(0,0,0,0.15);
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       line-height: 1.1;
+      margin-top: 2px;
     }
 
     .org-title-maroon {
-      font-family: 'Rozha One', 'Mukta', serif;
-      font-size: 38px;
+      font-size: 27px;
       font-weight: 800;
       color: #6b0c10;
       line-height: 1.15;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.15);
-      margin-top: 2px;
+      margin-top: 1px;
     }
 
     .ribbon-slogan-wrap {
       display: inline-block;
-      margin: 4px auto;
+      margin: 3px auto;
       background: linear-gradient(90deg, #fef3c7 0%, #fffbeb 50%, #fef3c7 100%);
-      border: 1.5px solid #d4af37;
-      border-radius: 30px;
-      padding: 2px 24px;
-      box-shadow: 0 2px 6px rgba(184, 134, 11, 0.15);
+      border: 1px solid #d4af37;
+      border-radius: 20px;
+      padding: 1px 18px;
     }
 
     .ribbon-slogan-wrap span {
-      font-size: 14.5px;
-      font-weight: 800;
+      font-size: 12.5px;
+      font-weight: 700;
       color: #4a0404;
-      letter-spacing: 0.5px;
     }
 
-    .president-details-bar { margin-top: 4px; }
-    .pres-name-big { font-size: 19px; font-weight: 800; color: #0f2b48; }
-    .pres-desig-tag { font-size: 14.5px; font-weight: 800; color: #0f172a; }
-    .pres-sub-address { font-size: 12px; font-weight: 700; color: #334155; margin-top: 1px; }
-
-    .sync-badge-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 800;
-      padding: 3px 12px;
-      border-radius: 20px;
-      margin-top: 5px;
-      background: #ecfdf5;
-      color: #047857;
-      border: 1px solid #a7f3d0;
-      transition: all 0.3s;
+    .president-details-bar { 
+      margin-top: 2px; 
+    }
+    
+    .pres-name-big { 
+      font-size: 15px; 
+      font-weight: 800; 
+      color: #0f2b48; 
+    }
+    
+    .pres-desig-tag { 
+      font-size: 12.5px; 
+      font-weight: 700; 
+      color: #0f172a; 
+    }
+    
+    .pres-sub-address { 
+      font-size: 11px; 
+      font-weight: 600; 
+      color: #475569; 
+      line-height: 1.3;
     }
 
     .container {
       max-width: 1200px;
-      margin: 18px auto;
-      padding: 0 14px;
+      margin: 14px auto;
+      padding: 0 12px;
       width: 100%;
       flex: 1;
     }
 
+    /* आकर्षक सावली असणारा सुबक कॅप्सूल टॅब बार */
     .tabs-wrapper {
       display: flex;
       background: #ffffff;
-      padding: 7px;
+      padding: 6px;
       border-radius: 50px;
       gap: 8px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       box-shadow: var(--soft-shadow);
-      border: 1px solid rgba(226, 232, 240, 0.8);
+      border: 1px solid rgba(226, 232, 240, 0.9);
       flex-wrap: wrap;
     }
 
     .nav-tab {
       flex: 1;
-      min-width: 160px;
-      padding: 12px 18px;
+      min-width: 140px;
+      padding: 10px 16px;
       border: none;
       outline: none;
       background: transparent;
-      font-size: 15.5px;
+      font-size: 14.5px;
       font-weight: 700;
       color: #64748b;
       border-radius: 50px;
@@ -163,7 +167,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 7px;
       text-align: center;
     }
 
@@ -178,94 +182,107 @@
       font-size: 10px;
       background: #ef4444;
       color: white;
-      padding: 2px 7px;
+      padding: 2px 6px;
       border-radius: 50px;
     }
 
+    /* कृती पॅनल / जिल्हा निवड */
     .action-panel {
       background: var(--card);
-      padding: 14px 20px;
-      border-radius: 20px;
+      padding: 12px 18px;
+      border-radius: 16px;
       box-shadow: var(--soft-shadow);
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 15px;
+      gap: 12px;
       border: 1px solid var(--border);
     }
 
     .select-district-field {
-      padding: 9px 18px;
+      padding: 8px 16px;
       border-radius: 50px;
-      border: 2px solid #cbd5e1;
-      font-size: 15px;
+      border: 1.5px solid #cbd5e1;
+      font-size: 14.5px;
       font-weight: 700;
       outline: none;
-      min-width: 220px;
+      min-width: 200px;
       cursor: pointer;
       background-color: #f8fafc;
     }
 
     .btn {
-      padding: 9px 20px;
+      padding: 8px 18px;
       border: none;
       border-radius: 50px;
       font-weight: 700;
-      font-size: 14.5px;
+      font-size: 14px;
       cursor: pointer;
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
 
     .btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     .btn-gold { background: linear-gradient(135deg, #d4af37, #b8860b); color: white; }
     .btn-outline { background: #ffffff; border: 1.5px solid #334155; color: #334155; }
     .btn-wa { background: #25D366; color: white; }
     .btn-view { background: #0284c7; color: white; }
-    .btn-edit { background: #f59e0b; color: white; border-radius: 8px; }
-    .btn-del { background: #ef4444; color: white; border-radius: 8px; }
+    .btn-edit { background: #f59e0b; color: white; border-radius: 6px; }
+    .btn-del { background: #ef4444; color: white; border-radius: 6px; }
 
     .table-card {
       background: var(--card);
-      border-radius: 20px;
+      border-radius: 16px;
       overflow-x: auto;
       box-shadow: var(--soft-shadow);
       border: 1px solid var(--border);
+      -webkit-overflow-scrolling: touch;
     }
 
-    table { width: 100%; border-collapse: collapse; text-align: left; }
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      text-align: left; 
+    }
+    
     th {
       background: #f8fafc;
       color: #334155;
-      font-size: 14.5px;
+      font-size: 14px;
       font-weight: 800;
-      padding: 14px 18px;
+      padding: 12px 14px;
       border-bottom: 2px solid var(--border);
       white-space: nowrap;
     }
-    td { padding: 12px 18px; border-bottom: 1px solid #f1f5f9; font-size: 14.5px; }
+    
+    td { 
+      padding: 10px 14px; 
+      border-bottom: 1px solid #f1f5f9; 
+      font-size: 14px; 
+    }
 
+    /* DESIGNER STUDIO (Strict 794x1123px A4 Ratio) */
     .designer-layout {
       display: grid;
-      grid-template-columns: 380px 1fr;
-      gap: 20px;
+      grid-template-columns: 360px 1fr;
+      gap: 16px;
       align-items: start;
     }
 
     .designer-controls {
       background: #ffffff;
-      padding: 18px;
-      border-radius: 20px;
+      padding: 16px;
+      border-radius: 16px;
       border: 1px solid var(--border);
       box-shadow: var(--soft-shadow);
       max-height: 85vh;
@@ -273,16 +290,16 @@
     }
 
     .control-sec {
-      margin-bottom: 15px;
+      margin-bottom: 14px;
       border-bottom: 1px solid #f1f5f9;
-      padding-bottom: 12px;
+      padding-bottom: 10px;
     }
 
     .control-sec h4 {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 800;
       color: var(--navy);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -291,21 +308,21 @@
     .control-row {
       display: flex;
       flex-direction: column;
-      gap: 4px;
-      margin-bottom: 8px;
+      gap: 3px;
+      margin-bottom: 7px;
     }
 
     .control-row label {
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 700;
       color: #64748b;
     }
 
     .control-row input, .control-row textarea, .control-row select {
-      padding: 8px 12px;
+      padding: 7px 10px;
       border: 1.5px solid #cbd5e1;
-      border-radius: 8px;
-      font-size: 13.5px;
+      border-radius: 6px;
+      font-size: 13px;
       outline: none;
     }
 
@@ -313,31 +330,31 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 6px;
-      margin-top: 5px;
+      margin-top: 4px;
     }
 
     .element-check-label {
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       color: #334155;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       background: #f1f5f9;
-      padding: 6px 10px;
-      border-radius: 8px;
+      padding: 5px 8px;
+      border-radius: 6px;
       cursor: pointer;
     }
 
     .designer-preview-wrap {
       background: #cbd5e1;
-      padding: 20px;
-      border-radius: 20px;
+      padding: 16px;
+      border-radius: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
       overflow-x: auto;
-      box-shadow: inset 0 2px 8px rgba(0,0,0,0.06);
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.06);
     }
 
     .a4-container {
@@ -356,7 +373,7 @@
       background-size: 100% 100% !important;
       background-position: center !important;
       background-repeat: no-repeat !important;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
       overflow: hidden;
     }
 
@@ -408,19 +425,19 @@
       position: absolute;
       top: -8px;
       right: -8px;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       background: #ef4444;
       color: white;
       border: 1.5px solid white;
       border-radius: 50%;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: bold;
       display: none;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
       z-index: 26;
     }
 
@@ -434,7 +451,7 @@
       border-radius: 8px;
       padding: 6px 12px;
       border: 1.5px solid #d4af37;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
       text-align: center;
       width: 100%;
     }
@@ -443,7 +460,7 @@
       display: flex;
       justify-content: space-between;
       font-size: 11pt;
-      font-weight: 800;
+      font-weight: 700;
       padding-bottom: 2px;
       border-bottom: 1.5px dashed #851216;
       width: 100%;
@@ -457,9 +474,9 @@
     .certificate-title-pill span {
       background: linear-gradient(135deg, #851216, #991b1b);
       color: #ffffff;
-      padding: 3px 32px;
+      padding: 3px 30px;
       font-size: 13.5pt;
-      font-weight: 800;
+      font-weight: 700;
       border-radius: 25px;
       border: 1.5px solid #d4a017;
       display: inline-block;
@@ -497,7 +514,7 @@
 
     .body-text-block p {
       margin-bottom: 5px;
-      text-indent: 20px;
+      text-indent: 18px;
     }
 
     .appointment-callout {
@@ -527,15 +544,15 @@
     }
 
     .uploaded-sign-img {
-      max-height: 48px;
+      max-height: 44px;
       object-fit: contain;
       margin-bottom: 2px;
       display: none;
     }
 
     .single-sign-card .slot-name {
-      font-size: 12.5pt;
-      font-weight: 800;
+      font-size: 12pt;
+      font-weight: 700;
       border-top: 1.5px solid #222;
       padding-top: 3px;
       color: #000;
@@ -544,7 +561,7 @@
 
     .single-sign-card .slot-role {
       font-size: 10pt;
-      font-weight: 700;
+      font-weight: 600;
       color: #334155;
     }
 
@@ -564,28 +581,28 @@
       align-items: center;
       z-index: 1000;
       padding: 12px;
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(3px);
     }
 
     .modal-content {
       background: white;
-      border-radius: 20px;
+      border-radius: 18px;
       width: 100%;
-      max-width: 620px;
+      max-width: 600px;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
       display: flex;
       flex-direction: column;
     }
 
     .modal-content.preview-mode {
-      max-width: 880px;
+      max-width: 860px;
       background: #e2e8f0;
     }
 
     .modal-header-bar {
-      padding: 16px 22px;
+      padding: 14px 18px;
       background: linear-gradient(135deg, #1f2937, #b8860b);
       color: white;
       display: flex;
@@ -601,12 +618,29 @@
       cursor: pointer;
     }
 
-    .modal-body { padding: 20px; }
+    .modal-body { padding: 16px; }
     .row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 10px; }
     .row-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 10px; }
     .form-item { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
     .form-item label { font-size: 13px; font-weight: 700; color: #475569; }
-    .form-item input, .form-item select { padding: 9px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; }
+    .form-item input, .form-item select { padding: 8px 10px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-size: 13.5px; outline: none; }
+
+    /* ==========================================================
+       MOBILE RESPONSIVE TWEAKS (FIT TO SCREEN)
+       ========================================================== */
+    @media (max-width: 768px) {
+      .state-title-blue { font-size: 18px; }
+      .org-title-maroon { font-size: 22px; }
+      .lh-reg-top { position: static; font-size: 11px; margin-bottom: 2px; }
+      .tabs-wrapper { border-radius: 20px; padding: 4px; }
+      .nav-tab { font-size: 13px; padding: 8px 10px; min-width: 100%; border-radius: 12px; }
+      .action-panel { flex-direction: column; align-items: stretch; padding: 12px; }
+      .select-district-field { min-width: 100%; width: 100%; }
+      .row-3, .row-2 { grid-template-columns: 1fr; }
+      .designer-layout { grid-template-columns: 1fr; }
+      .a4-container { width: 100%; height: auto; min-width: auto; max-width: none; min-height: auto; max-height: none; padding: 6px; }
+      .a4-inner { min-height: 250mm; padding: 8px; }
+    }
 
     @media print {
       @page { size: A4 portrait; margin: 0; }
@@ -620,42 +654,30 @@
         display: block !important;
       }
     }
-
-    @media (max-width: 900px) {
-      .designer-layout { grid-template-columns: 1fr; }
-      .row-3, .row-2 { grid-template-columns: 1fr; }
-      .a4-container { width: 100%; height: auto; min-height: auto; max-height: none; min-width: auto; max-width: none; padding: 6px; }
-      .a4-inner { min-height: 260mm; padding: 10px; }
-      .action-panel { flex-direction: column; align-items: stretch; }
-    }
   </style>
 </head>
 <body>
 
+  <!-- हेडर (मुख्य मथळ्यावर ३ वेळा क्लिक केल्यास सिक्रेट ॲडमिन पॅनल उघडेल) -->
   <header id="mainHeaderTitle" title="३ वेळा क्लिक करा (सिक्रेट ॲडमिन पॅनल)">
     <div class="official-letterhead">
       <div class="lh-reg-top">Reg. No. MH/0000555/2026</div>
 
-      <div class="lh-center-content">
-        <div class="state-title-blue">महाराष्ट्र राज्य</div>
-        <div class="org-title-maroon">केंद्रप्रमुख व अधिकारी महासंघ</div>
-        
-        <div class="ribbon-slogan-wrap">
-          <span>शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...!</span>
-        </div>
+      <div class="state-title-blue">महाराष्ट्र राज्य</div>
+      <div class="org-title-maroon">केंद्रप्रमुख व अधिकारी महासंघ</div>
+      
+      <div class="ribbon-slogan-wrap">
+        <span>शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...!</span>
+      </div>
 
-        <div class="president-details-bar">
-          <div class="pres-name-big">श्री. राजेंद्र शिवाजी खैरनार</div>
-          <div class="pres-desig-tag">राज्याध्यक्ष</div>
-          <div class="pres-sub-address">
-            कार्यालय : स. नं. ५६/१, प्लॉट नं. १, मालेगाव ता. मालेगाव जि. नाशिक
-          </div>
-          <div class="pres-sub-address" style="font-weight: 800;">
-            मो. 9860704098 Email: rajadei2026@gmail.com
-          </div>
-          <div id="liveSyncStatus" class="sync-badge-status">
-            <i class="fa-solid fa-circle-notch fa-spin"></i> क्लाउड जोडत आहे...
-          </div>
+      <div class="president-details-bar">
+        <div class="pres-name-big">श्री. राजेंद्र शिवाजी खैरनार</div>
+        <div class="pres-desig-tag">राज्याध्यक्ष</div>
+        <div class="pres-sub-address">
+          कार्यालय : स. नं. ५६/१, प्लॉट नं. १, मालेगाव ता. मालेगाव जि. नाशिक
+        </div>
+        <div class="pres-sub-address" style="font-weight: 700;">
+          मो. 9860704098 Email: rajadei2026@gmail.com
         </div>
       </div>
     </div>
@@ -663,6 +685,7 @@
 
   <div class="container">
     
+    <!-- सॉफ्ट शॅडो असलेले कॅप्सूल नेव्हिगेशन टॅब्स -->
     <div class="tabs-wrapper">
       <button class="nav-tab active" onclick="switchTab('tab-directory')">
         <i class="fa-solid fa-users"></i> पदाधिकारी यादी
@@ -679,23 +702,24 @@
       </button>
     </div>
 
+    <!-- जिल्हा निवड बार -->
     <div class="action-panel">
-      <div style="display:flex; align-items:center; gap:12px;">
-        <label for="districtSelect" style="font-weight:800; font-size:15px; color:var(--navy);">
+      <div style="display:flex; align-items:center; gap:10px; width:100%; max-width:400px;">
+        <label for="districtSelect" style="font-weight:800; font-size:14.5px; color:var(--navy); white-space:nowrap;">
           <i class="fa-solid fa-location-dot" style="color:var(--accent);"></i> जिल्हा निवडा:
         </label>
         <select id="districtSelect" class="select-district-field" onchange="onDistrictChange()">
         </select>
       </div>
-      <div style="font-weight:700; color:#475569; font-size:15px;">
-        नोंदणीकृत पदाधिकारी: <span id="memberCount" style="color:var(--accent); font-size:18px;">0</span>
+      <div style="font-weight:700; color:#475569; font-size:14.5px;">
+        नोंदणीकृत पदाधिकारी: <span id="memberCount" style="color:var(--accent); font-size:17px;">0</span>
       </div>
     </div>
 
     <!-- TAB 1: Public Directory -->
     <div id="tab-directory" class="tab-view">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-        <h3 id="directoryHeading" style="font-size:17.5px; font-weight:800; color:var(--navy);"></h3>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <h3 id="directoryHeading" style="font-size:16.5px; font-weight:800; color:var(--navy);"></h3>
         <button class="btn btn-outline" onclick="printCleanDirectoryPDF()">
           <i class="fa-solid fa-print"></i> यादी डाऊनलोड करा
         </button>
@@ -720,8 +744,8 @@
 
     <!-- TAB 2: Manage (Protected: AD2026) -->
     <div id="tab-manage" class="tab-view" style="display:none;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-        <h3 style="font-size:17.5px; font-weight:800; color:var(--navy);">पदाधिकारी व्यवस्थापन व संपादन</h3>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <h3 style="font-size:16.5px; font-weight:800; color:var(--navy);">पदाधिकारी व्यवस्थापन व संपादन</h3>
         <button class="btn btn-gold" onclick="openAddModal()">
           <i class="fa-solid fa-plus-circle"></i> नवीन पदाधिकारी जोडा
         </button>
@@ -747,8 +771,8 @@
 
     <!-- TAB 3: Letters & WhatsApp (Protected: RK2026) -->
     <div id="tab-letters" class="tab-view" style="display:none;">
-      <div style="margin-bottom:15px;">
-        <h3 style="font-size:17.5px; font-weight:800; color:var(--navy);">अधिकृत नियुक्ती पत्र वितरण व प्रेषण</h3>
+      <div style="margin-bottom:14px;">
+        <h3 style="font-size:16.5px; font-weight:800; color:var(--navy);">अधिकृत नियुक्ती पत्र वितरण व प्रेषण</h3>
       </div>
 
       <div class="table-card">
@@ -770,9 +794,9 @@
 
     <!-- TAB 4: ADVANCED DESIGNER STUDIO (Admin Master Customizer) -->
     <div id="tab-designer" class="tab-view" style="display:none;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
         <div>
-          <h3 style="font-size:18px; font-weight:800; color:var(--navy);">
+          <h3 style="font-size:17px; font-weight:800; color:var(--navy);">
             <i class="fa-solid fa-palette" style="color:var(--accent);"></i> नियुक्तीपत्र डिझाइन स्टुडिओ (Master Format)
           </h3>
           <small style="color:#64748b;">सर्व घटक कुठेही ठेवा, फॉन्ट, स्वाक्षऱ्या किंवा नवीन प्रतिमा जोडा आणि सेव्ह करा.</small>
@@ -835,10 +859,9 @@
               <label>पार्श्वभूमी (A4 Background Image - Exact Fit):</label>
               <input type="file" id="dsBgUpload" accept="image/*" onchange="handleBgUpload(event)">
             </div>
-            <div class="control-row" style="margin-top: 8px;">
+            <div class="control-row" style="margin-top: 6px;">
               <label>नवीन इमेज इन्सर्ट करा (Insert Custom Image / Seal):</label>
               <input type="file" id="dsCustomImgUpload" accept="image/*" onchange="insertNewImage(event)">
-              <small style="color:#64748b;">कोणतीही इमेज टाकून ती हवी तिथे ड्रॅग व लहान-मोठी करा.</small>
             </div>
           </div>
 
@@ -852,7 +875,7 @@
               <label>स्वाक्षरी १ पद व संस्था:</label>
               <input type="text" id="dsSign1Role" value="राज्य सरचिटणीस&#10;महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ" oninput="updateSignTexts()">
             </div>
-            <div class="control-row" style="margin-top: 8px;">
+            <div class="control-row" style="margin-top: 6px;">
               <label>स्वाक्षरी २ (राज्याध्यक्ष) नाव:</label>
               <input type="text" id="dsSign2Name" value="( श्री. राजेंद्र खैरनार )" oninput="updateSignTexts()">
             </div>
@@ -908,6 +931,7 @@
           <div id="printableCertificate" class="a4-container">
             <div class="a4-inner" id="a4CanvasArea">
               
+              <!-- Node 1: Header Banner (स्वच्छ रचना) -->
               <div class="canvas-node" id="node-header" style="top: 10px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-header')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -915,19 +939,20 @@
                   <div style="position: absolute; top: 2px; right: 8px; font-size: 8.5pt; font-weight: 800; color:#111;">Reg. No. MH/0000555/2026</div>
 
                   <div style="padding: 2px 6px;">
-                    <div style="font-family:'Rozha One', serif; font-size: 20pt; font-weight: 800; color:#1e3a8a; line-height: 1.05;">महाराष्ट्र राज्य</div>
-                    <div style="font-family:'Rozha One', serif; font-size: 22pt; font-weight: 800; color:#6b0c10; line-height: 1.1;">केंद्रप्रमुख व अधिकारी महासंघ</div>
+                    <div style="font-size: 19pt; font-weight: 800; color:#1e3a8a; line-height: 1.05;">महाराष्ट्र राज्य</div>
+                    <div style="font-size: 22pt; font-weight: 800; color:#6b0c10; line-height: 1.1;">केंद्रप्रमुख व अधिकारी महासंघ</div>
                     <div style="display:inline-block; background: #fffbeb; border: 1px solid #d4af37; border-radius: 20px; padding: 1px 16px; margin: 2px 0;">
-                      <span style="font-size: 9.5pt; font-weight: 800; color:#4a0404;">शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...!</span>
+                      <span style="font-size: 9.5pt; font-weight: 700; color:#4a0404;">शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...!</span>
                     </div>
                     <div style="font-size: 11.5pt; font-weight: 800; color:#0f2b48;">श्री. राजेंद्र शिवाजी खैरनार</div>
-                    <div style="font-size: 9pt; font-weight: 800; color:#111;">राज्याध्यक्ष</div>
+                    <div style="font-size: 9.5pt; font-weight: 700; color:#111;">राज्याध्यक्ष</div>
                     <div style="font-size: 7.5pt; color:#333; font-weight: 600;">कार्यालय : स. नं. ५६/१, प्लॉट नं. १, मालेगाव ता. मालेगाव जि. नाशिक</div>
-                    <div style="font-size: 8pt; font-weight: 800; color:#111;">मो. 9860704098 Email: rajadei2026@gmail.com</div>
+                    <div style="font-size: 8pt; font-weight: 700; color:#111;">मो. 9860704098 Email: rajadei2026@gmail.com</div>
                   </div>
                 </div>
               </div>
 
+              <!-- Node 2: Outward & Date -->
               <div class="canvas-node" id="node-outward" style="top: 165px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-outward')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -937,6 +962,7 @@
                 </div>
               </div>
 
+              <!-- Node 3: Title Badge -->
               <div class="canvas-node" id="node-title" style="top: 195px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-title')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -945,6 +971,7 @@
                 </div>
               </div>
 
+              <!-- Node 4: Recipient Details -->
               <div class="canvas-node" id="node-recipient" style="top: 232px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-recipient')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -955,6 +982,7 @@
                 </div>
               </div>
 
+              <!-- Node 5: Subject Line -->
               <div class="canvas-node" id="node-subject" style="top: 295px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-subject')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -963,6 +991,7 @@
                 </div>
               </div>
 
+              <!-- Node 6: Body Content (Para 1 & 2) -->
               <div class="canvas-node" id="node-body" style="top: 330px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-body')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -977,16 +1006,18 @@
                 </div>
               </div>
 
+              <!-- Node 7: Designation Announcement Banner -->
               <div class="canvas-node" id="node-callout" style="top: 510px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-callout')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
                 <div class="appointment-callout">
                   <div style="font-size:11.5pt; color:#334155; font-weight:700;">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघाच्या <strong id="prevAnnounceDistrict" style="color:#000;">{जिल्हा}</strong> जिल्हा कार्यकारिणीवर</div>
                   <div class="post-badge" id="prevPostTitle">⭐ « {बहाल पद} » ⭐</div>
-                  <div style="font-size:11.5pt; color:#851216; font-weight:800;">या अत्यंत सन्मानाच्या व जबाबदारीच्या पदावर गौरवपूर्ण नियुक्ती करण्यात येत आहे.</div>
+                  <div style="font-size:11.5pt; color:#851216; font-weight:700;">या अत्यंत सन्मानाच्या व जबाबदारीच्या पदावर गौरवपूर्ण नियुक्ती करण्यात येत आहे.</div>
                 </div>
               </div>
 
+              <!-- Node 8: Independent Paragraph 3 -->
               <div class="canvas-node" id="node-body-para3" style="top: 615px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-body-para3')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -997,6 +1028,7 @@
                 </div>
               </div>
 
+              <!-- Node 9: Left Signature (सरचिटणीस) -->
               <div class="canvas-node" id="node-sign-left" style="top: 760px; left: 20px; width: 240px;">
                 <button class="node-delete-btn" onclick="deleteNode('node-sign-left')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1007,6 +1039,7 @@
                 </div>
               </div>
 
+              <!-- Node 10: Right Signature (राज्याध्यक्ष) -->
               <div class="canvas-node" id="node-sign-right" style="top: 760px; right: 20px; width: 240px;">
                 <button class="node-delete-btn" onclick="deleteNode('node-sign-right')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1030,7 +1063,7 @@
   <div id="memberModal" class="modal-wrap">
     <div class="modal-content">
       <div class="modal-header-bar">
-        <h3 id="modalTitle" style="font-size:17px; font-weight:700;">नवीन पदाधिकारी नोंदणी</h3>
+        <h3 id="modalTitle" style="font-size:16px; font-weight:700;">नवीन पदाधिकारी नोंदणी</h3>
         <button class="close-x" onclick="closeModal('memberModal')">&times;</button>
       </div>
       <div class="modal-body">
@@ -1049,7 +1082,7 @@
             </div>
             <div style="flex:1;">
               <label style="font-weight:700; font-size:13px;">जिल्हा:</label>
-              <input type="text" id="formDistrict" readonly style="background:#f1f5f9; font-weight:bold; width:100%; padding:8px; border:1.5px solid #cbd5e1; border-radius:8px;">
+              <input type="text" id="formDistrict" readonly style="background:#f1f5f9; font-weight:bold; width:100%; padding:8px; border:1.5px solid #cbd5e1; border-radius:6px;">
             </div>
           </div>
 
@@ -1125,14 +1158,14 @@
   <div id="cleanViewModal" class="modal-wrap">
     <div class="modal-content preview-mode">
       <div class="modal-header-bar">
-        <h3 id="cleanViewTitle" style="font-size:17px; font-weight:700;">अधिकृत नियुक्ती पत्र (A4 पूर्वदृश्य)</h3>
+        <h3 id="cleanViewTitle" style="font-size:16px; font-weight:700;">अधिकृत नियुक्ती पत्र (A4 पूर्वदृश्य)</h3>
         <button class="close-x" onclick="closeModal('cleanViewModal')">&times;</button>
       </div>
       <div class="modal-body" style="display:flex; justify-content:center; overflow-x:auto;">
         <div id="cleanPdfContainer">
         </div>
       </div>
-      <div style="padding:15px 22px; background:#fff; display:flex; justify-content:flex-end; gap:10px; border-bottom-left-radius:20px; border-bottom-right-radius:20px;">
+      <div style="padding:14px 20px; background:#fff; display:flex; justify-content:flex-end; gap:8px; border-bottom-left-radius:18px; border-bottom-right-radius:18px;">
         <button class="btn btn-outline" onclick="closeModal('cleanViewModal')">बंद करा</button>
         <button class="btn btn-gold" onclick="downloadCurrentLetterPDF()">
           <i class="fa-solid fa-file-pdf"></i> उच्च दर्जाची A4 PDF डाऊनलोड करा
@@ -1142,45 +1175,45 @@
   </div>
 
   <!-- PURE 1-PAGE A4 PRINT CONTAINER -->
-  <div id="printAreaSection" style="display:none; font-family:'Mukta', sans-serif; color:black; background:white; padding:5mm;">
-    <div style="text-align:center; border-bottom:2px solid black; padding-bottom:8px; margin-bottom:12px;">
-      <div style="font-size:11pt; font-weight:bold; letter-spacing:1px;">॥ शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...! ॥</div>
-      <h2 style="font-size:20pt; font-weight:800; margin:2px 0;">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</h2>
-      <div style="font-size:10.5pt; font-weight:600;">मध्यवर्ती राज्य कार्यकारिणी • Reg. No. MH/0000555/2026</div>
-      <div style="margin-top:8px; font-size:15pt; font-weight:bold; text-decoration:underline;" id="bwPrintDistrictTitle">
+  <div id="printAreaSection" style="display:none; font-family:'Aparajita', 'Noto Serif Devanagari', serif; color:black; background:white; padding:5mm;">
+    <div style="text-align:center; border-bottom:2px solid black; padding-bottom:6px; margin-bottom:10px;">
+      <div style="font-size:10.5pt; font-weight:bold; letter-spacing:1px;">॥ शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...! ॥</div>
+      <h2 style="font-size:19pt; font-weight:800; margin:2px 0;">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</h2>
+      <div style="font-size:10pt; font-weight:600;">मध्यवर्ती राज्य कार्यकारिणी • Reg. No. MH/0000555/2026</div>
+      <div style="margin-top:6px; font-size:14pt; font-weight:bold; text-decoration:underline;" id="bwPrintDistrictTitle">
         जिल्हा कार्यकारिणी सूची
       </div>
     </div>
     
-    <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:11pt; margin-bottom:10px;">
+    <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:10.5pt; margin-bottom:8px;">
       <div>एकूण नोंदणीकृत पदाधिकारी: <span id="bwPrintTotalCount">0</span></div>
       <div>दिनांक: 29/10/2026</div>
     </div>
 
-    <table style="width:100%; border-collapse:collapse; margin-bottom:35px;">
+    <table style="width:100%; border-collapse:collapse; margin-bottom:30px;">
       <thead>
         <tr style="background:#f1f5f9;">
-          <th style="border:1.5px solid black; padding:8px 6px; width:45px; text-align:center; font-size:11pt;">अनु.</th>
-          <th style="border:1.5px solid black; padding:8px; text-align:left; font-size:11pt;">पदाधिकाऱ्याचे पूर्ण नाव</th>
-          <th style="border:1.5px solid black; padding:8px; text-align:left; font-size:11pt;">सध्याचे पद व कार्यक्षेत्र</th>
-          <th style="border:1.5px solid black; padding:8px; text-align:left; font-size:11pt;">महासंघातील बहाल केलेले पद</th>
-          <th style="border:1.5px solid black; padding:8px; width:130px; text-align:center; font-size:11pt;">व्हॉट्सअ‍ॅप नंबर</th>
+          <th style="border:1.5px solid black; padding:7px 5px; width:45px; text-align:center; font-size:10.5pt;">अनु.</th>
+          <th style="border:1.5px solid black; padding:7px; text-align:left; font-size:11pt;">पदाधिकाऱ्याचे पूर्ण नाव</th>
+          <th style="border:1.5px solid black; padding:7px; text-align:left; font-size:10.5pt;">सध्याचे पद व कार्यक्षेत्र</th>
+          <th style="border:1.5px solid black; padding:7px; text-align:left; font-size:10.5pt;">महासंघातील बहाल केलेले पद</th>
+          <th style="border:1.5px solid black; padding:7px; width:125px; text-align:center; font-size:10.5pt;">व्हॉट्सअ‍ॅप नंबर</th>
         </tr>
       </thead>
       <tbody id="bwPrintTableBody">
       </tbody>
     </table>
 
-    <div style="display:flex; justify-content:space-between; text-align:center; margin-top:40px; page-break-inside:avoid;">
-      <div style="width:230px;">
-        <div style="height:35px;"></div>
-        <div style="font-weight:bold; font-size:12pt; border-top:1.5px solid black; padding-top:4px;">( श्री. विजय सावंत )</div>
-        <div style="font-size:10.5pt;">राज्य सरचिटणीस</div>
+    <div style="display:flex; justify-content:space-between; text-align:center; margin-top:35px; page-break-inside:avoid;">
+      <div style="width:220px;">
+        <div style="height:30px;"></div>
+        <div style="font-weight:bold; font-size:11.5pt; border-top:1.5px solid black; padding-top:4px;">( श्री. विजय सावंत )</div>
+        <div style="font-size:10pt;">राज्य सरचिटणीस</div>
       </div>
-      <div style="width:230px;">
-        <div style="height:35px;"></div>
-        <div style="font-weight:bold; font-size:12pt; border-top:1.5px solid black; padding-top:4px;">( श्री. राजेंद्र खैरनार )</div>
-        <div style="font-size:10.5pt;">संस्थापक राज्याध्यक्ष<br>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</div>
+      <div style="width:220px;">
+        <div style="height:30px;"></div>
+        <div style="font-weight:bold; font-size:11.5pt; border-top:1.5px solid black; padding-top:4px;">( श्री. राजेंद्र खैरनार )</div>
+        <div style="font-size:10pt;">संस्थापक राज्याध्यक्ष<br>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</div>
       </div>
     </div>
   </div>
@@ -1209,20 +1242,6 @@
     window.dbSet = set;
     window.dbRemove = remove;
 
-    // Check Live Connection Status
-    const connectedRef = ref(db, '.info/connected');
-    onValue(connectedRef, (snap) => {
-      const badge = document.getElementById('liveSyncStatus');
-      if (snap.val() === true) {
-        if (badge) {
-          badge.innerHTML = `<i class="fa-solid fa-circle-check"></i> क्लाउड लाइव्ह सिंक`;
-          badge.style.color = '#047857';
-          badge.style.background = '#ecfdf5';
-          badge.style.borderColor = '#a7f3d0';
-        }
-      }
-    });
-
     // 1. LIVE OFFICIALS SYNC
     const officialsRef = ref(db, 'officials');
     onValue(officialsRef, (snapshot) => {
@@ -1234,23 +1253,8 @@
       }
       localStorage.setItem('mahasangh_members_live', JSON.stringify(window.membersData));
       window.renderAll();
-
-      const badge = document.getElementById('liveSyncStatus');
-      if (badge) {
-        badge.innerHTML = `<i class="fa-solid fa-circle-check"></i> क्लाउड लाइव्ह सिंक (${window.membersData.length} पदाधिकारी)`;
-        badge.style.color = '#047857';
-        badge.style.background = '#ecfdf5';
-        badge.style.borderColor = '#a7f3d0';
-      }
     }, (error) => {
       console.warn("Realtime DB fallback active:", error);
-      const badge = document.getElementById('liveSyncStatus');
-      if (badge) {
-        badge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> स्थानिक स्टोरेज (ऑफलाइन)`;
-        badge.style.color = '#b45309';
-        badge.style.background = '#fffbeb';
-        badge.style.borderColor = '#fde68a';
-      }
     });
 
     // 2. LIVE MASTER DESIGN SYNC
@@ -1340,14 +1344,14 @@
 
       const dirBody = document.getElementById('directoryTableBody');
       if (list.length === 0) {
-        dirBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:30px; color:#888;">या जिल्ह्यात अजून एकही पदाधिकारी नोंदवलेला नाही.</td></tr>`;
+        dirBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:25px; color:#888;">या जिल्ह्यात अजून एकही पदाधिकारी नोंदवलेला नाही.</td></tr>`;
       } else {
         dirBody.innerHTML = list.map((m, idx) => `
           <tr>
             <td style="text-align: center; font-weight:bold;">${idx + 1}</td>
             <td style="font-weight: 700; color:#0f2b48;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
             <td>${m.currentCadre} <br><small style="color:#666;">${m.workingPlace}</small></td>
-            <td><strong style="color:var(--accent); font-size:15px;">${m.appointedPost}</strong></td>
+            <td><strong style="color:var(--accent); font-size:14.5px;">${m.appointedPost}</strong></td>
             <td style="text-align: center; font-weight:700;">${m.mobile}</td>
           </tr>
         `).join('');
@@ -1355,7 +1359,7 @@
 
       const manageBody = document.getElementById('manageTableBody');
       if (list.length === 0) {
-        manageBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:30px; color:#888;">माहिती उपलब्ध नाही. नवीन पदाधिकारी ॲड करा.</td></tr>`;
+        manageBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:25px; color:#888;">माहिती उपलब्ध नाही. नवीन पदाधिकारी ॲड करा.</td></tr>`;
       } else {
         manageBody.innerHTML = list.map((m, idx) => `
           <tr>
@@ -1365,8 +1369,8 @@
             <td><strong>${m.appointedPost}</strong></td>
             <td>${m.mobile}</td>
             <td style="text-align: center;">
-              <button class="btn btn-edit" style="padding:4px 10px; font-size:12px;" onclick="openEditModal('${m.id}')"><i class="fa-solid fa-pen"></i></button>
-              <button class="btn btn-del" style="padding:4px 10px; font-size:12px;" onclick="deleteMember('${m.id}')"><i class="fa-solid fa-trash"></i></button>
+              <button class="btn btn-edit" style="padding:4px 8px; font-size:12px;" onclick="openEditModal('${m.id}')"><i class="fa-solid fa-pen"></i></button>
+              <button class="btn btn-del" style="padding:4px 8px; font-size:12px;" onclick="deleteMember('${m.id}')"><i class="fa-solid fa-trash"></i></button>
             </td>
           </tr>
         `).join('');
@@ -1374,7 +1378,7 @@
 
       const lettersBody = document.getElementById('lettersTableBody');
       if (list.length === 0) {
-        lettersBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:30px; color:#888;">माहिती उपलब्ध नाही.</td></tr>`;
+        lettersBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:25px; color:#888;">माहिती उपलब्ध नाही.</td></tr>`;
       } else {
         lettersBody.innerHTML = list.map((m, idx) => `
           <tr>
@@ -1382,12 +1386,12 @@
             <td style="font-weight: 700;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
             <td><strong style="color:var(--accent);">${m.appointedPost}</strong></td>
             <td style="text-align: center;">
-              <button class="btn btn-view" style="padding:6px 14px; font-size:13.5px;" onclick="viewLetterCleanPDF('${m.id}')">
+              <button class="btn btn-view" style="padding:5px 12px; font-size:13px;" onclick="viewLetterCleanPDF('${m.id}')">
                 <i class="fa-solid fa-eye"></i> प्रमाणपत्र पहा
               </button>
             </td>
             <td style="text-align: center;">
-              <button class="btn btn-wa" style="padding:6px 14px; font-size:13.5px;" onclick="sendWhatsAppAndDownload('${m.id}')">
+              <button class="btn btn-wa" style="padding:5px 12px; font-size:13px;" onclick="sendWhatsAppAndDownload('${m.id}')">
                 <i class="fa-brands fa-whatsapp"></i> WhatsApp वर पाठवा
               </button>
             </td>
@@ -1527,7 +1531,6 @@
             body: JSON.stringify(memberObj)
           });
         }
-
         closeModal('memberModal');
       } catch (err) {
         console.error("Save Error:", err);
@@ -1649,320 +1652,4 @@
 
           const div = document.createElement('div');
           div.className = 'canvas-node';
-          div.id = imgId;
-          div.style.top = '720px';
-          div.style.left = '420px';
-          div.style.width = '100px';
-          div.style.height = '100px';
-
-          div.innerHTML = `
-            <button class="node-delete-btn" onclick="document.getElementById('${imgId}').remove()" title="हटवा">&times;</button>
-            <div class="node-resize-handle"></div>
-            <img src="${evt.target.result}" class="custom-inserted-img" alt="Inserted Image">
-          `;
-
-          document.getElementById('a4CanvasArea').appendChild(div);
-          initNodeInteractions(div);
-          alert("नवीन प्रतिमा पत्रावर जोडली गेली आहे!");
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-
-    function handleSignUpload(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          const img = document.getElementById('presidentSignImg');
-          img.src = evt.target.result;
-          img.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-
-    function initFreeDragAndResize() {
-      const canvasArea = document.getElementById('a4CanvasArea');
-      canvasArea.querySelectorAll('.canvas-node').forEach(node => initNodeInteractions(node));
-    }
-
-    function initNodeInteractions(node) {
-      const canvasArea = document.getElementById('a4CanvasArea');
-
-      node.addEventListener('mousedown', (e) => {
-        if (e.target.classList.contains('node-delete-btn') || e.target.classList.contains('node-resize-handle')) {
-          return;
-        }
-        e.preventDefault();
-
-        const rect = node.getBoundingClientRect();
-        const canvasRect = canvasArea.getBoundingClientRect();
-
-        const shiftX = e.clientX - rect.left;
-        const shiftY = e.clientY - rect.top;
-
-        function onMouseMove(event) {
-          let newX = event.clientX - canvasRect.left - shiftX;
-          let newY = event.clientY - canvasRect.top - shiftY;
-
-          node.style.left = newX + 'px';
-          node.style.top = newY + 'px';
-        }
-
-        function onMouseUp() {
-          document.removeEventListener('mousemove', onMouseMove);
-          document.removeEventListener('mouseup', onMouseUp);
-        }
-
-        document.addEventListener('mousemove', onMouseMove);
-        document.addEventListener('mouseup', onMouseUp);
-      });
-
-      const handle = node.querySelector('.node-resize-handle');
-      if (handle) {
-        handle.addEventListener('mousedown', (e) => {
-          e.stopPropagation();
-          e.preventDefault();
-
-          const startX = e.clientX;
-          const startY = e.clientY;
-          const startWidth = parseInt(document.defaultView.getComputedStyle(node).width, 10);
-          const startHeight = parseInt(document.defaultView.getComputedStyle(node).height, 10);
-
-          function doResize(event) {
-            node.style.width = (startWidth + event.clientX - startX) + 'px';
-            node.style.height = (startHeight + event.clientY - startY) + 'px';
-          }
-
-          function stopResize() {
-            document.removeEventListener('mousemove', doResize);
-            document.removeEventListener('mouseup', stopResize);
-          }
-
-          document.addEventListener('mousemove', doResize);
-          document.addEventListener('mouseup', stopResize);
-        });
-      }
-    }
-
-    async function saveDesignToCloud() {
-      const canvasArea = document.getElementById('a4CanvasArea');
-      const nodes = canvasArea.querySelectorAll('.canvas-node');
-
-      const layoutData = {};
-      nodes.forEach(node => {
-        layoutData[node.id] = {
-          top: node.style.top,
-          left: node.style.left,
-          right: node.style.right,
-          width: node.style.width,
-          height: node.style.height,
-          display: node.style.display || 'block'
-        };
-      });
-
-      const designPayload = {
-        subject: document.getElementById('dsSubject').value,
-        para1: document.getElementById('dsPara1').value,
-        para2: document.getElementById('dsPara2').value,
-        para3: document.getElementById('dsPara3').value,
-        sign1Name: document.getElementById('dsSign1Name').value,
-        sign1Role: document.getElementById('dsSign1Role').value,
-        sign2Name: document.getElementById('dsSign2Name').value,
-        sign2Role: document.getElementById('dsSign2Role').value,
-        fontSize: document.getElementById('dsFontSize').value,
-        lineHeight: document.getElementById('dsLineHeight').value,
-        textColor: document.getElementById('dsTextColor').value,
-        layout: layoutData,
-        bgImage: document.getElementById('printableCertificate').style.backgroundImage || '',
-        updatedAt: new Date().toISOString()
-      };
-
-      try {
-        if (window.rtdb && window.dbSet && window.dbRef) {
-          await window.dbSet(window.dbRef(window.rtdb, 'appointment_master_design'), designPayload);
-        } else {
-          await fetch(`https://rk2026-207ee-default-rtdb.firebaseio.com/appointment_master_design.json`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(designPayload)
-          });
-        }
-        localStorage.setItem('mahasangh_master_design', JSON.stringify(designPayload));
-        alert("अभिनंदन! संपूर्ण मास्टर डिझाईन क्लाउडवर सेव्ह झाली आहे आणि सर्व डिव्हाइसवर लगेच दिसेल.");
-      } catch (err) {
-        console.error("Design save error:", err);
-        alert("डिझाईन सेव्ह करताना त्रुटी आली: " + err.message);
-      }
-    }
-
-    window.applyDesignPayload = function(design) {
-      if (!design || !design.layout) return;
-      if (design.subject) document.getElementById('dsSubject').value = design.subject;
-      if (design.para1) document.getElementById('dsPara1').value = design.para1;
-      if (design.para2) document.getElementById('dsPara2').value = design.para2;
-      if (design.para3) document.getElementById('dsPara3').value = design.para3;
-      if (design.sign1Name) document.getElementById('dsSign1Name').value = design.sign1Name;
-      if (design.sign1Role) document.getElementById('dsSign1Role').value = design.sign1Role;
-      if (design.sign2Name) document.getElementById('dsSign2Name').value = design.sign2Name;
-      if (design.sign2Role) document.getElementById('dsSign2Role').value = design.sign2Role;
-      if (design.fontSize) document.getElementById('dsFontSize').value = design.fontSize;
-      if (design.lineHeight) document.getElementById('dsLineHeight').value = design.lineHeight;
-      if (design.textColor) document.getElementById('dsTextColor').value = design.textColor;
-      if (design.bgImage) document.getElementById('printableCertificate').style.backgroundImage = design.bgImage;
-
-      updateLetterTexts();
-      updateSignTexts();
-      updateLetterStyles();
-
-      Object.keys(design.layout).forEach(nodeId => {
-        const el = document.getElementById(nodeId);
-        const conf = design.layout[nodeId];
-        if (el && conf) {
-          if (conf.top) el.style.top = conf.top;
-          if (conf.left) el.style.left = conf.left;
-          if (conf.right) el.style.right = conf.right;
-          if (conf.width) el.style.width = conf.width;
-          if (conf.height) el.style.height = conf.height;
-          if (conf.display) {
-            el.style.display = conf.display;
-            const chk = document.getElementById(nodeId.replace('node-', 'chk-'));
-            if (chk) chk.checked = (conf.display !== 'none');
-          }
-        }
-      });
-    };
-
-    function resetDesignerDefaults() {
-      localStorage.removeItem('mahasangh_master_design');
-      location.reload();
-    }
-
-    async function downloadCurrentLetterPDF(callback) {
-      const original = document.getElementById('printableCertificate');
-      
-      const clone = original.cloneNode(true);
-      clone.id = 'tempPdfRenderClone';
-
-      clone.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
-
-      const wrapper = document.createElement('div');
-      wrapper.style.position = 'fixed';
-      wrapper.style.top = '0';
-      wrapper.style.left = '0';
-      wrapper.style.width = '794px';
-      wrapper.style.height = '1123px';
-      wrapper.style.zIndex = '999999';
-      wrapper.style.background = '#ffffff';
-      wrapper.style.margin = '0';
-      wrapper.style.padding = '0';
-      wrapper.style.overflow = 'hidden';
-
-      clone.style.width = '794px';
-      clone.style.height = '1123px';
-      clone.style.maxHeight = '1123px';
-      clone.style.boxShadow = 'none';
-      clone.style.margin = '0';
-
-      wrapper.appendChild(clone);
-      document.body.appendChild(wrapper);
-
-      try {
-        const canvas = await html2canvas(wrapper, {
-          scale: 2.5,
-          useCORS: true,
-          allowTaint: true,
-          scrollX: 0,
-          scrollY: 0,
-          width: 794,
-          height: 1123,
-          windowWidth: 794,
-          windowHeight: 1123
-        });
-
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF({
-          orientation: 'portrait',
-          unit: 'mm',
-          format: 'a4'
-        });
-
-        const imgData = canvas.toDataURL('image/jpeg', 0.98);
-        pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
-
-        const filename = selectedMemberForLetter 
-          ? `नियुक्ती_पत्र_${selectedMemberForLetter.firstName}_${selectedMemberForLetter.lastName}.pdf`
-          : `मास्टर_नियुक्ती_पत्र_महासंघ.pdf`;
-
-        pdf.save(filename);
-        if (callback) callback();
-      } catch (err) {
-        console.error("PDF generation failed:", err);
-        alert("PDF तयार करताना त्रुटी आली: " + err.message);
-      } finally {
-        document.body.removeChild(wrapper);
-      }
-    }
-
-    function printCleanDirectoryPDF() {
-      const list = getFilteredMembers();
-      if(list.length === 0) {
-        alert("या जिल्ह्यात डाऊनलोड करण्यासाठी पदाधिकारी उपलब्ध नाहीत.");
-        return;
-      }
-
-      document.getElementById('bwPrintDistrictTitle').textContent = `जिल्हा कार्यकारिणी सूची : ${currentDistrict}`;
-      document.getElementById('bwPrintTotalCount').textContent = list.length;
-      
-      const tbody = document.getElementById('bwPrintTableBody');
-      tbody.innerHTML = list.map((m, idx) => `
-        <tr>
-          <td style="border:1.5px solid black; text-align:center; font-weight:bold; padding:7px; font-size:11pt;">${idx + 1}</td>
-          <td style="border:1.5px solid black; font-weight:bold; padding:7px; font-size:11.5pt;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
-          <td style="border:1.5px solid black; padding:7px; font-size:10.5pt;">${m.currentCadre}<br><small style="color:#333;">${m.workingPlace}</small></td>
-          <td style="border:1.5px solid black; font-weight:bold; padding:7px; font-size:11pt;">${m.appointedPost}</td>
-          <td style="border:1.5px solid black; text-align:center; font-weight:bold; padding:7px; font-size:11pt;">${m.mobile}</td>
-        </tr>
-      `).join('');
-
-      window.print();
-    }
-
-    function sendWhatsAppAndDownload(id) {
-      const m = window.membersData.find(item => item.id === id);
-      if(!m) return;
-      populateLetter(m);
-
-      downloadCurrentLetterPDF(() => {
-        const message = `सस्नेह जय महाराष्ट्र 🙏
-
-*महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ*
-(Reg. No. MH/0000555/2026)
-मध्यवर्ती राज्य कार्यकारिणीच्या वतीने आपले मनःपूर्वक हार्दिक अभिनंदन!
-
-मा. ${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName},
-आपल्या शिक्षण क्षेत्रातील प्रदीर्घ, निष्कलंक सेवा, समर्पण आणि संघटनात्मक कर्तृत्वाची सार्थ दखल घेऊन, राज्य कार्यकारिणीच्या सर्वसंमत निर्णयानुसार आपली *${m.district}* जिल्हा कार्यकारिणीवर:
-
-⭐ *« ${m.appointedPost} »* ⭐
-
-या अत्यंत सन्मानाच्या व जबाबदारीच्या पदावर गौरवपूर्ण नियुक्ती करण्यात आली आहे.
-
-आपले अधिकृत नियुक्ती पत्र (High-Quality PDF) डाऊनलोड झाले असून सोबत जोडले आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाच्या सन्मानासाठी व गुणवत्तेसाठी आपण खंबीरपणे कार्य कराल, हा ठाम विश्वास आहे.
-
-आपल्या पुढील यशस्वी वाटचालीस व संघटनात्मक कार्यासाठी उदंड शुभेच्छा!
-
-*श्री. राजेंद्र शिवाजी खैरनार*
-राज्याध्यक्ष,
-महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ
-कार्यालय : स. नं. ५६/१, प्लॉट नं. १, मालेगाव ता. मालेगाव जि. नाशिक
-संपर्क: 9860704098`;
-
-        const encodedMsg = encodeURIComponent(message);
-        const waUrl = `https://api.whatsapp.com/send?phone=91${m.mobile}&text=${encodedMsg}`;
-        window.open(waUrl, '_blank');
-      });
-    }
-  </script>
-</body>
-</html>
+          div
