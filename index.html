@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ - अधिकृत पोर्टल</title>
   
-  <!-- Google Fonts: Aparajita / Devanagari Serif Style -->
+  <!-- Aparajita / Devanagari Serif Style Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;500;600;700;800&family=Yatra+One&display=swap" rel="stylesheet">
@@ -27,8 +27,8 @@
       --card: #ffffff;
       --border: #e2e8f0;
       --accent: #b45309;
-      --soft-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-      --capsule-shadow: 0 4px 14px 0 rgba(184, 134, 11, 0.25);
+      --soft-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      --capsule-shadow: 0 4px 12px rgba(184, 134, 11, 0.25);
     }
 
     * {
@@ -46,16 +46,17 @@
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
+      width: 100%;
     }
 
-    /* कॉम्पॅक्ट, हलका व सुबक हेडर */
+    /* कॉम्पॅक्ट हेडर */
     header {
       background: linear-gradient(180deg, #fffcf5 0%, #faecd0 50%, #fbf3e0 100%);
-      padding: 10px 15px;
-      box-shadow: 0 3px 15px rgba(184, 134, 11, 0.12);
+      padding: 10px 12px;
+      box-shadow: 0 2px 10px rgba(184, 134, 11, 0.1);
       border-bottom: 2px solid var(--gold-border);
       user-select: none;
-      position: relative;
+      width: 100%;
     }
 
     .official-letterhead {
@@ -66,26 +67,22 @@
     }
 
     .lh-reg-top {
-      position: absolute;
-      top: 0;
-      right: 0;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
       color: #334155;
       letter-spacing: 0.5px;
+      margin-bottom: 2px;
     }
 
     .state-title-blue {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 800;
       color: #1e3a8a;
-      letter-spacing: 0.5px;
       line-height: 1.1;
-      margin-top: 2px;
     }
 
     .org-title-maroon {
-      font-size: 27px;
+      font-size: 24px;
       font-weight: 800;
       color: #6b0c10;
       line-height: 1.15;
@@ -98,155 +95,159 @@
       background: linear-gradient(90deg, #fef3c7 0%, #fffbeb 50%, #fef3c7 100%);
       border: 1px solid #d4af37;
       border-radius: 20px;
-      padding: 1px 18px;
+      padding: 1px 16px;
     }
 
     .ribbon-slogan-wrap span {
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 700;
       color: #4a0404;
     }
 
-    .president-details-bar { 
-      margin-top: 2px; 
-    }
-    
-    .pres-name-big { 
-      font-size: 15px; 
-      font-weight: 800; 
-      color: #0f2b48; 
-    }
-    
-    .pres-desig-tag { 
-      font-size: 12.5px; 
-      font-weight: 700; 
-      color: #0f172a; 
-    }
-    
-    .pres-sub-address { 
-      font-size: 11px; 
-      font-weight: 600; 
-      color: #475569; 
-      line-height: 1.3;
-    }
+    .president-details-bar { margin-top: 2px; }
+    .pres-name-big { font-size: 15px; font-weight: 800; color: #0f2b48; }
+    .pres-desig-tag { font-size: 12px; font-weight: 700; color: #0f172a; }
+    .pres-sub-address { font-size: 10.5px; font-weight: 600; color: #475569; line-height: 1.3; }
 
     .container {
       max-width: 1200px;
-      margin: 14px auto;
-      padding: 0 12px;
+      margin: 12px auto;
+      padding: 0 10px;
       width: 100%;
       flex: 1;
     }
 
-    /* आकर्षक सावली असणारा सुबक कॅप्सूल टॅब बार */
+    /* मोबाईलवर एका बाजूला एक (Side-by-side) दिसणारा टॅब बार */
     .tabs-wrapper {
       display: flex;
       background: #ffffff;
-      padding: 6px;
+      padding: 5px;
       border-radius: 50px;
-      gap: 8px;
-      margin-bottom: 16px;
+      gap: 6px;
+      margin-bottom: 12px;
       box-shadow: var(--soft-shadow);
       border: 1px solid rgba(226, 232, 240, 0.9);
-      flex-wrap: wrap;
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+    }
+
+    .tabs-wrapper::-webkit-scrollbar {
+      display: none;
     }
 
     .nav-tab {
       flex: 1;
-      min-width: 140px;
-      padding: 10px 16px;
+      min-width: 110px;
+      padding: 8px 12px;
       border: none;
       outline: none;
       background: transparent;
-      font-size: 14.5px;
+      font-size: 13.5px;
       font-weight: 700;
       color: #64748b;
       border-radius: 50px;
       cursor: pointer;
-      transition: all 0.25s ease;
-      display: flex;
+      transition: all 0.2s ease;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
+      gap: 5px;
       text-align: center;
+      white-space: nowrap;
     }
 
     .nav-tab.active {
       background: linear-gradient(135deg, #d4af37, #b8860b);
       color: #ffffff;
       box-shadow: var(--capsule-shadow);
-      transform: translateY(-1px);
     }
 
     .tab-lock {
-      font-size: 10px;
+      font-size: 9px;
       background: #ef4444;
       color: white;
-      padding: 2px 6px;
+      padding: 1px 5px;
       border-radius: 50px;
     }
 
-    /* कृती पॅनल / जिल्हा निवड */
+    /* जिल्हा निवड - Fit to Screen */
     .action-panel {
       background: var(--card);
-      padding: 12px 18px;
-      border-radius: 16px;
+      padding: 10px 14px;
+      border-radius: 14px;
       box-shadow: var(--soft-shadow);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
+      flex-direction: column;
+      gap: 8px;
       border: 1px solid var(--border);
+      width: 100%;
+    }
+
+    @media (min-width: 600px) {
+      .action-panel {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
 
     .select-district-field {
-      padding: 8px 16px;
+      padding: 8px 14px;
       border-radius: 50px;
       border: 1.5px solid #cbd5e1;
-      font-size: 14.5px;
+      font-size: 14px;
       font-weight: 700;
       outline: none;
-      min-width: 200px;
+      width: 100%;
       cursor: pointer;
       background-color: #f8fafc;
     }
 
+    @media (min-width: 600px) {
+      .select-district-field {
+        width: 240px;
+      }
+    }
+
     .btn {
-      padding: 8px 18px;
+      padding: 8px 16px;
       border: none;
       border-radius: 50px;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 13.5px;
       cursor: pointer;
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      gap: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
 
     .btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     .btn-gold { background: linear-gradient(135deg, #d4af37, #b8860b); color: white; }
     .btn-outline { background: #ffffff; border: 1.5px solid #334155; color: #334155; }
     .btn-wa { background: #25D366; color: white; }
     .btn-view { background: #0284c7; color: white; }
-    .btn-edit { background: #f59e0b; color: white; border-radius: 6px; }
-    .btn-del { background: #ef4444; color: white; border-radius: 6px; }
+    .btn-edit { background: #f59e0b; color: white; border-radius: 6px; padding: 4px 8px; font-size: 11.5px; }
+    .btn-del { background: #ef4444; color: white; border-radius: 6px; padding: 4px 8px; font-size: 11.5px; }
 
+    /* मोबाईल टेबल - १००% फिट विथ स्मूथ स्क्रोल */
     .table-card {
       background: var(--card);
-      border-radius: 16px;
+      border-radius: 14px;
       overflow-x: auto;
       box-shadow: var(--soft-shadow);
       border: 1px solid var(--border);
       -webkit-overflow-scrolling: touch;
+      width: 100%;
     }
 
     table { 
@@ -258,31 +259,37 @@
     th {
       background: #f8fafc;
       color: #334155;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 800;
-      padding: 12px 14px;
+      padding: 10px 12px;
       border-bottom: 2px solid var(--border);
       white-space: nowrap;
     }
     
     td { 
-      padding: 10px 14px; 
+      padding: 9px 12px; 
       border-bottom: 1px solid #f1f5f9; 
-      font-size: 14px; 
+      font-size: 13px; 
     }
 
     /* DESIGNER STUDIO (Strict 794x1123px A4 Ratio) */
     .designer-layout {
       display: grid;
-      grid-template-columns: 360px 1fr;
+      grid-template-columns: 1fr;
       gap: 16px;
       align-items: start;
     }
 
+    @media (min-width: 900px) {
+      .designer-layout {
+        grid-template-columns: 360px 1fr;
+      }
+    }
+
     .designer-controls {
       background: #ffffff;
-      padding: 16px;
-      border-radius: 16px;
+      padding: 14px;
+      border-radius: 14px;
       border: 1px solid var(--border);
       box-shadow: var(--soft-shadow);
       max-height: 85vh;
@@ -290,73 +297,75 @@
     }
 
     .control-sec {
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       border-bottom: 1px solid #f1f5f9;
-      padding-bottom: 10px;
+      padding-bottom: 8px;
     }
 
     .control-sec h4 {
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 800;
       color: var(--navy);
-      margin-bottom: 6px;
+      margin-bottom: 5px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
     .control-row {
       display: flex;
       flex-direction: column;
       gap: 3px;
-      margin-bottom: 7px;
+      margin-bottom: 6px;
     }
 
     .control-row label {
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       color: #64748b;
     }
 
     .control-row input, .control-row textarea, .control-row select {
-      padding: 7px 10px;
+      padding: 6px 10px;
       border: 1.5px solid #cbd5e1;
       border-radius: 6px;
-      font-size: 13px;
+      font-size: 12.5px;
       outline: none;
     }
 
     .element-visibility-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6px;
+      gap: 5px;
       margin-top: 4px;
     }
 
     .element-check-label {
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
       color: #334155;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       background: #f1f5f9;
-      padding: 5px 8px;
+      padding: 4px 6px;
       border-radius: 6px;
       cursor: pointer;
     }
 
     .designer-preview-wrap {
       background: #cbd5e1;
-      padding: 16px;
-      border-radius: 16px;
+      padding: 12px;
+      border-radius: 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
       overflow-x: auto;
       box-shadow: inset 0 2px 6px rgba(0,0,0,0.06);
+      width: 100%;
     }
 
+    /* A4 Sheet - तंतोतंत 794px x 1123px */
     .a4-container {
       width: 794px;
       height: 1123px;
@@ -373,7 +382,7 @@
       background-size: 100% 100% !important;
       background-position: center !important;
       background-repeat: no-repeat !important;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
       overflow: hidden;
     }
 
@@ -572,6 +581,7 @@
       pointer-events: none;
     }
 
+    /* मॉडेल्स */
     .modal-wrap {
       position: fixed;
       inset: 0;
@@ -580,29 +590,32 @@
       justify-content: center;
       align-items: center;
       z-index: 1000;
-      padding: 12px;
+      padding: 10px;
       backdrop-filter: blur(3px);
     }
 
     .modal-content {
       background: white;
-      border-radius: 18px;
+      border-radius: 16px;
       width: 100%;
-      max-width: 600px;
-      max-height: 90vh;
+      max-width: 580px;
+      max-height: 92vh;
       overflow-y: auto;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
       display: flex;
       flex-direction: column;
     }
 
+    /* मोबाईलसाठी अचूक फुल-व्ह्यू प्रिव्ह्यू कंटेनर */
     .modal-content.preview-mode {
-      max-width: 860px;
-      background: #e2e8f0;
+      max-width: 820px;
+      background: #475569;
+      height: 95vh;
+      overflow: hidden;
     }
 
     .modal-header-bar {
-      padding: 14px 18px;
+      padding: 12px 16px;
       background: linear-gradient(135deg, #1f2937, #b8860b);
       color: white;
       display: flex;
@@ -614,32 +627,37 @@
       background: transparent;
       border: none;
       color: white;
-      font-size: 22px;
+      font-size: 20px;
       cursor: pointer;
     }
 
-    .modal-body { padding: 16px; }
-    .row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 10px; }
-    .row-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 10px; }
-    .form-item { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
-    .form-item label { font-size: 13px; font-weight: 700; color: #475569; }
-    .form-item input, .form-item select { padding: 8px 10px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-size: 13.5px; outline: none; }
+    .modal-body { 
+      padding: 14px; 
+    }
 
-    /* ==========================================================
-       MOBILE RESPONSIVE TWEAKS (FIT TO SCREEN)
-       ========================================================== */
-    @media (max-width: 768px) {
-      .state-title-blue { font-size: 18px; }
-      .org-title-maroon { font-size: 22px; }
-      .lh-reg-top { position: static; font-size: 11px; margin-bottom: 2px; }
-      .tabs-wrapper { border-radius: 20px; padding: 4px; }
-      .nav-tab { font-size: 13px; padding: 8px 10px; min-width: 100%; border-radius: 12px; }
-      .action-panel { flex-direction: column; align-items: stretch; padding: 12px; }
-      .select-district-field { min-width: 100%; width: 100%; }
+    /* मोबाईलवर A4 पत्र तंतोतंत बसवणारे ऑटो-स्केल रॅपर */
+    #mobilePreviewWrapper {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 10px 0;
+    }
+
+    #scaledLetterContainer {
+      transform-origin: top center;
+    }
+
+    .row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 8px; }
+    .row-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 8px; }
+    .form-item { display: flex; flex-direction: column; gap: 3px; margin-bottom: 8px; }
+    .form-item label { font-size: 12.5px; font-weight: 700; color: #475569; }
+    .form-item input, .form-item select { padding: 8px 10px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-size: 13px; outline: none; }
+
+    @media (max-width: 650px) {
       .row-3, .row-2 { grid-template-columns: 1fr; }
-      .designer-layout { grid-template-columns: 1fr; }
-      .a4-container { width: 100%; height: auto; min-width: auto; max-width: none; min-height: auto; max-height: none; padding: 6px; }
-      .a4-inner { min-height: 250mm; padding: 8px; }
     }
 
     @media print {
@@ -658,7 +676,7 @@
 </head>
 <body>
 
-  <!-- हेडर (मुख्य मथळ्यावर ३ वेळा क्लिक केल्यास सिक्रेट ॲडमिन पॅनल उघडेल) -->
+  <!-- हेडर (३ वेळा क्लिक केल्यास सिक्रेट ॲडमिन पॅनल उघडेल) -->
   <header id="mainHeaderTitle" title="३ वेळा क्लिक करा (सिक्रेट ॲडमिन पॅनल)">
     <div class="official-letterhead">
       <div class="lh-reg-top">Reg. No. MH/0000555/2026</div>
@@ -685,7 +703,7 @@
 
   <div class="container">
     
-    <!-- सॉफ्ट शॅडो असलेले कॅप्सूल नेव्हिगेशन टॅब्स -->
+    <!-- मोबाईलवर एका बाजूला एक असणारा सुबक टॅब बार -->
     <div class="tabs-wrapper">
       <button class="nav-tab active" onclick="switchTab('tab-directory')">
         <i class="fa-solid fa-users"></i> पदाधिकारी यादी
@@ -698,28 +716,28 @@
       </button>
       
       <button class="nav-tab" id="adminDesignerTabBtn" style="display:none;" onclick="switchTab('tab-designer')">
-        <i class="fa-solid fa-wand-magic-sparkles"></i> नियुक्तीपत्र Designer Studio (Admin)
+        <i class="fa-solid fa-wand-magic-sparkles"></i> नियुक्तीपत्र डिझाइन (Admin)
       </button>
     </div>
 
-    <!-- जिल्हा निवड बार -->
+    <!-- जिल्हा निवड पॅनल - पूर्णपणे मोबाईल फिट -->
     <div class="action-panel">
-      <div style="display:flex; align-items:center; gap:10px; width:100%; max-width:400px;">
-        <label for="districtSelect" style="font-weight:800; font-size:14.5px; color:var(--navy); white-space:nowrap;">
+      <div style="display:flex; align-items:center; gap:8px; width:100%;">
+        <label for="districtSelect" style="font-weight:800; font-size:14px; color:var(--navy); white-space:nowrap;">
           <i class="fa-solid fa-location-dot" style="color:var(--accent);"></i> जिल्हा निवडा:
         </label>
         <select id="districtSelect" class="select-district-field" onchange="onDistrictChange()">
         </select>
       </div>
-      <div style="font-weight:700; color:#475569; font-size:14.5px;">
-        नोंदणीकृत पदाधिकारी: <span id="memberCount" style="color:var(--accent); font-size:17px;">0</span>
+      <div style="font-weight:700; color:#475569; font-size:13.5px;">
+        नोंदणीकृत पदाधिकारी: <span id="memberCount" style="color:var(--accent); font-size:16px;">0</span>
       </div>
     </div>
 
     <!-- TAB 1: Public Directory -->
     <div id="tab-directory" class="tab-view">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-        <h3 id="directoryHeading" style="font-size:16.5px; font-weight:800; color:var(--navy);"></h3>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:8px; flex-wrap:wrap;">
+        <h3 id="directoryHeading" style="font-size:15.5px; font-weight:800; color:var(--navy);"></h3>
         <button class="btn btn-outline" onclick="printCleanDirectoryPDF()">
           <i class="fa-solid fa-print"></i> यादी डाऊनलोड करा
         </button>
@@ -729,11 +747,11 @@
         <table>
           <thead>
             <tr>
-              <th style="width:50px; text-align:center;">अनु.</th>
+              <th style="width:45px; text-align:center;">अनु.</th>
               <th>पदाधिकाऱ्याचे संपूर्ण नाव</th>
               <th>सध्याचे पद व कार्यक्षेत्र</th>
               <th>महासंघातील बहाल केलेले पद</th>
-              <th style="width:130px; text-align:center;">व्हॉट्सअ‍ॅप नंबर</th>
+              <th style="width:120px; text-align:center;">व्हॉट्सअ‍ॅप नंबर</th>
             </tr>
           </thead>
           <tbody id="directoryTableBody">
@@ -744,8 +762,8 @@
 
     <!-- TAB 2: Manage (Protected: AD2026) -->
     <div id="tab-manage" class="tab-view" style="display:none;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-        <h3 style="font-size:16.5px; font-weight:800; color:var(--navy);">पदाधिकारी व्यवस्थापन व संपादन</h3>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:8px; flex-wrap:wrap;">
+        <h3 style="font-size:15.5px; font-weight:800; color:var(--navy);">पदाधिकारी व्यवस्थापन व संपादन</h3>
         <button class="btn btn-gold" onclick="openAddModal()">
           <i class="fa-solid fa-plus-circle"></i> नवीन पदाधिकारी जोडा
         </button>
@@ -755,12 +773,12 @@
         <table>
           <thead>
             <tr>
-              <th style="width:45px; text-align:center;">अनु.</th>
+              <th style="width:40px; text-align:center;">अनु.</th>
               <th>पदाधिकाऱ्याचे नाव</th>
               <th>सध्याचे पद</th>
               <th>बहाल केलेले पद</th>
               <th>व्हॉट्सअ‍ॅप नंबर</th>
-              <th style="text-align:center; width:120px;">कृती</th>
+              <th style="text-align:center; width:90px;">कृती</th>
             </tr>
           </thead>
           <tbody id="manageTableBody">
@@ -771,15 +789,15 @@
 
     <!-- TAB 3: Letters & WhatsApp (Protected: RK2026) -->
     <div id="tab-letters" class="tab-view" style="display:none;">
-      <div style="margin-bottom:14px;">
-        <h3 style="font-size:16.5px; font-weight:800; color:var(--navy);">अधिकृत नियुक्ती पत्र वितरण व प्रेषण</h3>
+      <div style="margin-bottom:12px;">
+        <h3 style="font-size:15.5px; font-weight:800; color:var(--navy);">अधिकृत नियुक्ती पत्र वितरण व प्रेषण</h3>
       </div>
 
       <div class="table-card">
         <table>
           <thead>
             <tr>
-              <th style="width:45px; text-align:center;">अनु.</th>
+              <th style="width:40px; text-align:center;">अनु.</th>
               <th>पदाधिकाऱ्याचे नाव</th>
               <th>बहाल केलेले पद</th>
               <th style="text-align:center;">प्रमाणपत्र पहा</th>
@@ -794,16 +812,16 @@
 
     <!-- TAB 4: ADVANCED DESIGNER STUDIO (Admin Master Customizer) -->
     <div id="tab-designer" class="tab-view" style="display:none;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
         <div>
-          <h3 style="font-size:17px; font-weight:800; color:var(--navy);">
-            <i class="fa-solid fa-palette" style="color:var(--accent);"></i> नियुक्तीपत्र डिझाइन स्टुडिओ (Master Format)
+          <h3 style="font-size:16px; font-weight:800; color:var(--navy);">
+            <i class="fa-solid fa-palette" style="color:var(--accent);"></i> नियुक्तीपत्र डिझाइन स्टुडिओ (Master)
           </h3>
           <small style="color:#64748b;">सर्व घटक कुठेही ठेवा, फॉन्ट, स्वाक्षऱ्या किंवा नवीन प्रतिमा जोडा आणि सेव्ह करा.</small>
         </div>
-        <div style="display:flex; gap:8px;">
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
           <button class="btn btn-gold" onclick="saveDesignToCloud()">
-            <i class="fa-solid fa-cloud-arrow-up"></i> डिझाईन सेव्ह करा
+            <i class="fa-solid fa-cloud-arrow-up"></i> सेव्ह करा
           </button>
           <button class="btn btn-outline" onclick="resetDesignerDefaults()">
             <i class="fa-solid fa-arrow-rotate-left"></i> रिसेट
@@ -926,12 +944,12 @@
           </div>
         </div>
 
-        <!-- Live Free-form A4 Workspace (Strict Exact 794x1123px) -->
+        <!-- Live Free-form A4 Workspace -->
         <div class="designer-preview-wrap">
           <div id="printableCertificate" class="a4-container">
             <div class="a4-inner" id="a4CanvasArea">
               
-              <!-- Node 1: Header Banner (स्वच्छ रचना) -->
+              <!-- Node 1: Header Banner -->
               <div class="canvas-node" id="node-header" style="top: 10px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-header')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -939,7 +957,7 @@
                   <div style="position: absolute; top: 2px; right: 8px; font-size: 8.5pt; font-weight: 800; color:#111;">Reg. No. MH/0000555/2026</div>
 
                   <div style="padding: 2px 6px;">
-                    <div style="font-size: 19pt; font-weight: 800; color:#1e3a8a; line-height: 1.05;">महाराष्ट्र राज्य</div>
+                    <div style="font-size: 20pt; font-weight: 800; color:#1e3a8a; line-height: 1.05;">महाराष्ट्र राज्य</div>
                     <div style="font-size: 22pt; font-weight: 800; color:#6b0c10; line-height: 1.1;">केंद्रप्रमुख व अधिकारी महासंघ</div>
                     <div style="display:inline-block; background: #fffbeb; border: 1px solid #d4af37; border-radius: 20px; padding: 1px 16px; margin: 2px 0;">
                       <span style="font-size: 9.5pt; font-weight: 700; color:#4a0404;">शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...!</span>
@@ -1063,17 +1081,17 @@
   <div id="memberModal" class="modal-wrap">
     <div class="modal-content">
       <div class="modal-header-bar">
-        <h3 id="modalTitle" style="font-size:16px; font-weight:700;">नवीन पदाधिकारी नोंदणी</h3>
+        <h3 id="modalTitle" style="font-size:15px; font-weight:700;">नवीन पदाधिकारी नोंदणी</h3>
         <button class="close-x" onclick="closeModal('memberModal')">&times;</button>
       </div>
       <div class="modal-body">
         <form id="memberForm" onsubmit="handleFormSubmit(event)">
           <input type="hidden" id="editIndex" value="-1">
 
-          <div style="display:flex; gap:10px; margin-bottom:10px;">
-            <div style="width:110px;">
-              <label style="font-weight:700; font-size:13px;">आदरार्थी:</label>
-              <select id="salutation" class="select-district-field" style="min-width:100%; padding:8px;">
+          <div style="display:flex; gap:8px; margin-bottom:8px;">
+            <div style="width:100px;">
+              <label style="font-weight:700; font-size:12px;">आदरार्थी:</label>
+              <select id="salutation" class="select-district-field" style="min-width:100%; padding:6px 10px;">
                 <option value="श्री.">श्री.</option>
                 <option value="श्रीमती">श्रीमती</option>
                 <option value="सौ.">सौ.</option>
@@ -1081,8 +1099,8 @@
               </select>
             </div>
             <div style="flex:1;">
-              <label style="font-weight:700; font-size:13px;">जिल्हा:</label>
-              <input type="text" id="formDistrict" readonly style="background:#f1f5f9; font-weight:bold; width:100%; padding:8px; border:1.5px solid #cbd5e1; border-radius:6px;">
+              <label style="font-weight:700; font-size:12px;">जिल्हा:</label>
+              <input type="text" id="formDistrict" readonly style="background:#f1f5f9; font-weight:bold; width:100%; padding:7px 10px; border:1.5px solid #cbd5e1; border-radius:6px;">
             </div>
           </div>
 
@@ -1145,7 +1163,7 @@
             <input type="tel" id="mobileNumber" pattern="[0-9]{10}" placeholder="उदा. 9822000000" required>
           </div>
 
-          <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:12px;">
+          <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:10px;">
             <button type="button" class="btn btn-outline" onclick="closeModal('memberModal')">रद्द करा</button>
             <button type="submit" class="btn btn-gold" id="saveBtn"><i class="fa-solid fa-cloud-arrow-up"></i> सेव्ह करा</button>
           </div>
@@ -1154,21 +1172,23 @@
     </div>
   </div>
 
-  <!-- MODAL: Clean PDF Preview -->
+  <!-- MODAL: Clean PDF Preview (मोबाईलवर तंतोतंत फुल व्ह्यू) -->
   <div id="cleanViewModal" class="modal-wrap">
     <div class="modal-content preview-mode">
       <div class="modal-header-bar">
-        <h3 id="cleanViewTitle" style="font-size:16px; font-weight:700;">अधिकृत नियुक्ती पत्र (A4 पूर्वदृश्य)</h3>
+        <h3 id="cleanViewTitle" style="font-size:14.5px; font-weight:700;">अधिकृत नियुक्ती पत्र (A4 पूर्वदृश्य)</h3>
         <button class="close-x" onclick="closeModal('cleanViewModal')">&times;</button>
       </div>
-      <div class="modal-body" style="display:flex; justify-content:center; overflow-x:auto;">
-        <div id="cleanPdfContainer">
+      <div id="mobilePreviewWrapper">
+        <div id="scaledLetterContainer">
+          <div id="cleanPdfContainer">
+          </div>
         </div>
       </div>
-      <div style="padding:14px 20px; background:#fff; display:flex; justify-content:flex-end; gap:8px; border-bottom-left-radius:18px; border-bottom-right-radius:18px;">
+      <div style="padding:10px 16px; background:#fff; display:flex; justify-content:flex-end; gap:8px; border-bottom-left-radius:16px; border-bottom-right-radius:16px; z-index: 10;">
         <button class="btn btn-outline" onclick="closeModal('cleanViewModal')">बंद करा</button>
         <button class="btn btn-gold" onclick="downloadCurrentLetterPDF()">
-          <i class="fa-solid fa-file-pdf"></i> उच्च दर्जाची A4 PDF डाऊनलोड करा
+          <i class="fa-solid fa-file-pdf"></i> उच्च दर्जाची PDF डाऊनलोड
         </button>
       </div>
     </div>
@@ -1306,7 +1326,7 @@
             isLettersUnlocked = true;
             document.getElementById('manageLockBadge').style.display = 'none';
             document.getElementById('letterLockBadge').style.display = 'none';
-            document.getElementById('adminDesignerTabBtn').style.display = 'flex';
+            document.getElementById('adminDesignerTabBtn').style.display = 'inline-flex';
             switchTab('tab-designer');
             alert("अभिनंदन! मुख्य ॲडमिन ॲक्सेस सक्रिय झाला आहे. मास्टर नियुक्तीपत्र Designer Studio उघडले आहे.");
           } else if (pass !== null) {
@@ -1344,14 +1364,14 @@
 
       const dirBody = document.getElementById('directoryTableBody');
       if (list.length === 0) {
-        dirBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:25px; color:#888;">या जिल्ह्यात अजून एकही पदाधिकारी नोंदवलेला नाही.</td></tr>`;
+        dirBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:#888;">या जिल्ह्यात अजून एकही पदाधिकारी नोंदवलेला नाही.</td></tr>`;
       } else {
         dirBody.innerHTML = list.map((m, idx) => `
           <tr>
             <td style="text-align: center; font-weight:bold;">${idx + 1}</td>
             <td style="font-weight: 700; color:#0f2b48;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
             <td>${m.currentCadre} <br><small style="color:#666;">${m.workingPlace}</small></td>
-            <td><strong style="color:var(--accent); font-size:14.5px;">${m.appointedPost}</strong></td>
+            <td><strong style="color:var(--accent); font-size:14px;">${m.appointedPost}</strong></td>
             <td style="text-align: center; font-weight:700;">${m.mobile}</td>
           </tr>
         `).join('');
@@ -1359,7 +1379,7 @@
 
       const manageBody = document.getElementById('manageTableBody');
       if (list.length === 0) {
-        manageBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:25px; color:#888;">माहिती उपलब्ध नाही. नवीन पदाधिकारी ॲड करा.</td></tr>`;
+        manageBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:20px; color:#888;">माहिती उपलब्ध नाही. नवीन पदाधिकारी ॲड करा.</td></tr>`;
       } else {
         manageBody.innerHTML = list.map((m, idx) => `
           <tr>
@@ -1369,8 +1389,8 @@
             <td><strong>${m.appointedPost}</strong></td>
             <td>${m.mobile}</td>
             <td style="text-align: center;">
-              <button class="btn btn-edit" style="padding:4px 8px; font-size:12px;" onclick="openEditModal('${m.id}')"><i class="fa-solid fa-pen"></i></button>
-              <button class="btn btn-del" style="padding:4px 8px; font-size:12px;" onclick="deleteMember('${m.id}')"><i class="fa-solid fa-trash"></i></button>
+              <button class="btn btn-edit" onclick="openEditModal('${m.id}')"><i class="fa-solid fa-pen"></i></button>
+              <button class="btn btn-del" onclick="deleteMember('${m.id}')"><i class="fa-solid fa-trash"></i></button>
             </td>
           </tr>
         `).join('');
@@ -1378,7 +1398,7 @@
 
       const lettersBody = document.getElementById('lettersTableBody');
       if (list.length === 0) {
-        lettersBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:25px; color:#888;">माहिती उपलब्ध नाही.</td></tr>`;
+        lettersBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:#888;">माहिती उपलब्ध नाही.</td></tr>`;
       } else {
         lettersBody.innerHTML = list.map((m, idx) => `
           <tr>
@@ -1386,12 +1406,12 @@
             <td style="font-weight: 700;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
             <td><strong style="color:var(--accent);">${m.appointedPost}</strong></td>
             <td style="text-align: center;">
-              <button class="btn btn-view" style="padding:5px 12px; font-size:13px;" onclick="viewLetterCleanPDF('${m.id}')">
+              <button class="btn btn-view" style="padding:4px 10px; font-size:12.5px;" onclick="viewLetterCleanPDF('${m.id}')">
                 <i class="fa-solid fa-eye"></i> प्रमाणपत्र पहा
               </button>
             </td>
             <td style="text-align: center;">
-              <button class="btn btn-wa" style="padding:5px 12px; font-size:13px;" onclick="sendWhatsAppAndDownload('${m.id}')">
+              <button class="btn btn-wa" style="padding:4px 10px; font-size:12.5px;" onclick="sendWhatsAppAndDownload('${m.id}')">
                 <i class="fa-brands fa-whatsapp"></i> WhatsApp वर पाठवा
               </button>
             </td>
@@ -1565,6 +1585,7 @@
       document.getElementById('prevPostTitle').textContent = `⭐ « ${m.appointedPost} » ⭐`;
     }
 
+    // मोबाईलवर अचूक फिट होणारे स्केल प्रिव्ह्यू इंजिन
     function viewLetterCleanPDF(id) {
       const m = window.membersData.find(item => item.id === id);
       if(!m) return;
@@ -1583,7 +1604,20 @@
       container.innerHTML = '';
       container.appendChild(clone);
 
-      document.getElementById('cleanViewTitle').textContent = `नियुक्ती पत्र - ${m.salutation} ${m.firstName} ${m.lastName} (${m.appointedPost})`;
+      // स्क्रीनच्या रुंदीनुसार A4 पत्र ऑटो-स्केल करा (Fit to Screen)
+      const screenWidth = window.innerWidth;
+      const targetWidth = 794;
+      let scaleRatio = 1;
+      
+      if (screenWidth < 840) {
+        scaleRatio = (screenWidth - 25) / targetWidth;
+      }
+      
+      const scaledBox = document.getElementById('scaledLetterContainer');
+      scaledBox.style.transform = `scale(${scaleRatio})`;
+      scaledBox.style.height = `${1123 * scaleRatio + 20}px`;
+
+      document.getElementById('cleanViewTitle').textContent = `नियुक्ती पत्र - ${m.salutation} ${m.firstName} ${m.lastName}`;
       document.getElementById('cleanViewModal').style.display = 'flex';
     }
 
@@ -1652,4 +1686,320 @@
 
           const div = document.createElement('div');
           div.className = 'canvas-node';
-          div
+          div.id = imgId;
+          div.style.top = '720px';
+          div.style.left = '420px';
+          div.style.width = '100px';
+          div.style.height = '100px';
+
+          div.innerHTML = `
+            <button class="node-delete-btn" onclick="document.getElementById('${imgId}').remove()" title="हटवा">&times;</button>
+            <div class="node-resize-handle"></div>
+            <img src="${evt.target.result}" class="custom-inserted-img" alt="Inserted Image">
+          `;
+
+          document.getElementById('a4CanvasArea').appendChild(div);
+          initNodeInteractions(div);
+          alert("नवीन प्रतिमा पत्रावर जोडली गेली आहे!");
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function handleSignUpload(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          const img = document.getElementById('presidentSignImg');
+          img.src = evt.target.result;
+          img.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function initFreeDragAndResize() {
+      const canvasArea = document.getElementById('a4CanvasArea');
+      canvasArea.querySelectorAll('.canvas-node').forEach(node => initNodeInteractions(node));
+    }
+
+    function initNodeInteractions(node) {
+      const canvasArea = document.getElementById('a4CanvasArea');
+
+      node.addEventListener('mousedown', (e) => {
+        if (e.target.classList.contains('node-delete-btn') || e.target.classList.contains('node-resize-handle')) {
+          return;
+        }
+        e.preventDefault();
+
+        const rect = node.getBoundingClientRect();
+        const canvasRect = canvasArea.getBoundingClientRect();
+
+        const shiftX = e.clientX - rect.left;
+        const shiftY = e.clientY - rect.top;
+
+        function onMouseMove(event) {
+          let newX = event.clientX - canvasRect.left - shiftX;
+          let newY = event.clientY - canvasRect.top - shiftY;
+
+          node.style.left = newX + 'px';
+          node.style.top = newY + 'px';
+        }
+
+        function onMouseUp() {
+          document.removeEventListener('mousemove', onMouseMove);
+          document.removeEventListener('mouseup', onMouseUp);
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+      });
+
+      const handle = node.querySelector('.node-resize-handle');
+      if (handle) {
+        handle.addEventListener('mousedown', (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+
+          const startX = e.clientX;
+          const startY = e.clientY;
+          const startWidth = parseInt(document.defaultView.getComputedStyle(node).width, 10);
+          const startHeight = parseInt(document.defaultView.getComputedStyle(node).height, 10);
+
+          function doResize(event) {
+            node.style.width = (startWidth + event.clientX - startX) + 'px';
+            node.style.height = (startHeight + event.clientY - startY) + 'px';
+          }
+
+          function stopResize() {
+            document.removeEventListener('mousemove', doResize);
+            document.removeEventListener('mouseup', stopResize);
+          }
+
+          document.addEventListener('mousemove', doResize);
+          document.addEventListener('mouseup', stopResize);
+        });
+      }
+    }
+
+    async function saveDesignToCloud() {
+      const canvasArea = document.getElementById('a4CanvasArea');
+      const nodes = canvasArea.querySelectorAll('.canvas-node');
+
+      const layoutData = {};
+      nodes.forEach(node => {
+        layoutData[node.id] = {
+          top: node.style.top,
+          left: node.style.left,
+          right: node.style.right,
+          width: node.style.width,
+          height: node.style.height,
+          display: node.style.display || 'block'
+        };
+      });
+
+      const designPayload = {
+        subject: document.getElementById('dsSubject').value,
+        para1: document.getElementById('dsPara1').value,
+        para2: document.getElementById('dsPara2').value,
+        para3: document.getElementById('dsPara3').value,
+        sign1Name: document.getElementById('dsSign1Name').value,
+        sign1Role: document.getElementById('dsSign1Role').value,
+        sign2Name: document.getElementById('dsSign2Name').value,
+        sign2Role: document.getElementById('dsSign2Role').value,
+        fontSize: document.getElementById('dsFontSize').value,
+        lineHeight: document.getElementById('dsLineHeight').value,
+        textColor: document.getElementById('dsTextColor').value,
+        layout: layoutData,
+        bgImage: document.getElementById('printableCertificate').style.backgroundImage || '',
+        updatedAt: new Date().toISOString()
+      };
+
+      try {
+        if (window.rtdb && window.dbSet && window.dbRef) {
+          await window.dbSet(window.dbRef(window.rtdb, 'appointment_master_design'), designPayload);
+        } else {
+          await fetch(`https://rk2026-207ee-default-rtdb.firebaseio.com/appointment_master_design.json`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(designPayload)
+          });
+        }
+        localStorage.setItem('mahasangh_master_design', JSON.stringify(designPayload));
+        alert("अभिनंदन! संपूर्ण मास्टर डिझाईन आणि लेआउट Firebase वर सेव्ह झाले आहे.");
+      } catch (err) {
+        console.error("Design save error:", err);
+        alert("डिझाईन सेव्ह करताना त्रुटी आली: " + err.message);
+      }
+    }
+
+    window.applyDesignPayload = function(design) {
+      if (!design || !design.layout) return;
+      if (design.subject) document.getElementById('dsSubject').value = design.subject;
+      if (design.para1) document.getElementById('dsPara1').value = design.para1;
+      if (design.para2) document.getElementById('dsPara2').value = design.para2;
+      if (design.para3) document.getElementById('dsPara3').value = design.para3;
+      if (design.sign1Name) document.getElementById('dsSign1Name').value = design.sign1Name;
+      if (design.sign1Role) document.getElementById('dsSign1Role').value = design.sign1Role;
+      if (design.sign2Name) document.getElementById('dsSign2Name').value = design.sign2Name;
+      if (design.sign2Role) document.getElementById('dsSign2Role').value = design.sign2Role;
+      if (design.fontSize) document.getElementById('dsFontSize').value = design.fontSize;
+      if (design.lineHeight) document.getElementById('dsLineHeight').value = design.lineHeight;
+      if (design.textColor) document.getElementById('dsTextColor').value = design.textColor;
+      if (design.bgImage) document.getElementById('printableCertificate').style.backgroundImage = design.bgImage;
+
+      updateLetterTexts();
+      updateSignTexts();
+      updateLetterStyles();
+
+      Object.keys(design.layout).forEach(nodeId => {
+        const el = document.getElementById(nodeId);
+        const conf = design.layout[nodeId];
+        if (el && conf) {
+          if (conf.top) el.style.top = conf.top;
+          if (conf.left) el.style.left = conf.left;
+          if (conf.right) el.style.right = conf.right;
+          if (conf.width) el.style.width = conf.width;
+          if (conf.height) el.style.height = conf.height;
+          if (conf.display) {
+            el.style.display = conf.display;
+            const chk = document.getElementById(nodeId.replace('node-', 'chk-'));
+            if (chk) chk.checked = (conf.display !== 'none');
+          }
+        }
+      });
+    };
+
+    function resetDesignerDefaults() {
+      localStorage.removeItem('mahasangh_master_design');
+      location.reload();
+    }
+
+    async function downloadCurrentLetterPDF(callback) {
+      const original = document.getElementById('printableCertificate');
+      
+      const clone = original.cloneNode(true);
+      clone.id = 'tempPdfRenderClone';
+
+      clone.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
+
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'fixed';
+      wrapper.style.top = '0';
+      wrapper.style.left = '0';
+      wrapper.style.width = '794px';
+      wrapper.style.height = '1123px';
+      wrapper.style.zIndex = '999999';
+      wrapper.style.background = '#ffffff';
+      wrapper.style.margin = '0';
+      wrapper.style.padding = '0';
+      wrapper.style.overflow = 'hidden';
+
+      clone.style.width = '794px';
+      clone.style.height = '1123px';
+      clone.style.maxHeight = '1123px';
+      clone.style.boxShadow = 'none';
+      clone.style.margin = '0';
+
+      wrapper.appendChild(clone);
+      document.body.appendChild(wrapper);
+
+      try {
+        const canvas = await html2canvas(wrapper, {
+          scale: 2.5,
+          useCORS: true,
+          allowTaint: true,
+          scrollX: 0,
+          scrollY: 0,
+          width: 794,
+          height: 1123,
+          windowWidth: 794,
+          windowHeight: 1123
+        });
+
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: 'a4'
+        });
+
+        const imgData = canvas.toDataURL('image/jpeg', 0.98);
+        pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
+
+        const filename = selectedMemberForLetter 
+          ? `नियुक्ती_पत्र_${selectedMemberForLetter.firstName}_${selectedMemberForLetter.lastName}.pdf`
+          : `मास्टर_नियुक्ती_पत्र_महासंघ.pdf`;
+
+        pdf.save(filename);
+        if (callback) callback();
+      } catch (err) {
+        console.error("PDF generation failed:", err);
+        alert("PDF तयार करताना त्रुटी आली: " + err.message);
+      } finally {
+        document.body.removeChild(wrapper);
+      }
+    }
+
+    function printCleanDirectoryPDF() {
+      const list = getFilteredMembers();
+      if(list.length === 0) {
+        alert("या जिल्ह्यात डाऊनलोड करण्यासाठी पदाधिकारी उपलब्ध नाहीत.");
+        return;
+      }
+
+      document.getElementById('bwPrintDistrictTitle').textContent = `जिल्हा कार्यकारिणी सूची : ${currentDistrict}`;
+      document.getElementById('bwPrintTotalCount').textContent = list.length;
+      
+      const tbody = document.getElementById('bwPrintTableBody');
+      tbody.innerHTML = list.map((m, idx) => `
+        <tr>
+          <td style="border:1.5px solid black; text-align:center; font-weight:bold; padding:6px; font-size:10.5pt;">${idx + 1}</td>
+          <td style="border:1.5px solid black; font-weight:bold; padding:6px; font-size:11pt;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
+          <td style="border:1.5px solid black; padding:6px; font-size:10pt;">${m.currentCadre}<br><small style="color:#333;">${m.workingPlace}</small></td>
+          <td style="border:1.5px solid black; font-weight:bold; padding:6px; font-size:10.5pt;">${m.appointedPost}</td>
+          <td style="border:1.5px solid black; text-align:center; font-weight:bold; padding:6px; font-size:10.5pt;">${m.mobile}</td>
+        </tr>
+      `).join('');
+
+      window.print();
+    }
+
+    function sendWhatsAppAndDownload(id) {
+      const m = window.membersData.find(item => item.id === id);
+      if(!m) return;
+      populateLetter(m);
+
+      downloadCurrentLetterPDF(() => {
+        const message = `सस्नेह जय महाराष्ट्र 🙏
+
+*महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ*
+(Reg. No. MH/0000555/2026)
+मध्यवर्ती राज्य कार्यकारिणीच्या वतीने आपले मनःपूर्वक हार्दिक अभिनंदन!
+
+मा. ${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName},
+आपल्या शिक्षण क्षेत्रातील प्रदीर्घ, निष्कलंक सेवा, समर्पण आणि संघटनात्मक कर्तृत्वाची सार्थ दखल घेऊन, राज्य कार्यकारिणीच्या सर्वसंमत निर्णयानुसार आपली *${m.district}* जिल्हा कार्यकारिणीवर:
+
+⭐ *« ${m.appointedPost} »* ⭐
+
+या अत्यंत सन्मानाच्या व जबाबदारीच्या पदावर गौरवपूर्ण नियुक्ती करण्यात आली आहे.
+
+आपले अधिकृत नियुक्ती पत्र (High-Quality PDF) डाऊनलोड झाले असून सोबत जोडले आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाच्या सन्मानासाठी व गुणवत्तेसाठी आपण खंबीरपणे कार्य कराल, हा ठाम विश्वास आहे.
+
+आपल्या पुढील यशस्वी वाटचालीस व संघटनात्मक कार्यासाठी उदंड शुभेच्छा!
+
+*श्री. राजेंद्र शिवाजी खैरनार*
+राज्याध्यक्ष,
+महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ
+कार्यालय : स. नं. ५६/१, प्लॉट नं. १, मालेगाव ता. मालेगाव जि. नाशिक
+संपर्क: 9860704098`;
+
+        const encodedMsg = encodeURIComponent(message);
+        const waUrl = `https://api.whatsapp.com/send?phone=91${m.mobile}&text=${encodedMsg}`;
+        window.open(waUrl, '_blank');
+      });
+    }
+  </script>
+</body>
+</html>
