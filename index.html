@@ -371,7 +371,7 @@
 
     .a4-inner {
       border: 2px solid #851216;
-      outline: 1.5px solid #d4af37;
+      outline: 1.5px solid #d4a017;
       outline-offset: -5px;
       padding: 10px 14px;
       height: 100%;
@@ -498,7 +498,7 @@
       color: #0f172a;
     }
 
-    /* मुख्य मजकुराचा फॉन्ट: ठळक, स्पष्ट व साधा */
+    /* मुख्य मजकुराचा फॉन्ट */
     .body-text-block {
       font-family: 'Yantramanav', 'Noto Sans Devanagari', sans-serif !important;
       font-size: 13pt;
@@ -547,7 +547,6 @@
       display: none;
     }
 
-    /* स्वाक्षरीखालील आडवी रेषा पूर्णपणे काढून टाकली */
     .single-sign-card .slot-name {
       font-size: 12pt;
       font-weight: 700;
@@ -604,7 +603,7 @@
     }
 
     .modal-header-bar {
-      padding: 12px 16px;
+      padding: 14px 18px;
       background: linear-gradient(135deg, #1f2937, #b8860b);
       color: white;
       display: flex;
@@ -616,11 +615,49 @@
       background: transparent;
       border: none;
       color: white;
-      font-size: 20px;
+      font-size: 22px;
       cursor: pointer;
     }
 
-    .modal-body { padding: 14px; }
+    /* नोंदणी फॉर्म: अक्षरे मोठी आणि सुटसुटीत */
+    .modal-body { 
+      padding: 18px 20px; 
+    }
+
+    .form-item { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 6px; 
+      margin-bottom: 12px; 
+    }
+    
+    .form-item label { 
+      font-size: 15px; 
+      font-weight: 800; 
+      color: #334155; 
+      letter-spacing: 0.2px;
+    }
+    
+    .form-item input, 
+    .form-item select,
+    .modal-body .select-district-field { 
+      padding: 11px 14px; 
+      border: 1.8px solid #cbd5e1; 
+      border-radius: 10px; 
+      font-size: 16px; 
+      font-weight: 600;
+      color: #0f172a;
+      outline: none; 
+      background: #ffffff;
+      transition: all 0.2s;
+    }
+
+    .form-item input:focus, 
+    .form-item select:focus,
+    .modal-body .select-district-field:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.15);
+    }
 
     #mobilePreviewWrapper {
       width: 100%;
@@ -636,11 +673,8 @@
       transform-origin: top center;
     }
 
-    .row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 8px; }
-    .row-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 8px; }
-    .form-item { display: flex; flex-direction: column; gap: 3px; margin-bottom: 8px; }
-    .form-item label { font-size: 12.5px; font-weight: 700; color: #475569; }
-    .form-item input, .form-item select { padding: 8px 10px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-size: 13px; outline: none; }
+    .row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 10px; }
+    .row-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 10px; }
 
     @media (max-width: 650px) {
       .row-3, .row-2 { grid-template-columns: 1fr; }
@@ -1046,30 +1080,30 @@
 
   </div>
 
-  <!-- MODAL: Add / Edit Official -->
+  <!-- MODAL: Add / Edit Official (केवळ 'तालुका अध्यक्ष' निवडल्यास तालुक्याचे नाव विचारणे) -->
   <div id="memberModal" class="modal-wrap">
     <div class="modal-content">
       <div class="modal-header-bar">
-        <h3 id="modalTitle" style="font-size:15px; font-weight:700;">नवीन पदाधिकारी नोंदणी</h3>
+        <h3 id="modalTitle" style="font-size:16px; font-weight:800;">नवीन पदाधिकारी नोंदणी</h3>
         <button class="close-x" onclick="closeModal('memberModal')">&times;</button>
       </div>
       <div class="modal-body">
         <form id="memberForm" onsubmit="handleFormSubmit(event)">
           <input type="hidden" id="editIndex" value="-1">
 
-          <div style="display:flex; gap:8px; margin-bottom:8px;">
-            <div style="width:100px;">
-              <label style="font-weight:700; font-size:12px;">आदरार्थी:</label>
-              <select id="salutation" class="select-district-field" style="min-width:100%; padding:6px 10px;">
+          <div style="display:flex; gap:12px; margin-bottom:12px;">
+            <div style="width:120px;" class="form-item">
+              <label>आदरार्थी:</label>
+              <select id="salutation" class="select-district-field" style="min-width:100%;">
                 <option value="श्री.">श्री.</option>
                 <option value="श्रीमती">श्रीमती</option>
                 <option value="सौ.">सौ.</option>
                 <option value="डॉ.">डॉ.</option>
               </select>
             </div>
-            <div style="flex:1;">
-              <label style="font-weight:700; font-size:12px;">जिल्हा:</label>
-              <input type="text" id="formDistrict" readonly style="background:#f1f5f9; font-weight:bold; width:100%; padding:7px 10px; border:1.5px solid #cbd5e1; border-radius:6px;">
+            <div style="flex:1;" class="form-item">
+              <label>जिल्हा:</label>
+              <input type="text" id="formDistrict" readonly style="background:#f8fafc; font-weight:800; width:100%;">
             </div>
           </div>
 
@@ -1105,7 +1139,7 @@
           <div class="row-2">
             <div class="form-item">
               <label>बहाल करण्यात येणारे पद *</label>
-              <select id="appointedPost" onchange="toggleCustomPost(this.value)">
+              <select id="appointedPost" onchange="togglePostDetails(this.value)">
                 <option value="जिल्हाध्यक्ष">जिल्हाध्यक्ष</option>
                 <option value="जिल्हा सरचिटणीस">जिल्हा सरचिटणीस</option>
                 <option value="कार्याध्यक्ष">कार्याध्यक्ष</option>
@@ -1121,6 +1155,13 @@
                 <option value="इतर">इतर (कृपया स्वतः लिहा)</option>
               </select>
             </div>
+
+            <!-- फक्त तालुका अध्यक्ष निवडल्यासच तालुक्याचे नाव विचारणे -->
+            <div class="form-item" id="talukaNameDiv" style="display:none;">
+              <label>तालुक्याचे नाव लिहा *</label>
+              <input type="text" id="talukaName" placeholder="उदा. मालेगाव">
+            </div>
+
             <div class="form-item" id="customPostDiv" style="display:none;">
               <label>पदाचे नाव टाईप करा *</label>
               <input type="text" id="customPost" placeholder="पदाचे नाव लिहा">
@@ -1132,9 +1173,9 @@
             <input type="tel" id="mobileNumber" pattern="[0-9]{10}" placeholder="उदा. 9822000000" required>
           </div>
 
-          <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:10px;">
-            <button type="button" class="btn btn-outline" onclick="closeModal('memberModal')">रद्द करा</button>
-            <button type="submit" class="btn btn-gold" id="saveBtn"><i class="fa-solid fa-cloud-arrow-up"></i> सेव्ह करा</button>
+          <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:16px;">
+            <button type="button" class="btn btn-outline" style="padding:9px 20px; font-size:14px;" onclick="closeModal('memberModal')">रद्द करा</button>
+            <button type="submit" class="btn btn-gold" id="saveBtn" style="padding:9px 24px; font-size:14.5px;"><i class="fa-solid fa-cloud-arrow-up"></i> सेव्ह करा</button>
           </div>
         </form>
       </div>
@@ -1163,7 +1204,7 @@
     </div>
   </div>
 
-  <!-- STRICT SINGLE PAGE A4 PRINT RENDER CONTAINER (No 2nd Page) -->
+  <!-- STRICT SINGLE PAGE A4 PRINT RENDER CONTAINER (स्वाक्षऱ्या पूर्णपणे काढलेली यादी) -->
   <div style="display:none;">
     <div id="printableDirectoryStrict" style="width: 794px; min-height: 1123px; max-height: 1123px; padding: 25px 35px; background: white; color: black; font-family: 'Yantramanav', 'Noto Sans Devanagari', sans-serif; box-sizing: border-box; overflow: hidden; position: relative;">
       <div style="text-align: center; border-bottom: 2px solid black; padding-bottom: 6px; margin-bottom: 12px;">
@@ -1193,17 +1234,6 @@
         <tbody id="strictTableBody">
         </tbody>
       </table>
-
-      <div style="display: flex; justify-content: space-between; text-align: center; margin-top: 45px; position: absolute; bottom: 40px; left: 35px; right: 35px;">
-        <div style="width: 220px;">
-          <div style="font-weight: bold; font-size: 12pt; border-top: 1.5px solid black; padding-top: 4px;">( श्री. विजय सावंत )</div>
-          <div style="font-size: 10.5pt;">राज्य सरचिटणीस</div>
-        </div>
-        <div style="width: 220px;">
-          <div style="font-weight: bold; font-size: 12pt; border-top: 1.5px solid black; padding-top: 4px;">( श्री. राजेंद्र खैरनार )</div>
-          <div style="font-size: 10.5pt;">संस्थापक राज्याध्यक्ष<br>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</div>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -1356,6 +1386,15 @@
       return (window.membersData || []).filter(m => m.district === currentDistrict);
     }
 
+    // बहाल केलेल्या पदाचा संपूर्ण अचूक मजकूर मिळवणे (फक्त तालुका अध्यक्ष असेल तरच तालुका जोडणे)
+    function getDisplayPost(m) {
+      if (m.appointedPost === 'तालुका अध्यक्ष') {
+        const tName = m.taluka ? m.taluka.trim() : '';
+        return tName ? `तालुका अध्यक्ष (${tName} तालुका)` : 'तालुका अध्यक्ष';
+      }
+      return m.appointedPost;
+    }
+
     function renderAll() {
       const list = getFilteredMembers();
       document.getElementById('memberCount').textContent = list.length;
@@ -1370,7 +1409,7 @@
             <td style="text-align: center; font-weight:bold;">${idx + 1}</td>
             <td style="font-weight: 700; color:#0f2b48;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
             <td>${m.currentCadre} <br><small style="color:#666;">${m.workingPlace}</small></td>
-            <td><strong style="color:var(--accent); font-size:13.5px;">${m.appointedPost}</strong></td>
+            <td><strong style="color:var(--accent); font-size:13.5px;">${getDisplayPost(m)}</strong></td>
             <td style="text-align: center; font-weight:700;">${m.mobile}</td>
           </tr>
         `).join('');
@@ -1385,7 +1424,7 @@
             <td style="text-align: center; font-weight:bold;">${idx + 1}</td>
             <td style="font-weight:700;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
             <td>${m.currentCadre} (${m.workingPlace})</td>
-            <td><strong>${m.appointedPost}</strong></td>
+            <td><strong>${getDisplayPost(m)}</strong></td>
             <td>${m.mobile}</td>
             <td style="text-align: center;">
               <button class="btn btn-edit" onclick="openEditModal('${m.id}')"><i class="fa-solid fa-pen"></i></button>
@@ -1403,7 +1442,7 @@
           <tr>
             <td style="text-align: center; font-weight:bold;">${idx + 1}</td>
             <td style="font-weight: 700;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
-            <td><strong style="color:var(--accent);">${m.appointedPost}</strong></td>
+            <td><strong style="color:var(--accent);">${getDisplayPost(m)}</strong></td>
             <td style="text-align: center;">
               <button class="btn btn-view" style="padding:4px 10px; font-size:12.5px;" onclick="viewLetterCleanPDF('${m.id}')">
                 <i class="fa-solid fa-eye"></i> प्रमाणपत्र पहा
@@ -1470,6 +1509,7 @@
       document.getElementById('memberForm').reset();
       document.getElementById('formDistrict').value = currentDistrict;
       document.getElementById('customPostDiv').style.display = 'none';
+      document.getElementById('talukaNameDiv').style.display = 'none';
       document.getElementById('memberModal').style.display = 'flex';
     }
 
@@ -1498,6 +1538,15 @@
         document.getElementById('customPostDiv').style.display = 'block';
         document.getElementById('customPost').value = m.appointedPost;
       }
+
+      // तालुका अध्यक्ष असल्यास तालुक्याचे नाव भरणे
+      if(m.appointedPost === "तालुका अध्यक्ष") {
+        document.getElementById('talukaNameDiv').style.display = 'block';
+        document.getElementById('talukaName').value = m.taluka || '';
+      } else {
+        document.getElementById('talukaNameDiv').style.display = 'none';
+      }
+
       document.getElementById('memberModal').style.display = 'flex';
     }
 
@@ -1505,8 +1554,10 @@
       document.getElementById(modalId).style.display = 'none';
     }
 
-    function toggleCustomPost(val) {
+    // केवळ 'तालुका अध्यक्ष' किंवा 'इतर' निवडल्यास संबंधित फील्ड दाखवणे
+    function togglePostDetails(val) {
       document.getElementById('customPostDiv').style.display = (val === 'इतर') ? 'block' : 'none';
+      document.getElementById('talukaNameDiv').style.display = (val === 'तालुका अध्यक्ष') ? 'block' : 'none';
     }
 
     async function handleFormSubmit(e) {
@@ -1526,6 +1577,17 @@
         return;
       }
 
+      let talukaVal = "";
+      if (finalPost === "तालुका अध्यक्ष") {
+        talukaVal = document.getElementById('talukaName').value.trim();
+        if(!talukaVal) {
+          alert("कृपया तालुक्याचे नाव लिहा.");
+          saveBtn.disabled = false;
+          saveBtn.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> सेव्ह करा`;
+          return;
+        }
+      }
+
       const docId = idVal === "-1" ? Date.now().toString() : idVal;
       const memberObj = {
         district: document.getElementById('formDistrict').value,
@@ -1536,6 +1598,7 @@
         currentCadre: document.getElementById('currentCadre').value,
         workingPlace: document.getElementById('workingPlace').value.trim(),
         appointedPost: finalPost,
+        taluka: talukaVal,
         mobile: document.getElementById('mobileNumber').value.trim(),
         updatedAt: new Date().toISOString()
       };
@@ -1581,9 +1644,15 @@
       document.getElementById('prevFullName').textContent = `मा. ${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}`;
       document.getElementById('prevCurrentPost').textContent = `(${m.currentCadre}, ${m.workingPlace}, जिल्हा - ${m.district})`;
       document.getElementById('prevAnnounceDistrict').textContent = m.district;
-      document.getElementById('prevPostTitle').textContent = `⭐ « ${m.appointedPost} » ⭐`;
+      
+      const fullDisplayPost = getDisplayPost(m);
+      document.getElementById('prevPostTitle').textContent = `⭐ « ${fullDisplayPost} » ⭐`;
+
+      // विषय ओळीत पद अद्ययावत करणे
+      document.getElementById('dispSubject').textContent = `विषय: महासंघाच्या ${m.district} जिल्हा कार्यकारिणीवर '${fullDisplayPost}' नियुक्तीबाबत...`;
     }
 
+    // मोबाईलवर अचूक फिट होणारे स्केल प्रिव्ह्यू इंजिन
     function viewLetterCleanPDF(id) {
       const m = window.membersData.find(item => item.id === id);
       if(!m) return;
@@ -1788,7 +1857,7 @@
       }
     }
 
-    // मास्टर डिझाईन क्लाउडवर सेव्ह करणे (Quota Exceeded एरर पूर्णपणे रोखला)
+    // मास्टर डिझाईन सेव्ह करणे
     async function saveDesignToCloud() {
       const canvasArea = document.getElementById('a4CanvasArea');
       const nodes = canvasArea.querySelectorAll('.canvas-node');
@@ -1850,16 +1919,14 @@
           });
         }
 
-        // LocalStorage Quota Exceeded टाळण्यासाठी सुरक्षित प्रयत्न
         try {
-          // मोठ्या प्रतिमांचा डेटा वगळून हलका बॅकअप सेव्ह करणे
           const safeLocalBackup = { ...designPayload, customImages: [], bgImage: '' };
           localStorage.setItem('mahasangh_master_design', JSON.stringify(safeLocalBackup));
         } catch(storageErr) {
           console.warn("LocalStorage full, saved directly to Firebase cloud.");
         }
 
-        alert("अभिनंदन! संपूर्ण मास्टर डिझाईन आणि इन्सर्ट केलेल्या सर्व प्रतिमा Firebase क्लाउडवर यशस्वीरीत्या सेव्ह झाल्या आहेत.");
+        alert("अभिनंदन! संपूर्ण मास्टर डिझाईन आणि फॉन्ट सेटिंग्ज Firebase वर सेव्ह झाल्या आहेत.");
       } catch (err) {
         console.error("Design save error:", err);
         alert("डिझाईन सेव्ह करताना त्रुटी आली: " + err.message);
@@ -2003,7 +2070,7 @@
       if (callback) callback();
     }
 
-    // STRICT SINGLE PAGE DIRECTORY PDF ENGINE (No 2nd Page)
+    // STRICT SINGLE PAGE DIRECTORY PDF ENGINE (स्वाक्षऱ्या व रेष नसलेली स्वच्छ यादी)
     async function downloadDirectorySinglePagePDF() {
       const list = getFilteredMembers();
       if(list.length === 0) {
@@ -2025,7 +2092,7 @@
           <td style="border: 1.5px solid black; text-align:center; font-weight:bold; padding:6px; font-size:11pt;">${idx + 1}</td>
           <td style="border: 1.5px solid black; font-weight:bold; padding:6px; font-size:11.5pt;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
           <td style="border: 1.5px solid black; padding:6px; font-size:10.5pt;">${m.currentCadre}<br><small style="color:#333;">${m.workingPlace}</small></td>
-          <td style="border: 1.5px solid black; font-weight:bold; padding:6px; font-size:11pt;">${m.appointedPost}</td>
+          <td style="border: 1.5px solid black; font-weight:bold; padding:6px; font-size:11pt;">${getDisplayPost(m)}</td>
           <td style="border: 1.5px solid black; text-align:center; font-weight:bold; padding:6px; font-size:11pt;">${m.mobile}</td>
         </tr>
       `).join('');
@@ -2086,6 +2153,8 @@
       const m = window.membersData.find(item => item.id === id);
       if(!m) return;
 
+      const fullDisplayPost = getDisplayPost(m);
+
       const message = `सस्नेह नमस्कार 🙏
 
 *महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ*
@@ -2095,7 +2164,7 @@
 मा. ${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName},
 आपल्या शिक्षण क्षेत्रातील प्रदीर्घ, निष्कलंक सेवा, समर्पण आणि संघटनात्मक कर्तृत्वाची सार्थ दखल घेऊन, राज्य कार्यकारिणीच्या सर्वसंमत निर्णयानुसार आपली *${m.district}* जिल्हा कार्यकारिणीवर:
 
-⭐ *« ${m.appointedPost} »* ⭐
+⭐ *« ${fullDisplayPost} »* ⭐
 
 या अत्यंत सन्मानाच्या व जबाबदारीच्या पदावर गौरवपूर्ण नियुक्ती करण्यात आली आहे.
 
