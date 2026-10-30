@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ - अधिकृत पोर्टल</title>
   
-  <!-- Aparajita / Devanagari Serif Style Typography -->
+  <!-- Clear, Crisp and Bold Devanagari Fonts: Yantramanav, Noto Sans Devanagari -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;500;600;700;800&family=Yatra+One&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Rozha+One&family=Yantramanav:wght@400;500;700;900&family=Yatra+One&display=swap" rel="stylesheet">
   
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -35,7 +35,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Aparajita', 'Noto Serif Devanagari', 'Gargi', serif;
+      font-family: 'Yantramanav', 'Noto Sans Devanagari', sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -234,7 +234,7 @@
     .btn-edit { background: #f59e0b; color: white; border-radius: 6px; padding: 4px 8px; font-size: 11.5px; }
     .btn-del { background: #ef4444; color: white; border-radius: 6px; padding: 4px 8px; font-size: 11.5px; }
 
-    /* मोबाईल टेबल */
+    /* टेबल कार्ड */
     .table-card {
       background: var(--card);
       border-radius: 14px;
@@ -371,7 +371,7 @@
 
     .a4-inner {
       border: 2px solid #851216;
-      outline: 1.5px solid #d4a017;
+      outline: 1.5px solid #d4af37;
       outline-offset: -5px;
       padding: 10px 14px;
       height: 100%;
@@ -470,24 +470,26 @@
       font-size: 13.5pt;
       font-weight: 700;
       border-radius: 25px;
-      border: 1.5px solid #d4a017;
+      border: 1.5px solid #d4af37;
       display: inline-block;
     }
 
     .to-person-box {
-      font-size: 11.5pt;
+      font-size: 12pt;
       line-height: 1.45;
       width: 100%;
     }
 
+    /* पदाधिकाऱ्याचे नाव अतिशय ठळक व उठावदार */
     .to-person-box .person-name {
-      font-size: 13.5pt;
-      font-weight: 800;
-      color: #0f2b48;
+      font-size: 15pt;
+      font-weight: 900;
+      color: #0b1e33;
+      letter-spacing: 0.3px;
     }
 
     .subject-banner {
-      font-size: 12pt;
+      font-size: 12.5pt;
       font-weight: 800;
       background: transparent !important;
       padding: 2px 0;
@@ -496,8 +498,11 @@
       color: #0f172a;
     }
 
+    /* मुख्य मजकुराचा फॉन्ट: ठळक, स्पष्ट व साधा */
     .body-text-block {
-      font-size: 11.5pt;
+      font-family: 'Yantramanav', 'Noto Sans Devanagari', sans-serif !important;
+      font-size: 13pt;
+      font-weight: 500;
       line-height: 1.55;
       text-align: justify;
       color: #111;
@@ -505,8 +510,8 @@
     }
 
     .body-text-block p {
-      margin-bottom: 5px;
-      text-indent: 18px;
+      margin-bottom: 6px;
+      text-indent: 20px;
     }
 
     .appointment-callout {
@@ -542,10 +547,11 @@
       display: none;
     }
 
+    /* स्वाक्षरीखालील आडवी रेषा (border-top) पूर्णपणे काढून टाकली */
     .single-sign-card .slot-name {
       font-size: 12pt;
       font-weight: 700;
-      border-top: 1.5px solid #222;
+      border-top: none !important;
       padding-top: 3px;
       color: #000;
       width: 100%;
@@ -870,15 +876,16 @@
             </div>
           </div>
 
+          <!-- फॉन्ट आणि अंतर नियंत्रक -->
           <div class="control-sec">
-            <h4><i class="fa-solid fa-font"></i> फॉन्ट व अंतर</h4>
+            <h4><i class="fa-solid fa-font"></i> फॉन्ट व अंतर (तिन्ही परिच्छेद)</h4>
             <div class="control-row">
               <label>फॉन्ट आकार (Font Size - px):</label>
-              <input type="range" id="dsFontSize" min="11" max="18" value="13.5" oninput="updateLetterStyles()">
+              <input type="range" id="dsFontSize" min="12" max="22" value="16" oninput="updateLetterStyles()">
             </div>
             <div class="control-row">
               <label>ओळीतील अंतर (Line Height):</label>
-              <input type="range" id="dsLineHeight" min="1.2" max="2.0" step="0.05" value="1.45" oninput="updateLetterStyles()">
+              <input type="range" id="dsLineHeight" min="1.2" max="2.2" step="0.05" value="1.6" oninput="updateLetterStyles()">
             </div>
             <div class="control-row">
               <label>मजकुराचा रंग:</label>
@@ -894,15 +901,15 @@
             </div>
             <div class="control-row">
               <label>परिच्छेद १:</label>
-              <textarea id="dsPara1" rows="3" oninput="updateLetterTexts()">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.</textarea>
+              <textarea id="dsPara1" rows="3" oninput="updateLetterTexts()">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.[span_0](start_span)[span_0](end_span)</textarea>
             </div>
             <div class="control-row">
               <label>परिच्छेद २:</label>
-              <textarea id="dsPara2" rows="3" oninput="updateLetterTexts()">आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—</textarea>
+              <textarea id="dsPara2" rows="3" oninput="updateLetterTexts()">आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_1](start_span)[span_1](end_span)</textarea>
             </div>
             <div class="control-row">
               <label>परिच्छेद ३ (शुभेच्छा):</label>
-              <textarea id="dsPara3" rows="4" oninput="updateLetterTexts()">हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा!</textarea>
+              <textarea id="dsPara3" rows="4" oninput="updateLetterTexts()">हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_2](start_span)[span_2](end_span)!</textarea>
             </div>
           </div>
         </div>
@@ -932,13 +939,13 @@
                 </div>
               </div>
 
-              <!-- Node 2: Outward & Date -->
+              <!-- Node 2: Outward & Date (चालू डायनॅमिक दिनांक) -->
               <div class="canvas-node" id="node-outward" style="top: 165px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-outward')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
                 <div class="date-outward-row">
                   <div><strong>जावक क्र.:</strong> <span id="prevOutward">2026/02</span></div>
-                  <div><strong>दिनांक:</strong> <span id="prevDate">29/10/2026</span></div>
+                  <div><strong>दिनांक:</strong> <span id="prevDate"></span></div>
                 </div>
               </div>
 
@@ -951,7 +958,7 @@
                 </div>
               </div>
 
-              <!-- Node 4: Recipient Details -->
+              <!-- Node 4: Recipient Details (अतिशय ठळक नाव) -->
               <div class="canvas-node" id="node-recipient" style="top: 232px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-recipient')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -976,12 +983,12 @@
                 <button class="node-delete-btn" onclick="deleteNode('node-body')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
                 <div class="body-text-block" id="dispBodyContent">
-                  <p><strong>सस्नेह जय महाराष्ट्र,</strong></p>
+                  <p style="font-weight:700;">सस्नेह नमस्कार,</p>
                   <p id="dispPara1">
-                    महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.
+                    महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.[span_3](start_span)[span_3](end_span)
                   </p>
                   <p id="dispPara2">
-                    आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—
+                    आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_4](start_span)[span_4](end_span)
                   </p>
                 </div>
               </div>
@@ -991,9 +998,9 @@
                 <button class="node-delete-btn" onclick="deleteNode('node-callout')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
                 <div class="appointment-callout">
-                  <div style="font-size:11.5pt; color:#334155; font-weight:700;">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघाच्या <strong id="prevAnnounceDistrict" style="color:#000;">{जिल्हा}</strong> जिल्हा कार्यकारिणीवर</div>
+                  <div style="font-size:12pt; color:#334155; font-weight:700;">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघाच्या <strong id="prevAnnounceDistrict" style="color:#000;">{जिल्हा}</strong> जिल्हा कार्यकारिणीवर</div>
                   <div class="post-badge" id="prevPostTitle">⭐ « {बहाल पद} » ⭐</div>
-                  <div style="font-size:11.5pt; color:#851216; font-weight:700;">या अत्यंत सन्मानाच्या व जबाबदारीच्या पदावर गौरवपूर्ण नियुक्ती करण्यात येत आहे.</div>
+                  <div style="font-size:12pt; color:#851216; font-weight:700;">या अत्यंत सन्मानाच्या व जबाबदारीच्या पदावर गौरवपूर्ण नियुक्ती करण्यात येत आहे.</div>
                 </div>
               </div>
 
@@ -1003,7 +1010,7 @@
                 <div class="node-resize-handle"></div>
                 <div class="body-text-block">
                   <p id="dispPara3" style="margin: 0;">
-                    हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा!
+                    हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_5](start_span)[span_5](end_span)!
                   </p>
                 </div>
               </div>
@@ -1019,7 +1026,7 @@
                 </div>
               </div>
 
-              <!-- Node 10: Right Signature (राज्याध्यक्ष) -->
+              <!-- Node 10: Right Signature (राज्याध्यक्ष - आडवी रेषा नसलेली) -->
               <div class="canvas-node" id="node-sign-right" style="top: 760px; right: 20px; width: 240px;">
                 <button class="node-delete-btn" onclick="deleteNode('node-sign-right')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1158,7 +1165,7 @@
 
   <!-- STRICT SINGLE PAGE A4 PRINT RENDER CONTAINER (No 2nd Page) -->
   <div style="display:none;">
-    <div id="printableDirectoryStrict" style="width: 794px; min-height: 1123px; max-height: 1123px; padding: 25px 35px; background: white; color: black; font-family: 'Aparajita', 'Noto Serif Devanagari', serif; box-sizing: border-box; overflow: hidden; position: relative;">
+    <div id="printableDirectoryStrict" style="width: 794px; min-height: 1123px; max-height: 1123px; padding: 25px 35px; background: white; color: black; font-family: 'Yantramanav', 'Noto Sans Devanagari', sans-serif; box-sizing: border-box; overflow: hidden; position: relative;">
       <div style="text-align: center; border-bottom: 2px solid black; padding-bottom: 6px; margin-bottom: 12px;">
         <div style="font-size: 11pt; font-weight: bold; letter-spacing: 1px;">॥ शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...! ॥</div>
         <h2 style="font-size: 21pt; font-weight: 800; margin: 2px 0;">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</h2>
@@ -1170,7 +1177,7 @@
       
       <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 11pt; margin-bottom: 8px;">
         <div>एकूण नोंदणीकृत पदाधिकारी: <span id="strictTotalCount">0</span></div>
-        <div>दिनांक: 29/10/2026</div>
+        <div>दिनांक: <span class="currentDateText"></span></div>
       </div>
 
       <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
@@ -1270,8 +1277,18 @@
     let headerClickCount = 0;
     let headerClickTimer = null;
 
+    // चालू दिनांक मिळवणारे फंक्शन (इंग्रजी अंकात DD/MM/YYYY)
+    function getTodayFormattedDate() {
+      const today = new Date();
+      const dd = String(today.getDate()).padStart(2, '0');
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const yyyy = today.getFullYear();
+      return `${dd}/${mm}/${yyyy}`;
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       populateDistricts();
+      updateDatesGlobally();
       renderAll();
       initFreeDragAndResize();
 
@@ -1297,6 +1314,13 @@
         }
       });
     });
+
+    function updateDatesGlobally() {
+      const currentDate = getTodayFormattedDate();
+      const prevDateEl = document.getElementById('prevDate');
+      if (prevDateEl) prevDateEl.textContent = currentDate;
+      document.querySelectorAll('.currentDateText').forEach(el => el.textContent = currentDate);
+    }
 
     function populateDistricts() {
       const select = document.getElementById('districtSelect');
@@ -1540,13 +1564,17 @@
     function populateLetter(m) {
       selectedMemberForLetter = m;
       document.getElementById('prevOutward').textContent = `2026/02`;
-      document.getElementById('prevDate').textContent = "29/10/2026";
+      
+      // चालू इंग्रजी दिनांक (उदा. 30/10/2026)
+      document.getElementById('prevDate').textContent = getTodayFormattedDate();
+      
       document.getElementById('prevFullName').textContent = `मा. ${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}`;
       document.getElementById('prevCurrentPost').textContent = `(${m.currentCadre}, ${m.workingPlace}, जिल्हा - ${m.district})`;
       document.getElementById('prevAnnounceDistrict').textContent = m.district;
       document.getElementById('prevPostTitle').textContent = `⭐ « ${m.appointedPost} » ⭐`;
     }
 
+    // मोबाईलवर अचूक फिट होणारे स्केल प्रिव्ह्यू इंजिन
     function viewLetterCleanPDF(id) {
       const m = window.membersData.find(item => item.id === id);
       if(!m) return;
@@ -1598,6 +1626,7 @@
       }
     }
 
+    // तिन्ही परिच्छेदांना एकाच वेळी अचूक फॉन्ट साईझ आणि लाईन स्पेसिंग लागू करणे
     function updateLetterStyles() {
       const fontSize = document.getElementById('dsFontSize').value + 'px';
       const lineHeight = document.getElementById('dsLineHeight').value;
@@ -1608,6 +1637,14 @@
         b.style.lineHeight = lineHeight;
         b.style.color = textColor;
       });
+
+      const p1 = document.getElementById('dispPara1');
+      const p2 = document.getElementById('dispPara2');
+      const p3 = document.getElementById('dispPara3');
+
+      if (p1) { p1.style.fontSize = fontSize; p1.style.lineHeight = lineHeight; }
+      if (p2) { p2.style.fontSize = fontSize; p2.style.lineHeight = lineHeight; }
+      if (p3) { p3.style.fontSize = fontSize; p3.style.lineHeight = lineHeight; }
     }
 
     function updateLetterTexts() {
@@ -1636,7 +1673,6 @@
       }
     }
 
-    // नवीन इमेज इन्सर्ट करणे व स्वतंत्र नियंत्रण देणे
     function insertNewImage(e) {
       const file = e.target.files[0];
       if (file) {
@@ -1806,7 +1842,7 @@
           });
         }
         localStorage.setItem('mahasangh_master_design', JSON.stringify(designPayload));
-        alert("अभिनंदन! संपूर्ण मास्टर डिझाईन आणि इन्सर्ट केलेल्या सर्व प्रतिमा Firebase वर सेव्ह झाल्या आहेत. आता मोबाईलवरही हे हुबेहूब दिसेल.");
+        alert("अभिनंदन! संपूर्ण मास्टर डिझाईन आणि फॉन्ट सेटिंग्ज Firebase वर सेव्ह झाल्या आहेत.");
       } catch (err) {
         console.error("Design save error:", err);
         alert("डिझाईन सेव्ह करताना त्रुटी आली: " + err.message);
@@ -1833,7 +1869,6 @@
       updateSignTexts();
       updateLetterStyles();
 
-      // जुनी इन्सर्ट केलेली चित्रे काढून पुन्हा रिस्टोअर करणे
       document.querySelectorAll('.custom-added-image-node').forEach(el => el.remove());
 
       if (design.customImages && Array.isArray(design.customImages)) {
@@ -1880,7 +1915,6 @@
       location.reload();
     }
 
-    // Helper: Generate exact 1-page PDF Blob
     async function generatePdfBlob() {
       const original = document.getElementById('printableCertificate');
       const clone = original.cloneNode(true);
@@ -2028,12 +2062,12 @@
       }
     }
 
-    // WHATSAPP INSTANT DIRECT (कोणतीही अडचण न येता थेट तात्काळ चॅट उघडणे)
+    // WHATSAPP INSTANT DIRECT (सस्नेह नमस्कार सह थेट चॅट)
     function sendWhatsAppInstantDirect(id) {
       const m = window.membersData.find(item => item.id === id);
       if(!m) return;
 
-      const message = `सस्नेह जय महाराष्ट्र 🙏
+      const message = `सस्नेह नमस्कार 🙏
 
 *महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ*
 (Reg. No. MH/0000555/2026)
