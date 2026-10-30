@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ - अधिकृत पोर्टल</title>
   
-  <!-- Clear, Crisp and Bold Devanagari Fonts: Yantramanav, Noto Sans Devanagari -->
+  <!-- Clear, Crisp and Bold Devanagari Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Rozha+One&family=Yantramanav:wght@400;500;700;900&family=Yatra+One&display=swap" rel="stylesheet">
@@ -82,7 +82,7 @@
       flex: 1;
     }
 
-    /* १. सर्वात वर असणारे ठळक व आकर्षक जिल्हा निवड पॅनल */
+    /* १. सर्वात वर असणारे ठळक जिल्हा निवड पॅनल */
     .action-panel-top {
       background: var(--card);
       padding: 12px 16px;
@@ -145,7 +145,7 @@
       .select-district-field-large { width: 280px; }
     }
 
-    /* २. जिल्हा निवडीच्या खाली असणाऱ्या टॅब्स */
+    /* २. जिल्हा निवडीच्या खाली असणाऱ्या तीन टॅब्स */
     .tabs-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -248,13 +248,13 @@
     .modal-wrap {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.75);
       display: none;
       justify-content: center;
       align-items: center;
-      z-index: 9999;
+      z-index: 99999;
       padding: 8px;
-      backdrop-filter: blur(3px);
+      backdrop-filter: blur(4px);
     }
 
     .modal-content {
@@ -289,8 +289,9 @@
       background: transparent;
       border: none;
       color: white;
-      font-size: 24px;
+      font-size: 26px;
       cursor: pointer;
+      line-height: 1;
     }
 
     .modal-body { padding: 18px 20px; }
@@ -420,26 +421,18 @@
       display: block;
       margin: 1px 0;
     }
-
-    .custom-inserted-img {
-      width: 100%;
-      height: 100%;
-      object-fit: fill;
-      pointer-events: none;
-      display: block;
-    }
   </style>
 </head>
 <body>
 
-  <!-- GitHub वरील heding.jpg इमेज वापरणारा हेडर -->
+  <!-- GitHub वरील heding.jpg इमेज वापरणारा हेडर (३ वेळा क्लिक केल्यास सिक्रेट ॲडमिन पॅनल उघडेल)[span_0](start_span)[span_0](end_span) -->
   <header id="mainHeaderTitle" title="३ वेळा क्लिक करा (सिक्रेट ॲडमिन पॅनल)">
     <img src="heding.jpg" alt="महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ" class="main-header-banner-img" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/padmakarshinde043-byte/RK2026/main/heding.jpg';">
   </header>
 
   <div class="container">
     
-    <!-- १. सर्वात वर ठळक जिल्हा निवड पॅनल -->
+    <!-- १. सर्वात वर ठळक जिल्हा निवड पॅनल[span_1](start_span)[span_1](end_span) -->
     <div class="action-panel-top">
       <div style="display:flex; align-items:center; gap:10px; width:100%; flex-wrap:wrap;">
         <label for="districtSelect" class="district-label-bold">
@@ -457,7 +450,7 @@
       </div>
     </div>
 
-    <!-- २. जिल्हा निवडीच्या खाली असणाऱ्या तीन टॅब्स -->
+    <!-- २. जिल्हा निवडीच्या खाली असणाऱ्या तीन टॅब्स[span_2](start_span)[span_2](end_span) -->
     <div class="tabs-wrapper">
       <button class="nav-tab active" onclick="switchTab('tab-directory')">
         <i class="fa-solid fa-users"></i> पदाधिकारी यादी
@@ -574,9 +567,6 @@
           <button class="btn btn-outline" onclick="resetDesignerDefaults()">
             <i class="fa-solid fa-arrow-rotate-left"></i> रिसेट
           </button>
-          <button class="btn btn-gold" onclick="downloadCurrentLetterPDF()">
-            <i class="fa-solid fa-file-pdf"></i> नमुना पत्र डाऊनलोड
-          </button>
         </div>
       </div>
 
@@ -593,107 +583,11 @@
 
   </div>
 
-  <!-- कायमस्वरूपी ॲक्टिव्ह असणारा मास्टर A4 टेम्पलेट (हा कधीही लपणार नाही, त्यामुळे पूर्वदृश्य नेहमी अचूक दिसेल) -->
-  <div style="position:fixed; left:-9999px; top:-9999px; z-index:-1;">
-    <div id="printableCertificate" class="a4-container">
-      <div class="a4-inner" id="a4CanvasArea">
-        
-        <!-- Header Banner -->
-        <div class="canvas-node" id="node-header" style="top: 10px; left: 14px; width: calc(100% - 28px);">
-          <div style="border-radius: 8px; padding: 6px 12px; border: 1.5px solid #d4af37; text-align: center; background: #fffcf5;">
-            <div style="position: absolute; top: 2px; right: 8px; font-size: 8.5pt; font-weight: 800;">Reg. No. MH/0000555/2026</div>
-            <div style="font-size: 19pt; font-weight: 800; color:#1e3a8a; line-height:1.1;">महाराष्ट्र राज्य</div>
-            <div style="font-size: 21pt; font-weight: 800; color:#6b0c10; line-height:1.15;">केंद्रप्रमुख व अधिकारी महासंघ</div>
-            <div style="display:inline-block; background: #fffbeb; border: 1px solid #d4af37; border-radius: 20px; padding: 1px 16px; margin: 2px 0;">
-              <span style="font-size: 9.5pt; font-weight: 700; color:#4a0404;">शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...!</span>
-            </div>
-            <div style="font-size: 11.5pt; font-weight: 800; color:#0f2b48;">श्री. राजेंद्र शिवाजी खैरनार</div>
-            <div style="font-size: 9.5pt; font-weight: 700;">संस्थापक राज्याध्यक्ष</div>
-            <div style="font-size: 8pt; color:#333;">कार्यालय : 131, पाटणे, मालेगाव ता. मालेगाव जि. नाशिक | मो. 9860704098</div>
-          </div>
-        </div>
-
-        <!-- Outward & Date -->
-        <div class="canvas-node" id="node-outward" style="top: 165px; left: 14px; width: calc(100% - 28px);">
-          <div style="display: flex; justify-content: space-between; font-size: 11pt; font-weight: 700; border-bottom: 1.5px dashed #851216;">
-            <div><strong>जावक क्र.:</strong> <span id="prevOutward">2026/02</span></div>
-            <div><strong>दिनांक:</strong> <span id="prevDate"></span></div>
-          </div>
-        </div>
-
-        <!-- Title Badge -->
-        <div class="canvas-node" id="node-title" style="top: 195px; left: 14px; width: calc(100% - 28px); text-align:center;">
-          <span style="background: linear-gradient(135deg, #851216, #991b1b); color: #ffffff; padding: 3px 30px; font-size: 13.5pt; font-weight: 700; border-radius: 25px; border: 1.5px solid #d4af37;">
-            ॥ अधिकृत नियुक्ती पत्र ॥
-          </span>
-        </div>
-
-        <!-- Recipient Details -->
-        <div class="canvas-node" id="node-recipient" style="top: 232px; left: 14px; width: calc(100% - 28px); font-size: 12pt;">
-          प्रति,<br>
-          <span style="font-size: 15pt; font-weight: 900; color: #0b1e33;" id="prevFullName">मा. {पदाधिकाऱ्याचे नाव}</span><br>
-          <span id="prevCurrentPost">({सध्याचे पद व कार्यक्षेत्र}, जिल्हा - {जिल्हा})</span>
-        </div>
-
-        <!-- Subject Line -->
-        <div class="canvas-node" id="node-subject" style="top: 295px; left: 14px; width: calc(100% - 28px); font-size: 12.5pt; font-weight: 800;" id="dispSubject">
-          विषय: महासंघाच्या जिल्हा कार्यकारिणीवर नियुक्तीबाबत...
-        </div>
-
-        <!-- Body Content -->
-        <div class="canvas-node" id="node-body" style="top: 330px; left: 14px; width: calc(100% - 28px);">
-          <div class="body-text-block">
-            <p style="font-weight:700;">सस्नेह नमस्कार,</p>
-            <p id="dispPara1">
-              महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे[span_0](start_span)[span_0](end_span).
-            </p>
-            <p id="dispPara2">
-              आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_1](start_span)[span_1](end_span)
-            </p>
-          </div>
-        </div>
-
-        <!-- Callout Banner -->
-        <div class="canvas-node" id="node-callout" style="top: 510px; left: 14px; width: calc(100% - 28px);">
-          <div class="appointment-callout">
-            <div style="font-size:12pt; color:#334155; font-weight:700;">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघाच्या <strong id="prevAnnounceDistrict" style="color:#000;">{जिल्हा}</strong> जिल्हा कार्यकारिणीवर</div>
-            <div class="post-badge" id="prevPostTitle">⭐ « {बहाल पद} » ⭐</div>
-            <div style="font-size:12pt; color:#851216; font-weight:700;">या अत्यंत सन्मानाच्या व जबाबदारीच्या पदावर गौरवपूर्ण नियुक्ती करण्यात येत आहे.</div>
-          </div>
-        </div>
-
-        <!-- Para 3 -->
-        <div class="canvas-node" id="node-body-para3" style="top: 615px; left: 14px; width: calc(100% - 28px);">
-          <div class="body-text-block">
-            <p id="dispPara3" style="margin: 0;">
-              हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_2](start_span)[span_2](end_span)!
-            </p>
-          </div>
-        </div>
-
-        <!-- Sign Left -->
-        <div class="canvas-node" id="node-sign-left" style="top: 760px; left: 20px; width: 240px; text-align:center;">
-          <div style="height:32px;"></div>
-          <div style="font-size:12pt; font-weight:700;" id="dispSign1Name">( श्री. विजय सावंत )</div>
-          <div style="font-size:10pt; font-weight:600; color:#334155;">राज्य सरचिटणीस<br>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</div>
-        </div>
-
-        <!-- Sign Right -->
-        <div class="canvas-node" id="node-sign-right" style="top: 760px; right: 20px; width: 240px; text-align:center;">
-          <img id="presidentSignImg" style="max-height:44px; display:none;" alt="स्वाक्षरी">
-          <div style="font-size:12pt; font-weight:700;" id="dispSign2Name">( श्री. राजेंद्र खैरनार )</div>
-          <div style="font-size:10pt; font-weight:600; color:#334155;">संस्थापक राज्याध्यक्ष<br>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
   <!-- MODAL: Clean PDF Preview (पूर्वदृश्य पॉपअप) -->
   <div id="cleanViewModal" class="modal-wrap">
     <div class="modal-content preview-mode">
       <div class="modal-header-bar">
-        <h3 id="cleanViewTitle" style="font-size:14.5px; font-weight:700;">अधिकृत नियुक्ती पत्र (A4 पूर्वदृश्य)</h3>
+        <h3 id="cleanViewTitle" style="font-size:15px; font-weight:800;">अधिकृत नियुक्ती पत्र (A4 पूर्वदृश्य)</h3>
         <button class="close-x" onclick="closeModal('cleanViewModal')">&times;</button>
       </div>
       <div id="mobilePreviewWrapper">
@@ -883,7 +777,7 @@
     // 3. LIVE MASTER DESIGN SYNC
     onValue(ref(db, 'appointment_master_design'), (snapshot) => {
       const design = snapshot.val();
-      if (design && design.layout) window.applyDesignPayload(design);
+      if (design) window.masterDesignPayload = design;
     });
   </script>
 
@@ -898,6 +792,7 @@
 
     window.membersData = [];
     window.districtPasswords = {};
+    window.masterDesignPayload = null;
 
     let currentDistrict = "बीड"; // डीफॉल्ट
     let isManageUnlocked = false;
@@ -1340,19 +1235,119 @@
     }
 
     // ========================================================
-    // नियुक्ती पत्र पॉप्युलेट व १००% अचूक पूर्वदृश्य (Preview Fix)
+    // नियुक्ती पत्र थेट इन-मेमरी बिल्डर (१००% अचूक पूर्वदृश्य व डाऊनलोड)
     // ========================================================
-    function populateLetter(m) {
-      selectedMemberForLetter = m;
-      document.getElementById('prevOutward').textContent = `2026/02`;
-      document.getElementById('prevDate').textContent = getTodayFormattedDate();
-      document.getElementById('prevFullName').textContent = `मा. ${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}`;
-      document.getElementById('prevCurrentPost').textContent = `(${m.currentCadre}, ${m.workingPlace}, जिल्हा - ${m.district})`;
-      document.getElementById('prevAnnounceDistrict').textContent = m.district;
-      
+    function buildCertificateHTML(m) {
       const fullDisplayPost = getDisplayPost(m);
-      document.getElementById('prevPostTitle').textContent = `⭐ « ${fullDisplayPost} » ⭐`;
-      document.getElementById('dispSubject').textContent = `विषय: महासंघाच्या ${m.district} जिल्हा कार्यकारिणीवर '${fullDisplayPost}' नियुक्तीबाबत...`;
+      const todayDate = getTodayFormattedDate();
+
+      let customImagesHTML = '';
+      if (window.masterDesignPayload && window.masterDesignPayload.customImages) {
+        window.masterDesignPayload.customImages.forEach(img => {
+          customImagesHTML += `
+            <div class="canvas-node" style="top:${img.top}; left:${img.left}; width:${img.width}; height:${img.height}; z-index:5;">
+              <img src="${img.src}" style="width:100%; height:100%; object-fit:fill;" alt="Logo">
+            </div>
+          `;
+        });
+      }
+
+      return `
+        <div id="activeGeneratedCertificate" class="a4-container">
+          <div class="a4-inner" style="position:relative; width:100%; height:100%;">
+            
+            ${customImagesHTML}
+
+            <!-- Header Banner -->
+            <div class="canvas-node" style="top: 10px; left: 14px; width: calc(100% - 28px); z-index:10;">
+              <div style="border-radius: 8px; padding: 6px 12px; border: 1.5px solid #d4af37; text-align: center; background: #fffcf5;">
+                <div style="position: absolute; top: 2px; right: 8px; font-size: 8.5pt; font-weight: 800;">Reg. No. MH/0000555/2026</div>
+                <div style="font-size: 19pt; font-weight: 800; color:#1e3a8a; line-height:1.1;">महाराष्ट्र राज्य</div>
+                <div style="font-size: 21pt; font-weight: 800; color:#6b0c10; line-height:1.15;">केंद्रप्रमुख व अधिकारी महासंघ</div>
+                <div style="display:inline-block; background: #fffbeb; border: 1px solid #d4af37; border-radius: 20px; padding: 1px 16px; margin: 2px 0;">
+                  <span style="font-size: 9.5pt; font-weight: 700; color:#4a0404;">शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...!</span>
+                </div>
+                <div style="font-size: 11.5pt; font-weight: 800; color:#0f2b48;">श्री. राजेंद्र शिवाजी खैरनार</div>
+                <div style="font-size: 9.5pt; font-weight: 700;">संस्थापक राज्याध्यक्ष</div>
+                <div style="font-size: 8pt; color:#333;">कार्यालय : 131, पाटणे, मालेगाव ता. मालेगाव जि. नाशिक | मो. 9860704098</div>
+              </div>
+            </div>
+
+            <!-- Outward & Date -->
+            <div class="canvas-node" style="top: 165px; left: 14px; width: calc(100% - 28px);">
+              <div style="display: flex; justify-content: space-between; font-size: 11pt; font-weight: 700; border-bottom: 1.5px dashed #851216;">
+                <div><strong>जावक क्र.:</strong> 2026/02</div>
+                <div><strong>दिनांक:</strong> ${todayDate}</div>
+              </div>
+            </div>
+
+            <!-- Title Badge -->
+            <div class="canvas-node" style="top: 195px; left: 14px; width: calc(100% - 28px); text-align:center;">
+              <span style="background: linear-gradient(135deg, #851216, #991b1b); color: #ffffff; padding: 3px 30px; font-size: 13.5pt; font-weight: 700; border-radius: 25px; border: 1.5px solid #d4af37; display:inline-block;">
+                ॥ अधिकृत नियुक्ती पत्र ॥
+              </span>
+            </div>
+
+            <!-- Recipient Details -->
+            <div class="canvas-node" style="top: 232px; left: 14px; width: calc(100% - 28px); font-size: 12pt;">
+              प्रति,<br>
+              <span style="font-size: 15pt; font-weight: 900; color: #0b1e33;">मा. ${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</span><br>
+              <span>(${m.currentCadre}, ${m.workingPlace}, जिल्हा - ${m.district})</span>
+            </div>
+
+            <!-- Subject Line -->
+            <div class="canvas-node" style="top: 295px; left: 14px; width: calc(100% - 28px); font-size: 12.5pt; font-weight: 800;">
+              विषय: महासंघाच्या ${m.district} जिल्हा कार्यकारिणीवर '${fullDisplayPost}' नियुक्तीबाबत...
+            </div>
+
+            <!-- Body Content -->
+            <div class="canvas-node" style="top: 330px; left: 14px; width: calc(100% - 28px);">
+              <div class="body-text-block">
+                <p style="font-weight:700;">सस्नेह नमस्कार,</p>
+                <p>
+                  महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे[span_3](start_span)[span_3](end_span).
+                </p>
+                <p>
+                  आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_4](start_span)[span_4](end_span)
+                </p>
+              </div>
+            </div>
+
+            <!-- Designation Announcement Banner -->
+            <div class="canvas-node" style="top: 510px; left: 14px; width: calc(100% - 28px);">
+              <div class="appointment-callout">
+                <div style="font-size:12pt; color:#334155; font-weight:700;">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघाच्या <strong style="color:#000;">${m.district}</strong> जिल्हा कार्यकारिणीवर</div>
+                <div class="post-badge">⭐ « ${fullDisplayPost} » ⭐</div>
+                <div style="font-size:12pt; color:#851216; font-weight:700;">या अत्यंत सन्मानाच्या व जबाबदारीच्या पदावर गौरवपूर्ण नियुक्ती करण्यात येत आहे.</div>
+              </div>
+            </div>
+
+            <!-- Para 3 -->
+            <div class="canvas-node" style="top: 615px; left: 14px; width: calc(100% - 28px);">
+              <div class="body-text-block">
+                <p style="margin: 0;">
+                  हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_5](start_span)[span_5](end_span)!
+                </p>
+              </div>
+            </div>
+
+            <!-- Sign Left -->
+            <div class="canvas-node" style="top: 760px; left: 20px; width: 240px; text-align:center;">
+              <div style="height:32px;"></div>
+              <div style="font-size:12pt; font-weight:700;">( श्री. विजय सावंत )</div>
+              <div style="font-size:10pt; font-weight:600; color:#334155;">राज्य सरचिटणीस<br>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</div>
+            </div>
+
+            <!-- Sign Right -->
+            <div class="canvas-node" style="top: 760px; right: 20px; width: 240px; text-align:center;">
+              <div style="height:32px;"></div>
+              <div style="font-size:12pt; font-weight:700;">( श्री. राजेंद्र खैरनार )</div>
+              <div style="font-size:10pt; font-weight:600; color:#334155;">संस्थापक राज्याध्यक्ष<br>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</div>
+            </div>
+
+          </div>
+        </div>
+      `;
     }
 
     function viewLetterCleanPDF(id) {
@@ -1361,51 +1356,45 @@
         alert("पदाधिकाऱ्याची माहिती सापडली नाही!");
         return;
       }
-      populateLetter(m);
+      selectedMemberForLetter = m;
 
-      // मास्टर टेम्पलेट क्लोन करणे
-      const original = document.getElementById('printableCertificate');
-      const clone = original.cloneNode(true);
-      clone.id = "cleanClonePdf";
-      
+      // थेट HTML जनरेट करून कंटेनरमध्ये भरणे
       const container = document.getElementById('cleanPdfContainer');
-      container.innerHTML = '';
-      container.appendChild(clone);
+      container.innerHTML = buildCertificateHTML(m);
 
-      // मोबाईल स्क्रीननुसार अचूक फिट-टू-स्क्रीन स्केलिंग
+      // मोबाईल स्क्रीन स्केलिंग
       const screenWidth = window.innerWidth;
       const targetWidth = 794;
       let scaleRatio = screenWidth < 840 ? (screenWidth - 25) / targetWidth : 1;
       
       const scaledBox = document.getElementById('scaledLetterContainer');
       scaledBox.style.transform = `scale(${scaleRatio})`;
-      scaledBox.style.height = `${1123 * scaleRatio + 20}px`;
+      scaledBox.style.height = `${1123 * scaleRatio + 25}px`;
 
       document.getElementById('cleanViewTitle').textContent = `नियुक्ती पत्र - ${m.salutation} ${m.firstName} ${m.lastName}`;
       document.getElementById('cleanViewModal').style.display = 'flex';
     }
 
     async function downloadCurrentLetterPDF() {
-      if(!selectedMemberForLetter) {
+      const element = document.getElementById('activeGeneratedCertificate');
+      if(!element || !selectedMemberForLetter) {
         alert("कृपया आधी 'प्रमाणपत्र पहा' वर क्लिक करा.");
         return;
       }
 
-      const original = document.getElementById('printableCertificate');
-      const clone = original.cloneNode(true);
-
+      // तात्पुरता स्क्रीन रेंडर कंटेनर
       const wrapper = document.createElement('div');
       wrapper.style.position = 'fixed';
       wrapper.style.top = '0';
       wrapper.style.left = '0';
       wrapper.style.width = '794px';
       wrapper.style.height = '1123px';
-      wrapper.style.zIndex = '999999';
+      wrapper.style.zIndex = '9999999';
       wrapper.style.background = '#ffffff';
 
-      clone.style.width = '794px';
-      clone.style.height = '1123px';
-      clone.style.maxHeight = '1123px';
+      const clone = element.cloneNode(true);
+      clone.style.transform = 'none';
+      clone.style.margin = '0';
       clone.style.boxShadow = 'none';
 
       wrapper.appendChild(clone);
@@ -1467,7 +1456,7 @@
       wrapper.style.left = '0';
       wrapper.style.width = '794px';
       wrapper.style.height = '1123px';
-      wrapper.style.zIndex = '999999';
+      wrapper.style.zIndex = '9999999';
       wrapper.style.background = '#ffffff';
 
       const clone = renderElement.cloneNode(true);
@@ -1548,38 +1537,6 @@
       } catch (e) {
         alert("त्रुटी: " + e.message);
       }
-    }
-
-    function updateLetterStyles() {
-      const fontSize = document.getElementById('dsFontSize').value + 'px';
-      const lineHeight = document.getElementById('dsLineHeight').value;
-      document.querySelectorAll('.body-text-block').forEach(b => {
-        b.style.fontSize = fontSize;
-        b.style.lineHeight = lineHeight;
-      });
-    }
-
-    async function saveDesignToCloud() {
-      const payload = {
-        fontSize: document.getElementById('dsFontSize').value,
-        lineHeight: document.getElementById('dsLineHeight').value,
-        updatedAt: new Date().toISOString()
-      };
-      if (window.rtdb && window.dbSet && window.dbRef) {
-        await window.dbSet(window.dbRef(window.rtdb, 'appointment_master_design'), payload);
-        alert("मास्टर सेटिंग्ज सेव्ह झाल्या!");
-      }
-    }
-
-    window.applyDesignPayload = function(design) {
-      if (!design) return;
-      if (design.fontSize) document.getElementById('dsFontSize').value = design.fontSize;
-      if (design.lineHeight) document.getElementById('dsLineHeight').value = design.lineHeight;
-      updateLetterStyles();
-    };
-
-    function resetDesignerDefaults() {
-      location.reload();
     }
   </script>
 </body>
