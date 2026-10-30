@@ -27,7 +27,7 @@
       --card: #ffffff;
       --border: #e2e8f0;
       --accent: #b45309;
-      --soft-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+      --soft-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
       --capsule-shadow: 0 3px 10px rgba(184, 134, 11, 0.2);
     }
 
@@ -76,18 +76,81 @@
 
     .container {
       max-width: 1200px;
-      margin: 10px auto;
+      margin: 12px auto;
       padding: 0 10px;
       width: 100%;
       flex: 1;
     }
 
-    /* टॅब्स रॅपर */
+    /* १. सर्वात वर असणारे ठळक व आकर्षक जिल्हा निवड पॅनल */
+    .action-panel-top {
+      background: var(--card);
+      padding: 12px 16px;
+      border-radius: 16px;
+      box-shadow: var(--soft-shadow);
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border: 1.8px solid var(--gold-border);
+      width: 100%;
+    }
+
+    @media (min-width: 600px) {
+      .action-panel-top {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .district-label-bold {
+      font-weight: 900;
+      font-size: 16px;
+      color: var(--navy);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .select-district-field-large {
+      padding: 9px 16px;
+      border-radius: 50px;
+      border: 2px solid #cbd5e1;
+      font-size: 17.5px;
+      font-weight: 800;
+      color: #0f2b48;
+      outline: none;
+      width: 100%;
+      cursor: pointer;
+      background-color: #f8fafc;
+      transition: all 0.2s;
+    }
+
+    .select-district-field-large:focus {
+      border-color: var(--accent);
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.15);
+    }
+
+    .select-district-field-large:disabled {
+      background-color: #f1f5f9;
+      color: #0f2b48;
+      cursor: not-allowed;
+      border-color: #d4af37;
+    }
+
+    @media (min-width: 600px) {
+      .select-district-field-large { width: 280px; }
+    }
+
+    /* २. जिल्हा निवडीच्या खाली असणाऱ्या टॅब्स */
     .tabs-wrapper {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       width: 100%;
     }
 
@@ -97,7 +160,7 @@
       outline: none;
       background: #ffffff;
       border: 1.5px solid var(--gold-border);
-      font-size: 13.5px;
+      font-size: 14px;
       font-weight: 700;
       color: #475569;
       border-radius: 30px;
@@ -106,7 +169,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
+      gap: 6px;
       text-align: center;
       white-space: nowrap;
       box-shadow: 0 2px 6px rgba(0,0,0,0.04);
@@ -133,53 +196,6 @@
       color: white;
       padding: 1px 5px;
       border-radius: 50px;
-    }
-
-    /* जिल्हा निवड पॅनल */
-    .action-panel {
-      background: var(--card);
-      padding: 10px 14px;
-      border-radius: 14px;
-      box-shadow: var(--soft-shadow);
-      margin-bottom: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      border: 1px solid var(--border);
-      width: 100%;
-    }
-
-    @media (min-width: 600px) {
-      .action-panel {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-    }
-
-    .select-district-field {
-      padding: 7px 14px;
-      border-radius: 50px;
-      border: 1.5px solid #cbd5e1;
-      font-size: 13.5px;
-      font-weight: 700;
-      outline: none;
-      width: 100%;
-      cursor: pointer;
-      background-color: #f8fafc;
-      transition: all 0.2s;
-    }
-
-    .select-district-field:disabled {
-      background-color: #f1f5f9;
-      color: #0f2b48;
-      cursor: not-allowed;
-      border-color: #d4af37;
-      font-weight: 800;
-    }
-
-    @media (min-width: 600px) {
-      .select-district-field { width: 240px; }
     }
 
     .btn {
@@ -294,8 +310,7 @@
     }
     
     .form-item input, 
-    .form-item select,
-    .modal-body .select-district-field { 
+    .form-item select { 
       padding: 11px 14px; 
       border: 1.8px solid #cbd5e1; 
       border-radius: 10px; 
@@ -308,8 +323,7 @@
     }
 
     .form-item input:focus, 
-    .form-item select:focus,
-    .modal-body .select-district-field:focus {
+    .form-item select:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.15);
     }
@@ -416,14 +430,32 @@
 </head>
 <body>
 
-  <!-- GitHub वरील heding.jpg इमेज वापरणारा हेडर (३ वेळा क्लिक केल्यास सिक्रेट ॲडमिन पॅनल उघडेल)[span_0](start_span)[span_0](end_span) -->
+  <!-- GitHub वरील heding.jpg इमेज वापरणारा हेडर (३ वेळा क्लिक केल्यास सिक्रेट ॲडमिन पॅनल उघडेल)[span_6](start_span)[span_6](end_span) -->
   <header id="mainHeaderTitle" title="३ वेळा क्लिक करा (सिक्रेट ॲडमिन पॅनल)">
     <img src="heding.jpg" alt="महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ" class="main-header-banner-img" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/padmakarshinde043-byte/RK2026/main/heding.jpg';">
   </header>
 
   <div class="container">
     
-    <!-- २ ओळींमध्ये सुबक व स्वतंत्र बॉर्डर असणाऱ्या टॅब्स -->
+    <!-- १. सर्वात वर ठळक व मोठ्या अक्षरांमध्ये असणारे जिल्हा निवड पॅनल[span_7](start_span)[span_7](end_span) -->
+    <div class="action-panel-top">
+      <div style="display:flex; align-items:center; gap:10px; width:100%; flex-wrap:wrap;">
+        <label for="districtSelect" class="district-label-bold">
+          <i class="fa-solid fa-location-dot" style="color:var(--accent); font-size:18px;"></i> जिल्हा निवडा:
+        </label>
+        <select id="districtSelect" class="select-district-field-large" onchange="onDistrictChange()">
+        </select>
+        
+        <button id="resetDistrictPassBtn" class="btn btn-outline" style="display:none; padding:6px 14px; font-size:12px; white-space:nowrap;" onclick="adminResetCurrentDistrictPassword()" title="या जिल्ह्याचा पासवर्ड AD2026 वर रिसेट करा">
+          <i class="fa-solid fa-key" style="color:#ef4444;"></i> पासवर्ड रिसेट
+        </button>
+      </div>
+      <div style="font-weight:800; color:#334155; font-size:15px; white-space:nowrap;">
+        नोंदणीकृत पदाधिकारी: <span id="memberCount" style="color:var(--accent); font-size:19px; font-weight:900;">0</span>
+      </div>
+    </div>
+
+    <!-- २. जिल्हा निवडीच्या खाली असणाऱ्या तीन टॅब्स[span_8](start_span)[span_8](end_span) -->
     <div class="tabs-wrapper">
       <button class="nav-tab active" onclick="switchTab('tab-directory')">
         <i class="fa-solid fa-users"></i> पदाधिकारी यादी
@@ -440,28 +472,10 @@
       </button>
     </div>
 
-    <!-- जिल्हा निवड पॅनल -->
-    <div class="action-panel">
-      <div style="display:flex; align-items:center; gap:8px; width:100%; flex-wrap:wrap;">
-        <label for="districtSelect" style="font-weight:800; font-size:14px; color:var(--navy); white-space:nowrap;">
-          <i class="fa-solid fa-location-dot" style="color:var(--accent);"></i> जिल्हा निवडा:
-        </label>
-        <select id="districtSelect" class="select-district-field" onchange="onDistrictChange()">
-        </select>
-        
-        <button id="resetDistrictPassBtn" class="btn btn-outline" style="display:none; padding:5px 12px; font-size:12px; white-space:nowrap;" onclick="adminResetCurrentDistrictPassword()" title="या जिल्ह्याचा पासवर्ड AD2026 वर रिसेट करा">
-          <i class="fa-solid fa-key" style="color:#ef4444;"></i> पासवर्ड रिसेट
-        </button>
-      </div>
-      <div style="font-weight:700; color:#475569; font-size:13.5px;">
-        नोंदणीकृत पदाधिकारी: <span id="memberCount" style="color:var(--accent); font-size:16px;">0</span>
-      </div>
-    </div>
-
     <!-- TAB 1: Public Directory (सर्वांसाठी खुली - नो पासवर्ड) -->
     <div id="tab-directory" class="tab-view">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:8px; flex-wrap:wrap;">
-        <h3 id="directoryHeading" style="font-size:15.5px; font-weight:800; color:var(--navy);"></h3>
+        <h3 id="directoryHeading" style="font-size:16px; font-weight:800; color:var(--navy);"></h3>
         <button class="btn btn-outline" id="dirDownloadBtn" onclick="downloadDirectorySinglePagePDF()">
           <i class="fa-solid fa-print"></i> यादी डाऊनलोड करा
         </button>
@@ -568,7 +582,7 @@
         <div class="designer-controls" style="background:#fff; padding:12px; border-radius:12px; border:1px solid #cbd5e1;">
           <h4 style="color:var(--navy); margin-bottom:8px;"><i class="fa-solid fa-key"></i> जिल्हा पासवर्ड रिसेट (Master)</h4>
           <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:14px;">
-            <select id="superAdminDistrictSelect" class="select-district-field" style="width:100%; padding:7px;"></select>
+            <select id="superAdminDistrictSelect" class="select-district-field-large" style="width:100%; padding:7px; font-size:15px;"></select>
             <button class="btn btn-outline" style="color:#ef4444; border-color:#ef4444;" onclick="superAdminResetPassword()">
               पासवर्ड पुन्हा AD2026 करा
             </button>
@@ -627,10 +641,10 @@
                 <div class="body-text-block">
                   <p style="font-weight:700;">सस्नेह नमस्कार,</p>
                   <p id="dispPara1">
-                    महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.[span_1](start_span)[span_1](end_span)
+                    महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे[span_9](start_span)[span_9](end_span).
                   </p>
                   <p id="dispPara2">
-                    आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_2](start_span)[span_2](end_span)
+                    आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_10](start_span)[span_10](end_span)
                   </p>
                 </div>
               </div>
@@ -646,7 +660,7 @@
               <div class="canvas-node" id="node-body-para3" style="top: 615px; left: 14px; width: calc(100% - 28px);">
                 <div class="body-text-block">
                   <p id="dispPara3" style="margin: 0;">
-                    हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_3](start_span)[span_3](end_span)!
+                    हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_11](start_span)[span_11](end_span)!
                   </p>
                 </div>
               </div>
@@ -913,7 +927,7 @@
             isSuperAdmin = true;
             isManageUnlocked = true;
             isLettersUnlocked = true;
-            lockedDistrictName = null; // सुपर ॲडमिन सर्व जिल्ह्यांवर काम करू शकतात
+            lockedDistrictName = null;
 
             document.getElementById('manageLockBadge').style.display = 'none';
             document.getElementById('letterLockBadge').style.display = 'none';
@@ -953,7 +967,7 @@
     }
 
     function onDistrictChange() {
-      // सुरक्षा भिंत: संपादन टॅबमध्ये असताना जर सामान्य जिल्हा लॉगिन असेल तर जिल्हा बदलताच येणार नाही
+      // सुरक्षा: संपादन टॅबमध्ये असताना जर सामान्य जिल्हा लॉगिन असेल तर जिल्हा बदलताच येणार नाही
       if (lockedDistrictName && !isSuperAdmin) {
         currentDistrict = lockedDistrictName;
         document.getElementById('districtSelect').value = lockedDistrictName;
@@ -1320,7 +1334,6 @@
       const m = window.membersData.find(item => item.id === id);
       if (!m) return;
 
-      // थेट सुरक्षा रोख (Prevent Malicious Cross-District Deletion)
       if (lockedDistrictName && !isSuperAdmin && m.district !== lockedDistrictName) {
         alert(`अवैध कृती! आपणास केवळ '${lockedDistrictName}' जिल्ह्यातील पदाधिकारी वगळण्याचा अधिकार आहे!`);
         return;
