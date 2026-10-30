@@ -49,8 +49,9 @@
       width: 100%;
     }
 
+    /* GitHub वरील heding.jpg इमेज वापरणारा हेडर बॅनर */
     header {
-      background: #fffdf7;
+      background: #ffffff;
       padding: 0;
       margin: 0;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -61,6 +62,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      background-color: #fffdf7;
     }
 
     .main-header-banner-img {
@@ -80,6 +82,7 @@
       flex: 1;
     }
 
+    /* टॅब्स रॅपर */
     .tabs-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -132,6 +135,7 @@
       border-radius: 50px;
     }
 
+    /* जिल्हा निवड पॅनल */
     .action-panel {
       background: var(--card);
       padding: 10px 14px;
@@ -167,10 +171,11 @@
     }
 
     .select-district-field:disabled {
-      background-color: #e2e8f0;
-      color: #475569;
+      background-color: #f1f5f9;
+      color: #0f2b48;
       cursor: not-allowed;
-      border-color: #94a3b8;
+      border-color: #d4af37;
+      font-weight: 800;
     }
 
     @media (min-width: 600px) {
@@ -479,16 +484,16 @@
       </div>
     </div>
 
-    <!-- TAB 2: Manage (Protected: संबंधित जिल्ह्याच्या स्वतंत्र पासवर्डने लॉक) -->
+    <!-- TAB 2: Manage (Protected: संबंधित जिल्ह्याच्या स्वतंत्र पासवर्डने कडक लॉक) -->
     <div id="tab-manage" class="tab-view" style="display:none;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:8px; flex-wrap:wrap;">
         <div>
           <h3 style="font-size:15.5px; font-weight:800; color:var(--navy);">पदाधिकारी व्यवस्थापन व संपादन</h3>
-          <small id="districtLockNotice" style="color:#047857; font-weight:700;"></small>
+          <small id="districtLockNotice" style="color:#047857; font-weight:800;"></small>
         </div>
         <div style="display:flex; gap:8px;">
           <button class="btn btn-outline" style="color:#ef4444; border-color:#ef4444;" onclick="logoutDistrictLock()">
-            <i class="fa-solid fa-right-from-bracket"></i> जिल्हा लॉक सोडा
+            <i class="fa-solid fa-right-from-bracket"></i> लॉगआउट करा
           </button>
           <button class="btn btn-gold" onclick="openAddModal()">
             <i class="fa-solid fa-plus-circle"></i> नवीन पदाधिकारी जोडा
@@ -622,10 +627,10 @@
                 <div class="body-text-block">
                   <p style="font-weight:700;">सस्नेह नमस्कार,</p>
                   <p id="dispPara1">
-                    महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.
+                    महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.[span_1](start_span)[span_1](end_span)
                   </p>
                   <p id="dispPara2">
-                    आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—
+                    आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_2](start_span)[span_2](end_span)
                   </p>
                 </div>
               </div>
@@ -641,7 +646,7 @@
               <div class="canvas-node" id="node-body-para3" style="top: 615px; left: 14px; width: calc(100% - 28px);">
                 <div class="body-text-block">
                   <p id="dispPara3" style="margin: 0;">
-                    हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा!
+                    हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_3](start_span)[span_3](end_span)!
                   </p>
                 </div>
               </div>
@@ -879,8 +884,8 @@
     let currentDistrict = "नाशिक";
     let isManageUnlocked = false;
     let isLettersUnlocked = false;
-    let lockedDistrictName = null; // लॉगिन केलेल्या अधिकृत जिल्ह्यासाठी लॉक व्हेरिएबल
-    let isSuperAdmin = false;       // RK2026 मास्टर ॲडमिनसाठी
+    let lockedDistrictName = null; // कडक सुरक्षा: लॉगिन असलेला अधिकृत जिल्हा
+    let isSuperAdmin = false;       // RK2026 मास्टर ॲडमिन
 
     let selectedMemberForLetter = null;
     let headerClickCount = 0;
@@ -908,7 +913,7 @@
             isSuperAdmin = true;
             isManageUnlocked = true;
             isLettersUnlocked = true;
-            lockedDistrictName = null;
+            lockedDistrictName = null; // सुपर ॲडमिन सर्व जिल्ह्यांवर काम करू शकतात
 
             document.getElementById('manageLockBadge').style.display = 'none';
             document.getElementById('letterLockBadge').style.display = 'none';
@@ -917,7 +922,7 @@
             document.getElementById('districtSelect').disabled = false;
             
             switchTab('tab-designer');
-            alert("संस्थापक राज्याध्यक्ष (Super Admin) लॉगिन यशस्वी! सर्व ३६ जिल्हे व डिझाईन नियंत्रक खुले झाले आहेत.");
+            alert("संस्थापक राज्याध्यक्ष (Super Admin) लॉगिन यशस्वी! सर्व ३६ जिल्हे खुले झाले आहेत.");
           } else if (pass !== null) {
             alert("चुकीचा पासवर्ड!");
           }
@@ -948,11 +953,11 @@
     }
 
     function onDistrictChange() {
-      // जर जिल्हा लॉक असेल तर संपादन टॅबवर जिल्हा बदलता येणार नाही
+      // सुरक्षा भिंत: संपादन टॅबमध्ये असताना जर सामान्य जिल्हा लॉगिन असेल तर जिल्हा बदलताच येणार नाही
       if (lockedDistrictName && !isSuperAdmin) {
         currentDistrict = lockedDistrictName;
         document.getElementById('districtSelect').value = lockedDistrictName;
-        alert(`आपण '${lockedDistrictName}' जिल्ह्यासाठी अधिकृत लॉगिन केलेले आहे. इतर जिल्ह्यात बदल करण्याची अनुमती नाही!`);
+        alert(`सुरक्षा सूचना: आपण '${lockedDistrictName}' जिल्ह्यामध्ये लॉगिन आहात. दुसऱ्या जिल्ह्यात बदल करण्याची परवानगी नाही!`);
         return;
       }
 
@@ -981,7 +986,7 @@
       document.getElementById('memberCount').textContent = list.length;
       document.getElementById('directoryHeading').textContent = `जिल्हा कार्यकारणी सूची: ${currentDistrict}`;
 
-      // १. यादी रेंडर (सर्वांसाठी खुली)
+      // १. पहिली टॅब: यादी (सर्वांसाठी खुली)
       const dirBody = document.getElementById('directoryTableBody');
       if (list.length === 0) {
         dirBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:18px; color:#888;">या जिल्ह्यात अजून एकही पदाधिकारी नोंदवलेला नाही.</td></tr>`;
@@ -997,7 +1002,7 @@
         `).join('');
       }
 
-      // २. संपादन रेंडर (केवळ लॉक जिल्ह्यासाठी)
+      // २. दुसरी टॅब: संपादन (केवळ स्वतःच्या जिल्ह्याची)
       const manageBody = document.getElementById('manageTableBody');
       if (list.length === 0) {
         manageBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:18px; color:#888;">माहिती उपलब्ध नाही. नवीन पदाधिकारी ॲड करा.</td></tr>`;
@@ -1017,7 +1022,7 @@
         `).join('');
       }
 
-      // ३. पत्रे व WhatsApp रेंडर
+      // ३. तिसरी टॅब: नियुक्ती पत्रे व WhatsApp
       const lettersBody = document.getElementById('lettersTableBody');
       if (list.length === 0) {
         lettersBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:18px; color:#888;">माहिती उपलब्ध नाही.</td></tr>`;
@@ -1056,52 +1061,58 @@
       if(tabId === 'tab-designer') document.getElementById('adminDesignerTabBtn').classList.add('active');
 
       const selectBox = document.getElementById('districtSelect');
+      // जर संपादन टॅबवर आलो तर जिल्हा बदलणे पूर्णपणे लॉक करणे
       if (tabId === 'tab-manage' && lockedDistrictName && !isSuperAdmin) {
         selectBox.disabled = true;
-      } else if (!lockedDistrictName || isSuperAdmin) {
+      } else {
         selectBox.disabled = false;
       }
     }
 
     // ========================================================
-    // DISTRICT-WISE PASSWORD UNLOCK & LOCK MECHANISM
+    // SECURE AUTHORIZATION: STRICT DISTRICT LOCK
     // ========================================================
     async function unlockManageTab() {
+      // जर आधीच लॉगिन असेल तर थेट त्याच लॉक जिल्ह्यात जा
       if (isManageUnlocked) {
         if (lockedDistrictName && !isSuperAdmin) {
           currentDistrict = lockedDistrictName;
           document.getElementById('districtSelect').value = lockedDistrictName;
           document.getElementById('districtSelect').disabled = true;
         }
+        renderAll();
         switchTab('tab-manage');
         return;
       }
 
       const distPass = (window.districtPasswords && window.districtPasswords[currentDistrict]) || "AD2026";
-      const enteredPass = prompt(`'${currentDistrict}' जिल्ह्यासाठी पदाधिकारी नोंदणी पासवर्ड प्रविष्ट करा:`);
+      const enteredPass = prompt(`'${currentDistrict}' जिल्ह्यासाठी अधिकृत पासवर्ड प्रविष्ट करा:`);
 
       if (enteredPass === null) return;
 
+      // सुपर ॲडमिन
       if (enteredPass === "RK2026") {
         isManageUnlocked = true;
         isSuperAdmin = true;
         lockedDistrictName = null;
         document.getElementById('manageLockBadge').style.display = 'none';
-        document.getElementById('districtLockNotice').textContent = "(सुपर ॲडमिन ॲक्सेस - सर्व जिल्हे खुले)";
+        document.getElementById('districtLockNotice').textContent = "(सुपर ॲडमिन - सर्व जिल्हे नियंत्रण मुभा)";
         document.getElementById('districtSelect').disabled = false;
+        renderAll();
         switchTab('tab-manage');
         return;
       }
 
+      // प्रथम लॉगिन: AD2026 -> स्वतःचा नवा पासवर्ड सेट करणे
       if (distPass === "AD2026" && enteredPass === "AD2026") {
-        alert(`हा '${currentDistrict}' जिल्ह्यासाठी पहिला लॉगिन आहे! कृपया 'AD2026' ऐवजी आपला नवीन पासवर्ड सेट करा.`);
+        alert(`हा '${currentDistrict}' जिल्ह्यासाठी पहिला लॉगिन आहे. कृपया आपला नवीन पासवर्ड सेट करा.`);
         const newPass1 = prompt(`'${currentDistrict}' जिल्ह्यासाठी नवीन पासवर्ड टाका:`);
         if (!newPass1 || newPass1.trim() === "" || newPass1.trim() === "AD2026") {
           alert("कृपया 'AD2026' सोडून कोणताही वैध नवीन पासवर्ड प्रविष्ट करा!");
           return;
         }
 
-        const newPass2 = prompt(`पुन्हा एकदा नवीन पासवर्ड टाका (Confirm Password):`);
+        const newPass2 = prompt("पुन्हा एकदा नवीन पासवर्ड टाका (Confirm Password):");
         if (newPass1 !== newPass2) {
           alert("दोन्ही पासवर्ड जुळले नाहीत! कृपया पुन्हा प्रयत्न करा.");
           return;
@@ -1123,13 +1134,15 @@
         return;
       }
 
+      // पासवर्ड पडताळणी व जिल्हा लॉक
       if (enteredPass === distPass) {
         lockCurrentDistrictSession(currentDistrict);
       } else {
-        alert(`चुकीचा पासवर्ड! आपण फक्त '${currentDistrict}' जिल्ह्याचा वैध पासवर्ड टाकूनच संपादन करू शकता.`);
+        alert(`चुकीचा पासवर्ड! आपण फक्त '${currentDistrict}' जिल्ह्याचा पासवर्ड टाकूनच संपादन करू शकता.`);
       }
     }
 
+    // सुरक्षित जिल्हा लॉक
     function lockCurrentDistrictSession(distName) {
       isManageUnlocked = true;
       isSuperAdmin = false;
@@ -1137,17 +1150,18 @@
       currentDistrict = distName;
 
       document.getElementById('districtSelect').value = distName;
-      document.getElementById('districtSelect').disabled = true;
+      document.getElementById('districtSelect').disabled = true; // जिल्हा बदलणे पूर्णपणे लॉक केले
       document.getElementById('manageLockBadge').style.display = 'none';
-      document.getElementById('districtLockNotice').textContent = `(सध्या फक्त '${distName}' जिल्हा संपादन करण्यासाठी लॉक आहे)`;
+      document.getElementById('districtLockNotice').textContent = `(फक्त '${distName}' जिल्हा संपादन अधिकार लॉक)`;
 
       renderAll();
       switchTab('tab-manage');
-      alert(`लॉगिन यशस्वी! आता आपण फक्त '${distName}' जिल्ह्यामध्ये बदल करू शकता. इतर जिल्हे सुरक्षितपणे लॉक आहेत.`);
+      alert(`लॉगिन यशस्वी! आता आपण केवळ '${distName}' जिल्ह्यामध्ये बदल करू शकता. दुसऱ्या जिल्ह्यात छेडछाड करता येणार नाही.`);
     }
 
+    // पूर्ण लॉगआउट
     function logoutDistrictLock() {
-      if (confirm("आपण खरोखर या जिल्ह्याचे संपादन बंद करून बाहेर पडू इच्छिता?")) {
+      if (confirm("आपण खरोखर संपादन कार्य पूर्ण करून लॉगआउट करू इच्छिता?")) {
         isManageUnlocked = false;
         isSuperAdmin = false;
         lockedDistrictName = null;
@@ -1157,23 +1171,24 @@
         document.getElementById('districtLockNotice').textContent = '';
 
         switchTab('tab-directory');
+        renderAll();
       }
     }
 
     // ========================================================
-    // APPOINTMENT LETTERS TAB (मास्टर पासवर्ड RK2026)
+    // APPOINTMENT LETTERS TAB (केंद्रीय मास्टर पासवर्ड RK2026)
     // ========================================================
     function unlockLettersTab() {
       if (isLettersUnlocked) {
         switchTab('tab-letters');
       } else {
-        const pass = prompt("नियुक्ती पत्रे व WhatsApp साठी मास्टर पासवर्ड प्रविष्ट करा:");
+        const pass = prompt("नियुक्ती पत्रे व WhatsApp प्रेषणासाठी मास्टर पासवर्ड टाका:");
         if (pass === "RK2026") {
           isLettersUnlocked = true;
           document.getElementById('letterLockBadge').style.display = 'none';
           switchTab('tab-letters');
         } else if (pass !== null) {
-          alert("चुकीचा पासवर्ड! केवळ अधिकृत संस्थापक राज्याध्यक्षच ही पत्रे जारी करू शकतात.");
+          alert("चुकीचा पासवर्ड! केवळ संस्थापक राज्याध्यक्षच ही पत्रे जारी करू शकतात.");
         }
       }
     }
@@ -1194,8 +1209,9 @@
       const m = window.membersData.find(item => item.id === id);
       if(!m) return;
 
+      // कडक सुरक्षा तपासणी: दुसऱ्या जिल्ह्याचा डेटा एडिट करता येणार नाही
       if (lockedDistrictName && !isSuperAdmin && m.district !== lockedDistrictName) {
-        alert(`आपणास केवळ '${lockedDistrictName}' जिल्ह्यातील पदाधिकारी संपादित करण्याची अनुमती आहे!`);
+        alert(`अवैध कृती! आपणास केवळ '${lockedDistrictName}' जिल्ह्यातील पदाधिकारी संपादित करण्याचा अधिकार आहे!`);
         return;
       }
 
@@ -1269,7 +1285,8 @@
         }
       }
 
-      const activeDist = lockedDistrictName || document.getElementById('formDistrict').value;
+      // कडक सुरक्षा: केवळ अधिकृत जिल्ह्याचीच नोंद होईल
+      const activeDist = lockedDistrictName || currentDistrict;
       const docId = idVal === "-1" ? Date.now().toString() : idVal;
       const memberObj = {
         district: activeDist,
@@ -1298,14 +1315,18 @@
       }
     }
 
+    // कडक सुरक्षा: दुसऱ्या जिल्ह्याचा डेटा डिलीट करता येणार नाही!
     async function deleteMember(id) {
       const m = window.membersData.find(item => item.id === id);
-      if (lockedDistrictName && !isSuperAdmin && m && m.district !== lockedDistrictName) {
-        alert(`आपणास केवळ '${lockedDistrictName}' जिल्ह्यातील पदाधिकारी वगळण्याची अनुमती आहे!`);
+      if (!m) return;
+
+      // थेट सुरक्षा रोख (Prevent Malicious Cross-District Deletion)
+      if (lockedDistrictName && !isSuperAdmin && m.district !== lockedDistrictName) {
+        alert(`अवैध कृती! आपणास केवळ '${lockedDistrictName}' जिल्ह्यातील पदाधिकारी वगळण्याचा अधिकार आहे!`);
         return;
       }
 
-      if(confirm("आपण खरोखर या पदाधिकाऱ्याचे नाव वगळू इच्छिता?")) {
+      if(confirm(`आपण खरोखर '${m.firstName} ${m.lastName}' यांना वगळू इच्छिता?`)) {
         try {
           if (window.rtdb && window.dbRemove && window.dbRef) {
             await window.dbRemove(window.dbRef(window.rtdb, 'officials/' + id));
@@ -1481,7 +1502,6 @@
       window.open(waUrl, '_blank');
     }
 
-    // सुपर ॲडमिनसाठी पासवर्ड रिसेट
     async function superAdminResetPassword() {
       const targetDist = document.getElementById('superAdminDistrictSelect').value;
       if (!confirm(`आपण खरोखर '${targetDist}' जिल्ह्याचा पासवर्ड पुन्हा 'AD2026' वर रिसेट करू इच्छिता?`)) return;
