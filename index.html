@@ -49,65 +49,30 @@
       width: 100%;
     }
 
-    /* स्लिम व कॉम्पॅक्ट हेडर */
+    /* GitHub वरील heding.jpg इमेज वापरणारा हेडर बॅनर */
     header {
-      background: linear-gradient(180deg, #fffcf5 0%, #faecd0 50%, #fbf3e0 100%);
-      padding: 6px 12px;
-      box-shadow: 0 2px 8px rgba(184, 134, 11, 0.1);
-      border-bottom: 1.5px solid var(--gold-border);
+      background: #ffffff;
+      padding: 0;
+      margin: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-bottom: 2px solid var(--gold-border);
       user-select: none;
       width: 100%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fffdf7;
     }
 
-    .official-letterhead {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-      position: relative;
+    .main-header-banner-img {
+      width: 100%;
+      max-width: 1050px;
+      height: auto;
+      max-height: 220px;
+      object-fit: contain;
+      display: block;
     }
-
-    .lh-reg-top {
-      font-size: 10px;
-      font-weight: 700;
-      color: #334155;
-      letter-spacing: 0.5px;
-      margin-bottom: 1px;
-    }
-
-    .state-title-blue {
-      font-size: 17px;
-      font-weight: 800;
-      color: #1e3a8a;
-      line-height: 1.1;
-    }
-
-    .org-title-maroon {
-      font-size: 21px;
-      font-weight: 800;
-      color: #6b0c10;
-      line-height: 1.15;
-      margin-top: 1px;
-    }
-
-    .ribbon-slogan-wrap {
-      display: inline-block;
-      margin: 2px auto;
-      background: linear-gradient(90deg, #fef3c7 0%, #fffbeb 50%, #fef3c7 100%);
-      border: 1px solid #d4af37;
-      border-radius: 15px;
-      padding: 0 12px;
-    }
-
-    .ribbon-slogan-wrap span {
-      font-size: 11px;
-      font-weight: 700;
-      color: #4a0404;
-    }
-
-    .president-details-bar { margin-top: 1px; }
-    .pres-name-big { font-size: 13.5px; font-weight: 800; color: #0f2b48; }
-    .pres-desig-tag { font-size: 11px; font-weight: 700; color: #0f172a; }
-    .pres-sub-address { font-size: 10px; font-weight: 600; color: #475569; line-height: 1.2; }
 
     .container {
       max-width: 1200px;
@@ -371,7 +336,7 @@
 
     .a4-inner {
       border: 2px solid #851216;
-      outline: 1.5px solid #d4a017;
+      outline: 1.5px solid #d4af37;
       outline-offset: -5px;
       padding: 10px 14px;
       height: 100%;
@@ -480,7 +445,6 @@
       width: 100%;
     }
 
-    /* पदाधिकाऱ्याचे नाव अतिशय ठळक व उठावदार */
     .to-person-box .person-name {
       font-size: 15pt;
       font-weight: 900;
@@ -498,7 +462,6 @@
       color: #0f172a;
     }
 
-    /* मुख्य मजकुराचा फॉन्ट */
     .body-text-block {
       font-family: 'Yantramanav', 'Noto Sans Devanagari', sans-serif !important;
       font-size: 13pt;
@@ -585,7 +548,7 @@
 
     .modal-content {
       background: white;
-      border-radius: 16px;
+      border-radius: 18px;
       width: 100%;
       max-width: 580px;
       max-height: 92vh;
@@ -619,7 +582,6 @@
       cursor: pointer;
     }
 
-    /* नोंदणी फॉर्म: अक्षरे मोठी आणि सुटसुटीत */
     .modal-body { 
       padding: 18px 20px; 
     }
@@ -683,26 +645,9 @@
 </head>
 <body>
 
-  <!-- कॉम्पॅक्ट हेडर (३ वेळा क्लिक केल्यास सिक्रेट ॲडमिन पॅनल) -->
+  <!-- GitHub वरील heding.jpg इमेज वापरणारा हेडर (३ वेळा क्लिक केल्यास सिक्रेट ॲडमिन पॅनल उघडेल) -->
   <header id="mainHeaderTitle" title="३ वेळा क्लिक करा (सिक्रेट ॲडमिन पॅनल)">
-    <div class="official-letterhead">
-      <div class="lh-reg-top">Reg. No. MH/0000555/2026</div>
-
-      <div class="state-title-blue">महाराष्ट्र राज्य</div>
-      <div class="org-title-maroon">केंद्रप्रमुख व अधिकारी महासंघ</div>
-      
-      <div class="ribbon-slogan-wrap">
-        <span>शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...!</span>
-      </div>
-
-      <div class="president-details-bar">
-        <div class="pres-name-big">श्री. राजेंद्र शिवाजी खैरनार</div>
-        <div class="pres-desig-tag">राज्याध्यक्ष</div>
-        <div class="pres-sub-address">
-          कार्यालय : स. नं. ५६/१, प्लॉट नं. १, मालेगाव ता. मालेगाव जि. नाशिक | मो. 9860704098
-        </div>
-      </div>
-    </div>
+    <img src="heding.jpg" alt="महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ" class="main-header-banner-img" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/padmakarshinde043-byte/RK2026/main/heding.jpg';">
   </header>
 
   <div class="container">
@@ -724,7 +669,7 @@
       </button>
     </div>
 
-    <!-- जिल्हा निवड पॅनल -->
+    <!-- जिल्हा निवड पॅनल व ॲडमिनसाठी पासवर्ड रिसेट बटण -->
     <div class="action-panel">
       <div style="display:flex; align-items:center; gap:8px; width:100%;">
         <label for="districtSelect" style="font-weight:800; font-size:14px; color:var(--navy); white-space:nowrap;">
@@ -732,6 +677,11 @@
         </label>
         <select id="districtSelect" class="select-district-field" onchange="onDistrictChange()">
         </select>
+        
+        <!-- केवळ ॲडमिन पॅनल अनलॉक असताना दिसणारे पासवर्ड रिसेट बटण -->
+        <button id="resetDistrictPassBtn" class="btn btn-outline" style="display:none; padding:5px 12px; font-size:12px; white-space:nowrap;" onclick="adminResetCurrentDistrictPassword()" title="या जिल्ह्याचा पासवर्ड AD2026 वर रिसेट करा">
+          <i class="fa-solid fa-key" style="color:#ef4444;"></i> पासवर्ड रिसेट
+        </button>
       </div>
       <div style="font-weight:700; color:#475569; font-size:13.5px;">
         नोंदणीकृत पदाधिकारी: <span id="memberCount" style="color:var(--accent); font-size:16px;">0</span>
@@ -764,7 +714,7 @@
       </div>
     </div>
 
-    <!-- TAB 2: Manage (Protected: AD2026) -->
+    <!-- TAB 2: Manage (Protected: AD2026 -> Custom Password) -->
     <div id="tab-manage" class="tab-view" style="display:none;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:8px; flex-wrap:wrap;">
         <h3 style="font-size:15.5px; font-weight:800; color:var(--navy);">पदाधिकारी व्यवस्थापन व संपादन</h3>
@@ -935,15 +885,15 @@
             </div>
             <div class="control-row">
               <label>परिच्छेद १:</label>
-              <textarea id="dsPara1" rows="3" oninput="updateLetterTexts()">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.[span_0](start_span)[span_0](end_span)</textarea>
+              <textarea id="dsPara1" rows="3" oninput="updateLetterTexts()">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.</textarea>
             </div>
             <div class="control-row">
               <label>परिच्छेद २:</label>
-              <textarea id="dsPara2" rows="3" oninput="updateLetterTexts()">आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_1](start_span)[span_1](end_span)</textarea>
+              <textarea id="dsPara2" rows="3" oninput="updateLetterTexts()">आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—</textarea>
             </div>
             <div class="control-row">
               <label>परिच्छेद ३ (शुभेच्छा):</label>
-              <textarea id="dsPara3" rows="4" oninput="updateLetterTexts()">हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_2](start_span)[span_2](end_span)!</textarea>
+              <textarea id="dsPara3" rows="4" oninput="updateLetterTexts()">हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा!</textarea>
             </div>
           </div>
         </div>
@@ -967,8 +917,8 @@
                       <span style="font-size: 9.5pt; font-weight: 700; color:#4a0404;">शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...!</span>
                     </div>
                     <div style="font-size: 11.5pt; font-weight: 800; color:#0f2b48;">श्री. राजेंद्र शिवाजी खैरनार</div>
-                    <div style="font-size: 9.5pt; font-weight: 700; color:#111;">राज्याध्यक्ष</div>
-                    <div style="font-size: 7.5pt; color:#333; font-weight: 600;">कार्यालय : स. नं. ५६/१, प्लॉट नं. १, मालेगाव ता. मालेगाव जि. नाशिक | मो. 9860704098</div>
+                    <div style="font-size: 9.5pt; font-weight: 700; color:#111;">संस्थापक राज्याध्यक्ष</div>
+                    <div style="font-size: 7.5pt; color:#333; font-weight: 600;">कार्यालय : 131, पाटणे, मालेगाव ता. मालेगाव जि. नाशिक | मो. 9860704098</div>
                   </div>
                 </div>
               </div>
@@ -1019,10 +969,10 @@
                 <div class="body-text-block" id="dispBodyContent">
                   <p style="font-weight:700;">सस्नेह नमस्कार,</p>
                   <p id="dispPara1">
-                    महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.[span_3](start_span)[span_3](end_span)
+                    महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.
                   </p>
                   <p id="dispPara2">
-                    आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_4](start_span)[span_4](end_span)
+                    आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—
                   </p>
                 </div>
               </div>
@@ -1044,7 +994,7 @@
                 <div class="node-resize-handle"></div>
                 <div class="body-text-block">
                   <p id="dispPara3" style="margin: 0;">
-                    हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_5](start_span)[span_5](end_span)!
+                    हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा!
                   </p>
                 </div>
               </div>
@@ -1060,7 +1010,7 @@
                 </div>
               </div>
 
-              <!-- Node 10: Right Signature (राज्याध्यक्ष - आडवी रेषा नसलेली) -->
+              <!-- Node 10: Right Signature (संस्थापक राज्याध्यक्ष - आडवी रेषा नसलेली) -->
               <div class="canvas-node" id="node-sign-right" style="top: 760px; right: 20px; width: 240px;">
                 <button class="node-delete-btn" onclick="deleteNode('node-sign-right')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1080,7 +1030,7 @@
 
   </div>
 
-  <!-- MODAL: Add / Edit Official (केवळ 'तालुका अध्यक्ष' निवडल्यास तालुक्याचे नाव विचारणे) -->
+  <!-- MODAL: Add / Edit Official (तालुका अध्यक्ष व तालुका सरचिटणीस या दोन्ही पदांसाठी तालुका विचारणे) -->
   <div id="memberModal" class="modal-wrap">
     <div class="modal-content">
       <div class="modal-header-bar">
@@ -1152,11 +1102,12 @@
                 <option value="सह सचिव">सह सचिव</option>
                 <option value="सहकोषाध्यक्ष">सहकोषाध्यक्ष</option>
                 <option value="तालुका अध्यक्ष">तालुका अध्यक्ष</option>
+                <option value="तालुका सरचिटणीस">तालुका सरचिटणीस</option>
                 <option value="इतर">इतर (कृपया स्वतः लिहा)</option>
               </select>
             </div>
 
-            <!-- फक्त तालुका अध्यक्ष निवडल्यासच तालुक्याचे नाव विचारणे -->
+            <!-- फक्त तालुका अध्यक्ष किंवा तालुका सरचिटणीस निवडल्यासच तालुक्याचे नाव विचारणे -->
             <div class="form-item" id="talukaNameDiv" style="display:none;">
               <label>तालुक्याचे नाव लिहा *</label>
               <input type="text" id="talukaName" placeholder="उदा. मालेगाव">
@@ -1210,7 +1161,7 @@
       <div style="text-align: center; border-bottom: 2px solid black; padding-bottom: 6px; margin-bottom: 12px;">
         <div style="font-size: 11pt; font-weight: bold; letter-spacing: 1px;">॥ शिक्षणासाठी समर्पित... अधिकाऱ्यांच्या हितासाठी...! ॥</div>
         <h2 style="font-size: 21pt; font-weight: 800; margin: 2px 0;">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</h2>
-        <div style="font-size: 10.5pt; font-weight: 600;">मध्यवर्ती राज्य कार्यकारिणी • Reg. No. MH/0000555/2026</div>
+        <div style="font-size: 10.5pt; font-weight: 600;">Reg. No. MH/0000555/2026</div>
         <div style="margin-top: 6px; font-size: 14.5pt; font-weight: bold; text-decoration: underline;" id="strictDistrictTitle">
           जिल्हा कार्यकारिणी सूची
         </div>
@@ -1293,6 +1244,16 @@
         window.applyDesignPayload(design);
       }
     });
+
+    // 3. LIVE DISTRICT PASSWORDS SYNC
+    const districtPasswordsRef = ref(db, 'district_passwords');
+    onValue(districtPasswordsRef, (snapshot) => {
+      const data = snapshot.val();
+      window.districtPasswords = data || {};
+      try {
+        localStorage.setItem('mahasangh_district_passwords', JSON.stringify(window.districtPasswords));
+      } catch (e) {}
+    });
   </script>
 
   <script>
@@ -1309,6 +1270,13 @@
       window.membersData = JSON.parse(localStorage.getItem('mahasangh_members_live')) || [];
     } catch(e) {
       window.membersData = [];
+    }
+
+    window.districtPasswords = {};
+    try {
+      window.districtPasswords = JSON.parse(localStorage.getItem('mahasangh_district_passwords')) || {};
+    } catch(e) {
+      window.districtPasswords = {};
     }
 
     let currentDistrict = "नाशिक";
@@ -1349,6 +1317,11 @@
             document.getElementById('manageLockBadge').style.display = 'none';
             document.getElementById('letterLockBadge').style.display = 'none';
             document.getElementById('adminDesignerTabBtn').style.display = 'inline-flex';
+            
+            // ॲडमिनसाठी पासवर्ड रिसेट बटण दाखवा
+            const resetBtn = document.getElementById('resetDistrictPassBtn');
+            if(resetBtn) resetBtn.style.display = 'inline-flex';
+            
             switchTab('tab-designer');
             alert("अभिनंदन! मुख्य ॲडमिन ॲक्सेस सक्रिय झाला आहे. मास्टर नियुक्तीपत्र Designer Studio उघडले आहे.");
           } else if (pass !== null) {
@@ -1386,11 +1359,15 @@
       return (window.membersData || []).filter(m => m.district === currentDistrict);
     }
 
-    // बहाल केलेल्या पदाचा संपूर्ण अचूक मजकूर मिळवणे (फक्त तालुका अध्यक्ष असेल तरच तालुका जोडणे)
+    // बहाल केलेल्या पदाचा अचूक मजकूर मिळवणे (तालुका अध्यक्ष किंवा तालुका सरचिटणीस असल्यास तालुका जोडणे)
     function getDisplayPost(m) {
       if (m.appointedPost === 'तालुका अध्यक्ष') {
         const tName = m.taluka ? m.taluka.trim() : '';
         return tName ? `तालुका अध्यक्ष (${tName} तालुका)` : 'तालुका अध्यक्ष';
+      }
+      if (m.appointedPost === 'तालुका सरचिटणीस') {
+        const tName = m.taluka ? m.taluka.trim() : '';
+        return tName ? `तालुका सरचिटणीस (${tName} तालुका)` : 'तालुका सरचिटणीस';
       }
       return m.appointedPost;
     }
@@ -1472,18 +1449,103 @@
       if(tabId === 'tab-designer') document.getElementById('adminDesignerTabBtn').classList.add('active');
     }
 
-    function unlockManageTab() {
+    // ========================================================
+    // ONE-TIME AD2026 PASSWORD & DISTRICT RESET WORKFLOW
+    // ========================================================
+    async function unlockManageTab() {
       if (isManageUnlocked) {
         switchTab('tab-manage');
-      } else {
-        const pass = prompt("पदाधिकारी नोंदणी पासवर्ड प्रविष्ट करा:");
-        if (pass === "AD2026" || pass === "RK2026") {
+        return;
+      }
+
+      const distPass = (window.districtPasswords && window.districtPasswords[currentDistrict]) || "AD2026";
+      const enteredPass = prompt(`'${currentDistrict}' जिल्ह्यासाठी पदाधिकारी नोंदणी पासवर्ड प्रविष्ट करा:`);
+
+      if (enteredPass === null) return;
+
+      // मास्टर ॲडमिन पासवर्ड थेट चालेल
+      if (enteredPass === "RK2026") {
+        isManageUnlocked = true;
+        document.getElementById('manageLockBadge').style.display = 'none';
+        switchTab('tab-manage');
+        return;
+      }
+
+      // जर अजून पासवर्ड बदललेला नसेल आणि पहिला वन-टाइम 'AD2026' टाकला असेल:
+      if (distPass === "AD2026" && enteredPass === "AD2026") {
+        alert("हा आपला पहिला लॉगिन आहे! कृपया 'AD2026' ऐवजी आपला नवीन पासवर्ड सेट करा.");
+        const newPass1 = prompt(`'${currentDistrict}' जिल्ह्यासाठी नवीन पासवर्ड टाका:`);
+        if (!newPass1 || newPass1.trim() === "" || newPass1.trim() === "AD2026") {
+          alert("कृपया 'AD2026' सोडून कोणताही वैध नवीन पासवर्ड प्रविष्ट करा!");
+          return;
+        }
+
+        const newPass2 = prompt(`पुन्हा एकदा नवीन पासवर्ड टाका (Confirm Password):`);
+        if (newPass1 !== newPass2) {
+          alert("दोन्ही पासवर्ड जुळले नाहीत! कृपया पुन्हा प्रयत्न करा.");
+          return;
+        }
+
+        // Firebase वर सेव्ह करणे
+        try {
+          if (!window.districtPasswords) window.districtPasswords = {};
+          window.districtPasswords[currentDistrict] = newPass1.trim();
+
+          if (window.rtdb && window.dbSet && window.dbRef) {
+            await window.dbSet(window.dbRef(window.rtdb, 'district_passwords/' + currentDistrict), newPass1.trim());
+          } else {
+            await fetch(`https://rk2026-207ee-default-rtdb.firebaseio.com/district_passwords/${currentDistrict}.json`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(newPass1.trim())
+            });
+          }
+
+          localStorage.setItem('mahasangh_district_passwords', JSON.stringify(window.districtPasswords));
+          alert(`अभिनंदन! '${currentDistrict}' जिल्ह्यासाठी नवीन पासवर्ड यशस्वीरीत्या सेव्ह झाला आहे.`);
           isManageUnlocked = true;
           document.getElementById('manageLockBadge').style.display = 'none';
           switchTab('tab-manage');
-        } else if (pass !== null) {
-          alert("चुकीचा पासवर्ड!");
+        } catch (e) {
+          alert("पासवर्ड सेव्ह करताना त्रुटी आली: " + e.message);
         }
+        return;
+      }
+
+      // नियमितपणे नवीन सेट केलेल्या पासवर्डने लॉगिन
+      if (enteredPass === distPass) {
+        isManageUnlocked = true;
+        document.getElementById('manageLockBadge').style.display = 'none';
+        switchTab('tab-manage');
+      } else {
+        alert("चुकीचा पासवर्ड! जर आपण पासवर्ड विसरला असाल तर संस्थापकांशी (RK2026) संपर्क साधा.");
+      }
+    }
+
+    // ॲडमिन पॅनलमधून पासवर्ड पुन्हा AD2026 वर रिसेट करणे
+    async function adminResetCurrentDistrictPassword() {
+      if (!confirm(`आपण खरोखर '${currentDistrict}' जिल्ह्याचा पासवर्ड पुन्हा मूळ 'AD2026' वर रिसेट करू इच्छिता?`)) {
+        return;
+      }
+
+      try {
+        if (!window.districtPasswords) window.districtPasswords = {};
+        window.districtPasswords[currentDistrict] = "AD2026";
+
+        if (window.rtdb && window.dbSet && window.dbRef) {
+          await window.dbSet(window.dbRef(window.rtdb, 'district_passwords/' + currentDistrict), "AD2026");
+        } else {
+          await fetch(`https://rk2026-207ee-default-rtdb.firebaseio.com/district_passwords/${currentDistrict}.json`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify("AD2026")
+          });
+        }
+
+        localStorage.setItem('mahasangh_district_passwords', JSON.stringify(window.districtPasswords));
+        alert(`'${currentDistrict}' जिल्ह्याचा पासवर्ड यशस्वीरीत्या 'AD2026' वर रिसेट झाला आहे. आता पुन्हा लॉगिन करताना नवीन पासवर्ड विचारला जाईल.`);
+      } catch (e) {
+        alert("पासवर्ड रिसेट करताना त्रुटी: " + e.message);
       }
     }
 
@@ -1528,7 +1590,7 @@
       document.getElementById('mobileNumber').value = m.mobile;
 
       const postSelect = document.getElementById('appointedPost');
-      const standardPosts = ["जिल्हाध्यक्ष", "जिल्हा सरचिटणीस", "कार्याध्यक्ष", "कोषाध्यक्ष", "महिला आघाडी अध्यक्ष", "प्रसिद्धी प्रमुख", "कायदेविषयक सल्लागार", "जिल्हा उपाध्यक्ष", "महिला आघाडी उपाध्यक्ष", "सह सचिव", "सहकोषाध्यक्ष", "तालुका अध्यक्ष"];
+      const standardPosts = ["जिल्हाध्यक्ष", "जिल्हा सरचिटणीस", "कार्याध्यक्ष", "कोषाध्यक्ष", "महिला आघाडी अध्यक्ष", "प्रसिद्धी प्रमुख", "कायदेविषयक सल्लागार", "जिल्हा उपाध्यक्ष", "महिला आघाडी उपाध्यक्ष", "सह सचिव", "सहकोषाध्यक्ष", "तालुका अध्यक्ष", "तालुका सरचिटणीस"];
       
       if(standardPosts.includes(m.appointedPost)) {
         postSelect.value = m.appointedPost;
@@ -1539,8 +1601,8 @@
         document.getElementById('customPost').value = m.appointedPost;
       }
 
-      // तालुका अध्यक्ष असल्यास तालुक्याचे नाव भरणे
-      if(m.appointedPost === "तालुका अध्यक्ष") {
+      // तालुका अध्यक्ष किंवा तालुका सरचिटणीस असल्यास तालुक्याचे नाव भरणे
+      if(m.appointedPost === "तालुका अध्यक्ष" || m.appointedPost === "तालुका सरचिटणीस") {
         document.getElementById('talukaNameDiv').style.display = 'block';
         document.getElementById('talukaName').value = m.taluka || '';
       } else {
@@ -1554,10 +1616,10 @@
       document.getElementById(modalId).style.display = 'none';
     }
 
-    // केवळ 'तालुका अध्यक्ष' किंवा 'इतर' निवडल्यास संबंधित फील्ड दाखवणे
+    // केवळ 'तालुका अध्यक्ष' किंवा 'तालुका सरचिटणीस' किंवा 'इतर' निवडल्यास संबंधित फील्ड दाखवणे
     function togglePostDetails(val) {
       document.getElementById('customPostDiv').style.display = (val === 'इतर') ? 'block' : 'none';
-      document.getElementById('talukaNameDiv').style.display = (val === 'तालुका अध्यक्ष') ? 'block' : 'none';
+      document.getElementById('talukaNameDiv').style.display = (val === 'तालुका अध्यक्ष' || val === 'तालुका सरचिटणीस') ? 'block' : 'none';
     }
 
     async function handleFormSubmit(e) {
@@ -1578,7 +1640,7 @@
       }
 
       let talukaVal = "";
-      if (finalPost === "तालुका अध्यक्ष") {
+      if (finalPost === "तालुका अध्यक्ष" || finalPost === "तालुका सरचिटणीस") {
         talukaVal = document.getElementById('talukaName').value.trim();
         if(!talukaVal) {
           alert("कृपया तालुक्याचे नाव लिहा.");
@@ -1857,7 +1919,7 @@
       }
     }
 
-    // मास्टर डिझाईन सेव्ह करणे
+    // मास्टर डिझाईन क्लाउडवर सेव्ह करणे
     async function saveDesignToCloud() {
       const canvasArea = document.getElementById('a4CanvasArea');
       const nodes = canvasArea.querySelectorAll('.canvas-node');
@@ -1926,7 +1988,7 @@
           console.warn("LocalStorage full, saved directly to Firebase cloud.");
         }
 
-        alert("अभिनंदन! संपूर्ण मास्टर डिझाईन आणि फॉन्ट सेटिंग्ज Firebase वर सेव्ह झाल्या आहेत.");
+        alert("अभिनंदन! संपूर्ण मास्टर डिझाईन आणि इन्सर्ट केलेल्या सर्व प्रतिमा Firebase क्लाउडवर यशस्वीरीत्या सेव्ह झाल्या आहेत.");
       } catch (err) {
         console.error("Design save error:", err);
         alert("डिझाईन सेव्ह करताना त्रुटी आली: " + err.message);
@@ -2148,7 +2210,7 @@
       }
     }
 
-    // WHATSAPP INSTANT DIRECT (सस्नेह नमस्कार सह थेट चॅट उघडणे)
+    // WHATSAPP INSTANT DIRECT (सुधारित मेसेज मजकूर)
     function sendWhatsAppInstantDirect(id) {
       const m = window.membersData.find(item => item.id === id);
       if(!m) return;
@@ -2158,8 +2220,7 @@
       const message = `सस्नेह नमस्कार 🙏
 
 *महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ*
-(Reg. No. MH/0000555/2026)
-मध्यवर्ती राज्य कार्यकारिणीच्या वतीने आपले मनःपूर्वक हार्दिक अभिनंदन!
+राज्य कार्यकारिणीच्या वतीने आपले मनःपूर्वक हार्दिक अभिनंदन!
 
 मा. ${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName},
 आपल्या शिक्षण क्षेत्रातील प्रदीर्घ, निष्कलंक सेवा, समर्पण आणि संघटनात्मक कर्तृत्वाची सार्थ दखल घेऊन, राज्य कार्यकारिणीच्या सर्वसंमत निर्णयानुसार आपली *${m.district}* जिल्हा कार्यकारिणीवर:
@@ -2171,9 +2232,9 @@
 केंद्रप्रमुख व विस्तार अधिकारी संवर्गाच्या सन्मानासाठी व गुणवत्तेसाठी आपण खंबीरपणे कार्य कराल, हा ठाम विश्वास आहे. आपल्या पुढील यशस्वी वाटचालीस व संघटनात्मक कार्यासाठी उदंड शुभेच्छा!
 
 *श्री. राजेंद्र शिवाजी खैरनार*
-राज्याध्यक्ष,
+संस्थापक राज्याध्यक्ष,
 महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ
-कार्यालय : स. नं. 56/1, प्लॉट नं. 1, मालेगाव ता. मालेगाव जि. नाशिक
+कार्यालय : 131, पाटणे, मालेगाव ता. मालेगाव जि. नाशिक
 संपर्क: 9860704098`;
 
       const encodedMsg = encodeURIComponent(message);
