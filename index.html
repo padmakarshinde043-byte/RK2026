@@ -7,7 +7,7 @@
   
   <!-- Clear, Crisp and Bold Devanagari Fonts: Yantramanav, Noto Sans Devanagari -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Rozha+One&family=Yantramanav:wght@400;500;700;900&family=Yatra+One&display=swap" rel="stylesheet">
   
   <!-- FontAwesome Icons -->
@@ -234,7 +234,7 @@
     .btn-edit { background: #f59e0b; color: white; border-radius: 6px; padding: 4px 8px; font-size: 11.5px; }
     .btn-del { background: #ef4444; color: white; border-radius: 6px; padding: 4px 8px; font-size: 11.5px; }
 
-    /* टेबल कार्ड */
+    /* मोबाईल टेबल */
     .table-card {
       background: var(--card);
       border-radius: 14px;
@@ -547,7 +547,7 @@
       display: none;
     }
 
-    /* स्वाक्षरीखालील आडवी रेषा (border-top) पूर्णपणे काढून टाकली */
+    /* स्वाक्षरीखालील आडवी रेषा पूर्णपणे काढून टाकली */
     .single-sign-card .slot-name {
       font-size: 12pt;
       font-weight: 700;
@@ -1240,7 +1240,11 @@
       } else {
         window.membersData = [];
       }
-      localStorage.setItem('mahasangh_members_live', JSON.stringify(window.membersData));
+      try {
+        localStorage.setItem('mahasangh_members_live', JSON.stringify(window.membersData));
+      } catch (e) {
+        console.warn("Storage quota limit reached for officials, cached in memory.");
+      }
       window.renderAll();
     }, (error) => {
       console.warn("Realtime DB fallback active:", error);
@@ -1251,7 +1255,11 @@
     onValue(designRef, (snapshot) => {
       const design = snapshot.val();
       if (design && design.layout) {
-        localStorage.setItem('mahasangh_master_design', JSON.stringify(design));
+        try {
+          localStorage.setItem('mahasangh_master_design', JSON.stringify(design));
+        } catch (e) {
+          console.warn("Storage quota limit reached for design cache, loading directly from cloud.");
+        }
         window.applyDesignPayload(design);
       }
     });
@@ -1266,7 +1274,12 @@
       "सिंधुदुर्ग", "सोलापूर", "ठाणे", "वर्धा", "वाशिम", "यवतमाळ"
     ];
 
-    window.membersData = JSON.parse(localStorage.getItem('mahasangh_members_live')) || [];
+    window.membersData = [];
+    try {
+      window.membersData = JSON.parse(localStorage.getItem('mahasangh_members_live')) || [];
+    } catch(e) {
+      window.membersData = [];
+    }
 
     let currentDistrict = "नाशिक";
     let isManageUnlocked = false;
@@ -1277,7 +1290,7 @@
     let headerClickCount = 0;
     let headerClickTimer = null;
 
-    // चालू दिनांक मिळवणारे फंक्शन (इंग्रजी अंकात DD/MM/YYYY)
+    // चालू दिनांक इंग्रजी अंकात (DD/MM/YYYY)
     function getTodayFormattedDate() {
       const today = new Date();
       const dd = String(today.getDate()).padStart(2, '0');
@@ -1564,17 +1577,13 @@
     function populateLetter(m) {
       selectedMemberForLetter = m;
       document.getElementById('prevOutward').textContent = `2026/02`;
-      
-      // चालू इंग्रजी दिनांक (उदा. 30/10/2026)
       document.getElementById('prevDate').textContent = getTodayFormattedDate();
-      
       document.getElementById('prevFullName').textContent = `मा. ${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}`;
       document.getElementById('prevCurrentPost').textContent = `(${m.currentCadre}, ${m.workingPlace}, जिल्हा - ${m.district})`;
       document.getElementById('prevAnnounceDistrict').textContent = m.district;
       document.getElementById('prevPostTitle').textContent = `⭐ « ${m.appointedPost} » ⭐`;
     }
 
-    // मोबाईलवर अचूक फिट होणारे स्केल प्रिव्ह्यू इंजिन
     function viewLetterCleanPDF(id) {
       const m = window.membersData.find(item => item.id === id);
       if(!m) return;
@@ -1626,7 +1635,6 @@
       }
     }
 
-    // तिन्ही परिच्छेदांना एकाच वेळी अचूक फॉन्ट साईझ आणि लाईन स्पेसिंग लागू करणे
     function updateLetterStyles() {
       const fontSize = document.getElementById('dsFontSize').value + 'px';
       const lineHeight = document.getElementById('dsLineHeight').value;
@@ -1780,7 +1788,7 @@
       }
     }
 
-    // मास्टर डिझाईन सेव्ह करताना इन्सर्ट केलेल्या सर्व प्रतिमांचे डेटा सेव्ह करणे
+    // मास्टर डिझाईन क्लाउडवर सेव्ह करणे (Quota Exceeded एरर पूर्णपणे रोखला)
     async function saveDesignToCloud() {
       const canvasArea = document.getElementById('a4CanvasArea');
       const nodes = canvasArea.querySelectorAll('.canvas-node');
@@ -1841,15 +1849,24 @@
             body: JSON.stringify(designPayload)
           });
         }
-        localStorage.setItem('mahasangh_master_design', JSON.stringify(designPayload));
-        alert("अभिनंदन! संपूर्ण मास्टर डिझाईन आणि फॉन्ट सेटिंग्ज Firebase वर सेव्ह झाल्या आहेत.");
+
+        // LocalStorage Quota Exceeded टाळण्यासाठी सुरक्षित प्रयत्न
+        try {
+          // मोठ्या प्रतिमांचा डेटा वगळून हलका बॅकअप सेव्ह करणे
+          const safeLocalBackup = { ...designPayload, customImages: [], bgImage: '' };
+          localStorage.setItem('mahasangh_master_design', JSON.stringify(safeLocalBackup));
+        } catch(storageErr) {
+          console.warn("LocalStorage full, saved directly to Firebase cloud.");
+        }
+
+        alert("अभिनंदन! संपूर्ण मास्टर डिझाईन आणि इन्सर्ट केलेल्या सर्व प्रतिमा Firebase क्लाउडवर यशस्वीरीत्या सेव्ह झाल्या आहेत.");
       } catch (err) {
         console.error("Design save error:", err);
         alert("डिझाईन सेव्ह करताना त्रुटी आली: " + err.message);
       }
     }
 
-    // क्लाउडवरून डिझाईन लोड करताना इन्सर्ट केलेल्या सर्व प्रतिमा रिस्टोअर करणे
+    // क्लाउडवरून डिझाईन लोड करणे
     window.applyDesignPayload = function(design) {
       if (!design || !design.layout) return;
       if (design.subject) document.getElementById('dsSubject').value = design.subject;
@@ -1911,8 +1928,10 @@
     };
 
     function resetDesignerDefaults() {
-      localStorage.removeItem('mahasangh_master_design');
-      location.reload();
+      if(confirm("आपण खरोखर मूळ डीफॉल्ट डिझाइन पूर्ववत करू इच्छिता?")) {
+        try { localStorage.removeItem('mahasangh_master_design'); } catch(e){}
+        location.reload();
+      }
     }
 
     async function generatePdfBlob() {
@@ -2062,7 +2081,7 @@
       }
     }
 
-    // WHATSAPP INSTANT DIRECT (सस्नेह नमस्कार सह थेट चॅट)
+    // WHATSAPP INSTANT DIRECT (सस्नेह नमस्कार सह थेट चॅट उघडणे)
     function sendWhatsAppInstantDirect(id) {
       const m = window.membersData.find(item => item.id === id);
       if(!m) return;
