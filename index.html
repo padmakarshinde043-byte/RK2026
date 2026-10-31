@@ -640,7 +640,6 @@
       .row-3, .row-2 { grid-template-columns: 1fr; }
     }
 
-    /* पदे व्यवस्थापन स्टाईल्स (Post Management UI) */
     .post-manager-item {
       display: flex;
       align-items: center;
@@ -712,13 +711,10 @@
       </button>
     </div>
 
-    <!-- TAB 1: Public Directory (मोबाईल नंबर नसलेली स्वच्छ सार्वजनिक यादी) -->
+    <!-- TAB 1: Public Directory (सार्वजनिक यादी: नो पासवर्ड, नो मोबाईल नंबर, नो PDF डाऊनलोड बटण) -->
     <div id="tab-directory" class="tab-view">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:8px; flex-wrap:wrap;">
         <h3 id="directoryHeading" style="font-size:16px; font-weight:800; color:var(--navy);"></h3>
-        <button class="btn btn-outline" id="dirDownloadBtn" onclick="downloadDirectorySinglePagePDF()">
-          <i class="fa-solid fa-print"></i> यादी डाऊनलोड करा
-        </button>
       </div>
 
       <div class="table-card">
@@ -737,7 +733,7 @@
       </div>
     </div>
 
-    <!-- TAB 2: Manage (Protected: संबंधित जिल्ह्याच्या स्वतंत्र पासवर्डने कडक लॉक) -->
+    <!-- TAB 2: Manage (Protected: सामान्य जिल्हाध्यक्षांसाठी लॉक / सुपर ॲडमिनसाठी सर्व जिल्हे खुले) -->
     <div id="tab-manage" class="tab-view" style="display:none;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:8px; flex-wrap:wrap;">
         <div>
@@ -772,10 +768,13 @@
       </div>
     </div>
 
-    <!-- TAB 3: Letters & WhatsApp (Protected: मास्टर पासवर्ड RK2026) -->
+    <!-- TAB 3: Letters & WhatsApp (Protected: मास्टर पासवर्ड RK2026 - येथेच यादी PDF डाऊनलोड सुविधा उपलब्ध) -->
     <div id="tab-letters" class="tab-view" style="display:none;">
-      <div style="margin-bottom:12px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:8px; flex-wrap:wrap;">
         <h3 style="font-size:15.5px; font-weight:800; color:var(--navy);">अधिकृत नियुक्ती पत्र वितरण व प्रेषण</h3>
+        <button class="btn btn-outline" id="dirDownloadBtn" onclick="downloadDirectorySinglePagePDF()">
+          <i class="fa-solid fa-file-pdf" style="color:#b45309;"></i> अधिकृत जिल्हा कार्यकारिणी यादी (PDF डाऊनलोड)
+        </button>
       </div>
 
       <div class="table-card">
@@ -820,7 +819,7 @@
       <div class="designer-layout">
         <div class="designer-controls">
 
-          <!-- १. नवीन सुविधा: बहाल करावयाची पदे व्यवस्थापन (Add, Remove, Reorder Posts) -->
+          <!-- बहाल करावयाची पदे व्यवस्थापन -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-sitemap"></i> बहाल करावयाची पदे व्यवस्थापन</h4>
             <div style="display:flex; gap:6px; margin-bottom:8px;">
@@ -828,11 +827,10 @@
               <button class="btn btn-gold" style="padding:6px 12px; font-size:12px;" onclick="addNewAppointedPost()"><i class="fa-solid fa-plus"></i> जोडा</button>
             </div>
             <div id="postListManagerBox" style="max-height:180px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:8px; padding:6px;">
-              <!-- पदे डायनॅमिकली दिसतील -->
             </div>
           </div>
 
-          <!-- २. जिल्हा पासवर्ड रिसेट -->
+          <!-- जिल्हा पासवर्ड रिसेट -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-key"></i> जिल्हा पासवर्ड रिसेट (Master)</h4>
             <div style="display:flex; flex-direction:column; gap:6px;">
@@ -843,7 +841,7 @@
             </div>
           </div>
 
-          <!-- ३. घटक दाखवा / लपवा -->
+          <!-- घटक दाखवा / लपवा -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-trash-can"></i> घटक दाखवा / लपवा (Delete/Restore)</h4>
             <div class="element-visibility-grid">
@@ -880,7 +878,7 @@
             </div>
           </div>
 
-          <!-- ४. नवीन इमेज इन्सर्ट / बॅकग्राउंड -->
+          <!-- नवीन इमेज इन्सर्ट / बॅकग्राउंड -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-file-image"></i> नवीन इमेज इन्सर्ट / बॅकग्राउंड</h4>
             <div class="control-row">
@@ -893,7 +891,7 @@
             </div>
           </div>
 
-          <!-- ५. स्वाक्षरी संपादन -->
+          <!-- स्वाक्षरी संपादन -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-signature"></i> स्वाक्षरी संपादन (दोन्ही स्वतंत्र)</h4>
             <div class="control-row">
@@ -918,7 +916,7 @@
             </div>
           </div>
 
-          <!-- ६. फॉन्ट व अंतर -->
+          <!-- फॉन्ट व अंतर -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-font"></i> फॉन्ट व अंतर (तिन्ही परिच्छेद)</h4>
             <div class="control-row">
@@ -935,7 +933,7 @@
             </div>
           </div>
 
-          <!-- ७. मजकूर संपादन -->
+          <!-- मजकूर संपादन -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-pen-to-square"></i> मजकूर संपादन</h4>
             <div class="control-row">
@@ -944,20 +942,20 @@
             </div>
             <div class="control-row">
               <label>परिच्छेद १:</label>
-              <textarea id="dsPara1" rows="3" oninput="updateLetterTexts()">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.[span_0](start_span)[span_0](end_span)</textarea>
+              <textarea id="dsPara1" rows="3" oninput="updateLetterTexts()">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.</textarea>
             </div>
             <div class="control-row">
               <label>परिच्छेद २:</label>
-              <textarea id="dsPara2" rows="3" oninput="updateLetterTexts()">आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_1](start_span)[span_1](end_span)</textarea>
+              <textarea id="dsPara2" rows="3" oninput="updateLetterTexts()">आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—</textarea>
             </div>
             <div class="control-row">
               <label>परिच्छेद ३ (शुभेच्छा):</label>
-              <textarea id="dsPara3" rows="4" oninput="updateLetterTexts()">हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_2](start_span)[span_2](end_span)!</textarea>
+              <textarea id="dsPara3" rows="4" oninput="updateLetterTexts()">हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा!</textarea>
             </div>
           </div>
         </div>
 
-        <!-- Live Free-form A4 Workspace (डिझाइन मास्टर) -->
+        <!-- Live Free-form A4 Workspace -->
         <div class="designer-preview-wrap">
           <div id="printableCertificate" class="a4-container">
             <div class="a4-inner" id="a4CanvasArea">
@@ -1019,10 +1017,10 @@
                 <div class="body-text-block" id="dispBodyContent">
                   <p style="font-weight:700;">सस्नेह नमस्कार,</p>
                   <p id="dispPara1">
-                    महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.[span_3](start_span)[span_3](end_span)
+                    महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.
                   </p>
                   <p id="dispPara2">
-                    आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_4](start_span)[span_4](end_span)
+                    आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—
                   </p>
                 </div>
               </div>
@@ -1042,7 +1040,7 @@
                 <div class="node-resize-handle"></div>
                 <div class="body-text-block">
                   <p id="dispPara3" style="margin: 0;">
-                    हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_5](start_span)[span_5](end_span)!
+                    हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा!
                   </p>
                 </div>
               </div>
@@ -1156,7 +1154,6 @@
             <div class="form-item">
               <label>बहाल करण्यात येणारे पद *</label>
               <select id="appointedPost" onchange="togglePostDetails(this.value)">
-                <!-- डायनॅमिकली पदे भरली जातील -->
               </select>
             </div>
 
@@ -1185,7 +1182,7 @@
     </div>
   </div>
 
-  <!-- STRICT SINGLE PAGE DIRECTORY PDF TEMPLATE (मोबाईल नंबर काढून टाकलेला व नैसर्गिक आकाराचे लेटरहेड) -->
+  <!-- STRICT SINGLE PAGE DIRECTORY PDF TEMPLATE (सुधारित नैसर्गिक गुणोत्तरातील लेटरपॅड) -->
   <div style="display:none;">
     <div id="printableDirectoryStrict" style="width: 794px; min-height: 1123px; max-height: 1123px; padding: 20px 32px; background: white; color: black; box-sizing: border-box; overflow: hidden; position: relative;">
       
@@ -1278,7 +1275,6 @@
       "सिंधुदुर्ग", "सोलापूर", "ठाणे", "वर्धा", "वाशिम", "यवतमाळ"
     ];
 
-    // डीफॉल्ट बहाल करावयाची पदे
     window.defaultPostsList = [
       "जिल्हाध्यक्ष", "जिल्हा सरचिटणीस", "कार्याध्यक्ष", "कोषाध्यक्ष", 
       "महिला आघाडी अध्यक्ष", "प्रसिद्धी प्रमुख", "कायदेविषयक सल्लागार", 
@@ -1306,6 +1302,21 @@
       return `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
     }
 
+    // सुपर ॲडमिन मास्टर ॲक्टिव्हेशन (सर्व जिल्हे व सर्व टॅब्स विना-पासवर्ड एकाच वेळी अनलॉक)
+    function activateSuperAdminMode() {
+      isSuperAdmin = true;
+      isManageUnlocked = true;
+      isLettersUnlocked = true;
+      lockedDistrictName = null;
+
+      document.getElementById('manageLockBadge').style.display = 'none';
+      document.getElementById('letterLockBadge').style.display = 'none';
+      document.getElementById('adminDesignerTabBtn').style.display = 'inline-flex';
+      document.getElementById('resetDistrictPassBtn').style.display = 'inline-flex';
+      document.getElementById('districtSelect').disabled = false;
+      document.getElementById('districtLockNotice').textContent = "(संस्थापक राज्याध्यक्ष - सर्व ३६ जिल्हे खुले)";
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       populateDistricts();
       renderAppointedPosts();
@@ -1321,19 +1332,9 @@
           headerClickCount = 0;
           const pass = prompt("गोपनीय मुख्य ॲडमिन पॅनल: पासवर्ड टाका:");
           if (pass === "RK2026") {
-            isSuperAdmin = true;
-            isManageUnlocked = true;
-            isLettersUnlocked = true;
-            lockedDistrictName = null; // सुपर ॲडमिनसाठी सर्व जिल्हे खुले
-
-            document.getElementById('manageLockBadge').style.display = 'none';
-            document.getElementById('letterLockBadge').style.display = 'none';
-            document.getElementById('adminDesignerTabBtn').style.display = 'inline-flex';
-            document.getElementById('resetDistrictPassBtn').style.display = 'inline-flex';
-            document.getElementById('districtSelect').disabled = false;
-            
+            activateSuperAdminMode();
             switchTab('tab-designer');
-            alert("संस्थापक राज्याध्यक्ष (Super Admin) लॉगिन यशस्वी! सर्व ३६ जिल्हे व डिझाईन नियंत्रणे खुली झाली आहेत.");
+            alert("संस्थापक राज्याध्यक्ष (Super Admin) लॉगिन यशस्वी! सर्व ३६ जिल्हे व नियंत्रणे विना-अडथळा खुली झाली आहेत.");
           } else if (pass !== null) {
             alert("चुकीचा पासवर्ड!");
           }
@@ -1341,7 +1342,6 @@
       });
     });
 
-    // बहाल करावयाची पदे व्यवस्थापन व ड्रॉपडाऊन अद्ययावत करणे
     function renderAppointedPosts() {
       const select = document.getElementById('appointedPost');
       if (select) {
@@ -1478,7 +1478,7 @@
         `).join('');
       }
 
-      // २. दुसरी टॅब: संपादन (मोबाईल नंबरसह सुरक्षित)
+      // २. दुसरी टॅब: संपादन (मोबाईल नंबरसह)
       const manageBody = document.getElementById('manageTableBody');
       if (list.length === 0) {
         manageBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:18px; color:#888;">माहिती उपलब्ध नाही. नवीन पदाधिकारी ॲड करा.</td></tr>`;
@@ -1546,7 +1546,11 @@
       }
     }
 
+    // ========================================================
+    // SECURE DISTRICT LOGIN & LOCK (सुपर ॲडमिनला कधीही पासवर्ड न विचारणे)
+    // ========================================================
     async function unlockManageTab() {
+      // सुपर ॲडमिन असल्यास कोणत्याही जिल्ह्यासाठी अजिबात पासवर्ड विचारला जाणार नाही
       if (isSuperAdmin) {
         switchTab('tab-manage');
         return;
@@ -1569,14 +1573,10 @@
       if (enteredPass === null) return;
 
       if (enteredPass === "RK2026") {
-        isManageUnlocked = true;
-        isSuperAdmin = true;
-        lockedDistrictName = null;
-        document.getElementById('manageLockBadge').style.display = 'none';
-        document.getElementById('districtLockNotice').textContent = "(सुपर ॲडमिन - सर्व ३६ जिल्हे खुले)";
-        document.getElementById('districtSelect').disabled = false;
+        activateSuperAdminMode();
         renderAll();
         switchTab('tab-manage');
+        alert("संस्थापक राज्याध्यक्ष (Super Admin) लॉगिन यशस्वी! सर्व ३६ जिल्हे उघडले आहेत.");
         return;
       }
 
@@ -1648,15 +1648,17 @@
       }
     }
 
+    // टॅब ३ (नियुक्ती पत्रे व WhatsApp) अनलॉकिंग - येथून सुपर ॲडमिन झाल्यावर सर्व टॅब्स खुल्या होतात
     function unlockLettersTab() {
       if (isLettersUnlocked || isSuperAdmin) {
         switchTab('tab-letters');
       } else {
         const pass = prompt("नियुक्ती पत्रे व WhatsApp प्रेषणासाठी मास्टर पासवर्ड टाका:");
         if (pass === "RK2026") {
-          isLettersUnlocked = true;
-          document.getElementById('letterLockBadge').style.display = 'none';
+          activateSuperAdminMode();
+          renderAll();
           switchTab('tab-letters');
+          alert("संस्थापक राज्याध्यक्ष (Super Admin) लॉगिन यशस्वी! सर्व ३६ जिल्हे, सर्व टॅब्स व अधिकृत यादी डाऊनलोड सुविधा खुली झाली आहे.");
         } else if (pass !== null) {
           alert("चुकीचा पासवर्ड! केवळ संस्थापक राज्याध्यक्षच ही पत्रे जारी करू शकतात.");
         }
@@ -1909,7 +1911,7 @@
       }
     }
 
-    // १-पानी A4 यादी डाऊनलोड (मोबाईल नंबर नसलेली)
+    // १-पानी A4 यादी डाऊनलोड (केवळ सुपर ॲडमिनसाठी उपलब्ध)
     async function downloadDirectorySinglePagePDF() {
       const list = getFilteredMembers();
       if(list.length === 0) {
@@ -2032,9 +2034,7 @@
       }
     }
 
-    // ========================================================
-    // DESIGNER STUDIO (Admin Master) Functions
-    // ========================================================
+    // Designer Studio Functions
     function deleteNode(nodeId) {
       const el = document.getElementById(nodeId);
       if (el) {
