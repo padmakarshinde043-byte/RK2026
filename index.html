@@ -49,7 +49,6 @@
       width: 100%;
     }
 
-    /* GitHub वरील heding.jpg इमेज बॅनर */
     header {
       background: #ffffff;
       padding: 0;
@@ -82,7 +81,6 @@
       flex: 1;
     }
 
-    /* १. सर्वात वर असणारे ठळक जिल्हा निवड पॅनल */
     .action-panel-top {
       background: var(--card);
       padding: 12px 16px;
@@ -145,7 +143,6 @@
       .select-district-field-large { width: 290px; }
     }
 
-    /* २. जिल्हा निवडीच्या खाली असणाऱ्या तीन टॅब्स */
     .tabs-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -244,7 +241,6 @@
     }
     td { padding: 9px 12px; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
 
-    /* DESIGNER STUDIO (Admin Master) Layout */
     .designer-layout {
       display: grid;
       grid-template-columns: 1fr;
@@ -335,7 +331,6 @@
       width: 100%;
     }
 
-    /* A4 प्रमाणपत्राची अचूक रचना (794x1123px) */
     .a4-container {
       width: 794px;
       height: 1123px;
@@ -378,9 +373,7 @@
       transition: outline 0.15s;
     }
 
-    .canvas-node:hover {
-      outline: 1.5px dashed var(--accent);
-    }
+    .canvas-node:hover { outline: 1.5px dashed var(--accent); }
 
     .node-resize-handle {
       position: absolute;
@@ -396,9 +389,7 @@
       z-index: 25;
     }
 
-    .canvas-node:hover .node-resize-handle {
-      display: block;
-    }
+    .canvas-node:hover .node-resize-handle { display: block; }
 
     .node-delete-btn {
       position: absolute;
@@ -420,9 +411,7 @@
       z-index: 26;
     }
 
-    .canvas-node:hover .node-delete-btn {
-      display: flex;
-    }
+    .canvas-node:hover .node-delete-btn { display: flex; }
 
     .letterhead-card-canvas {
       position: relative;
@@ -445,10 +434,7 @@
       width: 100%;
     }
 
-    .certificate-title-pill {
-      text-align: center;
-      width: 100%;
-    }
+    .certificate-title-pill { text-align: center; width: 100%; }
 
     .certificate-title-pill span {
       background: linear-gradient(135deg, #851216, #991b1b);
@@ -461,11 +447,7 @@
       display: inline-block;
     }
 
-    .to-person-box {
-      font-size: 12pt;
-      line-height: 1.45;
-      width: 100%;
-    }
+    .to-person-box { font-size: 12pt; line-height: 1.45; width: 100%; }
 
     .to-person-box .person-name {
       font-size: 15pt;
@@ -553,7 +535,6 @@
       display: block;
     }
 
-    /* मॉडेल व फॉर्म स्टाईल */
     .modal-wrap {
       position: fixed;
       inset: 0;
@@ -658,6 +639,33 @@
     @media (max-width: 650px) {
       .row-3, .row-2 { grid-template-columns: 1fr; }
     }
+
+    /* पदे व्यवस्थापन स्टाईल्स (Post Management UI) */
+    .post-manager-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8fafc;
+      padding: 6px 10px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      margin-bottom: 5px;
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+    .post-manager-actions {
+      display: flex;
+      gap: 4px;
+    }
+    .btn-icon-xs {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 3px 6px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 11px;
+    }
+    .btn-icon-xs:hover { background: #f1f5f9; }
   </style>
 </head>
 <body>
@@ -704,7 +712,7 @@
       </button>
     </div>
 
-    <!-- TAB 1: Public Directory (सर्वांसाठी खुली - नो पासवर्ड) -->
+    <!-- TAB 1: Public Directory (मोबाईल नंबर नसलेली स्वच्छ सार्वजनिक यादी) -->
     <div id="tab-directory" class="tab-view">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:8px; flex-wrap:wrap;">
         <h3 id="directoryHeading" style="font-size:16px; font-weight:800; color:var(--navy);"></h3>
@@ -717,11 +725,10 @@
         <table>
           <thead>
             <tr>
-              <th style="width:45px; text-align:center;">अनु.</th>
+              <th style="width:50px; text-align:center;">अनु.</th>
               <th>पदाधिकाऱ्याचे संपूर्ण नाव</th>
               <th>सध्याचे पद व कार्यक्षेत्र</th>
               <th>महासंघातील बहाल केलेले पद</th>
-              <th style="width:120px; text-align:center;">व्हॉट्सअ‍ॅप नंबर</th>
             </tr>
           </thead>
           <tbody id="directoryTableBody">
@@ -788,7 +795,7 @@
       </div>
     </div>
 
-    <!-- TAB 4: ADVANCED DESIGNER STUDIO (Admin Master Customizer - पूर्णपणे पूर्ववत) -->
+    <!-- TAB 4: ADVANCED DESIGNER STUDIO (Admin Master Customizer) -->
     <div id="tab-designer" class="tab-view" style="display:none;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
         <div>
@@ -812,6 +819,20 @@
 
       <div class="designer-layout">
         <div class="designer-controls">
+
+          <!-- १. नवीन सुविधा: बहाल करावयाची पदे व्यवस्थापन (Add, Remove, Reorder Posts) -->
+          <div class="control-sec">
+            <h4><i class="fa-solid fa-sitemap"></i> बहाल करावयाची पदे व्यवस्थापन</h4>
+            <div style="display:flex; gap:6px; margin-bottom:8px;">
+              <input type="text" id="newPostNameInput" placeholder="उदा. सह संपर्क प्रमुख" style="flex:1; padding:6px 8px; font-size:12px; border:1px solid #cbd5e1; border-radius:6px;">
+              <button class="btn btn-gold" style="padding:6px 12px; font-size:12px;" onclick="addNewAppointedPost()"><i class="fa-solid fa-plus"></i> जोडा</button>
+            </div>
+            <div id="postListManagerBox" style="max-height:180px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:8px; padding:6px;">
+              <!-- पदे डायनॅमिकली दिसतील -->
+            </div>
+          </div>
+
+          <!-- २. जिल्हा पासवर्ड रिसेट -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-key"></i> जिल्हा पासवर्ड रिसेट (Master)</h4>
             <div style="display:flex; flex-direction:column; gap:6px;">
@@ -822,6 +843,7 @@
             </div>
           </div>
 
+          <!-- ३. घटक दाखवा / लपवा -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-trash-can"></i> घटक दाखवा / लपवा (Delete/Restore)</h4>
             <div class="element-visibility-grid">
@@ -858,6 +880,7 @@
             </div>
           </div>
 
+          <!-- ४. नवीन इमेज इन्सर्ट / बॅकग्राउंड -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-file-image"></i> नवीन इमेज इन्सर्ट / बॅकग्राउंड</h4>
             <div class="control-row">
@@ -870,6 +893,7 @@
             </div>
           </div>
 
+          <!-- ५. स्वाक्षरी संपादन -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-signature"></i> स्वाक्षरी संपादन (दोन्ही स्वतंत्र)</h4>
             <div class="control-row">
@@ -894,6 +918,7 @@
             </div>
           </div>
 
+          <!-- ६. फॉन्ट व अंतर -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-font"></i> फॉन्ट व अंतर (तिन्ही परिच्छेद)</h4>
             <div class="control-row">
@@ -910,6 +935,7 @@
             </div>
           </div>
 
+          <!-- ७. मजकूर संपादन -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-pen-to-square"></i> मजकूर संपादन</h4>
             <div class="control-row">
@@ -918,15 +944,15 @@
             </div>
             <div class="control-row">
               <label>परिच्छेद १:</label>
-              <textarea id="dsPara1" rows="3" oninput="updateLetterTexts()">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.[span_4](start_span)[span_4](end_span)</textarea>
+              <textarea id="dsPara1" rows="3" oninput="updateLetterTexts()">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.[span_0](start_span)[span_0](end_span)</textarea>
             </div>
             <div class="control-row">
               <label>परिच्छेद २:</label>
-              <textarea id="dsPara2" rows="3" oninput="updateLetterTexts()">आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_5](start_span)[span_5](end_span)</textarea>
+              <textarea id="dsPara2" rows="3" oninput="updateLetterTexts()">आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_1](start_span)[span_1](end_span)</textarea>
             </div>
             <div class="control-row">
               <label>परिच्छेद ३ (शुभेच्छा):</label>
-              <textarea id="dsPara3" rows="4" oninput="updateLetterTexts()">हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_6](start_span)[span_6](end_span)!</textarea>
+              <textarea id="dsPara3" rows="4" oninput="updateLetterTexts()">हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_2](start_span)[span_2](end_span)!</textarea>
             </div>
           </div>
         </div>
@@ -936,7 +962,6 @@
           <div id="printableCertificate" class="a4-container">
             <div class="a4-inner" id="a4CanvasArea">
               
-              <!-- अक्षरी हेडर: डिफॉल्ट लपवलेला (लेटरपॅड इमेज इन्सर्ट केली असल्याने दुहेरी हेडर होणार नाही) -->
               <div class="canvas-node" id="node-header" style="top: 10px; left: 14px; width: calc(100% - 28px); display: none;">
                 <button class="node-delete-btn" onclick="deleteNode('node-header')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -953,7 +978,6 @@
                 </div>
               </div>
 
-              <!-- जावक व दिनांक -->
               <div class="canvas-node" id="node-outward" style="top: 165px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-outward')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -963,7 +987,6 @@
                 </div>
               </div>
 
-              <!-- शीर्षक -->
               <div class="canvas-node" id="node-title" style="top: 195px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-title')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -972,7 +995,6 @@
                 </div>
               </div>
 
-              <!-- प्रति / व्यक्ती -->
               <div class="canvas-node" id="node-recipient" style="top: 232px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-recipient')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -983,7 +1005,6 @@
                 </div>
               </div>
 
-              <!-- विषय ओळ -->
               <div class="canvas-node" id="node-subject" style="top: 295px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-subject')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -992,22 +1013,20 @@
                 </div>
               </div>
 
-              <!-- मुख्य मजकूर (१ व २) -->
               <div class="canvas-node" id="node-body" style="top: 330px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-body')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
                 <div class="body-text-block" id="dispBodyContent">
                   <p style="font-weight:700;">सस्नेह नमस्कार,</p>
                   <p id="dispPara1">
-                    महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.[span_7](start_span)[span_7](end_span)
+                    महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.[span_3](start_span)[span_3](end_span)
                   </p>
                   <p id="dispPara2">
-                    आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_8](start_span)[span_8](end_span)
+                    आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_4](start_span)[span_4](end_span)
                   </p>
                 </div>
               </div>
 
-              <!-- पद सन्मान बॅनर -->
               <div class="canvas-node" id="node-callout" style="top: 510px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-callout')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1018,18 +1037,16 @@
                 </div>
               </div>
 
-              <!-- पॅराग्राफ ३ -->
               <div class="canvas-node" id="node-body-para3" style="top: 615px; left: 14px; width: calc(100% - 28px);">
                 <button class="node-delete-btn" onclick="deleteNode('node-body-para3')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
                 <div class="body-text-block">
                   <p id="dispPara3" style="margin: 0;">
-                    हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_9](start_span)[span_9](end_span)!
+                    हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_5](start_span)[span_5](end_span)!
                   </p>
                 </div>
               </div>
 
-              <!-- स्वाक्षरी १ (सरचिटणीस) -->
               <div class="canvas-node" id="node-sign-left" style="top: 760px; left: 20px; width: 240px;">
                 <button class="node-delete-btn" onclick="deleteNode('node-sign-left')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1040,7 +1057,6 @@
                 </div>
               </div>
 
-              <!-- स्वाक्षरी २ (राज्याध्यक्ष) -->
               <div class="canvas-node" id="node-sign-right" style="top: 760px; right: 20px; width: 240px;">
                 <button class="node-delete-btn" onclick="deleteNode('node-sign-right')" title="हटवा">&times;</button>
                 <div class="node-resize-handle"></div>
@@ -1140,20 +1156,7 @@
             <div class="form-item">
               <label>बहाल करण्यात येणारे पद *</label>
               <select id="appointedPost" onchange="togglePostDetails(this.value)">
-                <option value="जिल्हाध्यक्ष">जिल्हाध्यक्ष</option>
-                <option value="जिल्हा सरचिटणीस">जिल्हा सरचिटणीस</option>
-                <option value="कार्याध्यक्ष">कार्याध्यक्ष</option>
-                <option value="कोषाध्यक्ष">कोषाध्यक्ष</option>
-                <option value="महिला आघाडी अध्यक्ष">महिला आघाडी अध्यक्ष</option>
-                <option value="प्रसिद्धी प्रमुख">प्रसिद्धी प्रमुख</option>
-                <option value="कायदेविषयक सल्लागार">कायदेविषयक सल्लागार</option>
-                <option value="जिल्हा उपाध्यक्ष">जिल्हा उपाध्यक्ष</option>
-                <option value="महिला आघाडी उपाध्यक्ष">महिला आघाडी उपाध्यक्ष</option>
-                <option value="सह सचिव">सह सचिव</option>
-                <option value="सहकोषाध्यक्ष">सहकोषाध्यक्ष</option>
-                <option value="तालुका अध्यक्ष">तालुका अध्यक्ष</option>
-                <option value="तालुका सरचिटणीस">तालुका सरचिटणीस</option>
-                <option value="इतर">इतर (कृपया स्वतः लिहा)</option>
+                <!-- डायनॅमिकली पदे भरली जातील -->
               </select>
             </div>
 
@@ -1182,16 +1185,16 @@
     </div>
   </div>
 
-  <!-- STRICT SINGLE PAGE DIRECTORY PDF TEMPLATE (नैसर्गिक गुणोत्तरासह सुस्पष्ट लेटरपॅड)[span_10](start_span)[span_10](end_span) -->
+  <!-- STRICT SINGLE PAGE DIRECTORY PDF TEMPLATE (मोबाईल नंबर काढून टाकलेला व नैसर्गिक आकाराचे लेटरहेड) -->
   <div style="display:none;">
     <div id="printableDirectoryStrict" style="width: 794px; min-height: 1123px; max-height: 1123px; padding: 20px 32px; background: white; color: black; box-sizing: border-box; overflow: hidden; position: relative;">
       
-      <!-- नैसर्गिक उंची आणि योग्य आकारात बसणारे लेटरपॅड[span_11](start_span)[span_11](end_span) -->
+      <!-- नैसर्गिक उंची आणि योग्य गुणोत्तरातील लेटरपॅड -->
       <div style="width: 100%; text-align: center; margin-bottom: 8px;">
         <img src="heding.jpg" alt="महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ" style="width: 100%; height: auto; max-height: 175px; object-fit: contain; display: block; margin: 0 auto;" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/padmakarshinde043-byte/RK2026/main/heding.jpg';">
       </div>
 
-      <!-- कमी जागेत सुटसुटीत अधिकृत माहिती पट्टी -->
+      <!-- थोडक्यात अधिकृत माहिती पट्टी -->
       <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1.8px solid #851216; border-bottom: 1.8px solid #851216; padding: 5px 8px; margin-bottom: 12px; font-weight: 800; font-size: 11.5pt;">
         <div style="color: #1e3a8a;" id="strictDistrictTitle">जिल्हा कार्यकारिणी सूची : बीड</div>
         <div style="color: #475569;">एकूण पदाधिकारी: <span id="strictTotalCount" style="color: #b45309;">0</span></div>
@@ -1201,11 +1204,10 @@
       <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
         <thead>
           <tr style="background: #f1f5f9;">
-            <th style="border: 1.5px solid black; padding: 6px 5px; width: 45px; text-align: center; font-size: 11pt;">अनु.</th>
-            <th style="border: 1.5px solid black; padding: 6px; text-align: left; font-size: 11.5pt;">पदाधिकाऱ्याचे पूर्ण नाव</th>
-            <th style="border: 1.5px solid black; padding: 6px; text-align: left; font-size: 10.5pt;">सध्याचे पद व कार्यक्षेत्र</th>
-            <th style="border: 1.5px solid black; padding: 6px; text-align: left; font-size: 11pt;">महासंघातील बहाल केलेले पद</th>
-            <th style="border: 1.5px solid black; padding: 6px; width: 130px; text-align: center; font-size: 11pt;">व्हॉट्सअ‍ॅप नंबर</th>
+            <th style="border: 1.5px solid black; padding: 7px 5px; width: 50px; text-align: center; font-size: 11pt;">अनु.</th>
+            <th style="border: 1.5px solid black; padding: 7px; text-align: left; font-size: 11.5pt;">पदाधिकाऱ्याचे पूर्ण नाव</th>
+            <th style="border: 1.5px solid black; padding: 7px; text-align: left; font-size: 10.5pt;">सध्याचे पद व कार्यक्षेत्र</th>
+            <th style="border: 1.5px solid black; padding: 7px; text-align: left; font-size: 11pt;">महासंघातील बहाल केलेले पद</th>
           </tr>
         </thead>
         <tbody id="strictTableBody"></tbody>
@@ -1249,7 +1251,16 @@
       window.districtPasswords = snapshot.val() || {};
     });
 
-    // 3. LIVE MASTER DESIGN SYNC
+    // 3. LIVE APPOINTED POSTS SYNC
+    onValue(ref(db, 'custom_appointed_posts'), (snapshot) => {
+      const posts = snapshot.val();
+      if (posts && Array.isArray(posts) && posts.length > 0) {
+        window.appointedPostsList = posts;
+      }
+      window.renderAppointedPosts();
+    });
+
+    // 4. LIVE MASTER DESIGN SYNC
     onValue(ref(db, 'appointment_master_design'), (snapshot) => {
       const design = snapshot.val();
       if (design && design.layout) {
@@ -1267,10 +1278,19 @@
       "सिंधुदुर्ग", "सोलापूर", "ठाणे", "वर्धा", "वाशिम", "यवतमाळ"
     ];
 
+    // डीफॉल्ट बहाल करावयाची पदे
+    window.defaultPostsList = [
+      "जिल्हाध्यक्ष", "जिल्हा सरचिटणीस", "कार्याध्यक्ष", "कोषाध्यक्ष", 
+      "महिला आघाडी अध्यक्ष", "प्रसिद्धी प्रमुख", "कायदेविषयक सल्लागार", 
+      "जिल्हा उपाध्यक्ष", "महिला आघाडी उपाध्यक्ष", "सह सचिव", "सहकोषाध्यक्ष", 
+      "तालुका अध्यक्ष", "तालुका सरचिटणीस"
+    ];
+
+    window.appointedPostsList = JSON.parse(localStorage.getItem('mahasangh_appointed_posts')) || window.defaultPostsList;
     window.membersData = [];
     window.districtPasswords = {};
 
-    let currentDistrict = "बीड"; // डीफॉल्ट
+    let currentDistrict = "बीड";
     let isManageUnlocked = false;
     let isLettersUnlocked = false;
     let lockedDistrictName = null;
@@ -1288,6 +1308,7 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       populateDistricts();
+      renderAppointedPosts();
       renderAll();
       initFreeDragAndResize();
 
@@ -1303,7 +1324,7 @@
             isSuperAdmin = true;
             isManageUnlocked = true;
             isLettersUnlocked = true;
-            lockedDistrictName = null; // सुपर ॲडमिनसाठी कोणताही जिल्हा लॉक राहणार नाही
+            lockedDistrictName = null; // सुपर ॲडमिनसाठी सर्व जिल्हे खुले
 
             document.getElementById('manageLockBadge').style.display = 'none';
             document.getElementById('letterLockBadge').style.display = 'none';
@@ -1312,13 +1333,80 @@
             document.getElementById('districtSelect').disabled = false;
             
             switchTab('tab-designer');
-            alert("संस्थापक राज्याध्यक्ष (Super Admin) लॉगिन यशस्वी! सर्व ३६ जिल्हे व नियंत्रणे खुली झाली आहेत.");
+            alert("संस्थापक राज्याध्यक्ष (Super Admin) लॉगिन यशस्वी! सर्व ३६ जिल्हे व डिझाईन नियंत्रणे खुली झाली आहेत.");
           } else if (pass !== null) {
             alert("चुकीचा पासवर्ड!");
           }
         }
       });
     });
+
+    // बहाल करावयाची पदे व्यवस्थापन व ड्रॉपडाऊन अद्ययावत करणे
+    function renderAppointedPosts() {
+      const select = document.getElementById('appointedPost');
+      if (select) {
+        select.innerHTML = window.appointedPostsList.map(p => `<option value="${p}">${p}</option>`).join('') + '<option value="इतर">इतर (कृपया स्वतः लिहा)</option>';
+      }
+
+      const managerBox = document.getElementById('postListManagerBox');
+      if (managerBox) {
+        managerBox.innerHTML = window.appointedPostsList.map((p, idx) => `
+          <div class="post-manager-item">
+            <span>${idx + 1}. ${p}</span>
+            <div class="post-manager-actions">
+              <button class="btn-icon-xs" title="वर घ्या" onclick="moveAppointedPost(${idx}, -1)"><i class="fa-solid fa-arrow-up"></i></button>
+              <button class="btn-icon-xs" title="खाली घ्या" onclick="moveAppointedPost(${idx}, 1)"><i class="fa-solid fa-arrow-down"></i></button>
+              <button class="btn-icon-xs" style="color:#ef4444;" title="काढून टाका" onclick="deleteAppointedPost(${idx})"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+    window.renderAppointedPosts = renderAppointedPosts;
+
+    async function addNewAppointedPost() {
+      const input = document.getElementById('newPostNameInput');
+      const val = input.value.trim();
+      if (!val) {
+        alert("कृपया नवीन पदाचे नाव प्रविष्ट करा.");
+        return;
+      }
+      if (window.appointedPostsList.includes(val)) {
+        alert("हे पद आधीच यादीमध्ये आहे.");
+        return;
+      }
+      window.appointedPostsList.push(val);
+      input.value = '';
+      await saveAppointedPostsToCloud();
+    }
+
+    async function deleteAppointedPost(idx) {
+      if (confirm(`'${window.appointedPostsList[idx]}' हे पद काढून टाकायचे का?`)) {
+        window.appointedPostsList.splice(idx, 1);
+        await saveAppointedPostsToCloud();
+      }
+    }
+
+    async function moveAppointedPost(idx, dir) {
+      const newIdx = idx + dir;
+      if (newIdx < 0 || newIdx >= window.appointedPostsList.length) return;
+      const temp = window.appointedPostsList[idx];
+      window.appointedPostsList[idx] = window.appointedPostsList[newIdx];
+      window.appointedPostsList[newIdx] = temp;
+      await saveAppointedPostsToCloud();
+    }
+
+    async function saveAppointedPostsToCloud() {
+      localStorage.setItem('mahasangh_appointed_posts', JSON.stringify(window.appointedPostsList));
+      renderAppointedPosts();
+      try {
+        if (window.rtdb && window.dbSet && window.dbRef) {
+          await window.dbSet(window.dbRef(window.rtdb, 'custom_appointed_posts'), window.appointedPostsList);
+        }
+      } catch (e) {
+        console.warn("Post cloud save error:", e);
+      }
+    }
 
     function populateDistricts() {
       const select = document.getElementById('districtSelect');
@@ -1343,7 +1431,6 @@
     }
 
     function onDistrictChange() {
-      // जर सामान्य जिल्हा लॉगिन असेल आणि सुपर ॲडमिन नसेल, तर जिल्हा बदलता येणार नाही
       if (lockedDistrictName && !isSuperAdmin) {
         currentDistrict = lockedDistrictName;
         document.getElementById('districtSelect').value = lockedDistrictName;
@@ -1376,10 +1463,10 @@
       document.getElementById('memberCount').textContent = list.length;
       document.getElementById('directoryHeading').textContent = `जिल्हा कार्यकारणी सूची: ${currentDistrict}`;
 
-      // १. पहिली टॅब: यादी
+      // १. पहिली टॅब: सार्वजनिक यादी (मोबाईल नंबर नसलेली)
       const dirBody = document.getElementById('directoryTableBody');
       if (list.length === 0) {
-        dirBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:18px; color:#888;">या जिल्ह्यात अजून एकही पदाधिकारी नोंदवलेला नाही.</td></tr>`;
+        dirBody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding:18px; color:#888;">या जिल्ह्यात अजून एकही पदाधिकारी नोंदवलेला नाही.</td></tr>`;
       } else {
         dirBody.innerHTML = list.map((m, idx) => `
           <tr>
@@ -1387,12 +1474,11 @@
             <td style="font-weight:700; color:#0f2b48;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
             <td>${m.currentCadre} <br><small style="color:#666;">${m.workingPlace}</small></td>
             <td><strong style="color:var(--accent); font-size:13.5px;">${getDisplayPost(m)}</strong></td>
-            <td style="text-align:center; font-weight:700;">${m.mobile}</td>
           </tr>
         `).join('');
       }
 
-      // २. दुसरी टॅब: संपादन
+      // २. दुसरी टॅब: संपादन (मोबाईल नंबरसह सुरक्षित)
       const manageBody = document.getElementById('manageTableBody');
       if (list.length === 0) {
         manageBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:18px; color:#888;">माहिती उपलब्ध नाही. नवीन पदाधिकारी ॲड करा.</td></tr>`;
@@ -1451,7 +1537,6 @@
       if(tabId === 'tab-designer') document.getElementById('adminDesignerTabBtn').classList.add('active');
 
       const selectBox = document.getElementById('districtSelect');
-      // सुपर ॲडमिन असल्यास जिल्हा कधीही डिसेबल होणार नाही
       if (isSuperAdmin) {
         selectBox.disabled = false;
       } else if (tabId === 'tab-manage' && lockedDistrictName) {
@@ -1461,11 +1546,7 @@
       }
     }
 
-    // ========================================================
-    // SECURE DISTRICT LOGIN & LOCK
-    // ========================================================
     async function unlockManageTab() {
-      // आधीच सुपर ॲडमिन असेल तर थेट पुढे जा
       if (isSuperAdmin) {
         switchTab('tab-manage');
         return;
@@ -1583,7 +1664,6 @@
     }
 
     function openAddModal() {
-      // सुपर ॲडमिन असल्यास सध्या निवडलेला जिल्हा, अन्यथा लॉक असलेला जिल्हा
       const activeDist = isSuperAdmin ? currentDistrict : (lockedDistrictName || currentDistrict);
       document.getElementById('modalTitle').textContent = `नवीन पदाधिकारी नोंदणी (${activeDist} जिल्हा)`;
       document.getElementById('formDistrict').value = activeDist;
@@ -1599,7 +1679,6 @@
       const m = window.membersData.find(item => String(item.id) === String(id));
       if(!m) return;
 
-      // सुपर ॲडमिन वगळता दुसऱ्या जिल्ह्याचा डेटा एडिट करण्यास सक्त मनाई
       if (!isSuperAdmin && lockedDistrictName && m.district !== lockedDistrictName) {
         alert(`अवैध कृती! आपणास केवळ '${lockedDistrictName}' जिल्ह्यातील पदाधिकारी संपादित करण्याचा अधिकार आहे!`);
         return;
@@ -1617,9 +1696,7 @@
       document.getElementById('mobileNumber').value = m.mobile;
 
       const postSelect = document.getElementById('appointedPost');
-      const standardPosts = ["जिल्हाध्यक्ष", "जिल्हा सरचिटणीस", "कार्याध्यक्ष", "कोषाध्यक्ष", "महिला आघाडी अध्यक्ष", "प्रसिद्धी प्रमुख", "कायदेविषयक सल्लागार", "जिल्हा उपाध्यक्ष", "महिला आघाडी उपाध्यक्ष", "सह सचिव", "सहकोषाध्यक्ष", "तालुका अध्यक्ष", "तालुका सरचिटणीस"];
-      
-      if(standardPosts.includes(m.appointedPost)) {
+      if (window.appointedPostsList.includes(m.appointedPost)) {
         postSelect.value = m.appointedPost;
         document.getElementById('customPostDiv').style.display = 'none';
       } else {
@@ -1675,7 +1752,6 @@
         }
       }
 
-      // सुपर ॲडमिन असल्यास सध्या निवडलेला जिल्हा, अन्यथा लॉक जिल्हा
       const activeDist = isSuperAdmin ? document.getElementById('formDistrict').value : (lockedDistrictName || currentDistrict);
       const docId = idVal === "-1" ? Date.now().toString() : idVal;
       const memberObj = {
@@ -1705,7 +1781,6 @@
       }
     }
 
-    // सुपर ॲडमिन वगळता दुसऱ्या जिल्ह्याचा डेटा डिलीट करता येणार नाही
     async function deleteMember(id) {
       const m = window.membersData.find(item => String(item.id) === String(id));
       if (!m) return;
@@ -1726,9 +1801,6 @@
       }
     }
 
-    // ========================================================
-    // नियुक्ती पत्र पॉप्युलेट व पूर्वदृश्य (Preview - मूळ डिझाईनवरून)
-    // ========================================================
     function populateLetter(m) {
       selectedMemberForLetter = m;
       document.getElementById('prevOutward').textContent = `2026/02`;
@@ -1750,7 +1822,6 @@
       }
       populateLetter(m);
 
-      // मूळ डिझाईन टेम्पलेट क्लोन करणे (कोणताही अक्षरी दुहेरी हेडर न लावता)
       const original = document.getElementById('printableCertificate');
       const clone = original.cloneNode(true);
       clone.id = "cleanClonePdf";
@@ -1838,7 +1909,7 @@
       }
     }
 
-    // १-पानी A4 यादी डाऊनलोड (GitHub वरील heding.jpg लेटरहेड योग्य प्रमाणात)[span_12](start_span)[span_12](end_span)
+    // १-पानी A4 यादी डाऊनलोड (मोबाईल नंबर नसलेली)
     async function downloadDirectorySinglePagePDF() {
       const list = getFilteredMembers();
       if(list.length === 0) {
@@ -1858,11 +1929,10 @@
       const tbody = document.getElementById('strictTableBody');
       tbody.innerHTML = list.map((m, idx) => `
         <tr>
-          <td style="border: 1.5px solid black; text-align:center; font-weight:bold; padding:6px; font-size:11pt;">${idx + 1}</td>
-          <td style="border: 1.5px solid black; font-weight:bold; padding:6px; font-size:11.5pt;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
-          <td style="border: 1.5px solid black; padding:6px; font-size:10.5pt;">${m.currentCadre}<br><small style="color:#333;">${m.workingPlace}</small></td>
-          <td style="border: 1.5px solid black; font-weight:bold; padding:6px; font-size:11pt;">${getDisplayPost(m)}</td>
-          <td style="border: 1.5px solid black; text-align:center; font-weight:bold; padding:6px; font-size:11pt;">${m.mobile}</td>
+          <td style="border: 1.5px solid black; text-align:center; font-weight:bold; padding:7px; font-size:11pt;">${idx + 1}</td>
+          <td style="border: 1.5px solid black; font-weight:bold; padding:7px; font-size:11.5pt;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
+          <td style="border: 1.5px solid black; padding:7px; font-size:10.5pt;">${m.currentCadre}<br><small style="color:#333;">${m.workingPlace}</small></td>
+          <td style="border: 1.5px solid black; font-weight:bold; padding:7px; font-size:11pt;">${getDisplayPost(m)}</td>
         </tr>
       `).join('');
 
