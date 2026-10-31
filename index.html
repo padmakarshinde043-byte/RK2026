@@ -49,6 +49,7 @@
       width: 100%;
     }
 
+    /* GitHub वरील heding.jpg इमेज बॅनर */
     header {
       background: #ffffff;
       padding: 0;
@@ -81,6 +82,7 @@
       flex: 1;
     }
 
+    /* १. सर्वात वर असणारे ठळक जिल्हा निवड पॅनल */
     .action-panel-top {
       background: var(--card);
       padding: 12px 16px;
@@ -143,6 +145,7 @@
       .select-district-field-large { width: 290px; }
     }
 
+    /* २. जिल्हा निवडीच्या खाली असणाऱ्या तीन टॅब्स */
     .tabs-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -241,6 +244,7 @@
     }
     td { padding: 9px 12px; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
 
+    /* DESIGNER STUDIO */
     .designer-layout {
       display: grid;
       grid-template-columns: 1fr;
@@ -331,6 +335,7 @@
       width: 100%;
     }
 
+    /* A4 प्रमाणपत्राची रचना (794x1123px) */
     .a4-container {
       width: 794px;
       height: 1123px;
@@ -535,6 +540,7 @@
       display: block;
     }
 
+    /* मॉडेल व फॉर्म स्टाईल */
     .modal-wrap {
       position: fixed;
       inset: 0;
@@ -669,14 +675,14 @@
 </head>
 <body>
 
-  <!-- GitHub वरील heding.jpg इमेज वापरणारा हेडर (३ वेळा क्लिक केल्यास सिक्रेट ॲडमिन पॅनल उघडेल) -->
-  <header id="mainHeaderTitle" title="३ वेळा क्लिक करा (सिक्रेट ॲडमिन पॅनल)">
+  <!-- GitHub वरील heding.jpg इमेज वापरणारा हेडर (३ वेळा क्लिक केल्यास मुख्य ॲडमिन पॅनल उघडेल) -->
+  <header id="mainHeaderTitle" title="३ वेळा क्लिक करा (मुख्य ॲडमिन पॅनल)">
     <img src="heding.jpg" alt="महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ" class="main-header-banner-img" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/padmakarshinde043-byte/RK2026/main/heding.jpg';">
   </header>
 
   <div class="container">
     
-    <!-- १. सर्वात वर ठळक व मोठ्या अक्षरांमध्ये असणारे जिल्हा निवड पॅनल -->
+    <!-- १. सर्वात वर ठळक जिल्हा निवड पॅनल -->
     <div class="action-panel-top">
       <div style="display:flex; align-items:center; gap:10px; width:100%; flex-wrap:wrap;">
         <label for="districtSelect" class="district-label-bold">
@@ -706,8 +712,9 @@
         <i class="fa-solid fa-certificate"></i> नियुक्ती पत्रे व WhatsApp <span class="tab-lock" id="letterLockBadge"><i class="fa-solid fa-lock"></i></span>
       </button>
       
+      <!-- केवळ मुख्य ॲडमिनसाठी असणारी चौथी टॅब -->
       <button class="nav-tab tab-full-width-mobile" id="adminDesignerTabBtn" style="display:none;" onclick="switchTab('tab-designer')">
-        <i class="fa-solid fa-wand-magic-sparkles"></i> नियुक्तीपत्र डिझाइन (Admin)
+        <i class="fa-solid fa-wand-magic-sparkles"></i> ॲडमिन पॅनल (Master Studio)
       </button>
     </div>
 
@@ -733,7 +740,7 @@
       </div>
     </div>
 
-    <!-- TAB 2: Manage (Protected: सामान्य जिल्हाध्यक्षांसाठी लॉक / सुपर ॲडमिनसाठी सर्व जिल्हे खुले) -->
+    <!-- TAB 2: Manage (Protected: सामान्य जिल्ह्यासाठी लॉक / सुपर ॲडमिन व मुख्य ॲडमिनसाठी सर्व जिल्हे खुले) -->
     <div id="tab-manage" class="tab-view" style="display:none;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:8px; flex-wrap:wrap;">
         <div>
@@ -768,7 +775,7 @@
       </div>
     </div>
 
-    <!-- TAB 3: Letters & WhatsApp (Protected: मास्टर पासवर्ड RK2026 - येथेच यादी PDF डाऊनलोड सुविधा उपलब्ध) -->
+    <!-- TAB 3: Letters & WhatsApp (Protected: मास्टर पासवर्ड RK2026 - येथेच सुपर ॲडमिनसाठी यादी PDF डाऊनलोड पर्याय) -->
     <div id="tab-letters" class="tab-view" style="display:none;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:8px; flex-wrap:wrap;">
         <h3 style="font-size:15.5px; font-weight:800; color:var(--navy);">अधिकृत नियुक्ती पत्र वितरण व प्रेषण</h3>
@@ -794,14 +801,14 @@
       </div>
     </div>
 
-    <!-- TAB 4: ADVANCED DESIGNER STUDIO (Admin Master Customizer) -->
+    <!-- TAB 4: ADVANCED DESIGNER STUDIO (Admin Master Customizer - केवळ Pcs@3506 ने उघडणारे) -->
     <div id="tab-designer" class="tab-view" style="display:none;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
         <div>
           <h3 style="font-size:16px; font-weight:800; color:var(--navy);">
-            <i class="fa-solid fa-palette" style="color:var(--accent);"></i> नियुक्तीपत्र डिझाइन स्टुडिओ (Master)
+            <i class="fa-solid fa-palette" style="color:var(--accent);"></i> मुख्य ॲडमिन पॅनल (Master Studio)
           </h3>
-          <small style="color:#64748b;">सर्व घटक कुठेही ठेवा, फॉन्ट, स्वाक्षऱ्या किंवा नवीन प्रतिमा जोडा आणि सेव्ह करा.</small>
+          <small style="color:#64748b;">पदे व्यवस्थापन, पासवर्ड रिसेट, फॉन्ट, स्वाक्षऱ्या आणि लेटरपॅड डिझाइन सेव्ह करा.</small>
         </div>
         <div style="display:flex; gap:6px; flex-wrap:wrap;">
           <button class="btn btn-gold" onclick="saveDesignToCloud()">
@@ -819,7 +826,7 @@
       <div class="designer-layout">
         <div class="designer-controls">
 
-          <!-- बहाल करावयाची पदे व्यवस्थापन -->
+          <!-- १. बहाल करावयाची पदे व्यवस्थापन -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-sitemap"></i> बहाल करावयाची पदे व्यवस्थापन</h4>
             <div style="display:flex; gap:6px; margin-bottom:8px;">
@@ -830,7 +837,7 @@
             </div>
           </div>
 
-          <!-- जिल्हा पासवर्ड रिसेट -->
+          <!-- २. जिल्हा पासवर्ड रिसेट -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-key"></i> जिल्हा पासवर्ड रिसेट (Master)</h4>
             <div style="display:flex; flex-direction:column; gap:6px;">
@@ -841,7 +848,7 @@
             </div>
           </div>
 
-          <!-- घटक दाखवा / लपवा -->
+          <!-- ३. घटक दाखवा / लपवा -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-trash-can"></i> घटक दाखवा / लपवा (Delete/Restore)</h4>
             <div class="element-visibility-grid">
@@ -878,7 +885,7 @@
             </div>
           </div>
 
-          <!-- नवीन इमेज इन्सर्ट / बॅकग्राउंड -->
+          <!-- ४. नवीन इमेज इन्सर्ट / बॅकग्राउंड -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-file-image"></i> नवीन इमेज इन्सर्ट / बॅकग्राउंड</h4>
             <div class="control-row">
@@ -891,7 +898,7 @@
             </div>
           </div>
 
-          <!-- स्वाक्षरी संपादन -->
+          <!-- ५. स्वाक्षरी संपादन -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-signature"></i> स्वाक्षरी संपादन (दोन्ही स्वतंत्र)</h4>
             <div class="control-row">
@@ -916,7 +923,7 @@
             </div>
           </div>
 
-          <!-- फॉन्ट व अंतर -->
+          <!-- ६. फॉन्ट व अंतर -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-font"></i> फॉन्ट व अंतर (तिन्ही परिच्छेद)</h4>
             <div class="control-row">
@@ -933,7 +940,7 @@
             </div>
           </div>
 
-          <!-- मजकूर संपादन -->
+          <!-- ७. मजकूर संपादन -->
           <div class="control-sec">
             <h4><i class="fa-solid fa-pen-to-square"></i> मजकूर संपादन</h4>
             <div class="control-row">
@@ -942,15 +949,15 @@
             </div>
             <div class="control-row">
               <label>परिच्छेद १:</label>
-              <textarea id="dsPara1" rows="3" oninput="updateLetterTexts()">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.</textarea>
+              <textarea id="dsPara1" rows="3" oninput="updateLetterTexts()">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.[span_0](start_span)[span_0](end_span)</textarea>
             </div>
             <div class="control-row">
               <label>परिच्छेद २:</label>
-              <textarea id="dsPara2" rows="3" oninput="updateLetterTexts()">आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—</textarea>
+              <textarea id="dsPara2" rows="3" oninput="updateLetterTexts()">आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_1](start_span)[span_1](end_span)</textarea>
             </div>
             <div class="control-row">
               <label>परिच्छेद ३ (शुभेच्छा):</label>
-              <textarea id="dsPara3" rows="4" oninput="updateLetterTexts()">हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा!</textarea>
+              <textarea id="dsPara3" rows="4" oninput="updateLetterTexts()">हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_2](start_span)[span_2](end_span)!</textarea>
             </div>
           </div>
         </div>
@@ -1017,10 +1024,10 @@
                 <div class="body-text-block" id="dispBodyContent">
                   <p style="font-weight:700;">सस्नेह नमस्कार,</p>
                   <p id="dispPara1">
-                    महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.
+                    महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ हा राज्यातील शिक्षण क्षेत्राच्या रुपांतरणासाठी झटणाऱ्या केंद्रप्रमुख व विस्तार अधिकारी संघटनांच्या हक्क-हक्कासाठी, व्यावसायिक स्वाभिमानासाठी आणि गुणवत्तापूर्ण शिक्षणासाठी कटिबद्ध असलेली अग्रगण्य संघटना आहे. महासंघाच्या गूगल फॉर्म द्वारे प्राप्त झालेल्या सर्व सदस्यांच्या उत्स्फूर्त प्रतिसादानुसार आणि जिल्हा सभेत निवड प्रक्रियेत लोकशाहीच्या मूल्यांचा आदर करत सर्वानुमते हा निर्णय घेण्यात आला आहे.[span_3](start_span)[span_3](end_span)
                   </p>
                   <p id="dispPara2">
-                    आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—
+                    आपला प्रदीर्घ आणि निष्कलंक सेवाप्रवास, शाळा-शिक्षणाविषयी असलेली तल्लीनता, उत्कृष्ट प्रशासकीय समन्वय आणि संघटनकौशल्यावरील आपली अढळ निष्ठा आम्ही अत्यंत जवळून अनुभवली आहे. सहकाऱ्यांच्या अडीअडचणीत धावून जाण्याची आपली वृत्ती आणि नेतृत्वगुणांची सार्थ दखल घेत, सर्व सदस्यांच्या बहुमताने व राज्य कार्यकारिणीच्या निर्णयानुसार आपणास—[span_4](start_span)[span_4](end_span)
                   </p>
                 </div>
               </div>
@@ -1040,7 +1047,7 @@
                 <div class="node-resize-handle"></div>
                 <div class="body-text-block">
                   <p id="dispPara3" style="margin: 0;">
-                    हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा!
+                    हे पद केवळ सन्मानाचे प्रतीक नसून महासंघाच्या पवित्र विचारांचे धोरण आहे. केंद्रप्रमुख व विस्तार अधिकारी संवर्गाचे न्याय प्रश्न सोडवणे, आत्मसन्मान जपणे आणि सर्व सहकाऱ्यांच्या पाठीशी खंबीरपणे उभे राहणे हीच आपली मुख्य जबाबदारी आहे. सर्व सदस्यांनी आपल्यावर दाखवलेला हा विश्वास आणि आपल्या दूरदर्शी नेतृत्वाखाली संघटनेची पताका निश्चितच अभिमानाने गगनभरारी घेईल, हा ठाम विश्वास आहे. या मानाच्या नियुक्तीबद्दल आपले मनःपूर्वक अभिनंदन व भावी वाटचालीस हार्दिक शुभेच्छा[span_5](start_span)[span_5](end_span)!
                   </p>
                 </div>
               </div>
@@ -1182,16 +1189,14 @@
     </div>
   </div>
 
-  <!-- STRICT SINGLE PAGE DIRECTORY PDF TEMPLATE (सुधारित नैसर्गिक गुणोत्तरातील लेटरपॅड) -->
+  <!-- STRICT SINGLE PAGE DIRECTORY PDF TEMPLATE (केवळ सुपर ॲडमिनसाठी उपलब्ध) -->
   <div style="display:none;">
     <div id="printableDirectoryStrict" style="width: 794px; min-height: 1123px; max-height: 1123px; padding: 20px 32px; background: white; color: black; box-sizing: border-box; overflow: hidden; position: relative;">
       
-      <!-- नैसर्गिक उंची आणि योग्य गुणोत्तरातील लेटरपॅड -->
       <div style="width: 100%; text-align: center; margin-bottom: 8px;">
         <img src="heding.jpg" alt="महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ" style="width: 100%; height: auto; max-height: 175px; object-fit: contain; display: block; margin: 0 auto;" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/padmakarshinde043-byte/RK2026/main/heding.jpg';">
       </div>
 
-      <!-- थोडक्यात अधिकृत माहिती पट्टी -->
       <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1.8px solid #851216; border-bottom: 1.8px solid #851216; padding: 5px 8px; margin-bottom: 12px; font-weight: 800; font-size: 11.5pt;">
         <div style="color: #1e3a8a;" id="strictDistrictTitle">जिल्हा कार्यकारिणी सूची : बीड</div>
         <div style="color: #475569;">एकूण पदाधिकारी: <span id="strictTotalCount" style="color: #b45309;">0</span></div>
@@ -1290,7 +1295,8 @@
     let isManageUnlocked = false;
     let isLettersUnlocked = false;
     let lockedDistrictName = null;
-    let isSuperAdmin = false;
+    let isSuperAdmin = false;       // संस्थापक राज्याध्यक्ष (RK2026)
+    let isMasterDevAdmin = false;   // तांत्रिक मुख्य ॲडमिन (Pcs@3506)
     let insertedImagesCount = 0;
 
     let selectedMemberForLetter = null;
@@ -1302,19 +1308,26 @@
       return `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
     }
 
-    // सुपर ॲडमिन मास्टर ॲक्टिव्हेशन (सर्व जिल्हे व सर्व टॅब्स विना-पासवर्ड एकाच वेळी अनलॉक)
+    // सुपर ॲडमिन (संस्थापक राज्याध्यक्ष) मोड सक्रिय करणे (RK2026)
     function activateSuperAdminMode() {
       isSuperAdmin = true;
       isManageUnlocked = true;
       isLettersUnlocked = true;
-      lockedDistrictName = null;
+      lockedDistrictName = null; // सर्व ३६ जिल्हे खुले
 
       document.getElementById('manageLockBadge').style.display = 'none';
       document.getElementById('letterLockBadge').style.display = 'none';
-      document.getElementById('adminDesignerTabBtn').style.display = 'inline-flex';
-      document.getElementById('resetDistrictPassBtn').style.display = 'inline-flex';
       document.getElementById('districtSelect').disabled = false;
       document.getElementById('districtLockNotice').textContent = "(संस्थापक राज्याध्यक्ष - सर्व ३६ जिल्हे खुले)";
+    }
+
+    // गुप्त तांत्रिक ॲडमिन पॅनल उघडणे (Pcs@3506)
+    function activateMasterDevAdmin() {
+      activateSuperAdminMode();
+      isMasterDevAdmin = true;
+      document.getElementById('adminDesignerTabBtn').style.display = 'inline-flex';
+      document.getElementById('resetDistrictPassBtn').style.display = 'inline-flex';
+      switchTab('tab-designer');
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -1323,6 +1336,7 @@
       renderAll();
       initFreeDragAndResize();
 
+      // हेडरवर ३ वेळा क्लिक - केवळ Pcs@3506 नेच ॲडमिन पॅनल उघडेल
       document.getElementById('mainHeaderTitle').addEventListener('click', () => {
         headerClickCount++;
         clearTimeout(headerClickTimer);
@@ -1331,12 +1345,11 @@
         if (headerClickCount === 3) {
           headerClickCount = 0;
           const pass = prompt("गोपनीय मुख्य ॲडमिन पॅनल: पासवर्ड टाका:");
-          if (pass === "RK2026") {
-            activateSuperAdminMode();
-            switchTab('tab-designer');
-            alert("संस्थापक राज्याध्यक्ष (Super Admin) लॉगिन यशस्वी! सर्व ३६ जिल्हे व नियंत्रणे विना-अडथळा खुली झाली आहेत.");
+          if (pass === "Pcs@3506") {
+            activateMasterDevAdmin();
+            alert("मुख्य ॲडमिन (Master Studio) ॲक्सेस सक्रिय झाला आहे! पदे व्यवस्थापन व डिझायनर स्टुडिओ उपलब्ध झाले आहे.");
           } else if (pass !== null) {
-            alert("चुकीचा पासवर्ड!");
+            alert("चुकीचा पासवर्ड! ॲडमिन पॅनलचे अधिकार केवळ मुख्य नियंत्रकांकडे आहेत.");
           }
         }
       });
@@ -1478,7 +1491,7 @@
         `).join('');
       }
 
-      // २. दुसरी टॅब: संपादन (मोबाईल नंबरसह)
+      // २. दुसरी टॅब: संपादन (मोबाईल नंबरसह सुरक्षित)
       const manageBody = document.getElementById('manageTableBody');
       if (list.length === 0) {
         manageBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:18px; color:#888;">माहिती उपलब्ध नाही. नवीन पदाधिकारी ॲड करा.</td></tr>`;
@@ -1547,10 +1560,10 @@
     }
 
     // ========================================================
-    // SECURE DISTRICT LOGIN & LOCK (सुपर ॲडमिनला कधीही पासवर्ड न विचारणे)
+    // SECURE DISTRICT LOGIN & LOCK
     // ========================================================
     async function unlockManageTab() {
-      // सुपर ॲडमिन असल्यास कोणत्याही जिल्ह्यासाठी अजिबात पासवर्ड विचारला जाणार नाही
+      // जर आधीच सुपर ॲडमिन असाल तर कोणत्याही जिल्ह्यासाठी पासवर्ड विचारला जाणार नाही
       if (isSuperAdmin) {
         switchTab('tab-manage');
         return;
@@ -1571,14 +1584,6 @@
       const enteredPass = prompt(`'${currentDistrict}' जिल्ह्यासाठी अधिकृत पासवर्ड प्रविष्ट करा:`);
 
       if (enteredPass === null) return;
-
-      if (enteredPass === "RK2026") {
-        activateSuperAdminMode();
-        renderAll();
-        switchTab('tab-manage');
-        alert("संस्थापक राज्याध्यक्ष (Super Admin) लॉगिन यशस्वी! सर्व ३६ जिल्हे उघडले आहेत.");
-        return;
-      }
 
       if (distPass === "AD2026" && enteredPass === "AD2026") {
         alert(`हा '${currentDistrict}' जिल्ह्यासाठी पहिला लॉगिन आहे. कृपया आपला नवीन पासवर्ड सेट करा.`);
@@ -1637,10 +1642,14 @@
       if (confirm("आपण खरोखर संपादन कार्य पूर्ण करून लॉगआउट करू इच्छिता?")) {
         isManageUnlocked = false;
         isSuperAdmin = false;
+        isMasterDevAdmin = false;
         lockedDistrictName = null;
 
         document.getElementById('districtSelect').disabled = false;
         document.getElementById('manageLockBadge').style.display = 'inline-block';
+        document.getElementById('letterLockBadge').style.display = 'inline-block';
+        document.getElementById('adminDesignerTabBtn').style.display = 'none';
+        document.getElementById('resetDistrictPassBtn').style.display = 'none';
         document.getElementById('districtLockNotice').textContent = '';
 
         switchTab('tab-directory');
@@ -1648,7 +1657,7 @@
       }
     }
 
-    // टॅब ३ (नियुक्ती पत्रे व WhatsApp) अनलॉकिंग - येथून सुपर ॲडमिन झाल्यावर सर्व टॅब्स खुल्या होतात
+    // टॅब ३ (नियुक्ती पत्रे व WhatsApp) अनलॉकिंग - RK2026 ने सुपर ॲडमिन मोड सुरू
     function unlockLettersTab() {
       if (isLettersUnlocked || isSuperAdmin) {
         switchTab('tab-letters');
@@ -1658,7 +1667,7 @@
           activateSuperAdminMode();
           renderAll();
           switchTab('tab-letters');
-          alert("संस्थापक राज्याध्यक्ष (Super Admin) लॉगिन यशस्वी! सर्व ३६ जिल्हे, सर्व टॅब्स व अधिकृत यादी डाऊनलोड सुविधा खुली झाली आहे.");
+          alert("संस्थापक राज्याध्यक्ष (Super Login) यशस्वी! सर्व ३६ जिल्हे, सर्व टॅब्स व अधिकृत यादी डाऊनलोड सुविधा उपलब्ध झाली आहे.");
         } else if (pass !== null) {
           alert("चुकीचा पासवर्ड! केवळ संस्थापक राज्याध्यक्षच ही पत्रे जारी करू शकतात.");
         }
@@ -2001,6 +2010,7 @@
       window.open(waUrl, '_blank');
     }
 
+    // सुपर ॲडमिनसाठी पासवर्ड रिसेट
     async function superAdminResetPassword() {
       const targetDist = document.getElementById('superAdminDistrictSelect').value;
       if (!confirm(`आपण खरोखर '${targetDist}' जिल्ह्याचा पासवर्ड पुन्हा 'AD2026' वर रिसेट करू इच्छिता?`)) return;
