@@ -1752,14 +1752,13 @@
         }).join('');
       }
 
-     // ३. तिसरी टॅब: राज्याध्यक्ष लॉगिन (थेट नियुक्ती पत्र डाऊनलोड बटनासह)
+      // ३. तिसरी टॅब: राज्याध्यक्ष लॉगिन
       const lettersCards = document.getElementById('lettersAppCards');
       const lettersBody = document.getElementById('lettersTableBody');
       if (list.length === 0) {
         lettersCards.innerHTML = `<div style="text-align:center; padding:24px; color:#888;">माहिती उपलब्ध नाही.</div>`;
         lettersBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:18px; color:#888;">माहिती उपलब्ध नाही.</td></tr>`;
       } else {
-        // मोबाईल कार्ड्स व्ह्यू
         lettersCards.innerHTML = list.map((m, idx) => `
           <div class="member-app-card">
             <div class="card-top-row">
@@ -1767,155 +1766,23 @@
               <div class="card-name-title">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</div>
             </div>
             <div><span class="card-appointed-badge">⭐ ${getDisplayPost(m)}</span></div>
-            <div class="card-bottom-actions" style="justify-content:space-between; gap:8px;">
-              <button class="btn btn-gold" id="btn-dl-${m.id}" style="flex:1.2; padding:8px 10px; font-size:12.5px;" onclick="directDownloadLetterPDF('${m.id}')">
-                <i class="fa-solid fa-file-pdf"></i> नियुक्ती पत्र डाऊनलोड
-              </button>
-              <button class="btn btn-wa" style="flex:0.8; padding:8px 10px; font-size:12.5px;" onclick="sendWhatsAppInstantDirect('${m.id}')">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp
-              </button>
+            <div class="card-bottom-actions" style="justify-content:space-between;">
+              <button class="btn btn-view" style="flex:1;" onclick="viewLetterCleanPDF('${m.id}')"><i class="fa-solid fa-eye"></i> प्रमाणपत्र पहा</button>
+              <button class="btn btn-wa" style="flex:1;" onclick="sendWhatsAppInstantDirect('${m.id}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
             </div>
           </div>`).join('');
 
-        // डेस्कटॉप टेबल व्ह्यू
         lettersBody.innerHTML = list.map((m, idx) => `
           <tr>
             <td style="text-align:center; font-weight:bold;">${idx + 1}</td>
             <td style="font-weight:700;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
             <td><strong style="color:var(--accent);">${getDisplayPost(m)}</strong></td>
-            <td style="text-align:center;">
-              <button class="btn btn-gold" id="btn-tbldl-${m.id}" style="padding:6px 14px; font-size:12.5px;" onclick="directDownloadLetterPDF('${m.id}')">
-                <i class="fa-solid fa-file-pdf"></i> नियुक्ती पत्र डाऊनलोड
-              </button>
-            </td>
-            <td style="text-align:center;">
-              <button class="btn btn-wa" style="padding:6px 14px; font-size:12.5px;" onclick="sendWhatsAppInstantDirect('${m.id}')">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp वर पाठवा
-              </button>
-            </td>
+            <td style="text-align:center;"><button class="btn btn-view" onclick="viewLetterCleanPDF('${m.id}')"><i class="fa-solid fa-eye"></i> प्रमाणपत्र पहा</button></td>
+            <td style="text-align:center;"><button class="btn btn-wa" onclick="sendWhatsAppInstantDirect('${m.id}')"><i class="fa-brands fa-whatsapp"></i> WhatsApp वर पाठवा</button></td>
           </tr>`).join('');
       }
-      }
     }
-// --- थेट A4 नियुक्ती पत्र डाऊनलोड करणारे अधिकृत फंक्शन ---
-    async function directDownloadLetterPDF(memberId) {
-      const m = window.membersData.find(item => String(item.id) === String(memberId));
-      if (!m) {
-        alert("पदाधिकाऱ्याची माहिती सापडली नाही!");
-        return;
-      }
 
-      const cardBtn = document.getElementById(`btn-dl-${memberId}`);
-      const tblBtn = document.getElementById(`btn-tbldl-${memberId}`);
-      const activeBtn = cardBtn || tblBtn;
-      let originalBtnText = "";
-      if (activeBtn) {
-        originalBtnText = activeBtn.innerHTML;
-        activeBtn.disabled = true;
-        activeBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> डाऊनलोड होत आहे...`;
-      }
-
-      populateLetter(m);
-
-      const original = document.getElementById('printableCertificate');
-      if (!original) {
-        alert("प्रमाणपत्र उपलब्ध नाही!");
-        if (activeBtn) { activeBtn.disabled = false; activeBtn.innerHTML = originalBtnText; }
-        return;
-      }
-
-      const clone = original.cloneNode(true);
-      clone.id = 'directPdfRenderA4';
-      clone.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
-      clone.querySelectorAll('.canvas-node').forEach(node => {
-        node.style.cursor = 'default';
-      });
-
-      const wrapper = document.createElement('div');
-      wrapper.style.position = 'fixed';
-      wrapper.style.left = '-9999px';
-      wrapper.style.top = '0';
-      wrapper.style.width = '794px';
-      wrapper.style.height = '1123px';
-      wrapper.style.minWidth = '794px';
-      wrapper.style.minHeight = '1123px';
-      wrapper.style.maxWidth = '794px';
-      wrapper.style.maxHeight = '1123px';
-      wrapper.style.background = '#ffffff';
-      wrapper.style.transform = 'none';
-      wrapper.style.zIndex = '999999';
-      wrapper.style.overflow = 'hidden';
-
-      clone.style.transform = 'none';
-      clone.style.boxShadow = 'none';
-      clone.style.margin = '0';
-      clone.style.width = '794px';
-      clone.style.height = '1123px';
-
-      clone.querySelectorAll('img').forEach(img => {
-        img.crossOrigin = "anonymous";
-      });
-
-      wrapper.appendChild(clone);
-      document.body.appendChild(wrapper);
-
-      await new Promise(r => setTimeout(r, 200));
-
-      try {
-        const canvas = await html2canvas(wrapper, {
-          scale: 2,
-          useCORS: true,
-          allowTaint: true,
-          backgroundColor: '#ffffff',
-          logging: false,
-          scrollX: 0,
-          scrollY: 0,
-          windowWidth: 794,
-          windowHeight: 1123,
-          width: 794,
-          height: 1123
-        });
-
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF({
-          orientation: 'portrait',
-          unit: 'mm',
-          format: 'a4'
-        });
-
-        const imgData = canvas.toDataURL('image/jpeg', 0.95);
-        pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
-
-        const seqNo = getMemberSerialOrder(m.id);
-        const filename = `नियुक्ती_पत्र_क्र_${seqNo}_${m.firstName}_${m.lastName}.pdf`;
-
-        const pdfBlob = pdf.output('blob');
-        const blobUrl = URL.createObjectURL(pdfBlob);
-        const link = document.createElement('a');
-        link.style.display = 'none';
-        link.href = blobUrl;
-        link.download = filename;
-        document.body.appendChild(link);
-        link.click();
-
-        setTimeout(() => {
-          document.body.removeChild(link);
-          URL.revokeObjectURL(blobUrl);
-        }, 4000);
-
-      } catch (err) {
-        alert("PDF डाऊनलोड करताना त्रुटी आली: " + err.message);
-      } finally {
-        if (wrapper && wrapper.parentNode) {
-          wrapper.parentNode.removeChild(wrapper);
-        }
-        if (activeBtn) {
-          activeBtn.disabled = false;
-          activeBtn.innerHTML = originalBtnText;
-        }
-      }
-    }
-    
     function switchTab(tabId) {
       document.querySelectorAll('.tab-view').forEach(el => el.style.display = 'none');
       document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
