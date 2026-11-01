@@ -916,7 +916,7 @@
           <button class="btn btn-outline" onclick="resetDesignerDefaults()">
             <i class="fa-solid fa-arrow-rotate-left"></i> रिसेट
           </button>
-          <button class="btn btn-gold" onclick="F()">
+          <button class="btn btn-gold" onclick="downloadCurrentLetterPDF()">
             <i class="fa-solid fa-file-pdf"></i> नमुना पत्र डाऊनलोड
           </button>
         </div>
@@ -1198,7 +1198,7 @@
       </div>
       <div style="padding:10px 16px; background:#fff; display:flex; justify-content:flex-end; gap:8px;">
         <button class="btn btn-outline" onclick="closeModal('cleanViewModal')">बंद करा</button>
-        <button class="btn btn-gold" onclick="F()">
+        <button class="btn btn-gold" onclick="downloadCurrentLetterPDF()">
           <i class="fa-solid fa-file-pdf"></i> उच्च दर्जाची PDF डाऊनलोड
         </button>
       </div>
@@ -1369,7 +1369,7 @@
 
   <script>
     const districtTalukasMap = {
-      "अहिल्यानगर": ["नगर", "पारनेर", "श्रीगोंदा", "कर्जत", "जामखेड", "शेवगाव", "पाथर्डी", "नेवासा", "राहुरी", "संगमनेर", "अकोले", "कोपरगाव", "श्रीरामपूर", "राहाता"],
+      "अहमदनगर": ["नगर", "पारनेर", "श्रीगोंदा", "कर्जत", "जामखेड", "शेवगाव", "पाथर्डी", "नेवासा", "राहुरी", "संगमनेर", "अकोले", "कोपरगाव", "श्रीरामपूर", "राहाता"],
       "अकोला": ["अकोला", "आकोट", "तेल्हारा", "बाळापूर", "पातूर", "बार्शीटाकळी", "मुर्तिजापूर"],
       "अमरावती": ["अमरावती", "भातकुली", "नांदगाव खंडेश्वर", "दर्यापूर", "अंजनगाव सुर्जी", "अचलपूर", "चांदूर बाजार", "मोर्शी", "वरुड", "धामणगाव रेल्वे", "चांदूर रेल्वे", "तिवसा", "धारणी", "चिखलदरा"],
       "छत्रपती संभाजीनगर": ["छत्रपती संभाजीनगर", "गंगापूर", "वैजापूर", "कन्नड", "खुलताबाद", "पैठण", "सिल्लोड", "सोयगाव", "फुलंब्री"],
@@ -1626,45 +1626,8 @@
     }
 
     function getFilteredMembers() {
-    const rawList = window.membersData || [];
-    
-    // १. अहिल्यानगर व अहमदनगर दोन्ही रेकॉर्ड्स ओळखणे
-    const filtered = rawList.filter(m => {
-      if (currentDistrict === 'अहिल्यानगर') {
-        return m.district === 'अहिल्यानगर' || m.district === 'अहमदनगर';
-      }
-      return m.district === currentDistrict;
-    });
-
-    // २. अ‍ॅडमिन पॅनेलनुसार पदांचा अधिकृत उतरता प्राधान्यक्रम
-    const POST_RANKS = [
-      "जिल्हाध्यक्ष", "कार्याध्यक्ष", "जिल्हा कार्याध्यक्ष", "जिल्हा सरचिटणीस", 
-      "सरचिटणीस", "जिल्हा उपाध्यक्ष", "उपाध्यक्ष", "महिला आघाडी अध्यक्ष", 
-      "महिला आघाडी उपाध्यक्ष", "कोषाध्यक्ष", "जिल्हा कोषाध्यक्ष", "सहकोषाध्यक्ष", 
-      "सह सचिव", "सहसचिव", "संघटक", "जिल्हा संघटक", "प्रवक्ता", "प्रवक्ते", 
-      "प्रसिद्धी प्रमुख", "कायदेविषयक सल्लागार", "जिल्हा मार्गदर्शक", 
-      "तालुका अध्यक्ष", "तालुका कार्याध्यक्ष", "तालुका सरचिटणीस", "तालुका उपाध्यक्ष", "सदस्य"
-    ];
-
-    // ३. पदानुसार स्वयंचलित क्रमबद्ध (Sort) करणे
-    filtered.sort((a, b) => {
-      const postA = (a.appointedPost || a.post || '').trim();
-      const postB = (b.appointedPost || b.post || '').trim();
-
-      let rA = POST_RANKS.findIndex(p => postA.includes(p));
-      let rB = POST_RANKS.findIndex(p => postB.includes(p));
-
-      if (rA === -1) rA = 999;
-      if (rB === -1) rB = 999;
-
-      if (rA !== rB) {
-        return rA - rB;
-      }
-      return (a.firstName || '').localeCompare(b.firstName || '', 'mr');
-    });
-
-    return filtered;
-  }
+      return (window.membersData || []).filter(m => m.district === currentDistrict);
+    }
 
     function getDisplayPost(m) {
       const pName = m.appointedPost;
@@ -2188,62 +2151,86 @@
       document.getElementById('cleanViewTitle').textContent = `नियुक्ती पत्र - ${m.salutation} ${m.firstName} ${m.lastName}`;
       document.getElementById('cleanViewModal').style.display = 'flex';
     }
-
+// --- [MISSING FUNCTION RESTORED] नियुक्ती पत्र PDF डाऊनलोड कोड ---
     async function downloadCurrentLetterPDF() {
-      const original = document.getElementById('printableCertificate');
-      const clone = original.cloneNode(true);
-      clone.id = 'tempPdfRenderClone';
+      const btn = (typeof event !== 'undefined' && event && event.target) 
+        ? (event.target.closest('button') || document.querySelector('#cleanViewModal .btn-gold')) 
+        : document.querySelector('#cleanViewModal .btn-gold');
+      
+      let originalBtnText = "";
+      if (btn) {
+        originalBtnText = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> डाऊनलोड होत आहे...`;
+      }
 
-      clone.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
+      let targetElement = document.getElementById('cleanClonePdf');
+      let tempCreated = false;
+      let wrapper = null;
 
-      const wrapper = document.createElement('div');
-      wrapper.style.position = 'fixed';
-      wrapper.style.top = '0';
-      wrapper.style.left = '0';
-      wrapper.style.width = '794px';
-      wrapper.style.height = '1123px';
-      wrapper.style.zIndex = '9999999';
-      wrapper.style.background = '#ffffff';
-      wrapper.style.margin = '0';
-      wrapper.style.padding = '0';
-      wrapper.style.overflow = 'hidden';
+      if (!targetElement) {
+        const original = document.getElementById('printableCertificate');
+        targetElement = original.cloneNode(true);
+        targetElement.id = 'tempPdfRenderClone';
+        targetElement.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
 
-      clone.style.width = '794px';
-      clone.style.height = '1123px';
-      clone.style.maxHeight = '1123px';
-      clone.style.boxShadow = 'none';
-      clone.style.margin = '0';
-
-      wrapper.appendChild(clone);
-      document.body.appendChild(wrapper);
+        wrapper = document.createElement('div');
+        wrapper.style.position = 'fixed';
+        wrapper.style.left = '-9999px';
+        wrapper.style.top = '0';
+        wrapper.style.width = '794px';
+        wrapper.style.height = '1123px';
+        wrapper.style.background = '#ffffff';
+        wrapper.style.zIndex = '999999';
+        wrapper.appendChild(targetElement);
+        document.body.appendChild(wrapper);
+        tempCreated = true;
+      }
 
       try {
-        const canvas = await html2canvas(wrapper, {
+        const canvas = await html2canvas(targetElement, {
           scale: 2.2,
           useCORS: true,
           allowTaint: true,
+          backgroundColor: '#ffffff',
+          scrollX: 0,
+          scrollY: 0,
+          windowWidth: 794,
+          windowHeight: 1123,
           width: 794,
           height: 1123
         });
 
         const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: 'a4'
+        });
+
         const imgData = canvas.toDataURL('image/jpeg', 0.98);
         pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
-        
+
         const seqNo = selectedMemberForLetter ? getMemberSerialOrder(selectedMemberForLetter.id) : 1;
         const filename = selectedMemberForLetter 
           ? `नियुक्ती_पत्र_क्र_${seqNo}_${selectedMemberForLetter.firstName}_${selectedMemberForLetter.lastName}.pdf`
           : `नियुक्ती_पत्र.pdf`;
 
         pdf.save(filename);
-      } catch(err) {
-        alert("PDF डाऊनलोड त्रुटी: " + err.message);
+
+      } catch (err) {
+        alert("PDF डाऊनलोड करताना त्रुटी आली: " + err.message);
       } finally {
-        document.body.removeChild(wrapper);
+        if (tempCreated && wrapper) {
+          document.body.removeChild(wrapper);
+        }
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = originalBtnText;
+        }
       }
     }
-    }  
+    
     async function downloadDirectoryMultiPagePDF() {
   const list = getFilteredMembers();
   if (!list || list.length === 0) {
