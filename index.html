@@ -1935,30 +1935,17 @@
       }
     }
 
-    // --- सुरक्षित SHA-256 हॅश फंक्शन (पासवर्ड एन्क्रिप्शन) ---
-    async function getHash(str) {
-      const msgUint8 = new TextEncoder().encode(str);
-      const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-
-    // १. सुरक्षित राज्याध्यक्ष लॉगिन (RK2026 ऐवजी Hash तपासणी)
-    async function unlockLettersTab() {
+    function unlockLettersTab() {
       if (isLettersUnlocked || isSuperAdmin) {
         switchTab('tab-letters');
       } else {
         const pass = prompt("राज्याध्यक्ष लॉगिन (मास्टर पासवर्ड):");
-        if (pass === null) return;
-
-        const hash = await getHash(pass.trim());
-        // "RK2026" चा सुरक्षित हॅश
-        if (hash === "4c6bf210c4391eaecad89cfc5e7b233e75e3a0937a44f4340798bb03d3583bc8") {
+        if (pass === "RK2026") {
           activateSuperAdminMode();
           renderAll();
           switchTab('tab-letters');
           alert("राज्याध्यक्ष लॉगिन यशस्वी! सर्व ३६ जिल्हे, सर्व टॅब्स व अधिकृत यादी डाऊनलोड सुविधा उपलब्ध झाली आहे.");
-        } else {
+        } else if (pass !== null) {
           alert("चुकीचा पासवर्ड! केवळ संस्थापक राज्याध्यक्षच हे लॉगिन करू शकतात.");
         }
       }
@@ -2201,122 +2188,62 @@
       document.getElementById('cleanViewTitle').textContent = `नियुक्ती पत्र - ${m.salutation} ${m.firstName} ${m.lastName}`;
       document.getElementById('cleanViewModal').style.display = 'flex';
     }
-// प्रतिमेचे Base64 मध्ये रूपांतर करणारे सुरक्षित फंक्शन (CORS व Taint प्रतिबंध)
-    async function convertImgToBase64(url) {
-      try {
-        const response = await fetch(url, { mode: 'cors' });
-        const blob = await response.blob();
-        return new Promise((resolve) => {
-          const reader = new FileReader();
-          reader.onloadend = () => resolve(reader.result);
-          reader.onerror = () => resolve(url);
-          reader.readAsDataURL(blob);
-        });
-      } catch (e) {
-        return url;
-      }
-    }
 
-    // --- थेट A4 नियुक्ती पत्र डाऊनलोड करणारे अधिकृत फंक्शन ---
     async function downloadCurrentLetterPDF() {
-      const btn = document.querySelector('#cleanViewModal .btn-gold');
-      let originalBtnText = "";
-      if (btn) {
-        originalBtnText = btn.innerHTML;
-        btn.disabled = true;
-        btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> डाऊनलोड होत आहे...`;
-      }
-
       const original = document.getElementById('printableCertificate');
-      if (!original) {
-        alert("प्रमाणपत्र उपलब्ध नाही!");
-        if (btn) { btn.disabled = false; btn.innerHTML = originalBtnText; }
-        return;
-      }
-
-      // १. मूळ घटकाची स्वच्छ प्रत तयार करणे
       const clone = original.cloneNode(true);
       clone.id = 'tempPdfRenderClone';
+
       clone.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
-      clone.querySelectorAll('.canvas-node').forEach(node => {
-        node.style.cursor = 'default';
-      });
 
-      // २. इमेजेस Base64 मध्ये रूपांतरित करून कॅनव्हास सुरक्षित करणे
-      const imgElements = clone.querySelectorAll('img');
-      for (let img of imgElements) {
-        if (img.src && !img.src.startsWith('data:')) {
-          const base64Data = await convertImgToBase64(img.src);
-          img.src = base64Data;
-        }
-      }
-
-      // ३. स्क्रीनबाहेर निश्चित A4 आकारात ठेवणे
       const wrapper = document.createElement('div');
       wrapper.style.position = 'fixed';
-      wrapper.style.left = '-9999px';
       wrapper.style.top = '0';
+      wrapper.style.left = '0';
       wrapper.style.width = '794px';
       wrapper.style.height = '1123px';
-      wrapper.style.minWidth = '794px';
-      wrapper.style.minHeight = '1123px';
-      wrapper.style.maxWidth = '794px';
-      wrapper.style.maxHeight = '1123px';
+      wrapper.style.zIndex = '9999999';
       wrapper.style.background = '#ffffff';
-      wrapper.style.zIndex = '999999';
+      wrapper.style.margin = '0';
+      wrapper.style.padding = '0';
       wrapper.style.overflow = 'hidden';
 
-      clone.style.transform = 'none';
-      clone.style.boxShadow = 'none';
-      clone.style.margin = '0';
       clone.style.width = '794px';
       clone.style.height = '1123px';
+      clone.style.maxHeight = '1123px';
+      clone.style.boxShadow = 'none';
+      clone.style.margin = '0';
 
       wrapper.appendChild(clone);
       document.body.appendChild(wrapper);
-
-      await new Promise(r => setTimeout(r, 200));
 
       try {
         const canvas = await html2canvas(wrapper, {
           scale: 2.2,
           useCORS: true,
-          allowTaint: false,
-          backgroundColor: '#ffffff',
-          logging: false,
+          allowTaint: true,
           width: 794,
           height: 1123
         });
 
         const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF({
-          orientation: 'portrait',
-          unit: 'mm',
-          format: 'a4'
-        });
-
+        const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
         const imgData = canvas.toDataURL('image/jpeg', 0.98);
         pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
-
+        
         const seqNo = selectedMemberForLetter ? getMemberSerialOrder(selectedMemberForLetter.id) : 1;
         const filename = selectedMemberForLetter 
           ? `नियुक्ती_पत्र_क्र_${seqNo}_${selectedMemberForLetter.firstName}_${selectedMemberForLetter.lastName}.pdf`
           : `नियुक्ती_पत्र.pdf`;
 
         pdf.save(filename);
-
-      } catch (err) {
-        alert("PDF डाऊनलोड करताना अडचण आली: " + err.message);
+      } catch(err) {
+        alert("PDF डाऊनलोड त्रुटी: " + err.message);
       } finally {
-        if (wrapper && wrapper.parentNode) {
-          wrapper.parentNode.removeChild(wrapper);
-        }
-        if (btn) {
-          btn.disabled = false;
-          btn.innerHTML = originalBtnText;
-        }
+        document.body.removeChild(wrapper);
       }
     }
+    }  
     async function downloadDirectoryMultiPagePDF() {
   const list = getFilteredMembers();
   if (!list || list.length === 0) {
