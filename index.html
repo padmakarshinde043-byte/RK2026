@@ -2162,11 +2162,14 @@
   const btn = document.getElementById('dirDownloadBtn');
   const originalText = btn.innerHTML;
   btn.disabled = true;
-  btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> ऑफिशियल PDF तयार होत आहे...`;
+  btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> स्वाक्षरीसह PDF तयार होत आहे...`;
 
-  // पहिल्या पानावर १०, पुढील पानांवर १४ पदाधिकारी
-  const firstPageLimit = 10;
-  const subsequentPageLimit = 14;
+  // पानावरील जागेचे योग्य नियोजन (स्वाक्षरीसाठी पुरेशी जागा राखून)
+  let firstPageLimit = 13;
+  if (list.length <= 14) {
+    firstPageLimit = 14; // १४ पर्यंत सदस्य असल्यास एकाच पानात सहीसह बसतील
+  }
+  const subsequentPageLimit = 20;
 
   const pages = [];
   let currentIndex = 0;
@@ -2183,7 +2186,6 @@
   const { jsPDF } = window.jspdf;
   const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
-  // रेंडरिंगसाठी स्क्रीनच्या बाहेर दृश्यमान कंटेनर तयार करणे (Zero Blank Risk)
   const renderWrapper = document.createElement('div');
   renderWrapper.style.position = 'fixed';
   renderWrapper.style.left = '-9999px';
@@ -2196,18 +2198,19 @@
   try {
     for (let pIdx = 0; pIdx < totalPages; pIdx++) {
       const pageData = pages[pIdx];
+      const isLastPage = (pIdx === totalPages - 1);
 
       let pageHTML = `
-        <div style="width: 794px; min-height: 1123px; max-height: 1123px; padding: 24px 32px; background: #ffffff; color: #000000; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; font-family: 'Yantramanav', sans-serif;">
+        <div style="width: 794px; min-height: 1123px; max-height: 1123px; padding: 18px 28px 16px 28px; background: #ffffff; color: #000000; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; font-family: 'Yantramanav', sans-serif;">
           <div>
       `;
 
       if (pageData.isFirst) {
         pageHTML += `
-          <div style="width: 100%; text-align: center; margin-bottom: 6px;">
-            <img src="heding.jpg" crossorigin="anonymous" alt="लेटरपॅड" style="width: 100%; height: auto; max-height: 200px; object-fit: contain; display: block; margin: 0 auto;" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/padmakarshinde043-byte/RK2026/main/heding.jpg';">
+          <div style="width: 100%; text-align: center; margin-bottom: 4px;">
+            <img src="heding.jpg" crossorigin="anonymous" alt="लेटरपॅड" style="width: 100%; height: auto; max-height: 175px; object-fit: contain; display: block; margin: 0 auto;" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/padmakarshinde043-byte/RK2026/main/heding.jpg';">
           </div>
-          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #851216; border-bottom: 2px solid #851216; padding: 6px 10px; margin-bottom: 14px; font-weight: 800; font-size: 12.5pt;">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #851216; border-bottom: 2px solid #851216; padding: 4px 8px; margin-bottom: 8px; font-weight: 800; font-size: 11.5pt;">
             <div style="color: #1e3a8a;">जिल्हा कार्यकारिणी सूची : ${currentDistrict}</div>
             <div style="color: #475569;">एकूण पदाधिकारी: <span style="color: #b45309;">${list.length}</span></div>
             <div style="color: #334155;">दिनांक: ${getTodayFormattedDate()}</div>
@@ -2215,7 +2218,7 @@
         `;
       } else {
         pageHTML += `
-          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #851216; padding-bottom: 6px; margin-bottom: 14px; font-weight: 800; font-size: 11.5pt;">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #851216; padding-bottom: 4px; margin-bottom: 10px; font-weight: 800; font-size: 11.5pt;">
             <div style="color: #1e3a8a;">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ - ${currentDistrict} जिल्हा सूची (पुढे चालू)</div>
             <div style="color: #334155;">दिनांक: ${getTodayFormattedDate()}</div>
           </div>
@@ -2223,13 +2226,13 @@
       }
 
       pageHTML += `
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px;">
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
           <thead>
             <tr style="background: #f1f5f9;">
-              <th style="border: 1.5px solid black; padding: 8px 6px; width: 45px; text-align: center; font-size: 11pt;">अनु.</th>
-              <th style="border: 1.5px solid black; padding: 8px; text-align: left; font-size: 11.5pt;">पदाधिकाऱ्याचे संपूर्ण नाव</th>
-              <th style="border: 1.5px solid black; padding: 8px; text-align: left; font-size: 10.5pt;">सध्याचे पद व कार्यक्षेत्र</th>
-              <th style="border: 1.5px solid black; padding: 8px; text-align: left; font-size: 11pt;">महासंघातील बहाल केलेले पद</th>
+              <th style="border: 1.5px solid black; padding: 5px 4px; width: 45px; text-align: center; font-size: 10.5pt;">अनु.</th>
+              <th style="border: 1.5px solid black; padding: 5px 6px; text-align: left; font-size: 11pt;">पदाधिकाऱ्याचे संपूर्ण नाव</th>
+              <th style="border: 1.5px solid black; padding: 5px 6px; text-align: left; font-size: 10.5pt;">सध्याचे पद व कार्यक्षेत्र</th>
+              <th style="border: 1.5px solid black; padding: 5px 6px; text-align: left; font-size: 11pt;">महासंघातील बहाल केलेले पद</th>
             </tr>
           </thead>
           <tbody>
@@ -2240,10 +2243,10 @@
         const wp = getWorkingPlaceDisplay(m);
         pageHTML += `
           <tr>
-            <td style="border: 1.5px solid black; text-align: center; font-weight: bold; padding: 7px 5px; font-size: 11pt;">${rowNumber}</td>
-            <td style="border: 1.5px solid black; font-weight: bold; padding: 7px; font-size: 11.5pt;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
-            <td style="border: 1.5px solid black; padding: 7px; font-size: 10.5pt;"><strong>${wp.cadre}</strong><br><small style="color:#333;">${wp.details}</small></td>
-            <td style="border: 1.5px solid black; font-weight: 800; padding: 7px; font-size: 11pt; color: #851216;">${getDisplayPost(m)}</td>
+            <td style="border: 1.5px solid black; text-align: center; font-weight: bold; padding: 5px 4px; font-size: 10.5pt;">${rowNumber}</td>
+            <td style="border: 1.5px solid black; font-weight: bold; padding: 5px 6px; font-size: 11pt; color: #0f172a;">${m.salutation} ${m.firstName} ${m.middleName} ${m.lastName}</td>
+            <td style="border: 1.5px solid black; padding: 5px 6px; font-size: 10pt; line-height: 1.3;"><strong>${wp.cadre}</strong><br><small style="color:#333;">${wp.details}</small></td>
+            <td style="border: 1.5px solid black; font-weight: 800; padding: 5px 6px; font-size: 10.5pt; color: #851216;">${getDisplayPost(m)}</td>
           </tr>
         `;
       });
@@ -2251,8 +2254,25 @@
       pageHTML += `
             </tbody>
           </table>
+      `;
+
+      // शेवटच्या पानावर उजव्या बाजूला sign.jpg सही व शिक्का जोडणे
+      if (isLastPage) {
+        pageHTML += `
+          <div style="display: flex; justify-content: flex-end; margin-top: 14px; margin-bottom: 8px;">
+            <div style="text-align: center; min-width: 220px;">
+              <img src="sign.jpg" crossorigin="anonymous" alt="स्वाक्षरी" style="height: 52px; max-width: 180px; object-fit: contain; display: block; margin: 0 auto 2px auto;" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/padmakarshinde043-byte/RK2026/main/sign.jpg';">
+              <div style="font-size: 11.5pt; font-weight: 800; color: #0f172a; line-height: 1.2;">( श्री. राजेंद्र शिवाजी खैरनार )</div>
+              <div style="font-size: 10pt; font-weight: 700; color: #851216;">संस्थापक राज्याध्यक्ष</div>
+              <div style="font-size: 9pt; font-weight: 600; color: #334155;">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</div>
+            </div>
+          </div>
+        `;
+      }
+
+      pageHTML += `
         </div>
-        <div style="display: flex; justify-content: space-between; font-size: 10pt; font-weight: 700; color: #64748b; border-top: 1px solid #cbd5e1; padding-top: 6px;">
+        <div style="display: flex; justify-content: space-between; font-size: 9.5pt; font-weight: 700; color: #64748b; border-top: 1px solid #cbd5e1; padding-top: 4px;">
           <div>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</div>
           <div>पान क्र. ${pIdx + 1} / ${totalPages}</div>
         </div>
@@ -2261,8 +2281,8 @@
 
       renderWrapper.innerHTML = pageHTML;
 
-      // इमेज लोड होण्यासाठी 150ms चा सुरक्षित ब्रेक
-      await new Promise(r => setTimeout(r, 150));
+      // इमेज लोड होण्यासाठी सुरक्षित वेळ
+      await new Promise(r => setTimeout(r, 200));
 
       const canvas = await html2canvas(renderWrapper.firstElementChild, {
         scale: 2.2,
@@ -2287,7 +2307,6 @@
     btn.innerHTML = originalText;
   }
 }
-
     function sendWhatsAppInstantDirect(id) {
       const m = window.membersData.find(item => String(item.id) === String(id));
       if(!m) return;
