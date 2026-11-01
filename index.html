@@ -2217,7 +2217,8 @@
       }
     }
 
-    // --- थेट A4 नियुक्ती पत्र डाऊनलोड करणारे अधिकृत फंक्शन ---
+    
+    // --- १००% खात्रीशीर थेट नियुक्ती पत्र PDF डाऊनलोड इंजिन ---
     async function downloadCurrentLetterPDF() {
       const btn = document.querySelector('#cleanViewModal .btn-gold');
       let originalBtnText = "";
@@ -2227,65 +2228,70 @@
         btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> डाऊनलोड होत आहे...`;
       }
 
-      const original = document.getElementById('printableCertificate');
-      if (!original) {
+      // १. आधी स्क्रीनवर आधीपासून दृश्यमान असलेला पॉपअपमधील घटक तपासणे
+      const modalTarget = document.getElementById('cleanClonePdf');
+      const baseTarget = document.getElementById('printableCertificate');
+      const targetSource = modalTarget || baseTarget;
+
+      if (!targetSource) {
         alert("प्रमाणपत्र उपलब्ध नाही!");
         if (btn) { btn.disabled = false; btn.innerHTML = originalBtnText; }
         return;
       }
 
-      // १. मूळ घटकाची स्वच्छ प्रत तयार करणे
-      const clone = original.cloneNode(true);
-      clone.id = 'tempPdfRenderClone';
+      // २. स्क्रीनबाहेर निश्चित ७९४ x ११२३ (A4) आकाराचा स्वच्छ बॉक्स तयार करणे
+      const clone = targetSource.cloneNode(true);
+      clone.id = 'directA4PdfWorker';
+      clone.style.display = 'block';
+      clone.style.transform = 'none';
+      clone.style.boxShadow = 'none';
+      clone.style.margin = '0';
+      clone.style.width = '794px';
+      clone.style.height = '1123px';
+      clone.style.maxHeight = '1123px';
+
       clone.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
       clone.querySelectorAll('.canvas-node').forEach(node => {
         node.style.cursor = 'default';
       });
 
-      // २. इमेजेस Base64 मध्ये रूपांतरित करून कॅनव्हास सुरक्षित करणे
-      const imgElements = clone.querySelectorAll('img');
-      for (let img of imgElements) {
-        if (img.src && !img.src.startsWith('data:')) {
-          const base64Data = await convertImgToBase64(img.src);
-          img.src = base64Data;
-        }
-      }
-
-      // ३. स्क्रीनबाहेर निश्चित A4 आकारात ठेवणे
       const wrapper = document.createElement('div');
       wrapper.style.position = 'fixed';
       wrapper.style.left = '-9999px';
       wrapper.style.top = '0';
       wrapper.style.width = '794px';
       wrapper.style.height = '1123px';
-      wrapper.style.minWidth = '794px';
-      wrapper.style.minHeight = '1123px';
-      wrapper.style.maxWidth = '794px';
-      wrapper.style.maxHeight = '1123px';
       wrapper.style.background = '#ffffff';
-      wrapper.style.zIndex = '999999';
+      wrapper.style.zIndex = '9999999';
       wrapper.style.overflow = 'hidden';
-
-      clone.style.transform = 'none';
-      clone.style.boxShadow = 'none';
-      clone.style.margin = '0';
-      clone.style.width = '794px';
-      clone.style.height = '1123px';
 
       wrapper.appendChild(clone);
       document.body.appendChild(wrapper);
 
-      await new Promise(r => setTimeout(r, 200));
+      // ३. सर्व इमेजेस (बॅनर व स्वाक्षरी) पूर्ण लोड होण्याची खात्री करणे
+      const allImgs = Array.from(wrapper.querySelectorAll('img'));
+      await Promise.all(allImgs.map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(res => {
+          img.onload = res;
+          img.onerror = res;
+        });
+      }));
+
+      // फॉन्ट आणि DOM स्थिर होण्यासाठी सूक्ष्म विलंब
+      await new Promise(r => setTimeout(r, 250));
 
       try {
         const canvas = await html2canvas(wrapper, {
-          scale: 2.2,
+          scale: 2,
           useCORS: true,
-          allowTaint: false,
+          allowTaint: true,
           backgroundColor: '#ffffff',
           logging: false,
           width: 794,
-          height: 1123
+          height: 1123,
+          windowWidth: 794,
+          windowHeight: 1123
         });
 
         const { jsPDF } = window.jspdf;
@@ -2303,7 +2309,19 @@
           ? `नियुक्ती_पत्र_क्र_${seqNo}_${selectedMemberForLetter.firstName}_${selectedMemberForLetter.lastName}.pdf`
           : `नियुक्ती_पत्र.pdf`;
 
-        pdf.save(filename);
+        // मोबाईल व पीसीवर थेट फाईल डाऊनलोड ट्रिगर करणे (Blob Link द्वारे)
+        const pdfBlob = pdf.output('blob');
+        const blobUrl = URL.createObjectURL(pdfBlob);
+        const downloadLink = document.createElement('a');
+        downloadLink.href = blobUrl;
+        downloadLink.download = filename;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+
+        setTimeout(() => {
+          document.body.removeChild(downloadLink);
+          URL.revokeObjectURL(blobUrl);
+        }, 3000);
 
       } catch (err) {
         alert("PDF डाऊनलोड करताना अडचण आली: " + err.message);
@@ -2317,6 +2335,7 @@
         }
       }
     }
+    
     async function downloadDirectoryMultiPagePDF() {
   const list = getFilteredMembers();
   if (!list || list.length === 0) {
