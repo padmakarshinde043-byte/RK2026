@@ -1496,7 +1496,7 @@
         select.innerHTML = window.appointedPostsList.map(p => {
           const pName = typeof p === 'object' ? p.name : p;
           return `<option value="${pName}">${pName}</option>`;
-        }).join('') + '<option value="इतर">इतर (कृपया स्वतः लिहा)</option>';
+        }).join('');
       }
 
       const managerBox = document.getElementById('postListManagerBox');
@@ -2084,7 +2084,7 @@
     }
 
     function togglePostDetails(val) {
-      document.getElementById('customPostDiv').style.display = (val === 'इतर') ? 'block' : 'none';
+      document.getElementById('customPostDiv').style.display = 'none';
 
       let isTalukaRequired = false;
       const found = window.appointedPostsList.find(p => (typeof p === 'object' ? p.name : p) === val);
