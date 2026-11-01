@@ -1935,17 +1935,30 @@
       }
     }
 
-    function unlockLettersTab() {
+    // --- सुरक्षित SHA-256 हॅश फंक्शन (पासवर्ड एन्क्रिप्शन) ---
+    async function getHash(str) {
+      const msgUint8 = new TextEncoder().encode(str);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    // १. सुरक्षित राज्याध्यक्ष लॉगिन (RK2026 ऐवजी Hash तपासणी)
+    async function unlockLettersTab() {
       if (isLettersUnlocked || isSuperAdmin) {
         switchTab('tab-letters');
       } else {
         const pass = prompt("राज्याध्यक्ष लॉगिन (मास्टर पासवर्ड):");
-        if (pass === "RK2026") {
+        if (pass === null) return;
+
+        const hash = await getHash(pass.trim());
+        // "RK2026" चा सुरक्षित हॅश
+        if (hash === "4c6bf210c4391eaecad89cfc5e7b233e75e3a0937a44f4340798bb03d3583bc8") {
           activateSuperAdminMode();
           renderAll();
           switchTab('tab-letters');
           alert("राज्याध्यक्ष लॉगिन यशस्वी! सर्व ३६ जिल्हे, सर्व टॅब्स व अधिकृत यादी डाऊनलोड सुविधा उपलब्ध झाली आहे.");
-        } else if (pass !== null) {
+        } else {
           alert("चुकीचा पासवर्ड! केवळ संस्थापक राज्याध्यक्षच हे लॉगिन करू शकतात.");
         }
       }
