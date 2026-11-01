@@ -916,7 +916,7 @@
           <button class="btn btn-outline" onclick="resetDesignerDefaults()">
             <i class="fa-solid fa-arrow-rotate-left"></i> रिसेट
           </button>
-          <button class="btn btn-gold" onclick="downloadCurrentLetterPDF()">
+          <button class="btn btn-gold" onclick="F()">
             <i class="fa-solid fa-file-pdf"></i> नमुना पत्र डाऊनलोड
           </button>
         </div>
@@ -1198,7 +1198,7 @@
       </div>
       <div style="padding:10px 16px; background:#fff; display:flex; justify-content:flex-end; gap:8px;">
         <button class="btn btn-outline" onclick="closeModal('cleanViewModal')">बंद करा</button>
-        <button class="btn btn-gold" onclick="downloadCurrentLetterPDF()">
+        <button class="btn btn-gold" onclick="F()">
           <i class="fa-solid fa-file-pdf"></i> उच्च दर्जाची PDF डाऊनलोड
         </button>
       </div>
@@ -2151,7 +2151,7 @@
       document.getElementById('cleanViewTitle').textContent = `नियुक्ती पत्र - ${m.salutation} ${m.firstName} ${m.lastName}`;
       document.getElementById('cleanViewModal').style.display = 'flex';
     }
-// --- [MISSING FUNCTION RESTORED] नियुक्ती पत्र PDF डाऊनलोड कोड ---
+// --- [PATCH] मोबाईल व लॅपटॉप दोन्हीकडे १००% पूर्ण A4 आकारात डाऊनलोड करणारा कोड ---
     async function downloadCurrentLetterPDF() {
       const btn = (typeof event !== 'undefined' && event && event.target) 
         ? (event.target.closest('button') || document.querySelector('#cleanViewModal .btn-gold')) 
@@ -2164,31 +2164,43 @@
         btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> डाऊनलोड होत आहे...`;
       }
 
-      let targetElement = document.getElementById('cleanClonePdf');
-      let tempCreated = false;
-      let wrapper = null;
+      // १. मूळ पूर्ण आकाराच्या प्रमाणपत्राची फ्रेश कॉपी घेणे (कोणतेही मोबाईल स्केलिंग न लावता)
+      const original = document.getElementById('printableCertificate');
+      const clone = original.cloneNode(true);
+      clone.id = 'tempPdfRenderExactA4';
+      clone.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
+      
+      // सर्व नोड्स सामान्य ठेवणे
+      clone.querySelectorAll('.canvas-node').forEach(node => {
+        node.style.cursor = 'default';
+      });
 
-      if (!targetElement) {
-        const original = document.getElementById('printableCertificate');
-        targetElement = original.cloneNode(true);
-        targetElement.id = 'tempPdfRenderClone';
-        targetElement.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
+      // २. स्क्रीनबाहेर निश्चित A4 आकारात रेंडर रॅपर तयार करणे
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'fixed';
+      wrapper.style.left = '-9999px';
+      wrapper.style.top = '0';
+      wrapper.style.width = '794px';
+      wrapper.style.height = '1123px';
+      wrapper.style.minWidth = '794px';
+      wrapper.style.minHeight = '1123px';
+      wrapper.style.maxWidth = '794px';
+      wrapper.style.maxHeight = '1123px';
+      wrapper.style.background = '#ffffff';
+      wrapper.style.transform = 'none'; // मोबाईल स्केलिंग पूर्णपणे रद्द
+      wrapper.style.zIndex = '999999';
+      wrapper.style.overflow = 'hidden';
 
-        wrapper = document.createElement('div');
-        wrapper.style.position = 'fixed';
-        wrapper.style.left = '-9999px';
-        wrapper.style.top = '0';
-        wrapper.style.width = '794px';
-        wrapper.style.height = '1123px';
-        wrapper.style.background = '#ffffff';
-        wrapper.style.zIndex = '999999';
-        wrapper.appendChild(targetElement);
-        document.body.appendChild(wrapper);
-        tempCreated = true;
-      }
+      clone.style.transform = 'none';
+      clone.style.boxShadow = 'none';
+      clone.style.margin = '0';
+
+      wrapper.appendChild(clone);
+      document.body.appendChild(wrapper);
 
       try {
-        const canvas = await html2canvas(targetElement, {
+        // ३. पूर्ण ७९४ x ११२३ रिझोल्यूशनवर कॅन्व्हास तयार करणे
+        const canvas = await html2canvas(wrapper, {
           scale: 2.2,
           useCORS: true,
           allowTaint: true,
@@ -2209,6 +2221,7 @@
         });
 
         const imgData = canvas.toDataURL('image/jpeg', 0.98);
+        // पूर्ण A4 मापावर (210mm x 297mm) अचूक बसवणे
         pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
 
         const seqNo = selectedMemberForLetter ? getMemberSerialOrder(selectedMemberForLetter.id) : 1;
@@ -2221,9 +2234,7 @@
       } catch (err) {
         alert("PDF डाऊनलोड करताना त्रुटी आली: " + err.message);
       } finally {
-        if (tempCreated && wrapper) {
-          document.body.removeChild(wrapper);
-        }
+        document.body.removeChild(wrapper);
         if (btn) {
           btn.disabled = false;
           btn.innerHTML = originalBtnText;
