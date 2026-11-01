@@ -2039,9 +2039,15 @@
         return;
       }
 
-      document.getElementById('modalTitle').textContent = `पदाधिकारी माहिती दुरुस्ती (${m.district} जिल्हा)`;
+      // १. जुना जिल्हा अहमदनगर असल्यास तालुक्यांच्या मॅपिंगसाठी तो अहिल्यानगर म्हणून ओळखणे
+      let targetDist = m.district ? m.district.trim() : '';
+      if (targetDist === 'अहमदनगर' || targetDist.toLowerCase() === 'ahmednagar') {
+        targetDist = 'अहिल्यानगर';
+      }
+
+      document.getElementById('modalTitle').textContent = `पदाधिकारी माहिती दुरुस्ती (${targetDist} जिल्हा)`;
       document.getElementById('editIndex').value = m.id;
-      document.getElementById('formDistrict').value = m.district;
+      document.getElementById('formDistrict').value = targetDist;
       document.getElementById('salutation').value = m.salutation;
       document.getElementById('firstName').value = m.firstName;
       document.getElementById('middleName').value = m.middleName;
@@ -2058,24 +2064,25 @@
       }
 
       document.getElementById('workingPlace').value = m.workingPlace;
-      updateWorkingTalukaDropdown(m.district, m.workingTaluka || '');
-      updateAppointedTalukaDropdown(m.district, m.taluka || '');
+
+      // २. योग्य जिल्ह्यानुसार कार्यक्षेत्र आणि बहाल पदाचे दोन्ही तालुका ड्रॉपडाउन अचूक लोड करणे
+      updateWorkingTalukaDropdown(targetDist, m.workingTaluka || '');
+      updateAppointedTalukaDropdown(targetDist, m.taluka || '');
 
       document.getElementById('mobileNumber').value = m.mobile;
 
+      // ३. बहाल केलेले पद निवडणे
       const postSelect = document.getElementById('appointedPost');
-      const existsInList = window.appointedPostsList.some(p => (typeof p === 'object' ? p.name : p) === m.appointedPost);
+      postSelect.value = m.appointedPost;
 
-      if (existsInList) {
-        postSelect.value = m.appointedPost;
-        document.getElementById('customPostDiv').style.display = 'none';
-      } else {
-        postSelect.value = "इतर";
-        document.getElementById('customPostDiv').style.display = 'block';
-        document.getElementById('customPost').value = m.appointedPost;
+      // ४. पदासाठी तालुका आवश्यक आहे का ते तपासून तालुक्याचा ड्रॉपडाउन दाखवणे
+      togglePostDetails(m.appointedPost);
+
+      // जर जुन्या डेटामध्ये आधीच तालुका निवडलेला असेल तर तो सिलेक्टेड ठेवणे
+      if (m.taluka) {
+        document.getElementById('talukaSelectField').value = m.taluka;
       }
 
-      togglePostDetails(postSelect.value);
       document.getElementById('memberModal').style.display = 'flex';
     }
 
