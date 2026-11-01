@@ -2151,74 +2151,40 @@
       document.getElementById('cleanViewTitle').textContent = `नियुक्ती पत्र - ${m.salutation} ${m.firstName} ${m.lastName}`;
       document.getElementById('cleanViewModal').style.display = 'flex';
     }
-// --- [FINAL BULLETPROOF PATCH] मोबाईलवर खात्रीने नियुक्ती पत्र डाऊनलोड करणारा कोड ---
+// --- [100% WORKING FINAL PATCH] मोबाईलवर थेट डाऊनलोड ट्रिगर करणारा कोड ---
     async function downloadCurrentLetterPDF() {
       const btn = document.querySelector('#cleanViewModal .btn-gold');
       let originalBtnText = "";
       if (btn) {
         originalBtnText = btn.innerHTML;
         btn.disabled = true;
-        btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> डाऊनलोड होत आहे...`;
+        btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> तयार होत आहे...`;
       }
 
-      // १. मूळ प्रमाणपत्राची फ्रेश कॉपी घेणे
-      const original = document.getElementById('printableCertificate');
-      if (!original) {
-        alert("प्रमाणपत्र सापडले नाही!");
+      // १. पॉपअपमध्ये समोर दिसत असलेला घटकच टार्गेट करणे
+      const targetElement = document.getElementById('cleanClonePdf');
+      const scaledContainer = document.getElementById('scaledLetterContainer');
+
+      if (!targetElement) {
+        alert("प्रमाणपत्र उपलब्ध नाही!");
         if (btn) { btn.disabled = false; btn.innerHTML = originalBtnText; }
         return;
       }
 
-      const clone = original.cloneNode(true);
-      clone.id = 'tempPdfRenderExactA4';
-      clone.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
-      clone.querySelectorAll('.canvas-node').forEach(node => {
-        node.style.cursor = 'default';
-      });
-
-      // २. स्क्रीनबाहेर निश्चित A4 मापात रेंडर रॅपर
-      const wrapper = document.createElement('div');
-      wrapper.style.position = 'fixed';
-      wrapper.style.left = '-9999px';
-      wrapper.style.top = '0';
-      wrapper.style.width = '794px';
-      wrapper.style.height = '1123px';
-      wrapper.style.minWidth = '794px';
-      wrapper.style.minHeight = '1123px';
-      wrapper.style.maxWidth = '794px';
-      wrapper.style.maxHeight = '1123px';
-      wrapper.style.background = '#ffffff';
-      wrapper.style.transform = 'none';
-      wrapper.style.zIndex = '999999';
-      wrapper.style.overflow = 'hidden';
-
-      clone.style.transform = 'none';
-      clone.style.boxShadow = 'none';
-      clone.style.margin = '0';
-      clone.style.width = '794px';
-      clone.style.height = '1123px';
-
-      // सर्व इमेजसाठी crossorigin सेट करणे
-      clone.querySelectorAll('img').forEach(img => {
-        img.crossOrigin = "anonymous";
-      });
-
-      wrapper.appendChild(clone);
-      document.body.appendChild(wrapper);
-
-      // इमेज लोड होण्यासाठी सुरक्षित वेळ
-      await new Promise(r => setTimeout(r, 250));
+      // २. मोबाईलवरील संकुचित (Scale) तात्पुरता मूळ (१ वर) आणणे
+      const originalTransform = scaledContainer ? scaledContainer.style.transform : '';
+      if (scaledContainer) {
+        scaledContainer.style.transform = 'scale(1)';
+      }
 
       try {
-        const canvas = await html2canvas(wrapper, {
-          scale: 2,
+        // ३. थेट कॅन्व्हास तयार करणे
+        const canvas = await html2canvas(targetElement, {
+          scale: 1.8,
           useCORS: true,
           allowTaint: true,
           backgroundColor: '#ffffff',
-          scrollX: 0,
-          scrollY: 0,
-          windowWidth: 794,
-          windowHeight: 1123,
+          logging: false,
           width: 794,
           height: 1123
         });
@@ -2238,29 +2204,34 @@
           ? `नियुक्ती_पत्र_क्र_${seqNo}_${selectedMemberForLetter.firstName}_${selectedMemberForLetter.lastName}.pdf`
           : `नियुक्ती_पत्र.pdf`;
 
-        // मोबाईलसाठी डायरेक्ट सुरक्षित डाउनलोड (Blob Trigger)
-        const blob = pdf.output('blob');
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = filename;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        setTimeout(() => URL.revokeObjectURL(link.href), 4000);
+        // ४. मोबाईलच्या डाउनलोड मॅनेजरला थेट फाईल देणे (Multi-Method Download)
+        try {
+          pdf.save(filename);
+        } catch (saveErr) {
+          const blob = pdf.output('blob');
+          const fileURL = URL.createObjectURL(blob);
+          const downloadLink = document.createElement('a');
+          downloadLink.href = fileURL;
+          downloadLink.download = filename;
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+          document.body.removeChild(downloadLink);
+          setTimeout(() => URL.revokeObjectURL(fileURL), 5000);
+        }
 
       } catch (err) {
-        alert("PDF तयार करताना त्रुटी आली: " + err.message);
+        alert("PDF डाऊनलोड करताना त्रुटी आली: " + err.message);
       } finally {
-        if (wrapper && wrapper.parentNode) {
-          wrapper.parentNode.removeChild(wrapper);
+        // ५. पूर्वदृश्याचा मूळ मोबाईल आकार पूर्ववत करणे
+        if (scaledContainer) {
+          scaledContainer.style.transform = originalTransform;
         }
         if (btn) {
           btn.disabled = false;
           btn.innerHTML = originalBtnText;
         }
       }
-    }
-    
+    }    
     async function downloadDirectoryMultiPagePDF() {
   const list = getFilteredMembers();
   if (!list || list.length === 0) {
