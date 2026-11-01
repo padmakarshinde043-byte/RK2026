@@ -1598,13 +1598,17 @@
       });
     }
 
-    function onDistrictChange() {
+   function onDistrictChange() {
       if (lockedDistrictName && !isSuperAdmin) {
         currentDistrict = lockedDistrictName;
         document.getElementById('districtSelect').value = lockedDistrictName;
         alert(`सुरक्षा सूचना: आपण '${lockedDistrictName}' जिल्ह्यामध्ये लॉगिन आहात!`);
         return;
       }
+
+      currentDistrict = document.getElementById('districtSelect').value;
+      renderAll();
+    }
 
       currentDistrict = document.getElementById('districtSelect').value;
       renderAll();
@@ -1682,19 +1686,32 @@
       return idx !== -1 ? (idx + 1) : 1;
     }
 
-    // ३. जिल्हा फिल्टर व रँकनुसार क्रमबद्ध यादी (स्क्रीन व PDF दोन्हीसाठी)
+    // ३. अहिल्यानगर व जुना अहमदनगर डेटा १००% अचूक जोडणारा फिल्टर
     function getFilteredMembers() {
       const rawList = window.membersData || [];
       
       const filtered = rawList.filter(m => {
         if (!currentDistrict || currentDistrict === 'सर्व') return true;
-        if (currentDistrict === 'अहिल्यानगर') {
-          return m.district === 'अहिल्यानगर' || m.district === 'अहमदनगर';
+
+        const mDist = String(m.district || '').trim();
+        const curDist = String(currentDistrict).trim();
+
+        // १. अहिल्यानगर निवडल्यास जुना 'अहमदनगर', 'Ahmednagar' किंवा 'अहिल्यानगर' सर्व एकत्र आणणे
+        if (curDist === 'अहिल्यानगर' || curDist === 'अहमदनगर') {
+          return mDist === 'अहिल्यानगर' || mDist === 'अहमदनगर' || mDist.toLowerCase() === 'ahmednagar';
         }
-        return m.district === currentDistrict;
+
+        return mDist === curDist;
+      }).map(m => {
+        // २. स्क्रीनवर, यादीत व PDF मध्ये जुने नाव न दाखवता थेट 'अहिल्यानगर' करणे
+        const mDist = String(m.district || '').trim();
+        if (mDist === 'अहमदनगर' || mDist.toLowerCase() === 'ahmednagar') {
+          return { ...m, district: 'अहिल्यानगर' };
+        }
+        return m;
       });
 
-      // पदानुसार वरपासून खाली असा काटेकोर क्रम
+      // पदानुसार वरपासून खाली अचूक उतरता क्रम (Rank Hierarchy)
       filtered.sort((a, b) => {
         const postA = a.appointedPost || '';
         const postB = b.appointedPost || '';
@@ -1708,7 +1725,7 @@
       });
 
       return filtered;
-    }    
+    }   
     
     function getDisplayPost(m) {
       const pName = m.appointedPost;
