@@ -1626,8 +1626,45 @@
     }
 
     function getFilteredMembers() {
-      return (window.membersData || []).filter(m => m.district === currentDistrict);
-    }
+    const rawList = window.membersData || [];
+    
+    // १. अहिल्यानगर व अहमदनगर दोन्ही रेकॉर्ड्स ओळखणे
+    const filtered = rawList.filter(m => {
+      if (currentDistrict === 'अहिल्यानगर') {
+        return m.district === 'अहिल्यानगर' || m.district === 'अहमदनगर';
+      }
+      return m.district === currentDistrict;
+    });
+
+    // २. अ‍ॅडमिन पॅनेलनुसार पदांचा अधिकृत उतरता प्राधान्यक्रम
+    const POST_RANKS = [
+      "जिल्हाध्यक्ष", "कार्याध्यक्ष", "जिल्हा कार्याध्यक्ष", "जिल्हा सरचिटणीस", 
+      "सरचिटणीस", "जिल्हा उपाध्यक्ष", "उपाध्यक्ष", "महिला आघाडी अध्यक्ष", 
+      "महिला आघाडी उपाध्यक्ष", "कोषाध्यक्ष", "जिल्हा कोषाध्यक्ष", "सहकोषाध्यक्ष", 
+      "सह सचिव", "सहसचिव", "संघटक", "जिल्हा संघटक", "प्रवक्ता", "प्रवक्ते", 
+      "प्रसिद्धी प्रमुख", "कायदेविषयक सल्लागार", "जिल्हा मार्गदर्शक", 
+      "तालुका अध्यक्ष", "तालुका कार्याध्यक्ष", "तालुका सरचिटणीस", "तालुका उपाध्यक्ष", "सदस्य"
+    ];
+
+    // ३. पदानुसार स्वयंचलित क्रमबद्ध (Sort) करणे
+    filtered.sort((a, b) => {
+      const postA = (a.appointedPost || a.post || '').trim();
+      const postB = (b.appointedPost || b.post || '').trim();
+
+      let rA = POST_RANKS.findIndex(p => postA.includes(p));
+      let rB = POST_RANKS.findIndex(p => postB.includes(p));
+
+      if (rA === -1) rA = 999;
+      if (rB === -1) rB = 999;
+
+      if (rA !== rB) {
+        return rA - rB;
+      }
+      return (a.firstName || '').localeCompare(b.firstName || '', 'mr');
+    });
+
+    return filtered;
+  }
 
     function getDisplayPost(m) {
       const pName = m.appointedPost;
