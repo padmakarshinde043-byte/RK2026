@@ -2188,123 +2188,61 @@
       document.getElementById('cleanViewTitle').textContent = `नियुक्ती पत्र - ${m.salutation} ${m.firstName} ${m.lastName}`;
       document.getElementById('cleanViewModal').style.display = 'flex';
     }
-// --- [MASTER PATCH] मोबाईल व लॅपटॉप दोन्हीसाठी १००% खात्रीशीर डाउनलोड इंजिन ---
+
     async function downloadCurrentLetterPDF() {
-      const btn = document.querySelector('#cleanViewModal .btn-gold');
-      let originalBtnText = "";
-      if (btn) {
-        originalBtnText = btn.innerHTML;
-        btn.disabled = true;
-        btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> डाऊनलोड होत आहे...`;
-      }
-
-      // १. मूळ प्रमाणपत्राची फ्रेश कॉपी घेणे (कोणतेही मोबाईल स्केलिंग न लावता)
       const original = document.getElementById('printableCertificate');
-      if (!original) {
-        alert("प्रमाणपत्र उपलब्ध नाही!");
-        if (btn) { btn.disabled = false; btn.innerHTML = originalBtnText; }
-        return;
-      }
-
       const clone = original.cloneNode(true);
-      clone.id = 'tempPdfRenderExactA4';
-      clone.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
-      clone.querySelectorAll('.canvas-node').forEach(node => {
-        node.style.cursor = 'default';
-      });
+      clone.id = 'tempPdfRenderClone';
 
-      // २. स्क्रीनबाहेर निश्चित ७९४ x ११२३ मापात रेंडर रॅपर तयार करणे
+      clone.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
+
       const wrapper = document.createElement('div');
       wrapper.style.position = 'fixed';
-      wrapper.style.left = '-9999px';
       wrapper.style.top = '0';
+      wrapper.style.left = '0';
       wrapper.style.width = '794px';
       wrapper.style.height = '1123px';
-      wrapper.style.minWidth = '794px';
-      wrapper.style.minHeight = '1123px';
-      wrapper.style.maxWidth = '794px';
-      wrapper.style.maxHeight = '1123px';
+      wrapper.style.zIndex = '9999999';
       wrapper.style.background = '#ffffff';
-      wrapper.style.transform = 'none';
-      wrapper.style.zIndex = '999999';
+      wrapper.style.margin = '0';
+      wrapper.style.padding = '0';
       wrapper.style.overflow = 'hidden';
 
-      clone.style.transform = 'none';
-      clone.style.boxShadow = 'none';
-      clone.style.margin = '0';
       clone.style.width = '794px';
       clone.style.height = '1123px';
-
-      // ३. CORS अडथळा रोखण्यासाठी crossorigin सेट करणे
-      clone.querySelectorAll('img').forEach(img => {
-        img.crossOrigin = "anonymous";
-      });
+      clone.style.maxHeight = '1123px';
+      clone.style.boxShadow = 'none';
+      clone.style.margin = '0';
 
       wrapper.appendChild(clone);
       document.body.appendChild(wrapper);
 
-      // प्रतिमा लोड होण्यासाठी सुरक्षित वेळ देणे
-      await new Promise(r => setTimeout(r, 250));
-
       try {
         const canvas = await html2canvas(wrapper, {
-          scale: 2,
+          scale: 2.2,
           useCORS: true,
           allowTaint: true,
-          backgroundColor: '#ffffff',
-          logging: false,
-          scrollX: 0,
-          scrollY: 0,
-          windowWidth: 794,
-          windowHeight: 1123,
           width: 794,
           height: 1123
         });
 
         const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF({
-          orientation: 'portrait',
-          unit: 'mm',
-          format: 'a4'
-        });
-
-        const imgData = canvas.toDataURL('image/jpeg', 0.95);
+        const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+        const imgData = canvas.toDataURL('image/jpeg', 0.98);
         pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
-
+        
         const seqNo = selectedMemberForLetter ? getMemberSerialOrder(selectedMemberForLetter.id) : 1;
         const filename = selectedMemberForLetter 
           ? `नियुक्ती_पत्र_क्र_${seqNo}_${selectedMemberForLetter.firstName}_${selectedMemberForLetter.lastName}.pdf`
           : `नियुक्ती_पत्र.pdf`;
 
-        // ४. मोबाईल आणि लॅपटॉप दोन्हीसाठी ड्युअल-ट्रिगर (Dual-Trigger Download)
-        try {
-          pdf.save(filename);
-        } catch (saveErr) {
-          const pdfBlob = pdf.output('blob');
-          const blobUrl = URL.createObjectURL(pdfBlob);
-          const link = document.createElement('a');
-          link.style.display = 'none';
-          link.href = blobUrl;
-          link.download = filename;
-          document.body.appendChild(link);
-          link.click();
-          setTimeout(() => {
-            document.body.removeChild(link);
-            URL.revokeObjectURL(blobUrl);
-          }, 4000);
-        }
-
-      } catch (err) {
-        alert("PDF डाऊनलोड करताना अडचण आली: " + err.message);
+        pdf.save(filename);
+      } catch(err) {
+        alert("PDF डाऊनलोड त्रुटी: " + err.message);
       } finally {
-        if (wrapper && wrapper.parentNode) {
-          wrapper.parentNode.removeChild(wrapper);
-        }
-        if (btn) {
-          btn.disabled = false;
-          btn.innerHTML = originalBtnText;
-        }
+        document.body.removeChild(wrapper);
       }
+    }
     }  
     async function downloadDirectoryMultiPagePDF() {
   const list = getFilteredMembers();
