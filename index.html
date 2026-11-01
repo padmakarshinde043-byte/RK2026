@@ -2151,12 +2151,9 @@
       document.getElementById('cleanViewTitle').textContent = `नियुक्ती पत्र - ${m.salutation} ${m.firstName} ${m.lastName}`;
       document.getElementById('cleanViewModal').style.display = 'flex';
     }
-// --- [PATCH] मोबाईल व लॅपटॉप दोन्हीकडे १००% पूर्ण A4 आकारात डाऊनलोड करणारा कोड ---
+// --- [FINAL BULLETPROOF PATCH] मोबाईलवर खात्रीने नियुक्ती पत्र डाऊनलोड करणारा कोड ---
     async function downloadCurrentLetterPDF() {
-      const btn = (typeof event !== 'undefined' && event && event.target) 
-        ? (event.target.closest('button') || document.querySelector('#cleanViewModal .btn-gold')) 
-        : document.querySelector('#cleanViewModal .btn-gold');
-      
+      const btn = document.querySelector('#cleanViewModal .btn-gold');
       let originalBtnText = "";
       if (btn) {
         originalBtnText = btn.innerHTML;
@@ -2164,18 +2161,22 @@
         btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> डाऊनलोड होत आहे...`;
       }
 
-      // १. मूळ पूर्ण आकाराच्या प्रमाणपत्राची फ्रेश कॉपी घेणे (कोणतेही मोबाईल स्केलिंग न लावता)
+      // १. मूळ प्रमाणपत्राची फ्रेश कॉपी घेणे
       const original = document.getElementById('printableCertificate');
+      if (!original) {
+        alert("प्रमाणपत्र सापडले नाही!");
+        if (btn) { btn.disabled = false; btn.innerHTML = originalBtnText; }
+        return;
+      }
+
       const clone = original.cloneNode(true);
       clone.id = 'tempPdfRenderExactA4';
       clone.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
-      
-      // सर्व नोड्स सामान्य ठेवणे
       clone.querySelectorAll('.canvas-node').forEach(node => {
         node.style.cursor = 'default';
       });
 
-      // २. स्क्रीनबाहेर निश्चित A4 आकारात रेंडर रॅपर तयार करणे
+      // २. स्क्रीनबाहेर निश्चित A4 मापात रेंडर रॅपर
       const wrapper = document.createElement('div');
       wrapper.style.position = 'fixed';
       wrapper.style.left = '-9999px';
@@ -2187,21 +2188,30 @@
       wrapper.style.maxWidth = '794px';
       wrapper.style.maxHeight = '1123px';
       wrapper.style.background = '#ffffff';
-      wrapper.style.transform = 'none'; // मोबाईल स्केलिंग पूर्णपणे रद्द
+      wrapper.style.transform = 'none';
       wrapper.style.zIndex = '999999';
       wrapper.style.overflow = 'hidden';
 
       clone.style.transform = 'none';
       clone.style.boxShadow = 'none';
       clone.style.margin = '0';
+      clone.style.width = '794px';
+      clone.style.height = '1123px';
+
+      // सर्व इमेजसाठी crossorigin सेट करणे
+      clone.querySelectorAll('img').forEach(img => {
+        img.crossOrigin = "anonymous";
+      });
 
       wrapper.appendChild(clone);
       document.body.appendChild(wrapper);
 
+      // इमेज लोड होण्यासाठी सुरक्षित वेळ
+      await new Promise(r => setTimeout(r, 250));
+
       try {
-        // ३. पूर्ण ७९४ x ११२३ रिझोल्यूशनवर कॅन्व्हास तयार करणे
         const canvas = await html2canvas(wrapper, {
-          scale: 2.2,
+          scale: 2,
           useCORS: true,
           allowTaint: true,
           backgroundColor: '#ffffff',
@@ -2220,8 +2230,7 @@
           format: 'a4'
         });
 
-        const imgData = canvas.toDataURL('image/jpeg', 0.98);
-        // पूर्ण A4 मापावर (210mm x 297mm) अचूक बसवणे
+        const imgData = canvas.toDataURL('image/jpeg', 0.95);
         pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
 
         const seqNo = selectedMemberForLetter ? getMemberSerialOrder(selectedMemberForLetter.id) : 1;
@@ -2229,12 +2238,22 @@
           ? `नियुक्ती_पत्र_क्र_${seqNo}_${selectedMemberForLetter.firstName}_${selectedMemberForLetter.lastName}.pdf`
           : `नियुक्ती_पत्र.pdf`;
 
-        pdf.save(filename);
+        // मोबाईलसाठी डायरेक्ट सुरक्षित डाउनलोड (Blob Trigger)
+        const blob = pdf.output('blob');
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setTimeout(() => URL.revokeObjectURL(link.href), 4000);
 
       } catch (err) {
-        alert("PDF डाऊनलोड करताना त्रुटी आली: " + err.message);
+        alert("PDF तयार करताना त्रुटी आली: " + err.message);
       } finally {
-        document.body.removeChild(wrapper);
+        if (wrapper && wrapper.parentNode) {
+          wrapper.parentNode.removeChild(wrapper);
+        }
         if (btn) {
           btn.disabled = false;
           btn.innerHTML = originalBtnText;
