@@ -2151,7 +2151,7 @@
       document.getElementById('cleanViewTitle').textContent = `नियुक्ती पत्र - ${m.salutation} ${m.firstName} ${m.lastName}`;
       document.getElementById('cleanViewModal').style.display = 'flex';
     }
-// --- [MISSING FUNCTION RESTORED] नियुक्ती पत्र PDF डाऊनलोड कोड ---
+
     async function downloadCurrentLetterPDF() {
       const btn = (typeof event !== 'undefined' && event && event.target) 
         ? (event.target.closest('button') || document.querySelector('#cleanViewModal .btn-gold')) 
@@ -2164,35 +2164,70 @@
         btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> डाऊनलोड होत आहे...`;
       }
 
-      let targetElement = document.getElementById('cleanClonePdf');
-      let tempCreated = false;
-      let wrapper = null;
-
-      if (!targetElement) {
-        const original = document.getElementById('printableCertificate');
-        targetElement = original.cloneNode(true);
-        targetElement.id = 'tempPdfRenderClone';
-        targetElement.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
-
-        wrapper = document.createElement('div');
-        wrapper.style.position = 'fixed';
-        wrapper.style.left = '-9999px';
-        wrapper.style.top = '0';
-        wrapper.style.width = '794px';
-        wrapper.style.height = '1123px';
-        wrapper.style.background = '#ffffff';
-        wrapper.style.zIndex = '999999';
-        wrapper.appendChild(targetElement);
-        document.body.appendChild(wrapper);
-        tempCreated = true;
+      // 1. मोबाइल प्रीव्यू के सिकुड़े हुए (Scaled) बॉक्स को छोड़कर हमेशा मूल टेम्पलेट की फ्रेश कॉपी लेना
+      const original = document.getElementById('printableCertificate');
+      if (!original) {
+        alert("प्रमाणपत्र टेम्पलेट सापडले नाही!");
+        if (btn) { btn.disabled = false; btn.innerHTML = originalBtnText; }
+        return;
       }
 
+      const clone = original.cloneNode(true);
+      clone.id = 'tempPdfRenderClone';
+
+      // अनावश्यक बटन्स और रिसाइज हैंडल्स हटाना
+      clone.querySelectorAll('.node-delete-btn, .node-resize-handle').forEach(el => el.remove());
+      clone.querySelectorAll('.canvas-node').forEach(node => {
+        node.style.cursor = 'default';
+      });
+
+      // 2. स्क्रीन के बाहर फिक्स A4 (794px x 1123px) का अन-स्केल्ड कंटेनर तैयार करना
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'fixed';
+      wrapper.style.left = '-9999px';
+      wrapper.style.top = '0';
+      wrapper.style.width = '794px';
+      wrapper.style.height = '1123px';
+      wrapper.style.minWidth = '794px';
+      wrapper.style.minHeight = '1123px';
+      wrapper.style.maxWidth = '794px';
+      wrapper.style.maxHeight = '1123px';
+      wrapper.style.background = '#ffffff';
+      wrapper.style.zIndex = '999999';
+      wrapper.style.overflow = 'hidden';
+
+      // मोबाइल CSS ट्रांसफॉर्म को पूरी तरह रीसेट (1:1 स्केल) करना
+      clone.style.display = 'block';
+      clone.style.transform = 'none';
+      clone.style.webkitTransform = 'none';
+      clone.style.boxShadow = 'none';
+      clone.style.margin = '0';
+      clone.style.width = '794px';
+      clone.style.height = '1123px';
+
+      wrapper.appendChild(clone);
+      document.body.appendChild(wrapper);
+
+      // इमेज पूरी तरह लोड होने की प्रतीक्षा करना
+      const allImgs = Array.from(wrapper.querySelectorAll('img'));
+      await Promise.all(allImgs.map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(res => {
+          img.onload = res;
+          img.onerror = res;
+        });
+      }));
+
+      // DOM और फॉन्ट्स स्थिर होने के लिए सूक्ष्म विराम
+      await new Promise(r => setTimeout(r, 200));
+
       try {
-        const canvas = await html2canvas(targetElement, {
-          scale: 2.2,
+        const canvas = await html2canvas(wrapper, {
+          scale: 2,
           useCORS: true,
           allowTaint: true,
           backgroundColor: '#ffffff',
+          logging: false,
           scrollX: 0,
           scrollY: 0,
           windowWidth: 794,
@@ -2216,13 +2251,26 @@
           ? `नियुक्ती_पत्र_क्र_${seqNo}_${selectedMemberForLetter.firstName}_${selectedMemberForLetter.lastName}.pdf`
           : `नियुक्ती_पत्र.pdf`;
 
-        pdf.save(filename);
+        // मोबाइल ब्राउज़र के लिए सुरक्षित Blob डाउनलोड लिंक
+        const pdfBlob = pdf.output('blob');
+        const blobUrl = URL.createObjectURL(pdfBlob);
+        const link = document.createElement('a');
+        link.style.display = 'none';
+        link.href = blobUrl;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+
+        setTimeout(() => {
+          document.body.removeChild(link);
+          URL.revokeObjectURL(blobUrl);
+        }, 4000);
 
       } catch (err) {
         alert("PDF डाऊनलोड करताना त्रुटी आली: " + err.message);
       } finally {
-        if (tempCreated && wrapper) {
-          document.body.removeChild(wrapper);
+        if (wrapper && wrapper.parentNode) {
+          wrapper.parentNode.removeChild(wrapper);
         }
         if (btn) {
           btn.disabled = false;
