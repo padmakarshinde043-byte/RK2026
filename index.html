@@ -1610,25 +1610,106 @@
       renderAll();
     }
 
-    // [PATCH 5 START] सलग अनुक्रमांक, व्हॅलिडेशन, रेंडर व मल्टि-पेज PDF इंजिन
-    function getAllSortedMembers() {
-      return [...(window.membersData || [])].sort((a, b) => {
-        const timeA = a.updatedAt ? new Date(a.updatedAt).getTime() : 0;
-        const timeB = b.updatedAt ? new Date(b.updatedAt).getTime() : 0;
-        return timeA - timeB;
-      });
+   // [PATCH 5 START] अधिकृत रँक हायरार्की, सलग अनुक्रमांक व फिल्टर इंजिन
+    const OFFICIAL_POST_RANKS = [
+      "राज्य प्रतिनिधी",
+      "राज्य महिला प्रतिनिधी",
+      "विभाग प्रतिनिधी",
+      "जिल्हा मार्गदर्शक",
+      "जिल्हाध्यक्ष",
+      "जिल्हा सरचिटणीस",
+      "कार्याध्यक्ष",
+      "जिल्हा कार्याध्यक्ष",
+      "जिल्हा उपाध्यक्ष",
+      "उपाध्यक्ष",
+      "महिला आघाडी अध्यक्ष",
+      "महिला आघाडी उपाध्यक्ष",
+      "कोषाध्यक्ष",
+      "जिल्हा कोषाध्यक्ष",
+      "सहकोषाध्यक्ष",
+      "सह सचिव",
+      "सहसचिव",
+      "संघटक",
+      "जिल्हा संघटक",
+      "प्रवक्ता",
+      "प्रवक्ते",
+      "प्रसिद्धी प्रमुख",
+      "कायदेविषयक सल्लागार",
+      "तालुका अध्यक्ष",
+      "तालुका कार्याध्यक्ष",
+      "तालुका सरचिटणीस",
+      "तालुका उपाध्यक्ष",
+      "तालुका संघटक",
+      "तालुका कोषाध्यक्ष",
+      "सदस्य"
+    ];
+
+    function getPostRankScore(postName) {
+      if (!postName) return 999;
+      const clean = String(postName).trim();
+      const exactIdx = OFFICIAL_POST_RANKS.indexOf(clean);
+      if (exactIdx !== -1) return exactIdx;
+
+      for (let i = 0; i < OFFICIAL_POST_RANKS.length; i++) {
+        if (clean.includes(OFFICIAL_POST_RANKS[i])) {
+          return i;
+        }
+      }
+      return 900;
     }
 
+    // १. संपूर्ण डेटाबेस रँकनुसार क्रमबद्ध करणे
+    function getAllSortedMembers() {
+      const all = [...(window.membersData || [])];
+      all.sort((a, b) => {
+        const postA = a.appointedPost || '';
+        const postB = b.appointedPost || '';
+        const rankA = getPostRankScore(postA);
+        const rankB = getPostRankScore(postB);
+
+        if (rankA !== rankB) {
+          return rankA - rankB;
+        }
+        return (a.firstName || '').localeCompare(b.firstName || '', 'mr');
+      });
+      return all;
+    }
+
+    // २. रँकनुसार क्रमबद्ध यादीतील अनुक्रमांक
     function getMemberSerialOrder(mId) {
-      const all = getAllSortedMembers();
-      const idx = all.findIndex(item => String(item.id) === String(mId));
+      const list = getFilteredMembers();
+      const idx = list.findIndex(item => String(item.id) === String(mId));
       return idx !== -1 ? (idx + 1) : 1;
     }
 
+    // ३. जिल्हा फिल्टर व रँकनुसार क्रमबद्ध यादी (स्क्रीन व PDF दोन्हीसाठी)
     function getFilteredMembers() {
-      return (window.membersData || []).filter(m => m.district === currentDistrict);
-    }
+      const rawList = window.membersData || [];
+      
+      const filtered = rawList.filter(m => {
+        if (!currentDistrict || currentDistrict === 'सर्व') return true;
+        if (currentDistrict === 'अहिल्यानगर') {
+          return m.district === 'अहिल्यानगर' || m.district === 'अहमदनगर';
+        }
+        return m.district === currentDistrict;
+      });
 
+      // पदानुसार वरपासून खाली असा काटेकोर क्रम
+      filtered.sort((a, b) => {
+        const postA = a.appointedPost || '';
+        const postB = b.appointedPost || '';
+        const rankA = getPostRankScore(postA);
+        const rankB = getPostRankScore(postB);
+
+        if (rankA !== rankB) {
+          return rankA - rankB;
+        }
+        return (a.firstName || '').localeCompare(b.firstName || '', 'mr');
+      });
+
+      return filtered;
+    }    
+    
     function getDisplayPost(m) {
       const pName = m.appointedPost;
       const tName = m.taluka ? m.taluka.trim() : '';
