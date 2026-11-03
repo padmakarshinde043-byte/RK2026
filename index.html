@@ -3020,5 +3020,173 @@
     }
   </script>
   <!-- ================= [LIVE VISITOR COUNTER SINGLE PATCH END] ================= -->
+  <!-- ================= [STATEWIDE REGISTRY SINGLE STANDALONE PATCH START] ================= -->
+  <script type="module">
+    import { ref, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+    // १. राज्याध्यक्ष पॅनलमध्ये बटण स्वयंचलित जोडणे
+    function injectStateRegistryButton() {
+      const container = document.querySelector('#tab-letters > div:first-child');
+      if (!container || document.getElementById('autoStateRegistryBtn')) return;
+
+      const btn = document.createElement('button');
+      btn.id = 'autoStateRegistryBtn';
+      btn.className = 'btn btn-outline';
+      btn.style.cssText = 'border-color: #0f2b48; color: #0f2b48; font-weight: 800; display: inline-flex; align-items: center; gap: 6px;';
+      btn.innerHTML = '<i class="fa-solid fa-list-ol"></i> नियुक्ती क्रमांकानुसार राज्य यादी (PDF)';
+      btn.onclick = generateStatewideRegistryPDF;
+
+      // मूळ डाऊनलोड बटनाच्या शेजारी बटण लावणे
+      container.appendChild(btn);
+    }
+
+    // २. मागणीनुसार (On-Demand) १ ते शेवटपर्यंत सलग ब्लॅक अँड व्हाईट PDF तयार करणे
+    async function generateStatewideRegistryPDF() {
+      const btn = document.getElementById('autoStateRegistryBtn');
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> डेटा तपासत आहे...';
+
+      try {
+        if (!window.rtdb) {
+          alert("डेटाबेस सेवा उपलब्ध नाही. कृपया पेज रिफ्रेश करा.");
+          return;
+        }
+
+        // केवळ बटण दाबल्यावरच फायरबेसवरून एकदाच ऑन-डिमांड मागणी (Zero Background Cost)
+        const snapshot = await get(ref(window.rtdb, 'officials'));
+        const rawData = snapshot.val();
+        if (!rawData) {
+          alert("पोर्टलवर एकही नोंदणीकृत पदाधिकारी आढळला नाही.");
+          return;
+        }
+
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> PDF तयार होत आहे...';
+
+        const allMembers = Object.keys(rawData).map(key => ({ id: key, ...rawData[key] }));
+
+        // नोंदणीच्या अचूक वेळेनुसार १ ते शेवटपर्यंत सलग क्रमवारी
+        allMembers.sort((a, b) => {
+          const timeA = a.createdAt ? new Date(a.createdAt).getTime() : (a.updatedAt ? new Date(a.updatedAt).getTime() : 0);
+          const timeB = b.createdAt ? new Date(b.createdAt).getTime() : (b.updatedAt ? new Date(b.updatedAt).getTime() : 0);
+
+          if (timeA !== timeB && timeA > 0 && timeB > 0) return timeA - timeB;
+
+          const numIdA = parseInt(a.id) || 0;
+          const numIdB = parseInt(b.id) || 0;
+          if (numIdA > 0 && numIdB > 0 && numIdA !== numIdB) return numIdA - numIdB;
+
+          return String(a.id || '').localeCompare(String(b.id || ''));
+        });
+
+        const totalRecords = allMembers.length;
+        const ROWS_PER_PAGE = 26; // पानावर खाली नको ती रिकामी जागा न सोडता योग्य बसवणे
+        const totalPages = Math.ceil(totalRecords / ROWS_PER_PAGE);
+
+        const todayDate = new Date();
+        const formattedDate = `${String(todayDate.getDate()).padStart(2, '0')}/${String(todayDate.getMonth() + 1).padStart(2, '0')}/${todayDate.getFullYear()}`;
+
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+        const renderWrapper = document.createElement('div');
+        renderWrapper.style.cssText = 'position: fixed; left: -9999px; top: 0; width: 794px; background: #ffffff; z-index: 999999;';
+        document.body.appendChild(renderWrapper);
+
+        for (let pIdx = 0; pIdx < totalPages; pIdx++) {
+          const startIndex = pIdx * ROWS_PER_PAGE;
+          const chunk = allMembers.slice(startIndex, startIndex + ROWS_PER_PAGE);
+
+          let pageHTML = `
+            <div style="width: 794px; min-height: 1123px; max-height: 1123px; padding: 22px 30px; background: #ffffff; color: #000000; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; font-family: 'Noto Sans Devanagari', 'Yantramanav', sans-serif;">
+              <div>
+                <!-- ब्लॅक अँड व्हाईट शासकीय हेडर -->
+                <div style="text-align: center; border-bottom: 2px solid #000000; padding-bottom: 8px; margin-bottom: 10px;">
+                  <div style="font-size: 9.5pt; font-weight: 800;">श्रमिक संघ / धर्मादाय आयुक्त नोंदणीकृत संघटना | Reg. No. MH/0000555/2026</div>
+                  <div style="font-size: 18pt; font-weight: 900; line-height: 1.2; margin-top: 2px;">महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ</div>
+                  <div style="font-size: 9.5pt; font-weight: 700; margin-top: 2px;">कार्यालय : १३१, पाटणे, ता. मालेगाव, जि. नाशिक | संपर्क: ९८६०७०४०९८</div>
+                </div>
+
+                <div style="border: 1.5px solid #000000; padding: 6px 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 11pt; font-weight: 900; background: #f8fafc;">
+                  <div>॥ राज्यस्तरीय अधिकृत नियुक्ती पत्र जावक नोंदवही ॥</div>
+                  <div>एकूण जारी नियुक्ती: ${totalRecords}</div>
+                  <div>दिनांक: ${formattedDate}</div>
+                </div>
+
+                <table style="width: 100%; border-collapse: collapse; border: 1.5px solid #000000;">
+                  <thead>
+                    <tr style="background: #f1f5f9;">
+                      <th style="border: 1.2px solid #000000; padding: 6px 4px; width: 42px; text-align: center; font-size: 10pt; font-weight: 900;">अनु.</th>
+                      <th style="border: 1.2px solid #000000; padding: 6px 4px; width: 85px; text-align: center; font-size: 10pt; font-weight: 900;">नियुक्ती क्र.</th>
+                      <th style="border: 1.2px solid #000000; padding: 6px 8px; width: 105px; text-align: left; font-size: 10.5pt; font-weight: 900;">जिल्हा</th>
+                      <th style="border: 1.2px solid #000000; padding: 6px 8px; font-size: 10.5pt; font-weight: 900;">पदाधिकाऱ्याचे संपूर्ण नाव</th>
+                      <th style="border: 1.2px solid #000000; padding: 6px 8px; width: 230px; text-align: left; font-size: 10.5pt; font-weight: 900;">बहाल केलेले पद</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+          `;
+
+          chunk.forEach((m, cIdx) => {
+            const serialNo = startIndex + cIdx + 1;
+            const outwardFormatted = String(serialNo).padStart(2, '0');
+            const distName = (m.district === 'अहमदनगर' || (m.district && m.district.toLowerCase() === 'ahmednagar')) ? 'अहिल्यानगर' : (m.district || '-');
+            const postName = m.taluka ? `${m.appointedPost} (${m.taluka})` : m.appointedPost;
+
+            pageHTML += `
+              <tr>
+                <td style="border: 1px solid #000000; text-align: center; font-weight: 800; padding: 5px 3px; font-size: 9.5pt;">${serialNo}</td>
+                <td style="border: 1px solid #000000; text-align: center; font-weight: 900; padding: 5px 3px; font-size: 10pt;">${outwardFormatted}</td>
+                <td style="border: 1px solid #000000; font-weight: 800; padding: 5px 6px; font-size: 10pt;">${distName}</td>
+                <td style="border: 1px solid #000000; font-weight: 800; padding: 5px 8px; font-size: 10pt;">${m.salutation || ''} ${m.firstName || ''} ${m.middleName || ''} ${m.lastName || ''}</td>
+                <td style="border: 1px solid #000000; font-weight: 900; padding: 5px 6px; font-size: 10pt;">${postName}</td>
+              </tr>
+            `;
+          });
+
+          pageHTML += `
+                  </tbody>
+                </table>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 9pt; font-weight: 800; border-top: 1.5px solid #000000; padding-top: 4px; margin-top: 6px;">
+                <div>महाराष्ट्र राज्य केंद्रप्रमुख व अधिकारी महासंघ - राज्यस्तरीय मास्टर यादी</div>
+                <div>पान क्र. ${pIdx + 1} / ${totalPages}</div>
+              </div>
+            </div>
+          `;
+
+          renderWrapper.innerHTML = pageHTML;
+          await new Promise(res => setTimeout(res, 150));
+
+          const canvas = await html2canvas(renderWrapper.firstElementChild, {
+            scale: 2.2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: '#ffffff',
+            width: 794,
+            height: 1123
+          });
+
+          const imgData = canvas.toDataURL('image/jpeg', 0.98);
+          if (pIdx > 0) pdf.addPage();
+          pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
+        }
+
+        document.body.removeChild(renderWrapper);
+        pdf.save(`राज्यस्तरीय_नियुक्ती_नोंदवही_यादी_${formattedDate.replace(/\//g, '-')}.pdf`);
+
+      } catch (err) {
+        alert("मास्टर यादी PDF डाऊनलोड करताना त्रुटी आली: " + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }
+    }
+
+    // टॅब उघडताना बटण लोड करणे
+    window.addEventListener('load', injectStateRegistryButton);
+    setInterval(injectStateRegistryButton, 1000);
+  </script>
+  <!-- ================= [STATEWIDE REGISTRY SINGLE STANDALONE PATCH END] ================= -->
 </body>
 </html>
