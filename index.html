@@ -1344,6 +1344,7 @@
     onValue(ref(db, 'officials'), (snapshot) => {
       const data = snapshot.val();
       window.membersData = data ? Object.keys(data).map(key => ({ id: key, ...data[key] })) : [];
+      window.statewideSerialMap = null; // नवीन डेटा आल्यावर कॅश रिफ्रेश करणे
       window.renderAll();
     });
 
@@ -1659,30 +1660,51 @@
       return 900;
     }
 
-    // १. संपूर्ण डेटाबेस रँकनुसार क्रमबद्ध करणे
-    function getAllSortedMembers() {
-      const all = [...(window.membersData || [])];
-      all.sort((a, b) => {
-        const postA = a.appointedPost || '';
-        const postB = b.appointedPost || '';
-        const rankA = getPostRankScore(postA);
-        const rankB = getPostRankScore(postB);
+   // --- [डेटा-बचत करणारी अखंड जावक क्रमांक प्रणाली] ---
 
-        if (rankA !== rankB) {
-          return rankA - rankB;
+    window.statewideSerialMap = null;
+
+    // १. सेव्ह वेळेनुसार अखंड राज्यस्तरीय क्रमवारी (मेमरी कॅशसह)
+    function rebuildStatewideSerialMap() {
+      const all = [...(window.membersData || [])];
+      
+      all.sort((a, b) => {
+        const timeA = a.createdAt ? new Date(a.createdAt).getTime() : (a.updatedAt ? new Date(a.updatedAt).getTime() : 0);
+        const timeB = b.createdAt ? new Date(b.createdAt).getTime() : (b.updatedAt ? new Date(b.updatedAt).getTime() : 0);
+
+        if (timeA !== timeB && timeA > 0 && timeB > 0) {
+          return timeA - timeB;
         }
-        return (a.firstName || '').localeCompare(b.firstName || '', 'mr');
+
+        const numIdA = parseInt(a.id) || 0;
+        const numIdB = parseInt(b.id) || 0;
+        if (numIdA > 0 && numIdB > 0 && numIdA !== numIdB) {
+          return numIdA - numIdB;
+        }
+
+        return String(a.id || '').localeCompare(String(b.id || ''));
       });
+
+      const map = new Map();
+      all.forEach((member, index) => {
+        map.set(String(member.id), index + 1);
+      });
+
+      window.statewideSerialMap = map;
       return all;
     }
 
-    // २. रँकनुसार क्रमबद्ध यादीतील अनुक्रमांक
-    function getMemberSerialOrder(mId) {
-      const list = getFilteredMembers();
-      const idx = list.findIndex(item => String(item.id) === String(mId));
-      return idx !== -1 ? (idx + 1) : 1;
+    function getAllSortedMembers() {
+      return rebuildStatewideSerialMap();
     }
 
+    // २. अखंड सलग जावक क्रमांक थेट मेमरीतून काढणे (शून्य अतिरिक्त डेटा खर्च)
+    function getMemberSerialOrder(mId) {
+      if (!window.statewideSerialMap) {
+        rebuildStatewideSerialMap();
+      }
+      return window.statewideSerialMap.get(String(mId)) || 1;
+    }
     // ३. अहिल्यानगर व जुना अहमदनगर डेटा १००% अचूक जोडणारा फिल्टर
     function getFilteredMembers() {
       const rawList = window.membersData || [];
